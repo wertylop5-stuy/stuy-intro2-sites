@@ -1,0 +1,15 @@
+* {
+	font-family: Palatino, Serif;
+}
+
+html {
+	background-color: black;
+}
+
+.red {
+	color: red;
+}
+
+.green {
+	color:green;
+}
