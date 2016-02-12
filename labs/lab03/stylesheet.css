@@ -13,6 +13,7 @@ html {
 
 #namePlate {
 	border-spacing: 50px;
+	border-collapse: separate;
 	display: table-cell;
 }
 
@@ -27,6 +28,8 @@ html {
 }
 
 #summaryText {
+	border-spacing: 50px;
+	border-collapse: separate;
 	display: table-cell;
 	padding-left: 50px;
 }
