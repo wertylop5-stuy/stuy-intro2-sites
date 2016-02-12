@@ -20,13 +20,16 @@ html {
 }
 
 .noOrder {
-	text-align: center;
+	/*text-align: center;*/
 }
+
 .noOrder ul {
-	list-style: none;
+	display: table;
+	margin: 0 auto;
 }
+
 .noOrder ul li {
-	display: inline;
+	/*display: block;*/
 }
 
 #h1Except {
