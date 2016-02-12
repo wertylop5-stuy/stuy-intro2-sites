@@ -1,9 +1,6 @@
-* {
-	font-family: Palatino, Serif;
-}
-
 html {
 	background-color: black;
+	font-family: Palatino, Serif;
 }
 
 .red {
@@ -12,4 +9,45 @@ html {
 
 .green {
 	color: #00ff00;
+}
+
+.centered {
+	text-align: center;
+}
+
+.centerElem {
+	align: center;
+}
+
+.noOrder {
+	text-align: center;
+}
+.noOrder ul {
+	list-style: none;
+}
+.noOrder ul li {
+	display: inline;
+}
+
+#h1Except {
+	font-family: Courier New, Monospace;
+}
+
+#t1r3d2 {
+	color: #e6e600;
+	font-family: Courier New, Monospace;
+}
+
+#temp {
+	text-align: left;
+}
+
+#t1 {
+	border-style: solid;
+	border-width: 1px;
+	/*cellpadding: 10;*/
+}
+
+#t1r1 {
+	
 }
