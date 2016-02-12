@@ -1,0 +1,32 @@
+html {
+	background-color: #149911;
+}
+
+.standardPicSize {
+	height: 200px;
+	width: 200px;
+}
+
+.basicProfile {
+	background-color: #256D1B;
+}
+
+#namePlate {
+	border-spacing: 50px;
+	display: table-cell;
+}
+
+#nameHeader {
+	display: inline;
+	/*padding-right: 50px;*/
+}
+
+#picBox {
+	/*background-color: #256D1B;*/
+	display: table;
+}
+
+#summaryText {
+	display: table-cell;
+	padding-left: 50px;
+}
