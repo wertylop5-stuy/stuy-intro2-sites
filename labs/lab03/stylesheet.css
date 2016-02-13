@@ -12,9 +12,10 @@ html {
 }
 
 #namePlate {
-	border-spacing: 50px;
-	border-collapse: separate;
-	display: table-cell;
+	/*display: table-cell;*/
+	margin: 5px;
+	width: 20%;
+	float: left;
 }
 
 #nameHeader {
@@ -28,8 +29,9 @@ html {
 }
 
 #summaryText {
-	border-spacing: 50px;
-	border-collapse: separate;
-	display: table-cell;
+	/*display: table-cell;*/
+	width: 75%;
+	margin: 5px;
+	float: left;
 	padding-left: 50px;
 }
