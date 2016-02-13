@@ -12,26 +12,45 @@ html {
 }
 
 #namePlate {
-	/*display: table-cell;*/
+	display: block;
 	margin: 5px;
 	width: 20%;
 	float: left;
+	border-radius: 10px;
+	padding-left: 10px;
 }
 
 #nameHeader {
-	display: inline;
-	/*padding-right: 50px;*/
+	display: inline-block;
 }
 
 #picBox {
-	/*background-color: #256D1B;*/
 	display: table;
 }
 
-#summaryText {
-	/*display: table-cell;*/
-	width: 75%;
+#infoText {
+	display: inline;
+	width: 70%;
 	margin: 5px;
-	float: left;
-	padding-left: 50px;
+	float: right;
+	padding-left: 10px;
+	padding-right: 10px;
+	border-radius: 10px;
+}
+
+#summaryText {
+	clear: left;
+}
+
+#summaryHeader {
+	text-align: center;
+}
+
+#summaryBox {
+	-webkit-column-count: 3;
+	-moz-column-count: 3;
+	column-count: 3;
+	background-color: #4E6E58;
+	border-radius: 10px;
+	padding: 5px;
 }
