@@ -54,3 +54,10 @@ html {
 	border-radius: 10px;
 	padding: 5px;
 }
+
+#secret {
+	position: absolute;
+	width: 5px;
+	height: 5px;
+	bottom: 0;
+}
