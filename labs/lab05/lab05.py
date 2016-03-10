@@ -30,11 +30,18 @@ def makeTable(rows, cols, startNum):
 		result += makeRow(cols, startNum + (x * cols))
 	return result + "\n</table>"
 
+###  MODIFIED VERSIONS WITH TABS   ###
+def makeRowTabs(numCols, startVal, startTab):
+	result = makeTabs(startTab) + "<tr>\n"
+	for x in range(startVal, numCols + startVal):
+		result += makeTabs(startTab + 1) + "<td>" + str(x) + "</td>\n"
+	return result + makeTabs(startTab) + "</tr>"
+
 def makeTableTabs(rows, cols, startNum, startTab):
 	result = makeTabs(startTab) + "<table>"
 	for x in range(0, rows):
 		result += "\n"
-		result += makeRow(cols, startNum + (x * cols))
+		result += makeRowTabs(cols, startNum + (x * cols), startTab + 1)
 	return result + "\n" + makeTabs(startTab) + "</table>"
 
 print startPage("ASCII")
