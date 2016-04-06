@@ -20,11 +20,11 @@ def makeTabs(num):
 def makeRow(numCols, startVal):
 	result = "<tr>"
 	for x in range(startVal, numCols + startVal):
-		result += "<td>" + str(x) + "</td>"
+		result += "<td>" + str(x) + ":" + "'" + chr(x)  + "'" + "</td>"
 	return result + "</tr>"
 
 def makeTable(rows, cols, startNum):
-	result = "<table>"
+	result = "<table border='1'>"
 	for x in range(0, rows):
 		result += "\n"
 		result += makeRow(cols, startNum + (x * cols))
@@ -34,11 +34,12 @@ def makeTable(rows, cols, startNum):
 def makeRowTabs(numCols, startVal, startTab):
 	result = makeTabs(startTab) + "<tr>\n"
 	for x in range(startVal, numCols + startVal):
-		result += makeTabs(startTab + 1) + "<td>" + str(x) + "</td>\n"
+		result += makeTabs(startTab + 1) + "<td>" + str(x) + \
+		":"  + "'" + chr(x) + "'"  + "</td>\n"
 	return result + makeTabs(startTab) + "</tr>"
 
 def makeTableTabs(rows, cols, startNum, startTab):
-	result = makeTabs(startTab) + "<table>"
+	result = makeTabs(startTab) + "<table border='1'>"
 	for x in range(0, rows):
 		result += "\n"
 		result += makeRowTabs(cols, startNum + (x * cols), startTab + 1)
