@@ -1,5 +1,6 @@
 #!/usr/bin/python
 print "content-type: text/html\n"
+#TODO lol
 
 import random
 
@@ -18,10 +19,7 @@ def makeTabs(num):
 		result += "    "
 	return result
 
-def makeElem(data, tabs):
-	return makeTabs(tabs) + "<td>" + str(data) + "</td>"
-
-#######################I wish I didn't have to use global variables
+#I wish I didn't have to use global variables
 g_distinctWords = 0
 hits = []
 tally = []
@@ -61,10 +59,6 @@ def TallyWords(text):
 			#q = q.strip("'")
 			textList[x] = q
 	
-	#These two correspond with each other
-	#hits = []
-	#tally = []
-	
 	#Stores index of existing word in hits
 	tempIndex = 0
 	
@@ -78,19 +72,13 @@ def TallyWords(text):
 			else:
 				tempIndex = hits.index(x.lower())
 				tally[tempIndex] += 1
-	
-	#print hits
-	#fancyPrint(hits, tally)
-	#return hits, tally
 
 def fancyPrint(listA, listB):
 	for x in range(0, len(listA)):
-		#print listA[x], ":", listB[x]
 		print makeTabs(3) + "<tr>"
 		print makeElem(listA[x], 4)
 		print makeElem(listB[x], 4)
 		print makeTabs(3) + "</tr>"
-	#print ""
 
 def findOneTime(listA, listB):
 	res = []
@@ -99,70 +87,7 @@ def findOneTime(listA, listB):
 			res.append(listA[x])
 	return res
 
-###STream stuff
-randomRes = random.randint(0, 1)
-fileName = ""
-if randomRes:
-	filename = "dante.txt"
-else:
-	filename = "bigmac.txt"
-
-inStream = open(filename, "r")
-bookWords = inStream.read()
-###End STream stuff
-
-print startPage("Counting")
-
-#set up tallied values
-TallyWords(bookWords)
-
-totalTally = 0
-for x in tally:
-	totalTally += x
-
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~total words
-print makeTabs(2) + "<p>" + "Total words: " + \
-str( totalTally) + "</p>"
-
-'''print makeTabs(2) + "<p>" + "Lsit: " + \
-str(hits) + "</p>" '''
-
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~distinct words
-print makeTabs(2) + "<p>" + "Distinct words: " + \
-str(g_distinctWords) + "</p>"
-
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~words occurring once
-oneWords = findOneTime(hits, tally)
-print makeTabs(2) + "<p>" + "Words occurring once: " + \
-str( len(oneWords)) + "</p>"
-
-
-
-
-
-
-
-
-
-###########	TEH MASTER TABLE!!!!!1!!1!1!11! ###########
-print makeTabs(2) + '<table>'
-print makeTabs(3) + "<tr>"
-print makeTabs(4) + "<th>" + "First one hundred one-time words" + "</th>"
-print makeTabs(4) + "<th>" + "Most common words" + "</th>"
-print makeTabs(4) + "<th>" + "All words and tallies" + "</th>"
-
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~first one hundred one time words
-print makeTabs(3) + "<tr>"
-print makeTabs(4) + "<td>"
-print makeTabs(5) + '<table>'
-for x in oneWords[:100]:
-	print makeTabs(6) + '<tr>'
-	print makeTabs(7) + '<td>' + x + "</td>"
-	print makeTabs(6) + '</tr>'
-print makeTabs(5) + "</table>"
-print makeTabs(4) + "</td>"
-
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Most common words (lolrip)
+###################### QUICKSORT BEGIN
 def swap(li, start, end, hitIn):
 	temp = li[start]
 	temp2 = hitIn[start]
@@ -180,6 +105,7 @@ def partition(li, start, end, hitIn):
 	#keeps track of highest index of lower vals
 	smallBound = start
 	
+	#sets smallbound to the first number smaller than pivot
 	while curPos != end:
 		if li[curPos] <= pivot:
 			curPos += 1
@@ -187,12 +113,15 @@ def partition(li, start, end, hitIn):
 		else:
 			curPos += 1
 			break
+	
+	#shifts larger numbers to right side
 	while curPos != end:
 		if li[curPos] <= pivot:
 			swap(li, smallBound, curPos, hitIn)
 			smallBound += 1
 		curPos += 1
 	
+	#switch pivot with "middle" elem
 	swap(li, smallBound, end, hitIn)
 	return smallBound
 
@@ -203,7 +132,7 @@ def quickSort(li, start, end, hitIn):
 		if mid != 1:
 			quickSort(li, start, mid - 1, hitIn)
 			quickSort(li, mid + 1, end, hitIn)
-
+###################### QUICKSORT END
 
 def lowestElem(li):
 	res = 999999
@@ -214,13 +143,70 @@ def lowestElem(li):
 			resInd = x
 	return resInd
 
-#first getting only the ten highest
+########################################## Stream stuff
+randomRes = random.randint(0, 1)
+fileName = ""
+if randomRes:
+	filename = "dante.txt"
+else:
+	filename = "bigmac.txt"
+
+inStream = open(filename, "r")
+bookWords = inStream.read()
+inStream.close()
+########################################## End Stream stuff
+
+title = "Counting: " + filename
+print startPage(title)
+
+#set up tallied values
+TallyWords(bookWords)
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~total words
+totalTally = 0
+for x in tally:
+	totalTally += x
+
+print makeTabs(2) + "<p>" + "Total words: " + \
+str(totalTally) + "</p>"
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~distinct words
+print makeTabs(2) + "<p>" + "Distinct words: " + \
+str(g_distinctWords) + "</p>"
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~words occurring once
+oneWords = findOneTime(hits, tally)
+print makeTabs(2) + "<p>" + "Words occurring once: " + \
+str( len(oneWords)) + "</p>"
+
+
+###########	TEH MASTER TABLE!!!!!1!!1!1!11! ###########
+print makeTabs(2) + '<table>'
+print makeTabs(3) + "<tr>"
+print makeTabs(4) + "<th>" + "First one hundred one-time words" + "</th>"
+print makeTabs(4) + "<th>" + "10 most common words" + "</th>"
+print makeTabs(4) + "<th>" + "All words and tallies" + "</th>"
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~first one hundred one time words
+print makeTabs(3) + "<tr>"
+print makeTabs(4) + "<td>"
+print makeTabs(5) + '<table>'
+for x in oneWords[:100]:
+	print makeTabs(6) + '<tr>'
+	print makeTabs(7) + '<td>' + x + "</td>"
+	print makeTabs(6) + '</tr>'
+print makeTabs(5) + "</table>"
+print makeTabs(4) + "</td>"
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Most common words (lolrip)
 
 #my quicksort is flawed in that trying to sort tally
 #all at once will result in too many recursions
 highNums = []
 highWords = []
 tempInd = 0
+
+#Finds highest ten values
 for x in range(0, len(hits)):
 	if len(highNums) == 10:
 		tempInd = lowestElem(highNums)
@@ -231,17 +217,10 @@ for x in range(0, len(hits)):
 		highNums.append(tally[x])
 		highWords.append(hits[x])
 
-#print highNums
-
 #not sure why, but need to sort twice
 quickSort(highNums, 0, len(highNums) - 1, highWords)
 quickSort(highNums, 0, len(highNums) - 1, highWords)
-#print highNums
 
-'''for x in range(9, -1, -1):
-	print makeTabs(2) + "<p>" + str(highWords[x]) + \
-	" " + str(highNums[x]) + "</p>"'''
-	
 print makeTabs(4) + "<td>"
 print makeTabs(5) + "<table border='1'>"
 for x in range(9, -1, -1):
@@ -250,8 +229,6 @@ for x in range(9, -1, -1):
 	print makeTabs(7) + "<td>" + str(highNums[x]) + "</td>"
 print makeTabs(5) + "</table>"
 print makeTabs(4) + "</td>"
-
-
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Giant table
 print makeTabs(4) + "<td>"
@@ -272,12 +249,4 @@ print makeTabs(2) + '</table>'
 
 
 
-
-
-
-
 print endPage()
-
-
-
-
