@@ -1,8 +1,8 @@
 #!/usr/bin/python
 print "content-type: text/html\n"
 
+import random
 
-#TODO DO AN INSERTION SORT OR SOMETHING
 def startPage(title):
 	return "<!DOCTYPE html>\n<html>\n" + makeTabs(1) + \
 	"<head>\n" + makeTabs(2) + "<title>" + title + "</title>\n" + \
@@ -96,54 +96,66 @@ def findOneTime(listA, listB):
 			res.append(listA[x])
 	return res
 
+###STream stuff
+randomRes = random.randint(0, 1)
+fileName = ""
+if randomRes:
+	filename = "dante.txt"
+else:
+	#filename = "bigmac.txt"
+	filename = "dante.txt"
 
-
-filename = "dante.txt"
 inStream = open(filename, "r")
 bookWords = inStream.read()
+###End STream stuff
 
-#print "Lots of text"
-#print bookWords[:200]
-
-'''print "List of text"
-print bookWords.split()[:100]'''
-
-
-print startPage("Counting Dante")
+print startPage("Counting")
 
 #set up tallied values
-TallyWords(bookWords[170:])
+TallyWords(bookWords)
+
+totalTally = 0
+for x in tally:
+	totalTally += x
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~total words
-print makeTabs(2) + "<p>" + str( len( bookWords[27:].split())) + "</p>"
+print makeTabs(2) + "<p>" + "Total words: " + \
+str( totalTally) + "</p>"
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~distinct words
-print makeTabs(2) + "<p>" + str(g_distinctWords) + "</p>"
+print makeTabs(2) + "<p>" + "Distinct words: " + \
+str(g_distinctWords) + "</p>"
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~words occurring once
 oneWords = findOneTime(hits, tally)
-print makeTabs(2) + "<p>" + str( len(oneWords)) + "</p>"
+print makeTabs(2) + "<p>" + "Words occurring once: " + \
+str( len(oneWords)) + "</p>"
+
+
+
+
+
+
+
+
+
+###########	TEH MASTER TABLE!!!!!1!!1!1!11! ###########
+print makeTabs(2) + '<table>'
+
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~first one hundred one time words
-print makeTabs(2) + '<table>'
+print makeTabs(3) + "<tr>"
+print makeTabs(4) + "<td>"
+print makeTabs(5) + '<table>'
 for x in oneWords[:100]:
-	print makeTabs(3) + '<tr>'
-	print makeTabs(4) + '<td>' + x + "</td>"
-	print makeTabs(3) + '</tr>'
-print ""
-print ""
+	print makeTabs(6) + '<tr>'
+	print makeTabs(7) + '<td>' + x + "</td>"
+	print makeTabs(6) + '</tr>'
+print makeTabs(5) + "</table>"
+print makeTabs(4) + "</td>"
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Most common words (lolrip)
-'''common = []
-highestNums = []
-for x in range(0, len(hits)):
-	if len(highestNums) == 10:
-		if tally[x] 
-	else:
-		common.append(hits[x])
-		highestNums.append(tally[x])'''
-
-'''def swap(li, start, end, hitIn):
+def swap(li, start, end, hitIn):
 	temp = li[start]
 	temp2 = hitIn[start]
 	
@@ -182,23 +194,7 @@ def quickSort(li, start, end, hitIn):
 		mid = partition(li, start, end, hitIn)
 		if mid != 1:
 			quickSort(li, start, mid - 1, hitIn)
-			quickSort(li, mid + 1, end, hitIn)'''
-
-#print makeTabs(2) + '<table border="1">'
-#giant table
-
-#print makeTabs(2) + '</table>'
-
-'''mostCommonTally = tally
-mostCommonHits = hits
-#quickSort(mostCommonTally, 0, len(mostCommonTally) - 1, mostCommonHits)
-d = [1, 3, 9, 1, 4, 7, 8, 2, 6]
-e = [1, 3, 9, 1, 4, 7, 8, 2, 6]
-partition(d, 0, len(d) - 1, e)
-print d, e'''
-
-'''for x in range(0, 10):
-	print makeTabs(2) + "<p>" + mostCommonHits[x] + "</p>"'''
+			quickSort(li, mid + 1, end, hitIn)
 
 
 def lowestElem(li):
@@ -210,6 +206,10 @@ def lowestElem(li):
 			resInd = x
 	return resInd
 
+#first getting only the ten highest
+
+#my quicksort is flawed in that trying to sort tally
+#all at once will result in too many recursions
 highNums = []
 highWords = []
 tempInd = 0
@@ -223,8 +223,43 @@ for x in range(0, len(hits)):
 		highNums.append(tally[x])
 		highWords.append(hits[x])
 
-for x in range(0, 10):
-	print makeTabs(2) + "<p>" + str(highWords[x]) + "</p>"
+#print highNums
+
+#not sure why, but need to sort twice
+quickSort(highNums, 0, len(highNums) - 1, highWords)
+quickSort(highNums, 0, len(highNums) - 1, highWords)
+#print highNums
+
+'''for x in range(9, -1, -1):
+	print makeTabs(2) + "<p>" + str(highWords[x]) + \
+	" " + str(highNums[x]) + "</p>"'''
+	
+print makeTabs(4) + "<td>"
+print makeTabs(5) + "<table border='1'>"
+for x in range(9, -1, -1):
+	print makeTabs(6) + "<tr>"
+	print makeTabs(7) + "<td>" + str(highWords[x]) + \
+	" " + str(highNums[x]) + "</td>"
+print makeTabs(5) + "</table>"
+print makeTabs(4) + "</td>"
+
+
+
+#giant table
+print makeTabs(4) + "<td>"
+print makeTabs(5) + '<table border="1">'
+
+for x in range(0, len(hits)):
+	print makeTabs(6) + '<tr>'
+	print makeTabs(7) + '<td>' + hits[x] + "</td>"
+	print makeTabs(7) + '<td>' + str(tally[x]) + "</td>"
+	print makeTabs(6) + '</tr>'
+print makeTabs(5) + '</table>'
+print makeTabs(4) + "</td>"
+
+###########	TEH MASTER TABLE cLOSE!!!!!1!!1!1!11! ###########
+print makeTabs(3) + '</tr>'
+print makeTabs(2) + '</table>'
 
 
 
@@ -233,15 +268,6 @@ for x in range(0, 10):
 
 
 
-
-
-
-
-
-
-
-
-print makeTabs(2) + "</table>"
 print endPage()
 
 
