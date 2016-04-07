@@ -40,8 +40,9 @@ def TallyWords(text):
 	textList = text.split()
 	
 	#stores useless punctuation, need extra test for apostrophe
-	punct = ["!", "?", ":", ";", "/", ",", ".", '"', "(", ")", "-"]
-	punctStr = '''!?:;/,."'()-'''
+	punct = ["!", "?", ":", ";", "/", ",", ".", \
+	'"', "(", ")", "-", "[", "]", "<", ">"]
+	punctStr = '''!?:;/,."'()-[]<>@#$%^&*'''
 	
 	#so stuff isn't too long
 	q = ""
@@ -52,11 +53,11 @@ def TallyWords(text):
 		if len(q) > 0:
 			q = q.strip(punctStr)
 			#prelim check for special case of ' after a "s"
-			'''if len(q) > 2:
+			if len(q) > 2:
 				if q[len(q) - 2] == "s" and q[len(q) - 1] == "'":
 					q += "!"
 					q = q.strip("'").strip("!")
-				#else:'''
+				#else:
 			#q = q.strip("'")
 			textList[x] = q
 	
@@ -69,13 +70,14 @@ def TallyWords(text):
 	
 	for x in textList:
 		
-		if not(x.lower() in hits):
-			hits.append(x.lower())
-			tally.append(1)
-			g_distinctWords += 1
-		else:
-			tempIndex = hits.index(x.lower())
-			tally[tempIndex] += 1
+		if len(x) > 0:
+			if not(x.lower() in hits):
+				hits.append(x.lower())
+				tally.append(1)
+				g_distinctWords += 1
+			else:
+				tempIndex = hits.index(x.lower())
+				tally[tempIndex] += 1
 	
 	#print hits
 	#fancyPrint(hits, tally)
@@ -121,6 +123,9 @@ for x in tally:
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~total words
 print makeTabs(2) + "<p>" + "Total words: " + \
 str( totalTally) + "</p>"
+
+'''print makeTabs(2) + "<p>" + "Lsit: " + \
+str(hits) + "</p>" '''
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~distinct words
 print makeTabs(2) + "<p>" + "Distinct words: " + \
@@ -241,14 +246,14 @@ print makeTabs(4) + "<td>"
 print makeTabs(5) + "<table border='1'>"
 for x in range(9, -1, -1):
 	print makeTabs(6) + "<tr>"
-	print makeTabs(7) + "<td>" + str(highWords[x]) + \
-	" " + str(highNums[x]) + "</td>"
+	print makeTabs(7) + "<td>" + str(highWords[x]) + "</td>"
+	print makeTabs(7) + "<td>" + str(highNums[x]) + "</td>"
 print makeTabs(5) + "</table>"
 print makeTabs(4) + "</td>"
 
 
 
-#giant table
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Giant table
 print makeTabs(4) + "<td>"
 print makeTabs(5) + '<table border="1">'
 
