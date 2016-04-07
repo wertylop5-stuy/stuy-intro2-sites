@@ -6,6 +6,7 @@ import random
 def startPage(title):
 	return "<!DOCTYPE html>\n<html>\n" + makeTabs(1) + \
 	"<head>\n" + makeTabs(2) + "<title>" + title + "</title>\n" + \
+	makeTabs(2) + "<link rel='stylesheet' href='pretty.css'" + \
 	makeTabs(1) + "</head>\n" + makeTabs(1) + "<body>"
 
 def endPage():
@@ -102,8 +103,7 @@ fileName = ""
 if randomRes:
 	filename = "dante.txt"
 else:
-	#filename = "bigmac.txt"
-	filename = "dante.txt"
+	filename = "bigmac.txt"
 
 inStream = open(filename, "r")
 bookWords = inStream.read()
@@ -141,7 +141,10 @@ str( len(oneWords)) + "</p>"
 
 ###########	TEH MASTER TABLE!!!!!1!!1!1!11! ###########
 print makeTabs(2) + '<table>'
-
+print makeTabs(3) + "<tr>"
+print makeTabs(4) + "<th>" + "First one hundred one-time words" + "</th>"
+print makeTabs(4) + "<th>" + "Most common words" + "</th>"
+print makeTabs(4) + "<th>" + "All words and tallies" + "</th>"
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~first one hundred one time words
 print makeTabs(3) + "<tr>"
