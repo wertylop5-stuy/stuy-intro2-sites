@@ -186,9 +186,11 @@ print makeTabs(3) + "<tr>"
 print makeTabs(4) + "<th>" + "First one hundred one-time words" + "</th>"
 print makeTabs(4) + "<th>" + "10 most common words" + "</th>"
 print makeTabs(4) + "<th>" + "All words and tallies" + "</th>"
+print makeTabs(3) + "</tr>"
+
+print makeTabs(3) + "<tr>"
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~first one hundred one time words
-print makeTabs(3) + "<tr>"
 print makeTabs(4) + "<td>"
 print makeTabs(5) + '<table>'
 for x in oneWords[:100]:
@@ -227,6 +229,7 @@ for x in range(9, -1, -1):
 	print makeTabs(6) + "<tr>"
 	print makeTabs(7) + "<td>" + str(highWords[x]) + "</td>"
 	print makeTabs(7) + "<td>" + str(highNums[x]) + "</td>"
+	print makeTabs(6) + "</tr>"
 print makeTabs(5) + "</table>"
 print makeTabs(4) + "</td>"
 
