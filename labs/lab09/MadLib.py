@@ -165,6 +165,8 @@ print makeTabs(2) + "<h1>" + "STORY TIMMMMEEEE!!!!!1!1" + "</h1>"
 print makeTabs(2) + "<h3>" + bbb + "!!!!!1!1" + "</h3>"
 
 print makeTabs(2) + "<p id='storyText'>" + storyResult + "</p>"
+print "<br>\n<br>\n" + makeTabs(2) + "<h6>" + "If you are curious!" + "</h6>"
+print makeTabs(2) + "<h6>" + storyString + "</h6>"
 
 
 print endPage()
