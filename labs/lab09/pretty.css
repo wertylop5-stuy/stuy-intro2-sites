@@ -1,7 +1,12 @@
 html {
-	
+	background-color: #08BF63;
+}
+
+h1 {
+	color: #067D42;
 }
 
 #storyText {
-	color: green;
+	color: #197555;
+	font-family: Comic Sans MS, Arial, Serif;
 }
