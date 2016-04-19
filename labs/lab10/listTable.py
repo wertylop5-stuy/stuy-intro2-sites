@@ -17,10 +17,15 @@ def makeList(s):
 
 def makeTableBody(L):
 	res = ""
+	tempThingy = False
 	for x in L:
 		res += "<tr>"
 		for y in x:
+			if not tempThingy:
+				res += "<th>" + str(y) + "</th>"
+				continue
 			res += "<td>" + str(y) + "</td>"
+		tempThingy = True
 		res += "</tr>\n"
 	return res.strip()
 
@@ -53,6 +58,8 @@ def appendTotal(data):
 		if mini[3].isdigit() and mini[4].isdigit() \
 		and mini[5].isdigit:
 			mini.append( str( int(mini[3]) + int(mini[4]) + int(mini[5])))
+		else:
+			mini.append("s")
 
 def findStudentTotal(data):
 	count = 0
@@ -64,7 +71,18 @@ def findStudentTotal(data):
 		if mini[2].isdigit():
 			count += int(mini[2])
 	return count
-		
+
+def totalAvg(data, students):
+	tempThingy = False
+	count = 0
+	for mini in data:
+		if not tempThingy:
+			tempThingy = True
+			continue
+		if mini[2].isdigit() and mini[6].isdigit():
+			count += (int(mini[2]) * int(mini[6]))
+	return count / float(students)
+
 
 ################## BEGIN HTML STUFF ##################
 dataStream = open("SAT.csv", "r")
@@ -74,8 +92,11 @@ dataStream.close()
 satData = makeList(text)
 appendTotal(satData)
 
-print makeTabs(2) + "<h1>" + "Total students: " + \
-str( findStudentTotal(satData[:5])) + "</h1>"
+studTot = findStudentTotal(satData)
+print makeTabs(2) + "<h1>" + "Total students: " + str(studTot) + "</h1>"
+
+totAvg = totalAvg(satData, studTot)
+print makeTabs(2) + "<h1>" + "Total avg: " + str(totAvg) + "</h1>"
 
 print htmlFuncts.startPage("SAT things")
 
@@ -83,14 +104,9 @@ print htmlFuncts.startPage("SAT things")
 print makeTabs(2) + "<table>"
 
 #satData holds the table of tables
-print makeTableBody(satData[:5])
+print makeTableBody(satData)
 
 print "</table>"
-
-
-
-
-
 
 print htmlFuncts.endPage()
 
