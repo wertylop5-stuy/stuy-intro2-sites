@@ -1,5 +1,10 @@
 #!/usr/bin/python
 print "content-type: text/html\n"
+import sys
+sys.path.insert(0, "../modules")
+
+import htmlFuncts
+from htmlFuncts import makeTabs
 
 def makeList(s):
 	ans = s.split("\n")
@@ -8,7 +13,7 @@ def makeList(s):
 		temp = ans.pop(0).split(",")
 		ans.append(temp)
 	fixCommas(ans)
-	return ans
+	return ans[1:]
 
 def makeTableBody(L):
 	res = ""
@@ -38,30 +43,43 @@ def fixCommas(L):
                 inner[i]=(res+inner[i]).strip('"')
             i+=1
 
+def appendTotal(data):
+	tempThingy = False
+	for mini in data:
+		if not tempThingy:
+			tempThingy = True
+			mini.append("Total avg. score")
+			continue
+		if mini[3].isdigit() and mini[4].isdigit() \
+		and mini[5].isdigit:
+			mini.append( str( int(mini[3]) + int(mini[4]) + int(mini[5])))
+
+def findStudentTotal(data):
+	count = 0
+	tempThingy = False
+	for mini in data:
+		if not tempThingy:
+			tempThingy = True
+			continue
+		if mini[2].isdigit():
+			count += int(mini[2])
+	return count
+		
 
 ################## BEGIN HTML STUFF ##################
-def startPage(title):
-	return "<!DOCTYPE html>\n<html>\n" + makeTabs(1) + \
-	"<head>\n" + makeTabs(2) + "<title>" + title + "</title>\n" + \
-	makeTabs(2) + "<link rel='stylesheet' href='pretty.css'>\n" + \
-	makeTabs(1) + "</head>\n" + makeTabs(1) + "<body>"
-
-def endPage():
-	return makeTabs(1) + "</body>\n</html>"
-
-def makeTabs(num):
-	result = ""
-	for x in range(0, num):
-		result += "    "
-	return result
-
 dataStream = open("SAT.csv", "r")
 text = dataStream.read()
 dataStream.close()
 
 satData = makeList(text)
+appendTotal(satData)
 
-print startPage("SAT things")
+print makeTabs(2) + "<h1>" + "Total students: " + \
+str( findStudentTotal(satData[:5])) + "</h1>"
+
+print htmlFuncts.startPage("SAT things")
+
+
 print makeTabs(2) + "<table>"
 
 #satData holds the table of tables
@@ -74,7 +92,7 @@ print "</table>"
 
 
 
-print endPage()
+print htmlFuncts.endPage()
 
 
 
