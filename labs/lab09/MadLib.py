@@ -1,6 +1,6 @@
 #!/usr/bin/python
 print "content-type: text/html\n"
-#TODO finish up the VERB1 detection stuff
+#TODO
 import random
 
 #storyString will have NOUN, ADJ, etc. scattered
@@ -79,7 +79,6 @@ def madlibs(storyString, nounList, verbList, adjectiveList, \
 properNounList, adverbList):
 	#final string to return
 	res = storyString
-	hit = 0
 	res = replaceSpeechPart(res, "NOUN", nounList)
 	res = replaceSpeechPart(res, "VERB", verbList)
 	res = replaceSpeechPart(res, "ADJECTIVE", adjectiveList)
@@ -130,27 +129,19 @@ PROPERnOUN PROPERnOUN1 PROPERnOUN1 PROPERnOUN2
 
 storyRoll = random.randint(0, 1)
 storyString = ""
+inStream = None
 bbb = ""
 
 if storyRoll == 1:
 	bbb = "Romeo and Juliet"
-	storyString = '''
-But soft, what NOUN1 through yonder NOUN breaks?
-It is the east and PROPERnOUN is the NOUN2!
-Arise, ADJECTIVE1 NOUN2, and kill the envious NOUN,
-Who is already VERB1 and pale with grief
-That thou her NOUN3 art far more ADJECTIVE1 than she.
-Be not her NOUN3, since she is envious;
-Her NOUN4 livery is but VERB1 and green,
-And none but fools do wear it. Cast it off.
-It is my lady, O, it is my love!
-O that she knew she were!
-'''
+	inStream = open("stories/story0.txt", "r")
+	storyString = inStream.read()
+	inStream.close()
 else:
 	bbb = "Wuthering Heights"
-	storyString = '''
-About twelve o'clock that NOUN was born the PROPERnOUN you saw at ADvERB1 NOUN1: a ADJECTIVE1, seven-months' child; and two hours after the mother died, having never VERB1 ADJECTIVE1 consciousness to VERB2 PROPERnOUN1, or VERB1 PROPERnOUN1. The latter's distraction at his bereavement is a subject too painful to be VERB3 on; its after-effects showed how ADJECTIVE2 the sorrow VERB3. A great addition, in my eyes, was his being left without an heir. I bemoaned that, as I gazed on the ADJECTIVE2 orphan; and I mentally VERB4 old PROPERnOUN1 for (what was only ADJECTIVE3 partiality) the VERB4 his estate to his own daughter, instead of his son's.
-'''
+	inStream = open("stories/story1.txt", "r")
+	storyString = inStream.read()
+	inStream.close()
 
 noun = ["laser gun", "lightsaber", "wormhole", "infinite improbability drive", "portal", \
 "space-time continuum", "starship"]
@@ -165,9 +156,14 @@ print makeTabs(2) + "<h1>" + "STORY TIMMMMEEEE!!!!!1!1" + "</h1>"
 print makeTabs(2) + "<h3>" + bbb + "!!!!!1!1" + "</h3>"
 
 print makeTabs(2) + "<p id='storyText'>" + storyResult + "</p>"
-print "<br>\n<br>\n" + makeTabs(2) + "<h6>" + "If you are curious!" + "</h6>"
-print makeTabs(2) + "<h6>" + storyString + "</h6>"
 
+print makeTabs(2) + "<hr>"
+
+print makeTabs(2) + "<h6>" + "If you are curious!" + "</h6>"
+print makeTabs(2) + "<h6>" + storyString + "</h6>"
+print makeTabs(2) + "<div id='ship'>"
+print makeTabs(3) + "<img src='img/spaceship.png' />"
+print makeTabs(2) + "</div>"
 
 print endPage()
 

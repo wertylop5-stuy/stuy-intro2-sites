@@ -3,10 +3,17 @@ html {
 }
 
 h1 {
+	font-family: Garamond, Times New Roman, Monospace;
 	color: #067D42;
+	text-align: center;
 }
 
 #storyText {
 	color: #197555;
 	font-family: Comic Sans MS, Arial, Serif;
+	font-size: 20px;
+}
+
+#ship {
+	text-align: center;
 }
