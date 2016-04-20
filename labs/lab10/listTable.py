@@ -93,13 +93,14 @@ satData = makeList(text)
 appendTotal(satData)
 
 studTot = findStudentTotal(satData)
+
+
+print htmlFuncts.startPage("SAT things")
+
 print makeTabs(2) + "<h1>" + "Total students: " + str(studTot) + "</h1>"
 
 totAvg = totalAvg(satData, studTot)
 print makeTabs(2) + "<h1>" + "Total avg: " + str(totAvg) + "</h1>"
-
-print htmlFuncts.startPage("SAT things")
-
 
 print makeTabs(2) + "<table>"
 
