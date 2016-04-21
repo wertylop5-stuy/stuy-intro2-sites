@@ -44,6 +44,15 @@ else:
 if "essay" in form:
 	print "you like writing huh?<br>"
 
+if "val1" in form and "val2" in form:
+	print "first: " + form.getvalue("val1")
+	print "second: " + form.getvalue("val2")
+	print "sum: " + str(int(form.getvalue("val1")) + int(form.getvalue("val2")))
+	
+	if "root" in form:
+		print "root of first: " + str( sqrt( float( form.getvalue("val1"))))
+		print "root of second: " + str( sqrt( float( form.getvalue("val2"))))
+
 
 print endPage()
 
