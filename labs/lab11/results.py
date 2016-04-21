@@ -8,6 +8,7 @@ import cgitb
 cgitb.enable()
 
 import cgi
+import math
 
 form = cgi.FieldStorage()
 #print form
@@ -50,8 +51,8 @@ if "val1" in form and "val2" in form:
 	print "sum: " + str(int(form.getvalue("val1")) + int(form.getvalue("val2")))
 	
 	if "root" in form:
-		print "root of first: " + str( sqrt( float( form.getvalue("val1"))))
-		print "root of second: " + str( sqrt( float( form.getvalue("val2"))))
+		print "root of first: " + str( math.sqrt( float( form.getvalue("val1"))))
+		print "root of second: " + str( math.sqrt( float( form.getvalue("val2"))))
 
 
 print endPage()
