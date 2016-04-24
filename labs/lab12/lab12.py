@@ -59,18 +59,17 @@ else:
 	tableStream.close()
 	#end open file
 	
-	#print tableString
 	dataTable = dataToTable.makeList(tableString)
-	#print dataTable
-	#print form
+	
+	
+	finalTable = dataTable
 	
 	#it should also include state search
 	if "findByName" in form:
 		pass
 	else:
-		print "<table>\n" + dataToTable.makeTableBody(dataTable) + \
-		"</table>"
-	finalTable = dataTable
+		'''print "<table>\n" + dataToTable.makeTableBody(dataTable) + \
+		"</table>"'''
 	
 	'''if "findByName" in form:
 		finalTable = searchByName(dataTable, )
