@@ -41,7 +41,7 @@ if len(form) == 0:
 <br>
 Search term: <input name="qString" type="textfield">
 <h3>Find by:</h3>
-name: <input name="findByName" type="checkbox">
+<h5>name: </h5><input name="findByName" type="checkbox">
 <br>
 First name: <input name="searchType" type="radio" value="first">
 <br>
@@ -51,7 +51,7 @@ Email: <input name="searchType" type="radio" value="email">
 <br>
 <br>
 <br>
-state: <input name="findByState" type="checkbox">
+<h5>state: </h5><input name="findByState" type="checkbox">
 <br>
 <select name="qState" size="1">
 	<option>Alabama</option>
