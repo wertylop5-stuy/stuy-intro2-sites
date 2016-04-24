@@ -67,6 +67,7 @@ else:
 	#it should also include state search
 	if "findByName" in form:
 		if form.getvalue("searchType") == "first":
+			print form.getvalue("qString")
 			finalTable = searchByName(dataTable, form.getvalue("qString"), 1)
 		elif form.getvalue("searchType") == "last":
 			finalTable = searchByName(dataTable, form.getvalue("qString"), 2)
