@@ -22,9 +22,6 @@ def searchByName(L, name, searchCol):
 			res.append(inner)
 	return res
 
-def searchByState(L, name):
-	pass
-
 
 print htmlFuncts.startPage("Searching :)")
 
@@ -130,10 +127,10 @@ else:
 			finalTable = searchByName(dataTable, form.getvalue("qString"), 2)
 		elif form.getvalue("searchType") == "email":
 			finalTable = searchByName(dataTable, form.getvalue("qString"), 3)
-	else:
-		'''print "<table>\n" + dataToTable.makeTableBody(dataTable) + \
-		"</table>'''
-		'''dataTable = '''
+	if "findByState" in form:
+		finalTable = searchByName(dataTable, form.getvalue("qState"), 4)
+	
+	
 	print "<table>\n" + dataToTable.makeTableBody(finalTable) + \
 	"</table>"
 	
