@@ -77,7 +77,7 @@ else:
 	else:
 		dataTable = '''
 	print searchByName([[0, "jo", "br", "r@g", "Ohio"]], "jo", 1)
-	
+
 
 
 
