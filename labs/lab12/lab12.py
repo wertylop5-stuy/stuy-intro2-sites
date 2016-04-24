@@ -16,6 +16,7 @@ def searchByName(L, name, searchCol):
 	for inner in L:
 		if not lel:
 			lel = True
+			res.appen(inner)
 			continue
 		if name in inner[searchCol].lower():
 			res.append(inner)
