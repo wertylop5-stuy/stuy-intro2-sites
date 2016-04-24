@@ -40,7 +40,7 @@ Email: <input name="searchType" type="radio" value="email">
 else:
 	#begin open file
 	tableStream = open("MOCK_DATA.csv", "r")
-	tableString = tableStream.read().strip(",")
+	tableString = tableStream.read()
 	tableStream.close()
 	#end open file
 	
