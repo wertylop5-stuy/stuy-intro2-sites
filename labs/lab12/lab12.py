@@ -40,16 +40,19 @@ if len(form) == 0:
 <form method="GET" action="lab12.py">
 <br>
 Search term: <input name="qString" type="textfield">
-<br>
 <h3>Find by:</h3>
 name: <input name="findByName" type="checkbox">
+<br>
 First name: <input name="searchType" type="radio" value="first">
 <br>
 Last name: <input name="searchType" type="radio" value="last">
 <br>
 Email: <input name="searchType" type="radio" value="email">
 <br>
+<br>
+<br>
 state: <input name="findByState" type="checkbox">
+<br>
 <select name="qState" size="1">
 	<option>Alabama</option>
 	<option>Alaska</option>
