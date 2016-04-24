@@ -75,9 +75,9 @@ else:
 		finalTable = searchByName(dataTable, )
 	else:
 		dataTable = '''
-	print searchByName([[], [0, "jo", "br", "r@g", "Ohio"]], "j", 2)
+	print searchByName([[], [0, "jo", "br", "r@g", "Ohio"]], "b", 2)
 	print searchByName([[], [0, "jo", "br", "r@g", "Ohio"]], "i", 2)
-	print searchByName([[], [0, "jo", "br", "r@g", "Ohio"]], "j", 3)
+	print searchByName([[], [0, "jo", "br", "r@g", "Ohio"]], "g", 3)
 	print searchByName([[], [0, "jo", "br", "r@g", "Ohio"]], "i", 3)
 
 
