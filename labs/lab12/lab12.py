@@ -123,13 +123,13 @@ else:
 	#it should also include state search
 	if "findByName" in form:
 		if form.getvalue("searchType") == "first":
-			finalTable = searchByName(dataTable, form.getvalue("qString"), 1)
+			finalTable = searchByName(finalTable, form.getvalue("qString"), 1)
 		elif form.getvalue("searchType") == "last":
-			finalTable = searchByName(dataTable, form.getvalue("qString"), 2)
+			finalTable = searchByName(finalTable, form.getvalue("qString"), 2)
 		elif form.getvalue("searchType") == "email":
-			finalTable = searchByName(dataTable, form.getvalue("qString"), 3)
+			finalTable = searchByName(finalTable, form.getvalue("qString"), 3)
 	if "findByState" in form:
-		finalTable = searchByName(dataTable, form.getvalue("qState"), 4)
+		finalTable = searchByName(finalTable, form.getvalue("qState"), 4)
 	
 	
 	print "<table>\n" + dataToTable.makeTableBody(finalTable) + \
