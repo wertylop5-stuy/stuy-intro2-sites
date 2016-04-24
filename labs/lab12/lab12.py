@@ -60,7 +60,7 @@ else:
 	#end open file
 	
 	#print tableString
-	#dataTable = dataToTable.makeList(tableString)
+	dataTable = dataToTable.makeList(tableString)
 	#print dataTable
 	#print form
 	
