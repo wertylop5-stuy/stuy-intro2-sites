@@ -10,6 +10,21 @@ import dataToTable
 import cgitb
 cgitb.enable()
 
+def searchByName(L, name, searchCol):
+	res = []
+	lel = False
+	for inner in L:
+		if not lel:
+			lel = True
+			continue
+		if name in inner[searchCol]:
+			res.append(inner)
+	return res
+
+def searchByState(L, name):
+	
+
+
 print htmlFuncts.startPage("Searching :)")
 
 form = cgi.FieldStorage()
@@ -45,14 +60,17 @@ else:
 	#end open file
 	
 	#print tableString
-	dataTable = dataToTable.makeList(tableString)
+	#dataTable = dataToTable.makeList(tableString)
 	#print dataTable
 	#print form
 	
-	if "findByName" in form:
-		pass
+	finalTable = dataTable
+	
+	'''if "findByName" in form:
+		finalTable = searchByName(dataTable, )
 	else:
-		pass
+		dataTable = '''
+	print searchByName([[0, "jo", "br", "r@g", "Ohio"]], "jo", 1)
 	
 
 
