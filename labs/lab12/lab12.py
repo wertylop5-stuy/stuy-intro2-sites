@@ -19,6 +19,7 @@ def searchByName(L, name, searchCol):
 			continue
 		if name in inner[searchCol]:
 			res.append(inner)
+	print res
 	return res
 
 def searchByState(L, name):
