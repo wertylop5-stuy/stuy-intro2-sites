@@ -27,19 +27,19 @@ def makeTableBody(L):
 #take a list of lists of strings join
 #any inner commas between quotes.
 def fixCommas(L):
-    for inner in L:
-        i=0
-        while i < len(inner):
-        	if len(inner[i]) <= 1:
-        		break
-            res = ''
-            #if you see an open double quote pop and 
-            #concatenate them until you see a close quote.
-            if inner[i][0]=='"':
-                while inner[i][-1] != '"' and i<len(inner):
-                    res += inner[i]+","
-                    inner.pop(i)
-                #when you find the close quote,
-                #replace it with the completed string.
-                inner[i]=(res+inner[i]).strip('"')
-            i+=1
+	for inner in L:
+		i=0
+		while i < len(inner):
+			if len(inner[i]) <= 1:
+				break
+			res = ''
+			#if you see an open double quote pop and 
+			#concatenate them until you see a close quote.
+			if inner[i][0]=='"':
+				while inner[i][-1] != '"' and i<len(inner):
+					res += inner[i]+","
+					inner.pop(i)
+				#when you find the close quote,
+				#replace it with the completed string.
+				inner[i]=(res+inner[i]).strip('"')
+			i+=1
