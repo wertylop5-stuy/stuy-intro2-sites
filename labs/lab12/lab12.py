@@ -14,6 +14,7 @@ def searchByName(L, name, searchCol):
 	res = []
 	lel = False
 	for inner in L:
+		print inner
 		if not lel:
 			lel = True
 			continue
@@ -67,7 +68,6 @@ else:
 	#it should also include state search
 	if "findByName" in form:
 		if form.getvalue("searchType") == "first":
-			print form.getvalue("qString")
 			finalTable = searchByName(dataTable, form.getvalue("qString"), 1)
 		elif form.getvalue("searchType") == "last":
 			finalTable = searchByName(dataTable, form.getvalue("qString"), 2)
