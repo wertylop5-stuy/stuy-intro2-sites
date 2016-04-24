@@ -17,9 +17,8 @@ def searchByName(L, name, searchCol):
 		if not lel:
 			lel = True
 			continue
-		if name in inner[searchCol]:
+		if name.lower() in inner[searchCol]:
 			res.append(inner)
-	print res
 	return res
 
 def searchByState(L, name):
@@ -73,7 +72,6 @@ else:
 			finalTable = searchByName(dataTable, form.getvalue("qString"), 2)
 		elif form.getvalue("searchType") == "email":
 			finalTable = searchByName(dataTable, form.getvalue("qString"), 3)
-		print finalTable
 	else:
 		'''print "<table>\n" + dataToTable.makeTableBody(dataTable) + \
 		"</table>'''
