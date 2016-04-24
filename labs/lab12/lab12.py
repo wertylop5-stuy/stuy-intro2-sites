@@ -103,6 +103,7 @@ state: <input name="findByState" type="checkbox">
 	<option>Wyoming</option>
 	<option>District of Columbia</option>
 </select>
+<br>
 <input name="search" type="submit" value="go">
 </form>
 """
