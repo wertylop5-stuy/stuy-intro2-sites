@@ -49,10 +49,12 @@ else:
 	#print dataTable
 	#print form
 	
+	#it should also include state search
 	if "findByName" in form:
 		pass
 	else:
-		pass
+		print "<table>\n" + dataToTable.makeTableBody(dataTable) + \
+		"</table>"
 	
 
 
