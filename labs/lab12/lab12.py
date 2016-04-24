@@ -38,17 +38,71 @@ if len(form) == 0:
 	#the actual form
 	print """
 <form method="GET" action="lab12.py">
-Find by name: <input name="findByName" type="checkbox">
 <br>
 Search term: <input name="qString" type="textfield">
 <br>
 <h3>Find by:</h3>
+name: <input name="findByName" type="checkbox">
 First name: <input name="searchType" type="radio" value="first">
 <br>
 Last name: <input name="searchType" type="radio" value="last">
 <br>
 Email: <input name="searchType" type="radio" value="email">
 <br>
+state: <input name="findByState" type="checkbox">
+<select name="qState" size="1">
+	<option>Alabama</option>
+	<option>Alaska</option>
+	<option>Arizona</option>
+	<option>Arkansas</option>
+	<option>California</option>
+	<option>Colorado</option>
+	<option>Connecticut</option>
+	<option>Delaware</option>
+	<option>Florida</option>
+	<option>Georgia</option>
+	<option>Hawaii</option>
+	<option>Idaho</option>
+	<option>Illinois</option>
+	<option>Indiana</option>
+	<option>Iowa</option>
+	<option>Kansas</option>
+	<option>Kentucky</option>
+	<option>Louisiana</option>
+	<option>Maine</option>
+	<option>Maryland</option>
+	<option>Massachusetts</option>
+	<option>Michigan</option>
+	<option>Minnesota</option>
+	<option>Mississippi</option>
+	<option>Missouri</option>
+	<option>Montana</option>
+	<option>Nebraska</option>
+	<option>Nevada</option>
+	<option>New Hampshire</option>
+	<option>New Jersey</option>
+	<option>New Mexico</option>
+	<option>New York</option>
+	<option>North Carolina</option>
+	<option>North Dakota</option>
+	<option>Ohio</option>
+	<option>Oklahoma</option>
+	<option>Oregon</option>
+	<option>Pennsylvania</option>
+	<option>Rhode Island</option>
+	<option>South Carolina</option>
+	<option>South Dakota</option>
+	<option>Tennessee</option>
+	<option>Texas</option>
+	<option>Utah</option>
+	<option>Vermont</option>
+	<option>Virginia</option>
+	<option>Washington</option>
+	<option>West Virginia</option>
+	<option>Wisconsin</option>
+	<option>Wyoming</option>
+	<option>District of Columbia</option>
+</select>
 <input name="search" type="submit" value="go">
 </form>
 """
