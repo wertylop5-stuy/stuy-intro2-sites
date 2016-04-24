@@ -14,6 +14,7 @@ def searchByName(L, name, searchCol):
 	res = []
 	lel = False
 	for inner in L:
+		#handles the header portion of the list
 		if not lel:
 			lel = True
 			res.append(inner)
@@ -117,7 +118,7 @@ else:
 	
 	dataTable = dataToTable.makeList(tableString)
 	
-	
+	#the result table
 	finalTable = dataTable
 	
 	#it should also include state search
@@ -134,12 +135,6 @@ else:
 	
 	print "<table>\n" + dataToTable.makeTableBody(finalTable) + \
 	"</table>"
-	
-
-
-
-
-
 
 print htmlFuncts.endPage()
 
