@@ -14,7 +14,6 @@ def searchByName(L, name, searchCol):
 	res = []
 	lel = False
 	for inner in L:
-		print inner
 		if not lel:
 			lel = True
 			continue
@@ -73,6 +72,7 @@ else:
 			finalTable = searchByName(dataTable, form.getvalue("qString"), 2)
 		elif form.getvalue("searchType") == "email":
 			finalTable = searchByName(dataTable, form.getvalue("qString"), 3)
+		print finalTable
 	else:
 		'''print "<table>\n" + dataToTable.makeTableBody(dataTable) + \
 		"</table>'''
