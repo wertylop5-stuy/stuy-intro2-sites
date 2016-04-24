@@ -22,7 +22,7 @@ def searchByName(L, name, searchCol):
 	return res
 
 def searchByState(L, name):
-	
+	pass
 
 
 print htmlFuncts.startPage("Searching :)")
