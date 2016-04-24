@@ -30,6 +30,8 @@ def fixCommas(L):
     for inner in L:
         i=0
         while i < len(inner):
+        	if len(inner[i]) <= 1:
+        		break
             res = ''
             #if you see an open double quote pop and 
             #concatenate them until you see a close quote.
