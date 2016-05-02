@@ -7,8 +7,8 @@ sys.path.insert(0, "../modules")
 import htmlFuncts
 import dataToTable
 
-import cgitb
-cgitb.enable()
+'''import cgitb
+cgitb.enable()'''
 
 def searchByName(L, name, searchCol):
 	res = []
@@ -121,29 +121,19 @@ else:
 	#the result table
 	finalTable = dataTable
 	
-	#it should also include state search
-	if "findByName" in form and len(form.getvalue("qString")) > 0:
+	#search by name
+	if "findByName" in form and not(form.getvalue("qString") is None):
 		if form.getvalue("searchType") == "first":
 			finalTable = searchByName(finalTable, form.getvalue("qString"), 1)
 		elif form.getvalue("searchType") == "last":
 			finalTable = searchByName(finalTable, form.getvalue("qString"), 2)
 		elif form.getvalue("searchType") == "email":
 			finalTable = searchByName(finalTable, form.getvalue("qString"), 3)
+	#search by state
 	if "findByState" in form:
 		finalTable = searchByName(finalTable, form.getvalue("qState"), 4)
-	
 	
 	print "<table>\n" + dataToTable.makeTableBody(finalTable) + \
 	"</table>"
 
 print htmlFuncts.endPage()
-
-
-
-
-
-
-
-
-
-
