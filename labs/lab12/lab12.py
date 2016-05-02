@@ -122,7 +122,7 @@ else:
 	finalTable = dataTable
 	
 	#it should also include state search
-	if "findByName" in form:
+	if "findByName" in form and len(form.getvalue("qString")) > 0:
 		if form.getvalue("searchType") == "first":
 			finalTable = searchByName(finalTable, form.getvalue("qString"), 1)
 		elif form.getvalue("searchType") == "last":
