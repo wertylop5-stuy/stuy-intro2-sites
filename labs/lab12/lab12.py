@@ -130,7 +130,7 @@ else:
 		elif form.getvalue("searchType") == "email":
 			finalTable = searchByName(finalTable, form.getvalue("qString"), 3)
 	if "findByState" in form:
-		finalTable = searchByName(finalTable, form.getvalue("qState"), 4)
+		finalTable = searchByName(finalTable, form.getvalue("qString"), 4)
 	
 	
 	print "<table>\n" + dataToTable.makeTableBody(finalTable) + \
