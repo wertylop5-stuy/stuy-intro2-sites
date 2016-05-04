@@ -11,15 +11,24 @@ def makeList(s):
 #returns an html table in the form of string
 def makeTableBody(L):
 	res = ""
-	tempThingy = False
+	#tempThingy = False
 	for x in L:
 		res += "<tr>"
 		for y in x:
-			if not tempThingy:
+			'''if not tempThingy:
 				res += "<th>" + str(y) + "</th>"
-				continue
+				continue'''
 			res += "<td>" + str(y) + "</td>"
-		tempThingy = True
+		#tempThingy = True
+		res += "</tr>\n"
+	return res.strip()
+
+def makeTableHeader(L):
+	res = ""
+	for x in L:
+		res += "<tr>"
+		for y in x:
+			res += "<th>" + str(y) + "</th>"
 		res += "</tr>\n"
 	return res.strip()
 
