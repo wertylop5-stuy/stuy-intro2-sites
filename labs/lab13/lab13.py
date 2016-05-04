@@ -1,10 +1,12 @@
 #!/usr/bin/python
-#TODO the links to prev and next
+#TODO 
 print "content-type: text/html\n"
 import cgi
 import sys
+import math
+
 sys.path.insert(0, "../modules")
-#from modules
+#user defined
 import htmlFuncts
 import dataToTable
 
@@ -156,8 +158,16 @@ else:
 	"</table>"
 	
 	#previous and next links
-	print "<a href=lab13.py?page=" + str(page + 1) + \
-	"&resPerPage=" + str(resPerPage) +
+	
+	#prev
+	if page > 0:
+		print "<a href=lab13.py?page=" + str(page - 1) + \
+		"&resPerPage=" + str(resPerPage) +">prev</a>"
+	
+	#next
+	if page < math.ceil(len(finalTable) / 10.0):
+		print "<a href=lab13.py?page=" + str(page - 1) + \
+		"&resPerPage=" + str(resPerPage) +">prev</a>"
 
 print htmlFuncts.endPage()
 
