@@ -113,7 +113,7 @@ state: <input name="findByState" type="checkbox">
 """
 #search has been queried
 else:
-	cgiParts = ""
+	cgiParts = "&"
 	#begin open file
 	tableStream = open("MOCK_DATA.csv", "r")
 	tableString = tableStream.read()
