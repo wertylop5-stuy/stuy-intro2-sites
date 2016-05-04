@@ -171,11 +171,11 @@ else:
 	if float(len(finalTable) / resPerPage) % resPerPage == 0:
 		if page + 1 < math.ceil(len(finalTable) / resPerPage):
 			print "<a id='next' href='lab13.py?page=" + str(page + 1) + \
-			"&resPerPage=" + str(resPerPage) + gciParts + "'>next</a>"
+			"&resPerPage=" + str(resPerPage) + cgiParts + "'>next</a>"
 	else:
 		if page < math.ceil(len(finalTable) / resPerPage):
 			print "<a id='next' href='lab13.py?page=" + str(page + 1) + \
-			"&resPerPage=" + str(resPerPage) + gciParts + "'>next</a>"
+			"&resPerPage=" + str(resPerPage) + cgiParts + "'>next</a>"
 	
 
 print htmlFuncts.endPage()
