@@ -166,8 +166,8 @@ else:
 	
 	#next
 	if page < math.ceil(len(finalTable) / 10.0):
-		print "<a href=lab13.py?page=" + str(page - 1) + \
-		"&resPerPage=" + str(resPerPage) +">prev</a>"
+		print "<a href=lab13.py?page=" + str(page + 1) + \
+		"&resPerPage=" + str(resPerPage) +">next</a>"
 
 print htmlFuncts.endPage()
 
