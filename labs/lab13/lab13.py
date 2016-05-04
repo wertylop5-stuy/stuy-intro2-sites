@@ -127,7 +127,7 @@ else:
 	#the result table
 	finalTable = dataTable
 	
-	print form.FieldStorage()
+	print form
 	
 	#search by name
 	if "findByName" in form and not(form.getvalue("qString") is None):
