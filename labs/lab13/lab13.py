@@ -146,7 +146,8 @@ else:
 	#search by state
 	if "findByState" in form:
 		cgiParts += \
-		"findByState=" + form.getvalue("qState") + "&"
+		"findByState=on" + "&" + \
+		"qState=" + form.getvalue("qState") + "&"
 		finalTable = searchByName(finalTable, form.getvalue("qState"), 4)
 	
 	#displays only certain amount of elements
@@ -172,7 +173,7 @@ else:
 	#prev
 	if page > 0:
 		print "<a id='prev' href='lab13.py?page=" + str(page - 1) + \
-		"&resPerPage=" + str(resPerPage) +"'>prev</a>"
+		"&resPerPage=" + str(resPerPage) + cgiParts + "'>prev</a>"
 	
 	#next
 	if float(len(finalTable) / resPerPage) % resPerPage == 0:
