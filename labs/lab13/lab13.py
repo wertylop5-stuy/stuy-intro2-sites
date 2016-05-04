@@ -113,6 +113,7 @@ state: <input name="findByState" type="checkbox">
 """
 #search has been queried
 else:
+	cgiParts = ""
 	#begin open file
 	tableStream = open("MOCK_DATA.csv", "r")
 	tableString = tableStream.read()
@@ -128,6 +129,7 @@ else:
 	
 	#search by name
 	if "findByName" in form and not(form.getvalue("qString") is None):
+		cgiParts += "findByName=" + form.getvalue("searchType") + "&"
 		if form.getvalue("searchType") == "first":
 			finalTable = searchByName(finalTable, form.getvalue("qString"), 1)
 		elif form.getvalue("searchType") == "last":
@@ -137,6 +139,7 @@ else:
 	
 	#search by state
 	if "findByState" in form:
+		cgiParts += "findByState=" + form.getvalue("qState") + "&"
 		finalTable = searchByName(finalTable, form.getvalue("qState"), 4)
 	
 	#displays only certain amount of elements
@@ -168,11 +171,11 @@ else:
 	if float(len(finalTable) / resPerPage) % resPerPage == 0:
 		if page + 1 < math.ceil(len(finalTable) / resPerPage):
 			print "<a id='next' href='lab13.py?page=" + str(page + 1) + \
-			"&resPerPage=" + str(resPerPage) +"'>next</a>"
+			"&resPerPage=" + str(resPerPage) + gciPartsc + "'>next</a>"
 	else:
 		if page < math.ceil(len(finalTable) / resPerPage):
 			print "<a id='next' href='lab13.py?page=" + str(page + 1) + \
-			"&resPerPage=" + str(resPerPage) +"'>next</a>"
+			"&resPerPage=" + str(resPerPage) + gciPartsc + "'>next</a>"
 	
 
 print htmlFuncts.endPage()
