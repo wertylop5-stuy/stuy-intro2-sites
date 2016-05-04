@@ -129,7 +129,11 @@ else:
 	
 	#search by name
 	if "findByName" in form and not(form.getvalue("qString") is None):
-		cgiParts += "findByName=" + form.getvalue("searchType") + "&"
+		cgiParts += \
+		"findByName=on" + "&" + \
+		"qString=" + form.getvalue("qString") + "&" + \
+		"searchType" + form.getvalue("searchType") + "&"
+		
 		if form.getvalue("searchType") == "first":
 			finalTable = searchByName(finalTable, form.getvalue("qString"), 1)
 		elif form.getvalue("searchType") == "last":
@@ -139,7 +143,8 @@ else:
 	
 	#search by state
 	if "findByState" in form:
-		cgiParts += "findByState=" + form.getvalue("qState") + "&"
+		cgiParts += \
+		"findByState=" + form.getvalue("qState") + "&"
 		finalTable = searchByName(finalTable, form.getvalue("qState"), 4)
 	
 	#displays only certain amount of elements
