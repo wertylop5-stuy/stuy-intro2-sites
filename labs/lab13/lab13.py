@@ -165,7 +165,8 @@ else:
 		"&resPerPage=" + str(resPerPage) +"'>prev</a>"
 	
 	#next
-	if page < math.ceil(len(finalTable) / resPerPage):
+	if (len(finalTable) / resPerPage) % 10 != 0 and \
+	page < math.ceil(len(finalTable) / resPerPage):
 		print "<a id='next' href='lab13.py?page=" + str(page + 1) + \
 		"&resPerPage=" + str(resPerPage) +"'>next</a>"
 
