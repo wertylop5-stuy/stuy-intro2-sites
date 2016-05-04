@@ -142,10 +142,10 @@ else:
 	#displays only certain amount of elements
 	page = 0
 	if "page" in form:
-		page = form.getvalue("page")
+		page = int(form.getvalue("page"))
 	resPerPage = 10
 	if "resPerPage" in form:
-		resPerPage = form.getvalue("resPerPage")
+		resPerPage = int(form.getvalue("resPerPage"))
 	
 	#save space
 	tableStart = resPerPage * page
