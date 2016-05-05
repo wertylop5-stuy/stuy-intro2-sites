@@ -1,5 +1,4 @@
 #!/usr/bin/python
-#TODO 
 print "content-type: text/html\n"
 import cgi
 import sys
@@ -33,16 +32,15 @@ form = cgi.FieldStorage()
 
 #this will intially start up, since
 #nothing has been queried yet
-if len(form) == 0:
-	print "<h1>file search</h1>"
-	
-	#the actual form
-	print """
+
+print "<h1>file search</h1>"
+
+#the actual form
+print """
 <form method="GET" action="lab13.py">
-<br>
-Search term: <input name="qString" type="textfield">
 <h3>Find by:</h3>
 name: <input name="findByName" type="checkbox">
+Search term: <input name="qString" type="textfield">
 <br>
 First name: <input name="searchType" type="radio" value="first">
 <br>
@@ -108,11 +106,14 @@ state: <input name="findByState" type="checkbox">
 	<option>District of Columbia</option>
 </select>
 <br>
+<br>
+Results per page: <input name="resPerPage" type="textfield" value="10">
+<br>
 <input name="search" type="submit" value="go">
 </form>
 """
 #search has been queried
-else:
+if len(form) != 0:
 	cgiParts = "&"
 	#begin open file
 	tableStream = open("MOCK_DATA.csv", "r")
@@ -135,18 +136,22 @@ else:
 		"searchType=" + form.getvalue("searchType") + "&"
 		
 		if form.getvalue("searchType") == "first":
-			finalTable = searchByName(finalTable, form.getvalue("qString"), 1)
+			finalTable = searchByName(finalTable, 
+			form.getvalue("qString"), 1)
 		elif form.getvalue("searchType") == "last":
-			finalTable = searchByName(finalTable, form.getvalue("qString"), 2)
+			finalTable = searchByName(finalTable, 
+			form.getvalue("qString"), 2)
 		elif form.getvalue("searchType") == "email":
-			finalTable = searchByName(finalTable, form.getvalue("qString"), 3)
+			finalTable = searchByName(finalTable, 
+			form.getvalue("qString"), 3)
 	
 	#search by state
 	if "findByState" in form:
 		cgiParts += \
 		"findByState=on" + "&" + \
 		"qState=" + form.getvalue("qState") + "&"
-		finalTable = searchByName(finalTable, form.getvalue("qState"), 4)
+		finalTable = searchByName(finalTable, 
+		form.getvalue("qState"), 4)
 	
 	#displays only certain amount of elements
 	page = 0
@@ -154,7 +159,8 @@ else:
 		page = int(form.getvalue("page"))
 	resPerPage = 10
 	if "resPerPage" in form:
-		resPerPage = int(form.getvalue("resPerPage"))
+		if form.getvalue("resPerPage").isdigit():
+			resPerPage = int(form.getvalue("resPerPage"))
 	
 	#save space
 	tableStart = resPerPage * page
@@ -174,13 +180,15 @@ else:
 		"&resPerPage=" + str(resPerPage) + cgiParts + "'>prev</a>"
 	
 	#next
-	if float(len(finalTable) / resPerPage) % resPerPage == 0:
-		if page + 1 < math.ceil(len(finalTable) / resPerPage):
-			print "<a id='next' href='lab13.py?page=" + str(page + 1) + \
+	if resPerPage % (len(finalTable) / float(resPerPage)) == 0:
+		if (page + 1) < math.ceil(len(finalTable) / resPerPage):
+			print "<a id='next' href='lab13.py?page=" + \
+			str(page + 1) + \
 			"&resPerPage=" + str(resPerPage) + cgiParts + "'>next</a>"
 	else:
 		if page < math.ceil(len(finalTable) / resPerPage):
-			print "<a id='next' href='lab13.py?page=" + str(page + 1) + \
+			print "<a id='next' href='lab13.py?page=" + \
+			str(page + 1) + \
 			"&resPerPage=" + str(resPerPage) + cgiParts + "'>next</a>"
 	
 
