@@ -9,8 +9,8 @@ sys.path.insert(0, "../modules")
 import htmlFuncts
 import dataToTable
 
-import cgitb
-cgitb.enable()
+'''import cgitb
+cgitb.enable()'''
 
 def searchByName(L, name, searchCol):
 	res = []
