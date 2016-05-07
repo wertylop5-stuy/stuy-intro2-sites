@@ -1,6 +1,5 @@
 #!/usr/bin/python
 print "content-type: text/html\n"
-#TODO get dictionary working
 
 import random
 
