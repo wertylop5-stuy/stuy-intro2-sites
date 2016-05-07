@@ -25,9 +25,7 @@ hits = []
 tally = []
 
 def TallyWords(text):
-	'''global g_distinctWords
-	global hits
-	global tally'''
+	global g_distinctWords
 	#Converted form
 	textList = []
 	
@@ -62,18 +60,18 @@ def TallyWords(text):
 	#Stores index of existing word in hits
 	tempIndex = 0
 	
-	#now with dictionaries
+	#now with dictionaries!!1!1!
 	tallies = {}
 	
 	for x in textList:
 		if len(x) > 0:
-			if not(x.lower() in hits):
+			if not(x.lower() in tallies.keys()):
 				tallies[x] = 1
 				
 				g_distinctWords += 1
 			else:
-				tempIndex = hits.index(x.lower())
-				tally[tempIndex] += 1
+				tallies[x.lower()] += 1
+	return tallies
 
 def fancyPrint(listA, listB):
 	for x in range(0, len(listA)):
@@ -162,7 +160,7 @@ title = "Counting: " + filename
 print startPage(title)
 
 #set up tallied values
-TallyWords(bookWords)
+finalDict = TallyWords(bookWords)
 '''
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~total words
 totalTally = 0
