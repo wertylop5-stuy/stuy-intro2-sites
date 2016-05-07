@@ -161,85 +161,16 @@ print startPage(title)
 
 #set up tallied values
 finalDict = TallyWords(bookWords)
-'''
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~total words
-totalTally = 0
-for x in tally:
-	totalTally += x
 
-print makeTabs(2) + "<p>" + "Total words: " + \
-str(totalTally) + "</p>"
-
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~distinct words
-print makeTabs(2) + "<p>" + "Distinct words: " + \
-str(g_distinctWords) + "</p>"
-
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~words occurring once
-oneWords = findOneTime(hits, tally)
-print makeTabs(2) + "<p>" + "Words occurring once: " + \
-str( len(oneWords)) + "</p>"
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Sorting
 
 
-###########	TEH MASTER TABLE!!!!!1!!1!1!11! ###########
-print makeTabs(2) + '<table>'
-print makeTabs(3) + "<tr>"
-print makeTabs(4) + "<th>" + "First one hundred one-time words" + "</th>"
-print makeTabs(4) + "<th>" + "10 most common words" + "</th>"
-print makeTabs(4) + "<th>" + "All words and tallies" + "</th>"
-print makeTabs(3) + "</tr>"
 
-print makeTabs(3) + "<tr>"
-
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~first one hundred one time words
-print makeTabs(4) + "<td>"
-print makeTabs(5) + '<table>'
-for x in oneWords[:100]:
-	print makeTabs(6) + '<tr>'
-	print makeTabs(7) + '<td>' + x + "</td>"
-	print makeTabs(6) + '</tr>'
-print makeTabs(5) + "</table>"
-print makeTabs(4) + "</td>"
-
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Most common words (lolrip)
-
-#my quicksort is flawed in that trying to sort tally
-#all at once will result in too many recursions
-highNums = []
-highWords = []
-tempInd = 0
-
-#Finds highest ten values
-for x in range(0, len(hits)):
-	if len(highNums) == 10:
-		tempInd = lowestElem(highNums)
-		if tally[x] > highNums[tempInd]:
-			highNums[tempInd] = tally[x]
-			highWords[tempInd] = hits[x]
-	else:
-		highNums.append(tally[x])
-		highWords.append(hits[x])
-
-#not sure why, but need to sort twice
-quickSort(highNums, 0, len(highNums) - 1, highWords)
-quickSort(highNums, 0, len(highNums) - 1, highWords)
-
-print makeTabs(4) + "<td>"
-print makeTabs(5) + "<table border='1'>"
-for x in range(9, -1, -1):
-	print makeTabs(6) + "<tr>"
-	print makeTabs(7) + "<td>" + str(highWords[x]) + "</td>"
-	print makeTabs(7) + "<td>" + str(highNums[x]) + "</td>"
-	print makeTabs(6) + "</tr>"
-print makeTabs(5) + "</table>"
-print makeTabs(4) + "</td>"
-'''
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Giant table
 print makeTabs(4) + "<td>"
 print makeTabs(5) + '<table border="1">'
 
-print finalDict.keys()
 for x in finalDict.keys():
-	print x, finalDict[x]
 	print makeTabs(6) + '<tr>'
 	print makeTabs(7) + '<td>' + x + "</td>"
 	print makeTabs(7) + '<td>' + str(finalDict[x]) + "</td>"
