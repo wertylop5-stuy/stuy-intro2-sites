@@ -169,7 +169,7 @@ for x in finalDict:
 	keyList.append(x)
 	valList.append(finalDict[x])
 
-quickSort(keyList, 0, len(keyList), valList)
+quickSort(keyList, 0, len(keyList) - 1, valList)
 
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Giant table
@@ -179,7 +179,7 @@ print makeTabs(5) + '<table border="1">'
 for x in range(len(keyList)):
 	print makeTabs(6) + '<tr>'
 	print makeTabs(7) + '<td>' + keyList[x] + "</td>"
-	print makeTabs(7) + '<td>' + str(valueList[x]) + "</td>"
+	print makeTabs(7) + '<td>' + str(valList[x]) + "</td>"
 	print makeTabs(6) + '</tr>'
 print makeTabs(5) + '</table>'
 print makeTabs(4) + "</td>"
