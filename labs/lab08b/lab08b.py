@@ -168,19 +168,18 @@ valList = []
 for x in finalDict:
 	keyList.append(x)
 	valList.append(finalDict[x])
-print keyList
-print "\n" * 20
-print valList
+
+quickSort(keyList, 0, len(keyList), valList)
 
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Giant table
 print makeTabs(4) + "<td>"
 print makeTabs(5) + '<table border="1">'
 
-for x in finalDict.keys():
+for x in range(len(keyList)):
 	print makeTabs(6) + '<tr>'
-	print makeTabs(7) + '<td>' + x + "</td>"
-	print makeTabs(7) + '<td>' + str(finalDict[x]) + "</td>"
+	print makeTabs(7) + '<td>' + keyList[x] + "</td>"
+	print makeTabs(7) + '<td>' + str(valueList[x]) + "</td>"
 	print makeTabs(6) + '</tr>'
 print makeTabs(5) + '</table>'
 print makeTabs(4) + "</td>"
