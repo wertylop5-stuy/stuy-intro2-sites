@@ -69,12 +69,12 @@ def TallyWords(text):
 	
 	for x in textList:
 		if len(x) > 0:
-			if not(x.lower() in tallies.keys()):
-				tallies[x.lower()] = 1
+			if not(x in tallies.keys()):
+				tallies[x] = 1
 				
 				g_distinctWords += 1
 			else:
-				tallies[x.lower()] += 1
+				tallies[x] += 1
 	return tallies
 
 def fancyPrint(listA, listB):
