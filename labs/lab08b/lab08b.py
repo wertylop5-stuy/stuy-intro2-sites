@@ -239,6 +239,7 @@ print makeTabs(5) + '<table border="1">'
 
 print finalDict.keys()
 for x in finalDict.keys():
+	print x, finalDict[x]
 	print makeTabs(6) + '<tr>'
 	print makeTabs(7) + '<td>' + x + "</td>"
 	print makeTabs(7) + '<td>' + finalDict[x] + "</td>"
