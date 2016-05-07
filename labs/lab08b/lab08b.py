@@ -167,7 +167,10 @@ keyList = []
 valList = []
 for x in finalDict:
 	keyList.append(x)
+	valList.append(finalDict[x])
 print keyList
+print "\n" * 20
+print valList
 
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Giant table
