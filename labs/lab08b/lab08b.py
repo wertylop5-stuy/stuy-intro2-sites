@@ -67,7 +67,7 @@ def TallyWords(text):
 	for x in textList:
 		if len(x) > 0:
 			if not(x.lower() in tallies.keys()):
-				tallies[x] = 1
+				tallies[x.lower()] = 1
 				
 				g_distinctWords += 1
 			else:
