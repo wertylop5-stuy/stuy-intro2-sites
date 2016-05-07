@@ -165,7 +165,7 @@ finalDict = TallyWords(bookWords)
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Sorting
 keyList = []
 valList = []
-for x in finalDict.keys():
+for x in finalDict:
 	keyList.append(x)
 print keyList
 
