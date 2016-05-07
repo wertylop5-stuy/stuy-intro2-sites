@@ -60,7 +60,6 @@ def TallyWords(text):
 	for x in range(len(textList)):
 		textList[x] = textList[x].lower()
 	
-	print textList
 	#Stores index of existing word in hits
 	tempIndex = 0
 	
@@ -172,7 +171,7 @@ valList = []
 for x in finalDict:
 	keyList.append(x)
 	valList.append(finalDict[x])
-print finalDict
+
 quickSort(keyList, 0, len(keyList) - 1, valList)
 
 
