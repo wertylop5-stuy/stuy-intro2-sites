@@ -161,7 +161,6 @@ print startPage(title)
 
 #set up tallied values
 finalDict = TallyWords(bookWords)
-print finalDict
 '''
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~total words
 totalTally = 0
@@ -238,10 +237,10 @@ print makeTabs(4) + "</td>"
 print makeTabs(4) + "<td>"
 print makeTabs(5) + '<table border="1">'
 
-for x in range(0, len(hits)):
+for x in finalDict.keys():
 	print makeTabs(6) + '<tr>'
-	print makeTabs(7) + '<td>' + hits[x] + "</td>"
-	print makeTabs(7) + '<td>' + str(tally[x]) + "</td>"
+	print makeTabs(7) + '<td>' + x + "</td>"
+	print makeTabs(7) + '<td>' + finalDict[x] + "</td>"
 	print makeTabs(6) + '</tr>'
 print makeTabs(5) + '</table>'
 print makeTabs(4) + "</td>"
