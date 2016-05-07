@@ -168,7 +168,7 @@ valList = []
 for x in finalDict:
 	keyList.append(x)
 	valList.append(finalDict[x])
-
+print finalDict
 quickSort(keyList, 0, len(keyList) - 1, valList)
 
 
