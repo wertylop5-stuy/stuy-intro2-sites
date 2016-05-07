@@ -161,6 +161,7 @@ print startPage(title)
 
 #set up tallied values
 finalDict = TallyWords(bookWords)
+print finalDict
 '''
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~total words
 totalTally = 0
