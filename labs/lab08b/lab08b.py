@@ -163,7 +163,11 @@ print startPage(title)
 finalDict = TallyWords(bookWords)
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Sorting
-
+keyList = []
+valList = []
+for x in finalDict.keys():
+	keyList.append(x)
+print keyList
 
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Giant table
