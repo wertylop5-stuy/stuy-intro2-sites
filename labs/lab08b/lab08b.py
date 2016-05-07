@@ -57,6 +57,9 @@ def TallyWords(text):
 			#q = q.strip("'")
 			textList[x] = q
 	
+	for x in range(len(textList)):
+		textList[x] = textList[x].lower()
+	
 	print textList
 	#Stores index of existing word in hits
 	tempIndex = 0
