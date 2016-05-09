@@ -101,6 +101,7 @@ for x in tally:
 
 sortAlg.quickSort(keyList, 0, len(keyList) - 1, valList)
 
+print "one"
 print "<td>"
 print makeTabs(5) + '<table border="1">'
 for x in range(len(keyList)):
@@ -116,11 +117,12 @@ print "</td>"
 keyList2 = []
 valList2 = []
 for x in tally2:
-	keyList.append(x)
-	valList.append(tally2[x])
+	keyList2.append(x)
+	valList2.append(tally2[x])
 
 sortAlg.quickSort(keyList, 0, len(keyList) - 1, valList)
 
+print "two"
 print "<td>"
 print makeTabs(5) + '<table border="1">'
 for x in range(len(keyList2)):
