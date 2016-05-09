@@ -1,5 +1,7 @@
 #!/usr/bin/python
 print "content-type: text/html\n"
+#TODO finish up dictToList with two dicts
+
 import sys
 sys.path.insert(0, "../modules")
 import htmlFuncts
@@ -8,9 +10,11 @@ import dataToTable
 import sortAlg
 
 g_distinctWords = 0
+g_totWords = 0
 
 def TallyWords(text):
 	global g_distinctWords
+	global g_totWords
 	#Converted form
 	textList = []
 	
@@ -53,6 +57,7 @@ def TallyWords(text):
 	
 	for x in textList:
 		if len(x) > 0:
+			g_totWords += 1
 			if not(x in tallies.keys()):
 				tallies[x] = 1
 				
@@ -67,6 +72,47 @@ def fillMissing(a, b):
 	for x in a.keys():
 		if not(x in b.keys()):
 			b[x] = 0
+
+#list of lists
+#format: [["word", 5], ["two", 0]]
+#dictOne is required
+
+#one arg returns that as a list of lists
+#two arg returns words, but numbers are subtracted
+def dictToList(	dictOne, 
+				totalCount, 
+				dictOneName = "",
+				dictTwo = None,
+				dictTwoName = ""):
+	res = []
+	temp = []
+	
+	#fun stuff, only 2 columns
+	#first column is higher book name instead of word
+	#second is difference in percentage
+	if dictTwo:
+		for x in dictOne.keys():
+			if dictOne[x] > dictTwo[x]:
+				temp.append(dictOneName)
+				temp.append(
+							(dictOne[x] / float(totalCount)) -
+							(dictTwo[x] / float(totalCount)))
+			else:
+				temp.append(dictTwoName)
+				temp.append(
+							(dictTwo[x] / float(totalCount)) -
+							(dictOne[x] / float(totalCount)))
+				
+	else:
+		for x in dictOne.keys():
+			print x
+			temp.append(x)
+			temp.append(dictOne[x])
+			temp.append(dictOne[x] / float(totalCount))
+			
+			res.append(temp)
+			temp = []
+	return res
 
 
 ########################################## Stream stuff
@@ -97,14 +143,14 @@ keyList = []
 valList = []
 for x in tally:
 	keyList.append(x)
-	'''valList.append(tally[x])'''
+
 keyList.sort()
 for x in keyList:
 	valList.append(tally[x])
 
 
-print "one"
 print "<td>"
+print "hamlet"
 print makeTabs(5) + '<table border="1">'
 for x in range(len(keyList)):
 	print makeTabs(6) + '<tr>'
@@ -120,14 +166,13 @@ keyList2 = []
 valList2 = []
 for x in tally2:
 	keyList2.append(x)
-	'''valList2.append(tally2[x])'''
 
 keyList2.sort()
 for x in keyList2:
 	valList2.append(tally2[x])
 
-print "two"
 print "<td>"
+print "othello"
 print makeTabs(5) + '<table border="1">'
 for x in range(len(keyList2)):
 	print makeTabs(6) + '<tr>'
