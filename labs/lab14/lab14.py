@@ -99,7 +99,6 @@ for x in tally:
 	keyList.append(x)
 	'''valList.append(tally[x])'''
 keyList.sort()
-print keyList
 for x in keyList:
 	valList.append(tally[x])
 
@@ -125,7 +124,7 @@ for x in tally2:
 
 keyList2.sort()
 for x in keyList2:
-	valList2.append(tally[x])
+	valList2.append(tally2[x])
 
 print "two"
 print "<td>"
