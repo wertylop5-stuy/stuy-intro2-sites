@@ -95,11 +95,14 @@ print "<tr>"
 #### First one
 keyList = []
 valList = []
-for x in tally:
+'''for x in tally:
 	keyList.append(x)
+	valList.append(tally[x])'''
+keyList.sort()
+for x in keyList:
 	valList.append(tally[x])
 
-sortAlg.quickSort(keyList, 0, len(keyList) - 1, valList)
+
 
 print "one"
 print "<td>"
@@ -116,11 +119,13 @@ print "</td>"
 #### Second one
 keyList2 = []
 valList2 = []
-for x in tally2:
+'''for x in tally2:
 	keyList2.append(x)
-	valList2.append(tally2[x])
+	valList2.append(tally2[x])'''
 
-sortAlg.quickSort(keyList, 0, len(keyList) - 1, valList)
+keyList2.sort()
+for x in keyList2:
+	valList2.append(tally[x])
 
 print "two"
 print "<td>"
