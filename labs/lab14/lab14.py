@@ -95,13 +95,13 @@ print "<tr>"
 #### First one
 keyList = []
 valList = []
-'''for x in tally:
+for x in tally:
 	keyList.append(x)
-	valList.append(tally[x])'''
+	'''valList.append(tally[x])'''
 keyList.sort()
+print keyList
 for x in keyList:
 	valList.append(tally[x])
-
 
 
 print "one"
@@ -119,9 +119,9 @@ print "</td>"
 #### Second one
 keyList2 = []
 valList2 = []
-'''for x in tally2:
+for x in tally2:
 	keyList2.append(x)
-	valList2.append(tally2[x])'''
+	'''valList2.append(tally2[x])'''
 
 keyList2.sort()
 for x in keyList2:
