@@ -5,55 +5,9 @@ sys.path.insert(0, "../modules")
 import htmlFuncts
 from htmlFuncts import *
 import dataToTable
+import sortAlg
 
 g_distinctWords = 0
-
-###################### QUICKSORT BEGIN
-def swap(li, start, end, hitIn):
-	temp = li[start]
-	temp2 = hitIn[start]
-	
-	li[start] = li[end]
-	hitIn[start] = hitIn[end]
-	
-	li[end] = temp
-	hitIn[end] = temp2
-
-def partition(li, start, end, hitIn):
-	pivot = li[end]
-	curPos = start
-	
-	#keeps track of highest index of lower vals
-	smallBound = start
-	
-	#sets smallbound to the first number smaller than pivot
-	while curPos != end:
-		if li[curPos] <= pivot:
-			curPos += 1
-			smallBound += 1
-		else:
-			curPos += 1
-			break
-	
-	#shifts larger numbers to right side
-	while curPos != end:
-		if li[curPos] <= pivot:
-			swap(li, smallBound, curPos, hitIn)
-			smallBound += 1
-		curPos += 1
-	
-	#switch pivot with "middle" elem
-	swap(li, smallBound, end, hitIn)
-	return smallBound
-
-def quickSort(li, start, end, hitIn):
-	mid = 0
-	if end - start > 0:
-		mid = partition(li, start, end, hitIn)
-		if mid != 1:
-			quickSort(li, start, mid - 1, hitIn)
-			quickSort(li, mid + 1, end, hitIn)
-###################### QUICKSORT END
 
 def TallyWords(text):
 	global g_distinctWords
@@ -120,26 +74,22 @@ filename = "hamlet.txt"
 fileStream = open("res/" + filename, "r")
 fileText = fileStream.read()
 fileStream.close()
-#print tally
 
 filename2 = "othello.txt"
 fileStream2 = open("res/" + filename2, "r")
 fileText2 = fileStream2.read()
 fileStream2.close()
-#print tally2
 ########################################## End Stream stuff
-
-'''test = {"a":1, "b":1, "c":3, "e":5}
-test2 = {"a":1, "b":1, "d":3}
-
-print test2
-fillMissing(test, test2)
-print test2'''
 tally = TallyWords(fileText)
 tally2 = TallyWords(fileText2)
 
 fillMissing(tally, tally2)
 fillMissing(tally2, tally)
+
+print htmlFuncts.startPage("Pair")
+
+################### TABLE START ###################
+print "<table>"
 
 #### First one
 keyList = []
@@ -148,8 +98,9 @@ for x in tally:
 	keyList.append(x)
 	valList.append(tally[x])
 
-quickSort(keyList, 0, len(keyList) - 1, valList)
+sortAlg.quickSort(keyList, 0, len(keyList) - 1, valList)
 
+print "<tr>"
 print makeTabs(5) + '<table border="1">'
 for x in range(len(keyList)):
 	print makeTabs(6) + '<tr>'
@@ -157,6 +108,7 @@ for x in range(len(keyList)):
 	print makeTabs(7) + '<td>' + str(valList[x]) + "</td>"
 	print makeTabs(6) + '</tr>'
 print makeTabs(5) + '</table>'
+print "</tr>"
 
 
 #### Second one
@@ -166,7 +118,17 @@ for x in tally2:
 	keyList.append(x)
 	valList.append(tally2[x])
 
-quickSort(keyList, 0, len(keyList) - 1, valList)
+sortAlg.quickSort(keyList, 0, len(keyList) - 1, valList)
+
+print "<tr>"
+print makeTabs(5) + '<table border="1">'
+for x in range(len(keyList2)):
+	print makeTabs(6) + '<tr>'
+	print makeTabs(7) + '<td>' + keyList2[x] + "</td>"
+	print makeTabs(7) + '<td>' + str(valList2[x]) + "</td>"
+	print makeTabs(6) + '</tr>'
+print makeTabs(5) + '</table>'
+print "</tr>"
 
 
 
@@ -176,8 +138,25 @@ quickSort(keyList, 0, len(keyList) - 1, valList)
 
 
 
-'''
-print htmlFuncts.startPage("Pair")
 
+print "</table>"
 print htmlFuncts.endPage()
-'''
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
