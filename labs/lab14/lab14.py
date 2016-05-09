@@ -90,6 +90,7 @@ print htmlFuncts.startPage("Pair")
 
 ################### TABLE START ###################
 print "<table>"
+print "<tr>"
 
 #### First one
 keyList = []
@@ -100,7 +101,7 @@ for x in tally:
 
 sortAlg.quickSort(keyList, 0, len(keyList) - 1, valList)
 
-print "<tr>"
+print "<td>"
 print makeTabs(5) + '<table border="1">'
 for x in range(len(keyList)):
 	print makeTabs(6) + '<tr>'
@@ -108,7 +109,7 @@ for x in range(len(keyList)):
 	print makeTabs(7) + '<td>' + str(valList[x]) + "</td>"
 	print makeTabs(6) + '</tr>'
 print makeTabs(5) + '</table>'
-print "</tr>"
+print "</td>"
 
 
 #### Second one
@@ -120,7 +121,7 @@ for x in tally2:
 
 sortAlg.quickSort(keyList, 0, len(keyList) - 1, valList)
 
-print "<tr>"
+print "<td>"
 print makeTabs(5) + '<table border="1">'
 for x in range(len(keyList2)):
 	print makeTabs(6) + '<tr>'
@@ -128,17 +129,17 @@ for x in range(len(keyList2)):
 	print makeTabs(7) + '<td>' + str(valList2[x]) + "</td>"
 	print makeTabs(6) + '</tr>'
 print makeTabs(5) + '</table>'
+print "</td>"
+
+
+
+
+
+
+
+
+
 print "</tr>"
-
-
-
-
-
-
-
-
-
-
 print "</table>"
 print htmlFuncts.endPage()
 
