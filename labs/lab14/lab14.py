@@ -130,8 +130,8 @@ def dictToList(	dictOne,
 			temp.append(dictOne[x])
 			temp.append(
 						str(
-						round(
 						abs(
+						round(
 						((dictOne[x] / float(totalCount)) * 100),
 						4)
 						)
