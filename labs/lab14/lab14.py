@@ -113,8 +113,10 @@ def dictToList(	dictOne,
 		for x in keyStore:
 			if dictOne[x] > dictTwo[x]:
 				temp = makeSubList(dictOneName,
-						dictOne, dictTwo, totalCount, totalCount2, x)
+						dictTwo, dictOne, totalCount2, totalCount, x)
 			else:
+				temp = makeSubList(dictTwoName,
+						dictOne, dictTwo, totalCount, totalCount2, x)
 				temp.append(dictTwoName)
 				temp.append(
 							str(
