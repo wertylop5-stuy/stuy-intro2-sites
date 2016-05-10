@@ -236,6 +236,19 @@ sortedVal = []
 for x in sortedKey:
 	sortedVal.append(tally[x])
 
+
+sortedKey2 = sorted(tally2, key=tally2.get, reverse=True)
+sortedVal2 = []
+for x in sortedKey2:
+	sortedVal2.append(tally2[x])
+
+
+################### TABLE START ###################
+print "<table>"
+
+print "<tr>"
+
+print "hamlet most common"
 print "<table border='1'>"
 for x in range(20):
 	print "<tr>"
@@ -247,15 +260,25 @@ for x in range(20):
 
 print "</table>"
 
-
-################### TABLE START ###################
-print "<table>"
-
-print "<tr>"
-
 print "</tr>"
 
 
+
+print "<tr>"
+
+print "othello most common"
+print "<table border='1'>"
+for x in range(20):
+	print "<tr>"
+	
+	print "<td>" + str(sortedKey2[x]) + "</td>"
+	print "<td>" + str(sortedVal2[x]) + "</td>"
+	
+	print "</tr>"
+
+print "</table>"
+
+print "</tr>"
 
 
 
