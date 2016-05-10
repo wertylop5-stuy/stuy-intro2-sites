@@ -76,6 +76,8 @@ def fillMissing(a, b):
 def makeSubList(name, dictOne, dictTwo, count1, count2, key):
 	temp = []
 	temp.append(name)
+	
+	#percentages
 	temp.append(
 				str(
 				abs(
@@ -137,6 +139,75 @@ def dictToList(	dictOne,
 			temp = []
 	return res
 
+def strToList(s):
+	res = []
+	for x in s:
+		res.append(x)
+	return res
+
+#returns an inverted copy of the list
+def invertDict(d):
+	res = {}
+	
+	#for dupe handling
+	carry = 0
+	letter = ord('a')
+	tempKey = ""
+	
+	for x in d.keys():
+		if not(d[x] in res):
+			res[ d[x] ] = x
+		#fun stuff
+		else:
+			tempKey = str(d[x])
+			#puts a carry # of z before the letter
+			if letter > ord('z'):
+				letter = ord('a')
+				carry += 1
+			tempKey += ('z' * carry) + chr(letter)
+			print tempKey
+			letter += 1
+			
+			res[tempKey] = x
+	return res
+
+def mostCommon(dictX, keyOut, valOut):
+	dictTemp = invertDict(dictX)
+	#values is numbers, keys is words
+	values = []
+	keys = []
+	
+	#for extracting numbers from dupes
+	tempChar = ""
+	tempPos = 0
+	tempList = []
+	tempNum = 0
+	
+	#for making the final number
+	counter = 1
+	
+	
+	for x in dictTemp.keys():
+		if x.isdigit():
+			values.append(int(x))
+			keys.append(dictTemp[x])
+		#handle the tailing letters
+		else:
+			while tempPos < len(x) and x[tempPos].isdigit():
+				tempChar = x[tempPos]
+				tempPos += 1
+				tempList.append(tempChar)
+			tempPos = 0
+			
+			while len(tempList) > 0:
+				 tempNum += int(l.pop()) * (10 ** counter)
+				 counter += 1
+			counter = 1
+			
+			values.append(tempNum)
+			keys.append(dictTemp[x])
+	keyOut.extend(keys)
+	valOut.extend(values)
 
 ########################################## Stream stuff
 filename = "hamlet.txt"
@@ -159,13 +230,38 @@ fillMissing(tally2, tally)
 
 print htmlFuncts.startPage("Pair")
 
+
 ################### TABLE START ###################
 print "<table>"
+print "<tr>"
+
+sortedKey = sorted(tally, key=tally.get, reverse=True)
+sortedVal = []
+for x in sortedKey:
+	sortedVal.append(tally[x])
+
+print "<table border='1'>"
+for x in range(len(sortedKey)):
+	print "<tr>"
+	
+	print "<td>" + str(sortedKey[x]) + "</td>"
+	print "<td>" + str(sortedVal[x]) + "</td>"
+	
+	print "</tr>"
+
+print "</table>"
+print "</tr>"
+
+
+
+
+
 print "<tr>"
 
 #### First one
 print "<td>"
 print "hamlet"
+
 print makeTabs(5) + '<table border="1">'
 
 print "Unique words: " + str(count)
