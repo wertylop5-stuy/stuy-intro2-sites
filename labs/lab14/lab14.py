@@ -250,11 +250,11 @@ print "</table>"
 
 ################### TABLE START ###################
 print "<table>"
-'''
+
 print "<tr>"
 
 print "</tr>"
-'''
+
 
 
 
@@ -299,15 +299,22 @@ print dataToTable.makeTableBody(dictToList(tally, count,
 
 print makeTabs(5) + '</table>'
 print "</td>"
-
-
-
-
-
-
-
-
 print "</tr>"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 print "</table>"
 print htmlFuncts.endPage()
 
