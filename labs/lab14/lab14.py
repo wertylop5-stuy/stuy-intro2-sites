@@ -189,7 +189,7 @@ for x in range(len(keyList)):
 	print makeTabs(7) + '<td>' + str(valList[x]) + "</td>"
 	print makeTabs(6) + '</tr>'
 '''
-print count
+print "Unique words: " + str(count)
 print dataToTable.makeTableBody(dictToList(tally, count))
 
 print makeTabs(5) + '</table>'
@@ -216,7 +216,7 @@ for x in range(len(keyList2)):
 	print makeTabs(7) + '<td>' + str(valList2[x]) + "</td>"
 	print makeTabs(6) + '</tr>'
 '''
-print count2
+print "Unique words: " + str(count2)
 print dataToTable.makeTableBody(dictToList(tally2, count2))
 
 print makeTabs(5) + '</table>'
