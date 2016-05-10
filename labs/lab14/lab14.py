@@ -247,7 +247,7 @@ for x in sortedKey2:
 print "<table>"
 
 print "<tr>"
-
+print "<td>"
 print "hamlet most common"
 print "<table border='1'>"
 for x in range(20):
@@ -260,11 +260,11 @@ for x in range(20):
 
 print "</table>"
 
-print "</tr>"
+print "</td>"
 
 
 
-print "<tr>"
+print "<td>"
 
 print "othello most common"
 print "<table border='1'>"
@@ -278,6 +278,7 @@ for x in range(20):
 
 print "</table>"
 
+print "</td>"
 print "</tr>"
 
 
