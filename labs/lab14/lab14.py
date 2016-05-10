@@ -117,18 +117,6 @@ def dictToList(	dictOne,
 			else:
 				temp = makeSubList(dictTwoName,
 						dictOne, dictTwo, totalCount, totalCount2, x)
-				temp.append(dictTwoName)
-				temp.append(
-							str(
-							abs(
-							round(
-							(((dictTwo[x] / float(totalCount2)) * 100) 
-							-
-							(dictOne[x] / float(totalCount)) * 100),
-							4)
-							)
-							) + "%"
-							)
 			res.append(temp)
 			temp = []
 	else:
