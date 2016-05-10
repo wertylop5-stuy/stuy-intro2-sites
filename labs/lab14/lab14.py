@@ -1,6 +1,5 @@
 #!/usr/bin/python
 print "content-type: text/html\n"
-#TODO fix negatives
 
 import sys
 sys.path.insert(0, "../modules")
@@ -74,6 +73,21 @@ def fillMissing(a, b):
 		if not(x in b.keys()):
 			b[x] = 0
 
+def makeSubList(name, dictOne, dictTwo, count1, count2, key):
+	temp = []
+	temp.append(name)
+	temp.append(
+				str(
+				abs(
+				round(
+				(((dictOne[key] / float(count)) * 100) -
+				((dictTwo[key] / float(count2)) * 100)),
+				4)
+				)
+				) + "%"
+				)
+	return temp
+
 #list of lists
 #format: [["word", 5], ["two", 0]]
 #dictOne is required
@@ -98,17 +112,8 @@ def dictToList(	dictOne,
 	if dictTwo:
 		for x in keyStore:
 			if dictOne[x] > dictTwo[x]:
-				temp.append(dictOneName)
-				temp.append(
-							str(
-							abs(
-							round(
-							(((dictOne[x] / float(totalCount)) * 100) -
-							((dictTwo[x] / float(totalCount2)) * 100)),
-							4)
-							)
-							) + "%"
-							)
+				temp = makeSubList(dictOneName,
+						dictOne, dictTwo, totalCount, totalCount2, x)
 			else:
 				temp.append(dictTwoName)
 				temp.append(
@@ -169,26 +174,10 @@ print "<table>"
 print "<tr>"
 
 #### First one
-keyList = []
-valList = []
-for x in tally:
-	keyList.append(x)
-
-keyList.sort()
-for x in keyList:
-	valList.append(tally[x])
-
-
 print "<td>"
 print "hamlet"
 print makeTabs(5) + '<table border="1">'
-'''
-for x in range(len(keyList)):
-	print makeTabs(6) + '<tr>'
-	print makeTabs(7) + '<td>' + keyList[x] + "</td>"
-	print makeTabs(7) + '<td>' + str(valList[x]) + "</td>"
-	print makeTabs(6) + '</tr>'
-'''
+
 print "Unique words: " + str(count)
 print dataToTable.makeTableBody(dictToList(tally, count))
 
@@ -197,25 +186,10 @@ print "</td>"
 
 
 #### Second one
-keyList2 = []
-valList2 = []
-for x in tally2:
-	keyList2.append(x)
-
-keyList2.sort()
-for x in keyList2:
-	valList2.append(tally2[x])
-
 print "<td>"
 print "othello"
 print makeTabs(5) + '<table border="1">'
-'''
-for x in range(len(keyList2)):
-	print makeTabs(6) + '<tr>'
-	print makeTabs(7) + '<td>' + keyList2[x] + "</td>"
-	print makeTabs(7) + '<td>' + str(valList2[x]) + "</td>"
-	print makeTabs(6) + '</tr>'
-'''
+
 print "Unique words: " + str(count2)
 print dataToTable.makeTableBody(dictToList(tally2, count2))
 
