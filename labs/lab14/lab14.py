@@ -101,21 +101,25 @@ def dictToList(	dictOne,
 				temp.append(dictOneName)
 				temp.append(
 							str(
+							abs(
 							round(
 							(((dictOne[x] / float(totalCount)) * 100) -
 							((dictTwo[x] / float(totalCount2)) * 100)),
 							4)
+							)
 							) + "%"
 							)
 			else:
 				temp.append(dictTwoName)
 				temp.append(
 							str(
+							abs(
 							round(
 							(((dictTwo[x] / float(totalCount2)) * 100) 
 							-
 							(dictOne[x] / float(totalCount)) * 100),
 							4)
+							)
 							) + "%"
 							)
 			res.append(temp)
@@ -127,8 +131,10 @@ def dictToList(	dictOne,
 			temp.append(
 						str(
 						round(
+						abs(
 						((dictOne[x] / float(totalCount)) * 100),
 						4)
+						)
 						) +"%"
 						)
 			
