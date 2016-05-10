@@ -231,10 +231,6 @@ fillMissing(tally2, tally)
 print htmlFuncts.startPage("Pair")
 
 
-################### TABLE START ###################
-print "<table>"
-print "<tr>"
-
 sortedKey = sorted(tally, key=tally.get, reverse=True)
 sortedVal = []
 for x in sortedKey:
@@ -250,8 +246,15 @@ for x in range(20):
 	print "</tr>"
 
 print "</table>"
-print "</tr>"
 
+
+################### TABLE START ###################
+print "<table>"
+'''
+print "<tr>"
+
+print "</tr>"
+'''
 
 
 
