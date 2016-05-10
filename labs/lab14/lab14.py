@@ -241,7 +241,7 @@ for x in sortedKey:
 	sortedVal.append(tally[x])
 
 print "<table border='1'>"
-for x in range(len(sortedKey)):
+for x in range(20):
 	print "<tr>"
 	
 	print "<td>" + str(sortedKey[x]) + "</td>"
