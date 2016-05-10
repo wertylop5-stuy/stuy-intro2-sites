@@ -1,6 +1,6 @@
 #!/usr/bin/python
 print "content-type: text/html\n"
-#TODO finish up dictToList with two dicts
+#TODO fix negatives
 
 import sys
 sys.path.insert(0, "../modules")
@@ -15,6 +15,7 @@ g_totWords = 0
 def TallyWords(text):
 	global g_distinctWords
 	global g_totWords
+	g_totWords = 0
 	#Converted form
 	textList = []
 	
@@ -82,33 +83,54 @@ def fillMissing(a, b):
 def dictToList(	dictOne, 
 				totalCount, 
 				dictOneName = "",
+				totalCount2 = 0,
 				dictTwo = None,
 				dictTwoName = ""):
 	res = []
 	temp = []
+	keyStore = []
+	keyStore = dictOne.keys()
+	keyStore.sort()
 	
 	#fun stuff, only 2 columns
 	#first column is higher book name instead of word
 	#second is difference in percentage
 	if dictTwo:
-		for x in dictOne.keys():
+		for x in keyStore:
 			if dictOne[x] > dictTwo[x]:
 				temp.append(dictOneName)
 				temp.append(
-							(dictOne[x] / float(totalCount)) -
-							(dictTwo[x] / float(totalCount)))
+							str(
+							round(
+							(((dictOne[x] / float(totalCount)) * 100) -
+							((dictTwo[x] / float(totalCount2)) * 100)),
+							4)
+							) + "%"
+							)
 			else:
 				temp.append(dictTwoName)
 				temp.append(
-							(dictTwo[x] / float(totalCount)) -
-							(dictOne[x] / float(totalCount)))
-				
+							str(
+							round(
+							(((dictTwo[x] / float(totalCount2)) * 100) 
+							-
+							(dictOne[x] / float(totalCount)) * 100),
+							4)
+							) + "%"
+							)
+			res.append(temp)
+			temp = []
 	else:
-		for x in dictOne.keys():
-			print x
+		for x in keyStore:
 			temp.append(x)
 			temp.append(dictOne[x])
-			temp.append(dictOne[x] / float(totalCount))
+			temp.append(
+						str(
+						round(
+						((dictOne[x] / float(totalCount)) * 100),
+						4)
+						) +"%"
+						)
 			
 			res.append(temp)
 			temp = []
@@ -127,7 +149,9 @@ fileText2 = fileStream2.read()
 fileStream2.close()
 ########################################## End Stream stuff
 tally = TallyWords(fileText)
+count = g_totWords
 tally2 = TallyWords(fileText2)
+count2 = g_totWords
 
 fillMissing(tally, tally2)
 fillMissing(tally2, tally)
@@ -152,11 +176,16 @@ for x in keyList:
 print "<td>"
 print "hamlet"
 print makeTabs(5) + '<table border="1">'
+'''
 for x in range(len(keyList)):
 	print makeTabs(6) + '<tr>'
 	print makeTabs(7) + '<td>' + keyList[x] + "</td>"
 	print makeTabs(7) + '<td>' + str(valList[x]) + "</td>"
 	print makeTabs(6) + '</tr>'
+'''
+print count
+print dataToTable.makeTableBody(dictToList(tally, count))
+
 print makeTabs(5) + '</table>'
 print "</td>"
 
@@ -174,14 +203,33 @@ for x in keyList2:
 print "<td>"
 print "othello"
 print makeTabs(5) + '<table border="1">'
+'''
 for x in range(len(keyList2)):
 	print makeTabs(6) + '<tr>'
 	print makeTabs(7) + '<td>' + keyList2[x] + "</td>"
 	print makeTabs(7) + '<td>' + str(valList2[x]) + "</td>"
 	print makeTabs(6) + '</tr>'
+'''
+print count2
+print dataToTable.makeTableBody(dictToList(tally2, count2))
+
 print makeTabs(5) + '</table>'
 print "</td>"
 
+
+
+print "<td>"
+print "both"
+print makeTabs(5) + '<table border="1">'
+
+print dataToTable.makeTableBody(dictToList(tally, count, 
+								"hamlet",
+								count2,
+								tally2,
+								"othello"))
+
+print makeTabs(5) + '</table>'
+print "</td>"
 
 
 
