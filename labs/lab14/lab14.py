@@ -230,7 +230,7 @@ fillMissing(tally2, tally)
 
 print htmlFuncts.startPage("Pair")
 
-
+#super simple sort by values
 sortedKey = sorted(tally, key=tally.get, reverse=True)
 sortedVal = []
 for x in sortedKey:
