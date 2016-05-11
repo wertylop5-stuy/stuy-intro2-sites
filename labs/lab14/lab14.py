@@ -2,7 +2,10 @@
 print "content-type: text/html\n"
 
 import sys
+import cgi
+
 sys.path.insert(0, "../modules")
+
 import htmlFuncts
 from htmlFuncts import *
 import dataToTable
@@ -15,6 +18,7 @@ def TallyWords(text):
 	global g_distinctWords
 	global g_totWords
 	g_totWords = 0
+	g_distinctWords = 0
 	#Converted form
 	textList = []
 	
@@ -209,121 +213,166 @@ def mostCommon(dictX, keyOut, valOut):
 	keyOut.extend(keys)
 	valOut.extend(values)
 
-########################################## Stream stuff
-filename = "hamlet.txt"
-fileStream = open("res/" + filename, "r")
-fileText = fileStream.read()
-fileStream.close()
 
-filename2 = "othello.txt"
-fileStream2 = open("res/" + filename2, "r")
-fileText2 = fileStream2.read()
-fileStream2.close()
-########################################## End Stream stuff
-tally = TallyWords(fileText)
-count = g_totWords
-tally2 = TallyWords(fileText2)
-count2 = g_totWords
 
-fillMissing(tally, tally2)
-fillMissing(tally2, tally)
-
+################### PAGE START ###################
 print htmlFuncts.startPage("Pair")
 
-#super simple sort by values
-sortedKey = sorted(tally, key=tally.get, reverse=True)
-sortedVal = []
-for x in sortedKey:
-	sortedVal.append(tally[x])
+form = cgi.FieldStorage()
 
 
-sortedKey2 = sorted(tally2, key=tally2.get, reverse=True)
-sortedVal2 = []
-for x in sortedKey2:
-	sortedVal2.append(tally2[x])
 
 
-################### TABLE START ###################
-print "<table>"
 
-print "<tr>"
-print "<td>"
-print "hamlet most common"
-print "<table border='1'>"
-for x in range(20):
+### The form
+print """<form method='GET' action='lab14.py'>
+Choose a book: <select name="qBook" size="1">
+<option>othello</option>
+<option>hamlet</option>
+<option>dante</option>
+<option>macbeth</option>
+</select>
+<br>
+Choose another book: <select name="qBook2" size="1">
+<option>othello</option>
+<option>hamlet</option>
+<option>dante</option>
+<option>macbeth</option>
+</select>
+<br>
+<input name="go" type="submit" value="yay">
+
+</form>
+"""
+
+if "go" in form:
+	################### Stream stuff
+	filename = form.getvalue("qBook") + ".txt"
+	fileStream = open("res/" + filename, "r")
+	fileText = fileStream.read()
+	fileStream.close()
+
+	filename2 = form.getvalue("qBook2") + ".txt"
+	fileStream2 = open("res/" + filename2, "r")
+	fileText2 = fileStream2.read()
+	fileStream2.close()
+	################### End Stream stuff
+	lineCount = len(fileText.split("\n"))
+	lineCount2 = len(fileText2.split("\n"))
+	
+	tally = TallyWords(fileText)
+	count = g_totWords
+	unique = g_distinctWords
+	
+	tally2 = TallyWords(fileText2)
+	count2 = g_totWords
+	unique2 = g_distinctWords
+
+	fillMissing(tally, tally2)
+	fillMissing(tally2, tally)
+
+	#super simple sort by values
+	sortedKey = sorted(tally, key=tally.get, reverse=True)
+	sortedVal = []
+	for x in sortedKey:
+		sortedVal.append(tally[x])
+
+
+	sortedKey2 = sorted(tally2, key=tally2.get, reverse=True)
+	sortedVal2 = []
+	for x in sortedKey2:
+		sortedVal2.append(tally2[x])
+
+
+	################### TABLE START ###################
+	print "<table>"
+
 	print "<tr>"
+	print "<td>"
+	print form.getvalue("qBook") + " most common"
+	print "<table border='1'>"
+	for x in range(20):
+		print "<tr>"
 	
-	print "<td>" + str(sortedKey[x]) + "</td>"
-	print "<td>" + str(sortedVal[x]) + "</td>"
+		print "<td>" + str(sortedKey[x]) + "</td>"
+		print "<td>" + str(sortedVal[x]) + "</td>"
 	
+		print "</tr>"
+
+	print "</table>"
+
+	print "</td>"
+
+
+
+	print "<td>"
+
+	print form.getvalue("qBook2") + " most common"
+	print "<table border='1'>"
+	for x in range(20):
+		print "<tr>"
+	
+		print "<td>" + str(sortedKey2[x]) + "</td>"
+		print "<td>" + str(sortedVal2[x]) + "</td>"
+	
+		print "</tr>"
+
+	print "</table>"
+
+	print "</td>"
 	print "</tr>"
 
-print "</table>"
-
-print "</td>"
 
 
-
-print "<td>"
-
-print "othello most common"
-print "<table border='1'>"
-for x in range(20):
 	print "<tr>"
+
+	#### First one
+	print "<td>"
+	print form.getvalue("qBook")
+
+	print makeTabs(5) + '<table border="1">'
+
+	print "Unique words: " + str(unique) + "\n"
+	print "<br>"
+	print "Average words per line: " + str( count / lineCount)
 	
-	print "<td>" + str(sortedKey2[x]) + "</td>"
-	print "<td>" + str(sortedVal2[x]) + "</td>"
+	print dataToTable.makeTableBody(dictToList(tally, count))
+
+	print makeTabs(5) + '</table>'
+	print "</td>"
+
+
+	#### Second one
+	print "<td>"
+	print form.getvalue("qBook2")
+	print makeTabs(5) + '<table border="1">'
+
+	print "Unique words: " + str(unique2)
+	print "<br>"
+	print "Average words per line: " + str( count2 / lineCount2)
+	print "<br>"
 	
+	print dataToTable.makeTableBody(dictToList(tally2, count2))
+
+	print makeTabs(5) + '</table>'
+	print "</td>"
+
+
+
+	print "<td>"
+	print "both"
+	print makeTabs(5) + '<table border="1">'
+
+	print dataToTable.makeTableBody(dictToList(tally, count, 
+									form.getvalue("qBook"),
+									count2,
+									tally2,
+									form.getvalue("qBook2")))
+
+	print makeTabs(5) + '</table>'
+	print "</td>"
 	print "</tr>"
 
-print "</table>"
-
-print "</td>"
-print "</tr>"
-
-
-
-print "<tr>"
-
-#### First one
-print "<td>"
-print "hamlet"
-
-print makeTabs(5) + '<table border="1">'
-
-print "Unique words: " + str(count)
-print dataToTable.makeTableBody(dictToList(tally, count))
-
-print makeTabs(5) + '</table>'
-print "</td>"
-
-
-#### Second one
-print "<td>"
-print "othello"
-print makeTabs(5) + '<table border="1">'
-
-print "Unique words: " + str(count2)
-print dataToTable.makeTableBody(dictToList(tally2, count2))
-
-print makeTabs(5) + '</table>'
-print "</td>"
-
-
-
-print "<td>"
-print "both"
-print makeTabs(5) + '<table border="1">'
-
-print dataToTable.makeTableBody(dictToList(tally, count, 
-								"hamlet",
-								count2,
-								tally2,
-								"othello"))
-
-print makeTabs(5) + '</table>'
-print "</td>"
-print "</tr>"
 
 
 
@@ -338,8 +387,7 @@ print "</tr>"
 
 
 
-
-print "</table>"
+	print "</table>"
 print htmlFuncts.endPage()
 
 
