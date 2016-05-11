@@ -4,6 +4,12 @@ def startPage(title):
 	makeTabs(2) + "<link rel='stylesheet' href='pretty.css'>\n" + \
 	makeTabs(1) + "</head>\n" + makeTabs(1) + "<body>"
 
+def startPageN(title):
+	return "<!DOCTYPE html>\n<html>\n" + makeTabs(1) + \
+	"<head>\n" + makeTabs(2) + "<title>" + title + "</title>\n" + \
+	makeTabs(2) + "<link rel='stylesheet' href='pretty.css'>\n" + \
+	makeTabs(1) + "</head>\n" + makeTabs(1) + "<body>"
+
 def endPage():
 	return makeTabs(1) + "</body>\n</html>"
 

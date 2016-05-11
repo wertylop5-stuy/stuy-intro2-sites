@@ -224,7 +224,7 @@ def mostCommon(dictX, keyOut, valOut):
 
 
 ################### PAGE START ###################
-print htmlFuncts.startPage("Pair")
+print htmlFuncts.startPageN("Pair")
 
 form = cgi.FieldStorage()
 
