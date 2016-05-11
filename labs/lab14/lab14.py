@@ -358,8 +358,9 @@ if "go" in form:
 	print "</td>"
 
 
-
+	### Both
 	print "<td>"
+	print "<br>"
 	print "both"
 	print makeTabs(5) + '<table border="1">'
 
