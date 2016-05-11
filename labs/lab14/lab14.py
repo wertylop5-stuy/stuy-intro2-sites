@@ -19,8 +19,12 @@ g_palinList = []
 def TallyWords(text):
 	global g_distinctWords
 	global g_totWords
+	global g_palinList
+	
 	g_totWords = 0
 	g_distinctWords = 0
+	g_palinList = []
+	
 	#Converted form
 	textList = []
 	
