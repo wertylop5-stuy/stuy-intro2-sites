@@ -310,7 +310,11 @@ if "go" in form:
 		print "</tr>"
 
 	print "</table>"
+	print "</td>"
+	print "</tr>"
 	
+	print "<tr>"
+	print "<td>"
 	print "palindromes"
 	print "<table border='1'>"
 	for x in palin:
@@ -320,16 +324,13 @@ if "go" in form:
 		print "</tr>"
 		print "</td>"
 	print "</table>"
-	
+	print "</td>"
+	print "</tr>"
 	
 	print "Average words per line: " + str( count / lineCount)
 
-	print "</td>"
-
-
-
+	print "<tr>"
 	print "<td>"
-
 	print form.getvalue("qBook2") + " most common"
 	print "<table border='1'>"
 	for x in range(20):
@@ -341,7 +342,11 @@ if "go" in form:
 		print "</tr>"
 
 	print "</table>"
+	print "</td>"
+	print "</tr>"
 	
+	print "<tr>"
+	print "<td>"
 	print "palindromes"
 	print "<table border='1'>"
 	for x in palin2:
@@ -351,6 +356,8 @@ if "go" in form:
 		print "</tr>"
 		print "</td>"
 	print "</table>"
+	print "</td>"
+	print "</tr>"
 	
 	print "Average words per line: " + str( count2 / lineCount2)
 	
