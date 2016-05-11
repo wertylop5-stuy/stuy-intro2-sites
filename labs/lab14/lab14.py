@@ -342,8 +342,6 @@ if "go" in form:
 	print makeTabs(5) + '<table border="1">'
 
 	print "Unique words: " + str(unique) + "\n"
-	print "<br>"
-	
 	
 	print dataToTable.makeTableBody(dictToList(tally, count))
 
@@ -357,9 +355,6 @@ if "go" in form:
 	print makeTabs(5) + '<table border="1">'
 
 	print "Unique words: " + str(unique2)
-	print "<br>"
-	
-	print "<br>"
 	
 	print dataToTable.makeTableBody(dictToList(tally2, count2))
 
