@@ -306,6 +306,18 @@ if "go" in form:
 		print "</tr>"
 
 	print "</table>"
+	
+	print "palindromes"
+	print "<table border='1'>"
+	for x in palin:
+		print "<tr>"
+		print "<td>"
+		print str(x)
+		print "</tr>"
+		print "</td>"
+	print "</table>"
+	
+	
 	print "Average words per line: " + str( count / lineCount)
 
 	print "</td>"
@@ -324,6 +336,16 @@ if "go" in form:
 	
 		print "</tr>"
 
+	print "</table>"
+	
+	print "palindromes"
+	print "<table border='1'>"
+	for x in palin2:
+		print "<tr>"
+		print "<td>"
+		print str(x)
+		print "</tr>"
+		print "</td>"
 	print "</table>"
 	
 	print "Average words per line: " + str( count2 / lineCount2)
