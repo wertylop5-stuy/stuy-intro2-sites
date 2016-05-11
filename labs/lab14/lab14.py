@@ -49,7 +49,7 @@ def TallyWords(text):
 			q = q.strip(punctStr)
 			#prelim check for special case of ' after a "s"
 			if len(q) > 2:
-				if q[len(q) - 2] == "s" and q[len(q) - 1] == "'" and len(x) > 1:
+				if q[len(q) - 2] == "s" and q[len(q) - 1] == "'":
 					q += "!"
 					q = q.strip("'").strip("!")
 				#else:
@@ -67,7 +67,7 @@ def TallyWords(text):
 	
 	for x in textList:
 		if len(x) > 0:
-			if (x[::-1] == x) and not(x in g_palinList):
+			if (x[::-1] == x) and not(x in g_palinList) and len(x) > 1:
 				g_palinList.append(x)
 			g_totWords += 1
 			if not(x in tallies.keys()):
