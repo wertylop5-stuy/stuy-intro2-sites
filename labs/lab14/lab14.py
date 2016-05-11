@@ -1,5 +1,6 @@
 #!/usr/bin/python
 print "content-type: text/html\n"
+#TODO palindrome
 
 import sys
 import cgi
@@ -13,6 +14,7 @@ import sortAlg
 
 g_distinctWords = 0
 g_totWords = 0
+g_palinList = []
 
 def TallyWords(text):
 	global g_distinctWords
@@ -61,6 +63,8 @@ def TallyWords(text):
 	
 	for x in textList:
 		if len(x) > 0:
+			if x[::-1] == x:
+				g_palinList.append(x)
 			g_totWords += 1
 			if not(x in tallies.keys()):
 				tallies[x] = 1
@@ -263,10 +267,12 @@ if "go" in form:
 	tally = TallyWords(fileText)
 	count = g_totWords
 	unique = g_distinctWords
+	palin = g_palinList
 	
 	tally2 = TallyWords(fileText2)
 	count2 = g_totWords
 	unique2 = g_distinctWords
+	palin2 = g_palinList
 
 	fillMissing(tally, tally2)
 	fillMissing(tally2, tally)
@@ -300,6 +306,7 @@ if "go" in form:
 		print "</tr>"
 
 	print "</table>"
+	print "Average words per line: " + str( count / lineCount)
 
 	print "</td>"
 
@@ -318,7 +325,9 @@ if "go" in form:
 		print "</tr>"
 
 	print "</table>"
-
+	
+	print "Average words per line: " + str( count2 / lineCount2)
+	
 	print "</td>"
 	print "</tr>"
 
@@ -334,7 +343,7 @@ if "go" in form:
 
 	print "Unique words: " + str(unique) + "\n"
 	print "<br>"
-	print "Average words per line: " + str( count / lineCount)
+	
 	
 	print dataToTable.makeTableBody(dictToList(tally, count))
 
@@ -349,7 +358,7 @@ if "go" in form:
 
 	print "Unique words: " + str(unique2)
 	print "<br>"
-	print "Average words per line: " + str( count2 / lineCount2)
+	
 	print "<br>"
 	
 	print dataToTable.makeTableBody(dictToList(tally2, count2))
@@ -360,7 +369,6 @@ if "go" in form:
 
 	### Both
 	print "<td>"
-	print "<br>"
 	print "both"
 	print makeTabs(5) + '<table border="1">'
 
