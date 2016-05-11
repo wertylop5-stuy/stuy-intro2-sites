@@ -63,7 +63,7 @@ def TallyWords(text):
 	
 	for x in textList:
 		if len(x) > 0:
-			if x[::-1] == x:
+			if (x[::-1] == x) and not(x in g_palinList):
 				g_palinList.append(x)
 			g_totWords += 1
 			if not(x in tallies.keys()):
