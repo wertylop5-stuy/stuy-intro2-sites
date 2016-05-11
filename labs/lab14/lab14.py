@@ -49,7 +49,7 @@ def TallyWords(text):
 			q = q.strip(punctStr)
 			#prelim check for special case of ' after a "s"
 			if len(q) > 2:
-				if q[len(q) - 2] == "s" and q[len(q) - 1] == "'":
+				if q[len(q) - 2] == "s" and q[len(q) - 1] == "'" and len(x) > 1:
 					q += "!"
 					q = q.strip("'").strip("!")
 				#else:
