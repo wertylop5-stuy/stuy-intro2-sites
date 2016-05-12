@@ -29,7 +29,7 @@ if "done" in form:
 	usernameList = usernameList.split("\n")
 	
 	if not(form.getvalue("username") in usernameList):
-		userAppendStream.append(form.getvalue("username") + "\n")
+		userAppendStream.write(form.getvalue("username") + "\n")
 	
 	userAppendStream.close()
 	userWriteStream.close()
