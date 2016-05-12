@@ -225,6 +225,7 @@ def mostCommon(dictX, keyOut, valOut):
 
 ################### PAGE START ###################
 print htmlFuncts.startPageN("Pair")
+print "Stanley Lin and Gordon Lei"
 
 form = cgi.FieldStorage()
 
@@ -331,7 +332,7 @@ if "go" in form:
 	
 	
 	
-	
+	print "idea from Stanley"
 	print "<tr>"
 	
 	print "<td>"
@@ -362,6 +363,7 @@ if "go" in form:
 	
 	
 	print "<tr>"
+	print "Idea from Gordon"
 	
 	print "<td>"
 	print "Average words per line: " + str( count / lineCount)
