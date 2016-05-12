@@ -339,6 +339,12 @@ if "go" in form:
 	print "idea from Stanley"
 	print "</td>"
 	
+	print "</tr>"
+	
+	
+	
+	print "<tr>"
+	
 	print "<td>"
 	print "palindromes"
 	print "<table border='1'>"
@@ -371,6 +377,12 @@ if "go" in form:
 	print "<td>"
 	print "idea from Gordon"
 	print "</td>"
+	
+	print "</tr>"
+	
+	
+	
+	print "<tr>"
 	
 	print "<td>"
 	print "Average words per line: " + str( count / lineCount)
