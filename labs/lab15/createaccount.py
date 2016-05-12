@@ -30,12 +30,16 @@ if "done" in form:
 	direct = "data/"
 	data = "users.txt"
 	
+	f = open(direct + data, "w")
+	f.write("hello")
+	f.close()
+	
 	## wipe data
 	#dataWipe(direct, data)
-	
+	'''
 	loginFuncts.addUser(direct, data, form.getvalue("username"), 
 			form.getvalue("pass"))
-
+'''
 
 print htmlFuncts.endPage()
 
