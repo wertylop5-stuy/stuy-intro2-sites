@@ -15,7 +15,7 @@ form = cgi.FieldStorage()
 print htmlFuncts.startPageN("Login")
 
 print """
-<form method="GET" action="createaccount.py">
+<form method="GET" action="login.py">
 	Username: <input name="username" type="textfield">
 	<br>
 	Password: <input name="pass" type="password">
