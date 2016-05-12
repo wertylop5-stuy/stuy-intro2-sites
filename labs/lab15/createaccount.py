@@ -15,7 +15,8 @@ form = cgi.FieldStorage()
 print """
 <form method="GET" action="createaccount.py">
 	Username: <input name="username" type="textfield">
-	Username: <input name="pass" type="password">
+	<br>
+	Password: <input name="pass" type="password">
 	<input name="done" type="submit" value="yay">
 </form>
 """
