@@ -1,4 +1,6 @@
 import hashlib
+### ALL FUNCTIONS EXPECT LOWERCASE USERNAME
+
 
 def dataWipe(direct, fileN):
 	temp = open(direct + fileN, "w")
@@ -37,7 +39,7 @@ def addUser(directory, fileN, user, passW):
 	userList = getUsersFromFile(directory, fileN)
 	if not(user in userList):
 		stream = open(directory + fileN, "a")
-		stream.write(user.lower() + "," + 
+		stream.write(user + "," + 
 					hashlib.sha256( fixPassword(passW) ).hexdigest() + 
 					"\n")
 		stream.close()
@@ -45,7 +47,7 @@ def addUser(directory, fileN, user, passW):
 #validate username and password
 def validateEntry(user, password, directory, fileN):
 	userList = getUsersFromFile(directory, fileN)
-	if not(user.lower() in userList):
+	if not(user in userList):
 		print "Login failed"
 		return
 	

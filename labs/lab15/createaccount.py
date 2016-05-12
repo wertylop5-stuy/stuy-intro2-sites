@@ -30,9 +30,9 @@ if "done" in form:
 	data = "users.txt"
 	
 	## wipe data
-	#loginFuncts.dataWipe(direct, data)
+	loginFuncts.dataWipe(direct, data)
 	
-	loginFuncts.addUser(direct, data, form.getvalue("username"), 
+	loginFuncts.addUser(direct, data, form.getvalue("username").lower(), 
 			form.getvalue("pass"))
 
 
