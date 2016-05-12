@@ -28,8 +28,14 @@ def dataWipe(direct, fileN):
 	temp.close()
 	print "Wipe successful"
 
-def getUsersFromFile(fileN):
-	strippedData = fileN.split("\n")
+
+#pass in directory name and file name
+def getUsersFromFile(directory, fileN):
+	temp = open(directory + fileN, "r")
+	s = temp.read()
+	temp.close()
+	
+	strippedData = s.split("\n")
 	#removes the rest of the string after comma
 	for index, value in enumerate(strippedData):
 		strippedData[index] = value[:value.find(",")]
@@ -40,39 +46,51 @@ def getUsersFromFile(fileN):
 #if newline in element, pop it
 #if username in resulting list, ignore
 #else, add it
-def addUser(form, directory, fileN, user, passW):
+def addUser(directory, fileN, user, passW):
 	stream = None
-	userList = getUsersFromFile(form)
+	userList = getUsersFromFile(directory, fileN)
 	if not(user in userList):
 		stream = open(directory + fileN, "a")
-		stream.write(
-			form.getvalue("username") + "," +
-			form.getvalue("pass") + "\n"
-			)
+		stream.write(user + "," +passW + "\n")
 		stream.close()
 
 
 if "done" in form:
 	direct = "data/"
 	data = "usernames.txt"
-	userAppendStream = open(direct + data, "a")
-	#userWriteStream = open(direct + data, "w")
-	userReadStream = open(direct + data, "r")
 	
-	dataWipe(direct, data)
+	addUser(direct, data, form.getvalue("username"), 
+			form.getvalue("pass"))
 	
-	usernameList = userReadStream.read()
-	usernameList = usernameList.split("\n")
+	## wipe data
+	#dataWipe(direct, data)
 	
-	if not(form.getvalue("username") in usernameList):
-		userAppendStream.write(
-			form.getvalue("username") + "," +
-			form.getvalue("pass") + "\n"
-			)
 	
-	userAppendStream.close()
-	#userWriteStream.close()
-	userReadStream.close()
+	
+	
+	
 
 
 print htmlFuncts.endPage()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
