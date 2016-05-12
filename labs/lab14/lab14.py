@@ -226,6 +226,7 @@ def mostCommon(dictX, keyOut, valOut):
 ################### PAGE START ###################
 print htmlFuncts.startPageN("Pair")
 print "Stanley Lin and Gordon Lei"
+print "<a href='http://149.89.161.100/~gordon.lei/labs/lab14/lab14.py'>Gordon's version</a>"
 
 form = cgi.FieldStorage()
 
