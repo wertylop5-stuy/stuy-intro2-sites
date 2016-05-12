@@ -17,6 +17,7 @@ print """
 	Username: <input name="username" type="textfield">
 	<br>
 	Password: <input name="pass" type="password">
+	<br>
 	<input name="done" type="submit" value="yay">
 </form>
 """
