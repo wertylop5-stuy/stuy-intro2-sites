@@ -18,6 +18,8 @@ print """
 	<br>
 	Password: <input name="pass" type="password">
 	<br>
+	Commas will be removed from passwords
+	<br>
 	<input name="done" type="submit" value="yay">
 </form>
 """
@@ -28,6 +30,14 @@ def dataWipe(direct, fileN):
 	temp.close()
 	print "Wipe successful"
 
+#removes commas
+def fixPassword(password):
+	res = password
+	res = res.strip(",")
+	while "," in res:
+		res = res[:res.find(",")] + \
+				res[res.find(",") + 1:]
+	return res
 
 #pass in directory name and file name
 def getUsersFromFile(directory, fileN):
@@ -51,7 +61,8 @@ def addUser(directory, fileN, user, passW):
 	userList = getUsersFromFile(directory, fileN)
 	if not(user in userList):
 		stream = open(directory + fileN, "a")
-		stream.write(user + "," +passW + "\n")
+		stream.write(user + "," + 
+					fixPassword(passW) + "\n")
 		stream.close()
 
 
@@ -59,11 +70,13 @@ if "done" in form:
 	direct = "data/"
 	data = "usernames.txt"
 	
+	## wipe data
+	#dataWipe(direct, data)
+	
 	addUser(direct, data, form.getvalue("username"), 
 			form.getvalue("pass"))
 	
-	## wipe data
-	#dataWipe(direct, data)
+	
 	
 	
 	
