@@ -22,7 +22,7 @@ if "done" in form:
 	direct = "data/"
 	data = "usernames.txt"
 	userAppendStream = open(direct + data, "a")
-	userWriteStream = open(direct + data, "w")
+	#userWriteStream = open(direct + data, "w")
 	userReadStream = open(direct + data, "r")
 	
 	usernameList = userReadStream.read()
@@ -32,7 +32,7 @@ if "done" in form:
 		userAppendStream.write(form.getvalue("username") + "\n")
 	
 	userAppendStream.close()
-	userWriteStream.close()
+	#userWriteStream.close()
 	userReadStream.close()
 
 
