@@ -332,8 +332,12 @@ if "go" in form:
 	
 	
 	
-	print "idea from Stanley"
+	
 	print "<tr>"
+	
+	print "<td>"
+	print "idea from Stanley"
+	print "</td>"
 	
 	print "<td>"
 	print "palindromes"
@@ -363,7 +367,10 @@ if "go" in form:
 	
 	
 	print "<tr>"
-	print "Idea from Gordon"
+	
+	print "<td>"
+	print "idea from Gordon"
+	print "</td>"
 	
 	print "<td>"
 	print "Average words per line: " + str( count / lineCount)
