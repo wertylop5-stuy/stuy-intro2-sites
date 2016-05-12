@@ -23,6 +23,7 @@ def dataWipe(direct, fileN):
 	temp = open(direct + fileN, "w")
 	temp.write("")
 	temp.close()
+	print "Wipe successful"
 
 if "done" in form:
 	direct = "data/"
