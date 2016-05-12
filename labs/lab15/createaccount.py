@@ -15,6 +15,7 @@ form = cgi.FieldStorage()
 print """
 <form method="GET" action="createaccount.py">
 	Username: <input name="username" type="textfield">
+	Username: <input name="pass" type="password">
 	<input name="done" type="submit" value="yay">
 </form>
 """
@@ -32,13 +33,16 @@ if "done" in form:
 	#userWriteStream = open(direct + data, "w")
 	userReadStream = open(direct + data, "r")
 	
-	dataWipe(direct, data)
+	#dataWipe(direct, data)
 	
 	usernameList = userReadStream.read()
 	usernameList = usernameList.split("\n")
 	
 	if not(form.getvalue("username") in usernameList):
-		userAppendStream.write(form.getvalue("username") + "\n")
+		userAppendStream.write(
+			form.getvalue("username") + "," +
+			form.getvalue("pass") + "\n"
+			)
 	
 	userAppendStream.close()
 	#userWriteStream.close()
