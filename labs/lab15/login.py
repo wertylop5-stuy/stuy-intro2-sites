@@ -9,7 +9,6 @@ import loginFuncts
 
 cgitb.enable()
 
-
 form = cgi.FieldStorage()
 
 print htmlFuncts.startPageN("Login")

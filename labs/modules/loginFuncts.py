@@ -39,6 +39,7 @@ def addUser(directory, fileN, user, passW):
 					fixPassword(passW) + "\n")
 		stream.close()
 
+#validate username and password
 def validateEntry(user, password, directory, fileN):
 	userList = getUsersFromFile(directory, fileN)
 	if not(user in userList):

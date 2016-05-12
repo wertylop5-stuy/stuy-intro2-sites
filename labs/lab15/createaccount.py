@@ -9,9 +9,9 @@ import loginFuncts
 
 cgitb.enable()
 
-print htmlFuncts.startPageN("Create an account")
-
 form = cgi.FieldStorage()
+
+print htmlFuncts.startPageN("Create an account")
 
 print """
 <form method="GET" action="createaccount.py">
@@ -25,7 +25,6 @@ print """
 </form>
 """
 
-
 if "done" in form:
 	direct = "data/"
 	data = "users.txt"
@@ -38,11 +37,3 @@ if "done" in form:
 
 
 print htmlFuncts.endPage()
-
-
-
-
-
-
-
-
