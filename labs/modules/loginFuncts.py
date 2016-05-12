@@ -1,3 +1,5 @@
+import hashlib
+
 def dataWipe(direct, fileN):
 	temp = open(direct + fileN, "w")
 	temp.write("")
@@ -36,7 +38,8 @@ def addUser(directory, fileN, user, passW):
 	if not(user in userList):
 		stream = open(directory + fileN, "a")
 		stream.write(user + "," + 
-					fixPassword(passW) + "\n")
+					hashlib.sha256( fixPassword(passW) ).hexdigest() + 
+					"\n")
 		stream.close()
 
 #validate username and password
@@ -57,7 +60,7 @@ def validateEntry(user, password, directory, fileN):
 	target = loginPairs[userIndex]
 	target = target.split(",")
 	
-	if password == target[1]:
+	if hashlib.sha256(password).hexdigest() == target[1]:
 		print "Login success"
 	else:
 		print "Login failed"
