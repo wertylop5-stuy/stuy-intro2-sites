@@ -1,7 +1,9 @@
-g_palinList = []
-x = "racecar"
+def fixPassword(password):
+	res = password
+	res = res.strip(",")
+	while "," in res:
+		res = res[:res.find(",")] + \
+				res[res.find(",") + 1:]
+	return res
 
-if x[::-1] == x:
-	g_palinList.append(x)
-
-print g_palinList
+print fixPassword(",")
