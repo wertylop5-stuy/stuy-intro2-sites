@@ -18,12 +18,20 @@ print """
 	<input name="done" type="submit" value="yay">
 </form>
 """
+
+def dataWipe(direct, fileN):
+	temp = open(direct + fileN, "w")
+	temp.write("")
+	temp.close()
+
 if "done" in form:
 	direct = "data/"
 	data = "usernames.txt"
 	userAppendStream = open(direct + data, "a")
 	#userWriteStream = open(direct + data, "w")
 	userReadStream = open(direct + data, "r")
+	
+	dataWipe(direct, data)
 	
 	usernameList = userReadStream.read()
 	usernameList = usernameList.split("\n")
