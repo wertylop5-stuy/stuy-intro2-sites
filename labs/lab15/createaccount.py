@@ -59,7 +59,7 @@ if "done" in form:
 	#userWriteStream = open(direct + data, "w")
 	userReadStream = open(direct + data, "r")
 	
-	#dataWipe(direct, data)
+	dataWipe(direct, data)
 	
 	usernameList = userReadStream.read()
 	usernameList = usernameList.split("\n")
