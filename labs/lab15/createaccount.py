@@ -32,8 +32,11 @@ if "done" in form:
 	## wipe data
 	#loginFuncts.dataWipe(direct, data)
 	
-	loginFuncts.addUser(direct, data, form.getvalue("username").lower(), 
-			form.getvalue("pass"))
+	loginFuncts.addUser(
+			direct, 
+			data, 
+			loginFuncts.fixEntry( form.getvalue("username") ).lower(), 
+			loginFuncts.fixEntry( form.getvalue("pass")) )
 
 
 print htmlFuncts.endPage()

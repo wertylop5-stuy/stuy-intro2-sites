@@ -28,8 +28,8 @@ if "done" in form:
 	data = "users.txt"
 	
 	loginFuncts.validateEntry(
-				form.getvalue("username").lower(),
-				loginFuncts.fixPassword(form.getvalue("pass")),
+				loginFuncts.fixEntry(form.getvalue("username")).lower(),
+				loginFuncts.fixEntry(form.getvalue("pass")),
 				direct,
 				data)
 

@@ -1,6 +1,7 @@
 import hashlib
 ### ALL FUNCTIONS EXPECT LOWERCASE USERNAME
-
+### ALL FUNCTIONS EXPECT FIXED PASSWORDS 
+### (EXCEPT FOR THE fixPassword FUNCTION)
 
 def dataWipe(direct, fileN):
 	temp = open(direct + fileN, "w")
@@ -9,8 +10,8 @@ def dataWipe(direct, fileN):
 	print "Wipe successful"
 
 #removes commas
-def fixPassword(password):
-	res = password
+def fixEntry(entry):
+	res = entry
 	res = res.strip(",")
 	while "," in res:
 		res = res[:res.find(",")] + \
@@ -40,7 +41,7 @@ def addUser(directory, fileN, user, passW):
 	if not(user in userList):
 		stream = open(directory + fileN, "a")
 		stream.write(user + "," + 
-					hashlib.sha256( fixPassword(passW) ).hexdigest() + 
+					hashlib.sha256(passW).hexdigest() + 
 					"\n")
 		stream.close()
 
