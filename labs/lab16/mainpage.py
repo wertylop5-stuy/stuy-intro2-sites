@@ -26,5 +26,6 @@ for x in dataList:
 		print "logged in"
 	else:
 		print "<a href='login.py'>Go log in</a>"
+	print "end"
 
 print htmlFuncts.endPage()
