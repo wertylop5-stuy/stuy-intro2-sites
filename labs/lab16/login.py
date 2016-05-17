@@ -37,7 +37,7 @@ if "done" in form:
 	
 print "<a href=mainpage.py?user=" + \
 		loginFuncts.fixEntry(form.getvalue("username")).lower() + \
-		"&id=" + 
+		"&id=" + \
 		str(idKey) + " />"
 
 print htmlFuncts.endPage()
