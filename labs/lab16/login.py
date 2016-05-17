@@ -35,7 +35,7 @@ if "done" in form:
 			data,
 			logFile)
 	
-print "<a href=mainpage.py?user=" + \
+	print "<a href=mainpage.py?user=" + \
 		loginFuncts.fixEntry(form.getvalue("username")).lower() + \
 		"&id=" + \
 		str(idKey) + " />"
