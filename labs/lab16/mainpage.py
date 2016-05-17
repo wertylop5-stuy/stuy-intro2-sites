@@ -18,6 +18,7 @@ direct = "data/"
 logFile = "loggedIn.txt"
 dataList = loginFuncts.getFileData(direct, logFile)
 ip = os.environ["REMOTE_ADDR"]
+print ip
 
 for x in dataList:
 	if form.getvalue("user") == x[0] and \
@@ -26,6 +27,6 @@ for x in dataList:
 		print "logged in"
 	else:
 		print "<a href='login.py'>Go log in</a>"
-	print "end"
+print "end"
 
 print htmlFuncts.endPage()
