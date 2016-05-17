@@ -39,14 +39,12 @@ def getUsersFromFile(directory, fileN):
 #pass in directory name and file name
 #newer one that can access all data
 def getFileData(directory, fileN):
-	print "in"
 	temp = open(directory + fileN, "r")
-	print "read"
 	s = temp.read()
 	temp.close()
-	print s
 	
 	strippedData = s.split("\n")
+	print strippedData
 	strippedData.pop()
 	print strippedData
 	#removes the rest of the string after comma
