@@ -86,7 +86,7 @@ def login(user, password, directory, fileN, logFile):
 		loginStream.write(ip)
 		
 		loginStream.close()
-
+		return randNum
 
 
 
