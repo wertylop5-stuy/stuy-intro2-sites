@@ -44,6 +44,7 @@ def getFileData(directory, fileN):
 	print "read"
 	s = temp.read()
 	temp.close()
+	print "clos"
 	
 	strippedData = s.split("\n")
 	strippedData.pop()
