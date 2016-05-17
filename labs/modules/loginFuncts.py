@@ -1,4 +1,6 @@
 import hashlib
+import random
+import os
 ### ALL FUNCTIONS EXPECT LOWERCASE USERNAME
 ### ALL FUNCTIONS EXPECT FIXED PASSWORDS 
 ### (EXCEPT FOR THE fixPassword FUNCTION)
@@ -9,13 +11,15 @@ def dataWipe(direct, fileN):
 	temp.close()
 	print "Wipe successful"
 
-#removes commas
+#removes illegal characters
 def fixEntry(entry):
+	forbidden = "<>/\,"
 	res = entry
-	res = res.strip(",")
-	while "," in res:
-		res = res[:res.find(",")] + \
-				res[res.find(",") + 1:]
+	res = res.strip(forbidden)
+	for char in forbidden:
+		while char in res:
+			res = res[:res.find(char)] + \
+					res[res.find(char) + 1:]
 	return res
 
 #pass in directory name and file name
@@ -50,7 +54,7 @@ def validateEntry(user, password, directory, fileN):
 	userList = getUsersFromFile(directory, fileN)
 	if not(user in userList):
 		print "Login failed"
-		return
+		return False
 	
 	dataStream = open(directory + fileN, "r")
 	rawText = dataStream.read()
@@ -65,11 +69,23 @@ def validateEntry(user, password, directory, fileN):
 	
 	if hashlib.sha256(password).hexdigest() == target[1]:
 		print "Login success"
+		return True
 	else:
 		print "Login failed"
-	
-	return
+		return False
 
+def login(user, password, directory, fileN, logFile):
+	#check if good login
+	if validateEntry(user, password, directory, fileN):
+		loginStream = open(directory + logFile, "w")
+		randNum = random.randint(0, 90000000)
+		ip = os.environ["REMOTE_ADDR"]
+		
+		loginStream.write(user + ",")
+		loginStream.write(str(randNum) + ",")
+		loginStream.write(ip)
+		
+		loginStream.close()
 
 
 
