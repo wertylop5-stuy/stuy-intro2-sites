@@ -23,6 +23,7 @@ def fixEntry(entry):
 	return res
 
 #pass in directory name and file name
+#legacy: only works with user names
 def getUsersFromFile(directory, fileN):
 	temp = open(directory + fileN, "r")
 	s = temp.read()
@@ -33,6 +34,20 @@ def getUsersFromFile(directory, fileN):
 	for index, value in enumerate(strippedData):
 		strippedData[index] = value[:value.find(",")]
 	strippedData.pop()
+	return strippedData
+
+#pass in directory name and file name
+#newer one that can access all data
+def getFileData(directory, fileN):
+	temp = open(directory + fileN, "r")
+	s = temp.read()
+	temp.close()
+	
+	strippedData = s.split("\n")
+	strippedData.pop()
+	#removes the rest of the string after comma
+	for index, data in enumerate(strippedData):
+		strippedData[index] = data.split(",")
 	return strippedData
 
 #split form by comma
