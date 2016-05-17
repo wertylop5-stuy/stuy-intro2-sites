@@ -23,7 +23,7 @@ print dataList
 for x in dataList:
 	if form.getvalue("user") == x[0] and \
 		form.getvalue("id") == x[1] and \
-		ip == x[3]:
+		ip == x[2]:
 		print "logged in"
 	else:
 		print "<a href='login.py'>Go log in</a>"
