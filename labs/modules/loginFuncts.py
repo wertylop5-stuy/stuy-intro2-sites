@@ -45,7 +45,7 @@ def getFileData(directory, fileN):
 	
 	strippedData = s.split("\n")
 	print strippedData
-	strippedData.pop()
+	strippedData[0].pop()
 	print strippedData
 	#removes the rest of the string after comma
 	for index, data in enumerate(strippedData):
