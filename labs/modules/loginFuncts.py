@@ -47,6 +47,7 @@ def getFileData(directory, fileN):
 	#removes the rest of the string after comma
 	for index, data in enumerate(strippedData):
 		strippedData[index] = data.split(",")
+	print strippedData
 	return strippedData
 
 #split form by comma
