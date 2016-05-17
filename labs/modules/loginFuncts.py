@@ -39,6 +39,7 @@ def getUsersFromFile(directory, fileN):
 #pass in directory name and file name
 #newer one that can access all data
 def getFileData(directory, fileN):
+	print "in"
 	temp = open(directory + fileN, "r")
 	s = temp.read()
 	temp.close()

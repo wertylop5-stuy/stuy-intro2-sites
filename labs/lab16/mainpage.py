@@ -18,7 +18,6 @@ direct = "data/"
 logFile = "loggedIn.txt"
 dataList = loginFuncts.getFileData(direct, logFile)
 ip = os.environ["REMOTE_ADDR"]
-print ip
 print dataList
 
 for x in dataList:
