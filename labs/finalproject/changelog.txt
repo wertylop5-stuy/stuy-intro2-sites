@@ -1,0 +1,6 @@
+5/20
+intial version
+Planning and beginning to assemble bare bones blog system
+
+5/22
+Some reorganizing and beginning to write posts to file

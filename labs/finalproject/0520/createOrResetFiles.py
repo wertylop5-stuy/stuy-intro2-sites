@@ -4,7 +4,7 @@ print ''
 import cgitb
 cgitb.enable()
 print "Attempt to write file<br>"
-directory = "data/"
+directory = "../data/"
 f = open(directory+"users.txt",'w')
 f.close()
 f = open(directory+"loggedin.txt",'w')

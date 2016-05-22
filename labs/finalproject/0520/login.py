@@ -26,13 +26,15 @@ foot = '''
 </body>
 </html>
 '''
-
+directory = "../data/"
+userFile = "users.txt"
+logFile = "loggedin.txt"
 
 
     
 
 def authenticate(u,p):
-    users = open('data/users.txt','r').read().split('\n')
+    users = open(directory + userFile,'r').read().split('\n')
     #don't worry about this
     users = [each.split(',') for each in users]
     ##debug by adding info to the body
@@ -94,7 +96,7 @@ if 'username' in form and 'password' in form:
         #body += "IP: "+ IP + "<br>"
 
         #write to a file
-        writeOrReplace('data/loggedin.txt',username,ID,IP)
+        writeOrReplace(directory + logFile,username,ID,IP)
 
         #create a cookie:
         createCookie(c,username,ID)

@@ -20,9 +20,13 @@ foot = '''
 import cgitb,hashlib
 cgitb.enable()
 
+directory = "../data/"
+userFile = "users.txt"
+logFile = "loggedin.txt"
+
 
 def authenticate(u,ID,IP):
-    loggedIn = open('data/loggedin.txt','r').read().split('\n')
+    loggedIn = open(directory + logFile,'r').read().split('\n')
     loggedIn = [each.split(',') for each in loggedIn]
     loggedIn.remove([''])
     for a in loggedIn:
@@ -31,7 +35,7 @@ def authenticate(u,ID,IP):
     return False
 
 def makePage():
-	return """<form method="GET" action="makePost.html">
+	return """<form method="GET" action="makePost.py">
 	<input name="makePost" type="submit" value="Create a post">
 	</form>
 """

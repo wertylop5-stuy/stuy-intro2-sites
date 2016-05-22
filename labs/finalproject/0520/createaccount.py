@@ -18,7 +18,8 @@ foot = '''
 </body>
 </html>
 '''
-
+directory = "../data/"
+file = "users.txt"
 
 if len(form)<=1:
     body = '''
@@ -31,14 +32,14 @@ if len(form)<=1:
     '''
 else:
     if 'username' in form and 'password' in form:
-        users = open('data/users.txt','r').read().split('\n')
+        users = open(directory + users,'r').read().split('\n')
         users = [each.split(',') for each in users]
         users.remove( [""])
         username = form.getvalue('username')
         password = form.getvalue('password')
         #nice python features that I do not teach...
         if not username in [a[0] for a in users]:
-            f = open('data/users.txt','a')
+            f = open(directory + users,'a')
             f.write(username+","+hashlib.sha256(password).hexdigest()+"\n")
             f.close()
             body += 'Successfully added. <a href="login.py"> Click here to log in</a>.<br>'
