@@ -1,5 +1,5 @@
 #!/usr/bin/python
-
+#TODO print username with posts, maybe begin multiple users
 import Cookie,os,cgi
 
 import cgitb
@@ -55,23 +55,43 @@ Text: <textarea name="textBody" rows="10" cols="15">
 <input type = "submit" value = "Make Post">
 </form>'''
 
+def writePost():
+	appenedWall = open(directory + postFile, 'a')
+	appenedWall.write(form.getvalue('postTitle') + \
+    				splitChar + \
+    				form.getvalue('textBody') + \
+    				'\n')
+	appenedWall.close()
+
+def makeTag(tag, text):
+	return "<" + tag + ">" + str(text) + "</" + tag + ">"
+
 #reads in posts
-def displayPost():
-    wall = open(directory + postFile, 'r')
-    wallRead = wall.read()
-    ListOfPosts = (wallRead.split('\n'))
-    ListOfPosts.pop()
-    
-    posterService = ""
-    if len(wallRead) > 0:
-        posterService = ''
-        for post in ListOfPosts:
-            posterService += post.replace(splitChar,"")
-    wall.close()
-    return posterService
+#later: handle comments
+def displayPost(titleTag, bodyTag, commentTag=""):
+	wall = open(directory + postFile, 'r')
+	wallRead = wall.read()
+	wall.close()
+		
+	ListOfPosts = (wallRead.split('\n'))
+	ListOfPosts.pop()
+	
+	listTemp = []
+	
+	#contains formatted posts
+	postResult = ""
+	if len(wallRead) > 0:
+		for post in ListOfPosts:
+			listTemp = post.split(splitChar)
+			
+			postResult += makeTag(titleTag, listTemp[0])
+			postResult += makeTag(bodyTag, listTemp[1])
+			postResult += "<br>"
+			
+	return postResult
 
 def makePage():
-    makePage = str(poster()) + str(displayPost())
+    makePage = str(poster()) + str(displayPost("h1", "p"))
     return makePage
 
 
@@ -106,11 +126,7 @@ else:
 print 'content-type: text/html'
 print ''
 if len(form) > 0:
-    appenedWall = open(directory + postFile, 'a')
-    appenedWall.write(form.getvalue('postTitle') + \
-    				splitChar + \
-    				form.getvalue('textBody') + \
-    				'\n')
+    writePost()
 print head
 print body
 print foot
