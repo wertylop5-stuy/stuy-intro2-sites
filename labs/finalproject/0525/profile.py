@@ -17,9 +17,9 @@ foot = '''
 </html>
 '''
 
-import cgitb,hashlib,os
+import cgitb,hashlib,sys
 cgitb.enable()
-os.path.insert(0, "../modules")
+sys.path.insert(0, "../modules")
 import stdStuff
 
 #directory = "../data/"
