@@ -7,7 +7,7 @@ cgitb.enable()
 
 head = '''
 <html>
-<head><title>Login page</title>
+<head><title>Profile</title>
 </head>
 <body>
    '''
@@ -17,10 +17,12 @@ foot = '''
 </html>
 '''
 
-import cgitb,hashlib
+import cgitb,hashlib,os
 cgitb.enable()
+os.path.insert(0, "../modules")
+import stdStuff
 
-directory = "../data/"
+#directory = "../data/"
 userFile = "users.txt"
 logFile = "loggedin.txt"
 postFile = "posts.txt"
@@ -30,7 +32,7 @@ commentFile = "comments.txt"
 form = cgi.FieldStorage()
 
 def authenticate(u,ID,IP):
-    loggedIn = open(directory + logFile,'r').read().split('\n')
+    loggedIn = open(stdStuff.directory + logFile,'r').read().split('\n')
     loggedIn = [each.split(',') for each in loggedIn]
     loggedIn.remove([''])
     for a in loggedIn:
