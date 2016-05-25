@@ -6,4 +6,7 @@ Planning and beginning to assemble bare bones blog system
 Some reorganizing and beginning to write posts to file
 
 5/23
+Improved post display by including usernames
 
+5/24
+Added a post ID system as well as beginning to implement commenting
