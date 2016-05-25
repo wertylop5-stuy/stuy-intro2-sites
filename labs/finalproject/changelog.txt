@@ -6,4 +6,4 @@ Planning and beginning to assemble bare bones blog system
 Some reorganizing and beginning to write posts to file
 
 5/23
-
+Used Gordon's post writing code. Rewrote it to have smarter formatting
