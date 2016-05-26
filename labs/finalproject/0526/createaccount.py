@@ -39,22 +39,6 @@ if len(form)<=1:
     Password: <input type="password" name="password"><br>
     <input type="submit" value="create account">
     '''
-    
-	'''
-users = open(directory + file,'r').read().split('\n')
-		users = [each.split(',') for each in users]
-		users.remove( [""])
-		username = form.getvalue('username')
-		password = form.getvalue('password')
-		#nice python features that I do not teach...
-		if not username in [a[0] for a in users]:
-			f = open(directory + file,'a')
-			f.write(username+","+hashlib.sha256(password).hexdigest()+"\n")
-			f.close()
- 			body += 'Successfully added. <a href="login.py"> Click here to log in</a>.<br>'
-		else:
- 			body += 'Username already taken!'
-'''
 else:
 	userHolder = None
 	

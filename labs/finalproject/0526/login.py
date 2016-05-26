@@ -1,7 +1,7 @@
 #!/usr/bin/python
 
 #do not print things yet!
-import cgi,cgitb,hashlib,Cookie
+import cgi,cgitb,hashlib,Cookie,pickle
 cgitb.enable()
 form = cgi.FieldStorage()
 
@@ -35,17 +35,20 @@ logFile = "loggedin.txt"
     
 
 def authenticate(u,p):
-    users = open(directory + userFile,'r').read().split('\n')
-    #don't worry about this
-    users = [each.split(',') for each in users]
-    ##debug by adding info to the body
-    #body += str(users)
-    users.remove( [""])
-    hashed = hashlib.sha256(p).hexdigest()
-    for a in users:
-        if a[0] == username:
-            return a[1]==hashed
-    return False
+	hashedP = hashlib.sha256(password).hexdigest()
+	userReadStream = open(directory + userFile, "r")
+		userList = []
+		try:
+			while True:
+				userList.append(pickle.load(userReadStream))
+		except EOFError:
+			print "End of File"
+		finally:
+			userReadStream.close()
+	for x in userList:
+		if hashedP == x.password:
+			return True
+	return False
 
 
 
