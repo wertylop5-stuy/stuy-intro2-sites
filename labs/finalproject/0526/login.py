@@ -1,9 +1,12 @@
 #!/usr/bin/python
 
 #do not print things yet!
-import cgi,cgitb,hashlib,Cookie,pickle
+import cgi,cgitb,hashlib,Cookie,pickle,sys
 cgitb.enable()
 form = cgi.FieldStorage()
+
+sys.path.insert(0, "../modules")
+import stdStuff
 
 # set some constants so we can replace numbers up here
 USER_EXPIRE_TIME =     60 * 60 # 1 hour
@@ -27,16 +30,13 @@ foot = '''
 </body>
 </html>
 '''
-directory = "../data/"
-userFile = "users.txt"
-logFile = "loggedin.txt"
 
 
     
 
 def authenticate(u,p):
 	hashedP = hashlib.sha256(password).hexdigest()
-	userReadStream = open(directory + userFile, "r")
+	userReadStream = open(stdStuff.directory + stdStuff.userFile, "r")
 	userList = []
 	try:
 		while True:
