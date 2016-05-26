@@ -42,7 +42,7 @@ def authenticate(u,p):
 		while True:
 			userList.append(pickle.load(userReadStream))
 	except EOFError:
-		print "End of File"
+		pass
 	finally:
 		userReadStream.close()
 	
