@@ -25,7 +25,7 @@ directory = "../data/"
 file = "users.txt"
 
 if len(form)<=1:
-    body = '''
+	body = '''
     <h1>Create account:</h1>
     <form action="createaccount.py">
 
@@ -57,7 +57,7 @@ else:
 		userReadStream = open(stdStuff.directory + stdStuff.userFile, "r")
 		userList = []
 		while True:
-			userList.append(pickle.load(userReadStream))'''rd' in form:
+			userList.append(pickle.load(userReadStream))'''
 		userWriteStream = open(stdStuff.directory + stdStuff.userFile, "a")
 		pickle.dump(stdStuff.User(form.getvalue("username"),\
 							hashlib.sha256(form.getvalue("password"))
