@@ -61,7 +61,8 @@ else:
 		userWriteStream = open(stdStuff.directory + stdStuff.userFile, "a")
 		pickle.dump(stdStuff.User(form.getvalue("username"),\
 							hashlib.sha256(form.getvalue("password"))
-								.hexdigest()))
+								.hexdigest()), userWriteStream)
+		userWriteStream.close()
 		
 	else:
 		body += "Please use the form!"
