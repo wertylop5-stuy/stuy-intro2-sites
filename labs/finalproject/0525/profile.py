@@ -17,22 +17,24 @@ foot = '''
 </html>
 '''
 
-import cgitb,hashlib,sys
+import cgitb,hashlib
 cgitb.enable()
-sys.path.insert(0, "../modules")
-import stdStuff
+#sys.path.insert(0, "../modules")
+#import stdStuff
 
-#directory = "../data/"
+
+directory = "../data/"
 userFile = "users.txt"
 logFile = "loggedin.txt"
 postFile = "posts.txt"
 counterFile = "counter.txt"
 commentFile = "comments.txt"
 
+
 form = cgi.FieldStorage()
 
 def authenticate(u,ID,IP):
-    loggedIn = open(stdStuff.directory + logFile,'r').read().split('\n')
+    loggedIn = open(directory + logFile,'r').read().split('\n')
     loggedIn = [each.split(',') for each in loggedIn]
     loggedIn.remove([''])
     for a in loggedIn:
