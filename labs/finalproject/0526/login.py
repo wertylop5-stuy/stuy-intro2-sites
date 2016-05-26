@@ -37,14 +37,15 @@ logFile = "loggedin.txt"
 def authenticate(u,p):
 	hashedP = hashlib.sha256(password).hexdigest()
 	userReadStream = open(directory + userFile, "r")
-		userList = []
-		try:
-			while True:
-				userList.append(pickle.load(userReadStream))
-		except EOFError:
-			print "End of File"
-		finally:
-			userReadStream.close()
+	userList = []
+	try:
+		while True:
+			userList.append(pickle.load(userReadStream))
+	except EOFError:
+		print "End of File"
+	finally:
+		userReadStream.close()
+	
 	for x in userList:
 		if hashedP == x.password:
 			return True
