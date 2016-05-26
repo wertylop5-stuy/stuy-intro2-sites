@@ -101,7 +101,7 @@ if 'username' in form and 'password' in form:
         #body += "IP: "+ IP + "<br>"
 
         #write to a file
-        writeOrReplace(stdStuff.directory + logFile,username,ID,IP)
+        writeOrReplace(stdStuff.directory + stdStuff.logFile,username,ID,IP)
 
         #create a cookie:
         createCookie(c,username,ID)
