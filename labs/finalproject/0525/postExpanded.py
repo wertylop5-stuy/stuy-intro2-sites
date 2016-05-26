@@ -8,9 +8,6 @@ cgitb.enable()
 sys.path.insert(0, "../modules")
 import stdStuff
 
-splitChar = chr(182)
-splitPost = chr(208)
-
 
 head = '''
 <html>
