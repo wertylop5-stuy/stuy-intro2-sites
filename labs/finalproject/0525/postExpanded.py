@@ -3,15 +3,10 @@
 #TODO start reading from comment file
 print 'content-type: text/html'
 print ''
-import cgitb, cgi
+import cgitb, cgi,sys
 cgitb.enable()
-
-directory = "../data/"
-userFile = "users.txt"
-logFile = "loggedin.txt"
-postFile = "posts.txt"
-counterFile = "counter.txt"
-commentFile = "comments.txt"
+sys.path.insert(0, "../modules")
+import stdStuff
 
 splitChar = chr(182)
 splitPost = chr(208)
@@ -35,30 +30,26 @@ form = cgi.FieldStorage()
 postID = form.getvalue("expandButton")
 
 
-def makeTag(tag, text):
-	return "<" + tag + ">" + str(text) + "</" + tag + ">"
-
-
 def displayPost(titleTag, bodyTag, userTag, commentTag=""):
-	postStream = open(directory + postFile, "r")
+	postStream = open(stdStuff.directory + stdStuff.postFile, "r")
 	allPosts = postStream.read()
 	postStream.close()
 
-	listOfPosts = allPosts.split(splitPost)
+	listOfPosts = allPosts.split(stdStuff.splitPost)
 	listOfPosts.pop()
 	print listOfPosts
 	
 	postResult = ""
 	if len(allPosts) > 0:
 			for post in listOfPosts:
-				listTemp = post.split(splitChar)
+				listTemp = post.split(stdStuff.splitChar)
 				
 				if not(postID == listTemp[0]):
 					continue
-				postResult += makeTag(userTag, listTemp[0])
-				postResult += makeTag(userTag, listTemp[1])
-				postResult += makeTag(titleTag, listTemp[2])
-				postResult += makeTag(bodyTag, listTemp[3])
+				postResult += stdStuff.makeTag(userTag, listTemp[0])
+				postResult += stdStuff.makeTag(userTag, listTemp[1])
+				postResult += stdStuff.makeTag(titleTag, listTemp[2])
+				postResult += stdStuff.makeTag(bodyTag, listTemp[3])
 				
 				return postResult
 
