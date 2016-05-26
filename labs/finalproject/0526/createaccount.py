@@ -33,6 +33,7 @@ if len(form)<=1:
     Password: <input type="password" name="password"><br>
     <input type="submit" value="create account">
     '''
+'''
 users = open(directory + file,'r').read().split('\n')
 		users = [each.split(',') for each in users]
 		users.remove( [""])
@@ -46,6 +47,7 @@ users = open(directory + file,'r').read().split('\n')
  			body += 'Successfully added. <a href="login.py"> Click here to log in</a>.<br>'
 		else:
  			body += 'Username already taken!'
+'''
 else:
 	userHolder = None
 	
