@@ -61,8 +61,14 @@ else:
 	if 'username' in form and 'password' in form:
 		userReadStream = open(stdStuff.directory + stdStuff.userFile, "r")
 		userList = []
-		while True:
-			userList.append(pickle.load(userReadStream))
+		try:
+			while True:
+				userList.append(pickle.load(userReadStream))
+		except EOFError:
+			print "End of File"
+		finally:
+			userReadStream.close()
+		
 		if nameIsAvailable(userList, form.getvalue("username")):
 			userWriteStream = open(stdStuff.directory + stdStuff.userFile, "a")
 			pickle.dump(stdStuff.User(form.getvalue("username"),\
