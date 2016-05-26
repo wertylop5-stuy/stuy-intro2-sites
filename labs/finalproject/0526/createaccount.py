@@ -24,6 +24,12 @@ foot = '''
 directory = "../data/"
 file = "users.txt"
 
+def nameIsAvailable(L, user):
+	for x in L:
+		if user == x.name:
+			return False
+	return True
+
 if len(form)<=1:
 	body = '''
     <h1>Create account:</h1>
@@ -53,16 +59,19 @@ else:
 	userHolder = None
 	
 	if 'username' in form and 'password' in form:
-		'''
 		userReadStream = open(stdStuff.directory + stdStuff.userFile, "r")
 		userList = []
 		while True:
-			userList.append(pickle.load(userReadStream))'''
-		userWriteStream = open(stdStuff.directory + stdStuff.userFile, "a")
-		pickle.dump(stdStuff.User(form.getvalue("username"),\
-							hashlib.sha256(form.getvalue("password"))
-								.hexdigest()), userWriteStream)
-		userWriteStream.close()
+			userList.append(pickle.load(userReadStream))
+		if nameIsAvailable(userList, form.getvalue("username")):
+			userWriteStream = open(stdStuff.directory + stdStuff.userFile, "a")
+			pickle.dump(stdStuff.User(form.getvalue("username"),\
+								hashlib.sha256(form.getvalue("password"))
+									.hexdigest()), userWriteStream)
+			userWriteStream.close()
+			body += 'Successfully added. <a href="login.py"> Click here to log in</a>.<br>'
+		else:
+			body += 'Username already taken!'
 		
 	else:
 		body += "Please use the form!"
