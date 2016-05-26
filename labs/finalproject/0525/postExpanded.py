@@ -34,7 +34,6 @@ def displayPost(titleTag, bodyTag, userTag, commentTag=""):
 
 	listOfPosts = allPosts.split(stdStuff.splitPost)
 	listOfPosts.pop()
-	print listOfPosts
 	
 	postResult = ""
 	if len(allPosts) > 0:
