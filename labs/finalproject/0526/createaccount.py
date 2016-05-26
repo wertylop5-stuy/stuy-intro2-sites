@@ -2,8 +2,11 @@
 print 'content-type: text/html'
 print ''
 
-import cgitb,cgi,hashlib
+import cgitb,cgi,hashlib,pickle,sys
 cgitb.enable()
+
+sys.path.insert(0, "../modules")
+import stdStuff
 
 form = cgi.FieldStorage()
 
@@ -30,23 +33,35 @@ if len(form)<=1:
     Password: <input type="password" name="password"><br>
     <input type="submit" value="create account">
     '''
+users = open(directory + file,'r').read().split('\n')
+		users = [each.split(',') for each in users]
+		users.remove( [""])
+		username = form.getvalue('username')
+		password = form.getvalue('password')
+		#nice python features that I do not teach...
+		if not username in [a[0] for a in users]:
+			f = open(directory + file,'a')
+			f.write(username+","+hashlib.sha256(password).hexdigest()+"\n")
+			f.close()
+ 			body += 'Successfully added. <a href="login.py"> Click here to log in</a>.<br>'
+		else:
+ 			body += 'Username already taken!'
 else:
-    if 'username' in form and 'password' in form:
-        users = open(directory + file,'r').read().split('\n')
-        users = [each.split(',') for each in users]
-        users.remove( [""])
-        username = form.getvalue('username')
-        password = form.getvalue('password')
-        #nice python features that I do not teach...
-        if not username in [a[0] for a in users]:
-            f = open(directory + file,'a')
-            f.write(username+","+hashlib.sha256(password).hexdigest()+"\n")
-            f.close()
-            body += 'Successfully added. <a href="login.py"> Click here to log in</a>.<br>'
-        else:
-            body += 'Username already taken!'
-    else:
-        body += "Please use the form!"
+	userHolder = None
+	
+	if 'username' in form and 'password' in form:
+		'''
+		userReadStream = open(stdStuff.directory + stdStuff.userFile, "r")
+		userList = []
+		while True:
+			userList.append(pickle.load(userReadStream))'''rd' in form:
+		userWriteStream = open(stdStuff.directory + stdStuff.userFile, "a")
+		pickle.dump(stdStuff.User(form.getvalue("username"),\
+							hashlib.sha256(form.getvalue("password"))
+								.hexdigest()))
+		
+	else:
+		body += "Please use the form!"
 
 print head
 print body
