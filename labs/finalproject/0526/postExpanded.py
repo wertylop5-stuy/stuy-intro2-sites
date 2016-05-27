@@ -49,7 +49,7 @@ def displayPost(postObj, titleTag, bodyTag, userTag, commentTag):
 					stdStuff.makeTag(userTag, postObj.user) + \
 					stdStuff.makeTag(titleTag, postObj.title) + \
 					stdStuff.makeTag(bodyTag, postObj.text)
-	
+	postResult += "<br><h6>Comments</h6><br>"
 	postResult += displayComments(postObj.comments, userTag, commentTag)
 	
 	postResult += '''<br>
