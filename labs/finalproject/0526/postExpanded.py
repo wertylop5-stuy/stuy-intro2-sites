@@ -169,17 +169,6 @@ else:
 	body+= 'You seem new<br>\n'
 	body+='Go Login <a href="login.py">here</a><br>'
 
-
-allPosts = stdStuff.objFileToList(stdStuff.directory,
-										 stdStuff.postFile)
-print form
-targId = int(form.getvalue("expandButton"))
-print targId
-for x in allPosts:
-	if x.id == targId:
-		body += displayPost(x, "h1", "p", "h6")
-		break
-
 print head
 print body
 print foot
