@@ -124,7 +124,7 @@ def displayComments():
 	
 
 def authenticate(u,ID,IP):
-    loggedIn = open(directory + logFile,'r').read().split('\n')
+    loggedIn = open(stdStuff.directory + stdStuff.logFile,'r').read().split('\n')
     loggedIn = [each.split(',') for each in loggedIn]
     loggedIn.remove([''])
     for a in loggedIn:
