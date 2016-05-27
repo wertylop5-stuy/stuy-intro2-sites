@@ -125,39 +125,39 @@ def displayComments():
 
 
 if 'HTTP_COOKIE' in os.environ:
-    cookie_string=os.environ.get('HTTP_COOKIE')
-    c = Cookie.SimpleCookie()
-    c.load(cookie_string)
-    ##print all the data in the cookie
-    #body+= "<h1>cookie data</h1>"
-    #for each in c:
-    #    body += each+":"+str(c[each].value)+"<br>"
+	cookie_string=os.environ.get('HTTP_COOKIE')
+	c = Cookie.SimpleCookie()
+	c.load(cookie_string)
+	##print all the data in the cookie
+	#body+= "<h1>cookie data</h1>"
+	#for each in c:
+	#    body += each+":"+str(c[each].value)+"<br>"
 
 
-    
-    if 'username' in c and 'ID' in c:
-        username = c['username'].value
-        ID = c['ID'].value
-        IP = os.environ['REMOTE_ADDR']
+	
+	if 'username' in c and 'ID' in c:
+		username = c['username'].value
+		ID = c['ID'].value
+		IP = os.environ['REMOTE_ADDR']
         
-        if authenticate(username,ID,IP):
-            allPosts = stdStuff.objFileToList(stdStuff.postFile)
-            targId = form.getvalue("expandButton")
-            for x in allPosts:
-            	if x.id = targID:
-            		body += displayPost(x, "h1", "p", "h6")
-            		break
-            
-            body+=makePage()
-        else:
-            body+="Failed to Authenticate cookie<br>\n"
-            body+= 'Go Login <a href="login.py">here</a><br>'
-    else:
-        body+= "Your information expired<br>\n"
-        body+= 'Go Login <a href="login.py">here</a><br>'
+		if authenticate(username,ID,IP):
+			allPosts = stdStuff.objFileToList(stdStuff.postFile)
+			targId = form.getvalue("expandButton")
+			for x in allPosts:
+				if x.id = targID:
+					body += displayPost(x, "h1", "p", "h6")
+					break
+			
+			body+=makePage()
+		else:
+			body+="Failed to Authenticate cookie<br>\n"
+			body+= 'Go Login <a href="login.py">here</a><br>'
+	else:
+		body+= "Your information expired<br>\n"
+		body+= 'Go Login <a href="login.py">here</a><br>'
 else:
-    body+= 'You seem new<br>\n'
-    body+='Go Login <a href="login.py">here</a><br>'
+	body+= 'You seem new<br>\n'
+	body+='Go Login <a href="login.py">here</a><br>'
 
 
 body += poster()
