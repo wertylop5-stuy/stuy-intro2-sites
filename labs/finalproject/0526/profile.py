@@ -96,44 +96,29 @@ def makeTag(tag, text):
 
 #reads in posts
 #later: handle comments
-def displayPost(titleTag, bodyTag, userTag, commentTag=""):
-	wall = open(directory + postFile, 'r')
-	wallRead = wall.read()
-	wall.close()
-		
-	ListOfPosts = (wallRead.split(splitPost))
-	ListOfPosts.pop()
-	
-	listTemp = []
-	
-	#contains formatted posts
+def displayPost(postObj, titleTag, bodyTag, userTag, commentTag=""):
 	postResult = ""
-	if len(wallRead) > 0:
-		for post in ListOfPosts:
-			listTemp = post.split(splitChar)
-			
-			#0 is id 1 is username, 2 is title, 3 is body
-			#post text
-			postResult += makeTag(userTag, listTemp[0])
-			postResult += makeTag(userTag, listTemp[1])
-			postResult += makeTag(titleTag, listTemp[2])
-			postResult += makeTag(bodyTag, listTemp[3])
-			
-			#button to comments (post expanded)
-			postResult += \
-			"""<form method="GET" action="postExpanded.py">
-	<input name="expandButton" type="submit" value='""" + \
-			str(listTemp[0]) + \
-			"""'>
+	postResult += 	makeTag(postObj.id, userTag) + \
+					makeTag(postObj.user, userTag) + \
+					makeTag(postObj.title, titleTag) + \
+					makeTag(postObj.text, bodyTag)
+	
+	postResult += """<form method="GET" action="postExpanded.py">
+<input name="expandButton" type="submit" value='""" + \
+	str(postObj.id) + """'>
 </form>"""
-			
-			postResult += "<br>"
-			
+	
 	return postResult
 
 def makePage():
-    makePage = str(poster()) + str(displayPost("h1", "p", "h6"))
-    return makePage
+    res = str(poster())
+    
+    postList = stdStuff.objFileToList(stdStuff.postFile)
+    
+    for post in postList:
+    	res += displayPost(post, "h1", "p", "h6")
+    
+    return res
 
 
 if 'HTTP_COOKIE' in os.environ:
@@ -168,7 +153,7 @@ print 'content-type: text/html'
 print ''
 
 print head
-if len(form) > 0:
-    writePost(c, form)
+if "postTitle" in form:
+	writePost(c, form)
 print body
 print foot
