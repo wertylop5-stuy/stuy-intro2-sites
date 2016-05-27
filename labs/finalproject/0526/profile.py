@@ -131,7 +131,7 @@ def makePage():
 	
 	return res
 
-'''
+
 if 'HTTP_COOKIE' in os.environ:
     cookie_string=os.environ.get('HTTP_COOKIE')
     c = Cookie.SimpleCookie()
@@ -159,10 +159,10 @@ if 'HTTP_COOKIE' in os.environ:
 else:
     body+= 'You seem new<br>\n'
     body+='Go Login <a href="login.py">here</a><br>'
-'''
+
 print 'content-type: text/html'
 print ''
-body+=makePage()
+
 print head
 if "postTitle" in form:
 	writePost(c, form)
