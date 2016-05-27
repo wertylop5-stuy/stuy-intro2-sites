@@ -151,9 +151,9 @@ if 'HTTP_COOKIE' in os.environ:
         
         if authenticate(username,ID,IP):
 			### PUT PAGE STUFF HERE
-            body+=makePage()
-            if "postTitle" in form:
+			if "postTitle" in form:
 				writePost(c, form)
+            body+=makePage()
         else:
             body+="Failed to Authenticate cookie<br>\n"
             body+= 'Go Login <a href="login.py">here</a><br>'
