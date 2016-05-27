@@ -1,6 +1,6 @@
 #!/usr/bin/python
 #TODO maybe begin multiple users, include \n in posts
-import Cookie,os,cgi,pickle
+import Cookie,os,cgi,pickle,sys
 
 import cgitb
 cgitb.enable()
