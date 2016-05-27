@@ -50,7 +50,7 @@ def displayPost(postObj, titleTag, bodyTag, userTag, commentTag):
 					stdStuff.makeTag(titleTag, postObj.title) + \
 					stdStuff.makeTag(bodyTag, postObj.text)
 	
-	postResult += displayComments(postObj.comments, commentTag)
+	postResult += displayComments(postObj.comments, userTag, commentTag)
 	
 	postResult += '''<br>
 <br>
@@ -114,6 +114,7 @@ if 'HTTP_COOKIE' in os.environ:
 				if x.id == targId:
 					body += displayPost(x, "h1", "p", "h3", "h6")
 					break
+
 		else:
 			body+="Failed to Authenticate cookie<br>\n"
 			body+= 'Go Login <a href="login.py">here</a><br>'
