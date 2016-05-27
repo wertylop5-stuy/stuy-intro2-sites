@@ -76,10 +76,10 @@ def displayPost(titleTag, bodyTag, userTag, commentTag=""):
 '''
 def displayPost(postObj, titleTag, bodyTag, userTag, commentTag=""):
 	postResult = ""
-	postResult += 	makeTag(userTag, postObj.id) + \
-					makeTag(userTag, postObj.user) + \
-					makeTag(titleTag, postObj.title) + \
-					makeTag(bodyTag, postObj.text)
+	postResult += 	stdStuff.makeTag(userTag, postObj.id) + \
+					stdStuff.makeTag(userTag, postObj.user) + \
+					stdStuff.makeTag(titleTag, postObj.title) + \
+					stdStuff.makeTag(bodyTag, postObj.text)
 	
 	postResult += '''<br>
 <br>
