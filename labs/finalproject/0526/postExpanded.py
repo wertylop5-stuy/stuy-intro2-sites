@@ -173,8 +173,8 @@ else:
 allPosts = stdStuff.objFileToList(stdStuff.directory,
 										 stdStuff.postFile)
 print form
-#targId = int(form.getvalue("expandButton"))
-#print targId
+targId = int(form.getvalue("expandButton"))
+print targId
 for x in allPosts:
 	if x.id == targId:
 		body += displayPost(x, "h1", "p", "h6")
