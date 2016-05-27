@@ -92,7 +92,6 @@ Text: <textarea name="comment" rows="10" cols="15">
 <input type = "submit" value = "Make comment">
 </form>'''
 	
-	print postResult
 	return postResult
 
 def getIndexOfID(L, idNum):
@@ -153,7 +152,6 @@ if 'HTTP_COOKIE' in os.environ:
 			allPosts = stdStuff.objFileToList(stdStuff.directory,
 										 stdStuff.postFile)
 			targId = int(form.getvalue("expandButton"))
-			print targId
 			for x in allPosts:
 				if x.id == targId:
 					body += displayPost(x, "h1", "p", "h6")
