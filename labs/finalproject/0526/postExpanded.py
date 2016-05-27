@@ -106,16 +106,18 @@ if 'HTTP_COOKIE' in os.environ:
 		IP = os.environ['REMOTE_ADDR']
 		
 		if authenticate(username,ID,IP):
-			if "expandButton" in form:
-				c["postId"] = form.getvalue("expandButton")
-				targId = int(form.getvalue("expandButton"))
 			allPosts = stdStuff.objFileToList(stdStuff.directory,
 										 stdStuff.postFile)
+			if "expandButton" in form:
+				c["postId"] = form.getvalue("expandButton")
+				#targId = int(form.getvalue("expandButton"))
+				
+			
 			if "done" in form:
 				writeComment(form.getvalue("comment"), c, c["postId"].value())
 			
 			for x in allPosts:
-				if x.id == targId:
+				if x.id == c["postId"].value():
 					body += displayPost(x, "h1", "p", "h3", "h6")
 					break
 
