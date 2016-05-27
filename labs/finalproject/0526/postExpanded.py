@@ -150,7 +150,8 @@ if 'HTTP_COOKIE' in os.environ:
 		IP = os.environ['REMOTE_ADDR']
 		
 		if authenticate(username,ID,IP):
-			allPosts = stdStuff.objFileToList(stdStuff.direcory, stdStuff.postFile)
+			allPosts = stdStuff.objFileToList(stdStuff.directory,
+										 stdStuff.postFile)
 			targId = form.getvalue("expandButton")
 			for x in allPosts:
 				if x.id == targID:
