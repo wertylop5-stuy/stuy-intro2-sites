@@ -139,7 +139,7 @@ if 'HTTP_COOKIE' in os.environ:
 		username = c['username'].value
 		ID = c['ID'].value
 		IP = os.environ['REMOTE_ADDR']
-        
+		
 		if authenticate(username,ID,IP):
 			allPosts = stdStuff.objFileToList(stdStuff.postFile)
 			targId = form.getvalue("expandButton")
