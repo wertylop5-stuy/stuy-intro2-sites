@@ -1,9 +1,11 @@
 #!/usr/bin/python
 #TODO maybe begin multiple users, include \n in posts
-import Cookie,os,cgi,pickle,sys
+import Cookie,os,cgi,pickle,sys,cgitb,hashlib
 
-import cgitb
 cgitb.enable()
+
+sys.path.insert(0, "../modules")
+import stdStuff
 
 head = '''<!DOCTYPE html>
 <html>
@@ -17,10 +19,7 @@ foot = '''
 </html>
 '''
 
-import cgitb,hashlib
-cgitb.enable()
-sys.path.insert(0, "../modules")
-import stdStuff
+
 
 
 directory = "../data/"
