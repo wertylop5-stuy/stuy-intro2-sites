@@ -122,7 +122,7 @@ if 'HTTP_COOKIE' in os.environ:
 				writeComment(form.getvalue("comment"), c, targId)
 			
 			for x in allPosts:
-				if x.id == int(c["postId"].value):
+				if x.id == targId:
 					body += displayPost(x, "h1", "p", "h3", "h6")
 					break
 
