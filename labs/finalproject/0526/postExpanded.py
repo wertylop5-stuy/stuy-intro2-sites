@@ -15,7 +15,7 @@ head = '''<!DOCTYPE html>
 </head>
 <body>
    '''
-body = """<form method="GET" action="homePage.py">
+body = """<form method="GET" action="homepage.py">
 <input name="logOut" type="submit" value="Log out">
 </form>
 """
