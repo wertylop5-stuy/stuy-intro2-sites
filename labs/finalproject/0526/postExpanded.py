@@ -60,7 +60,7 @@ def displayPost(postObj, titleTag, bodyTag, userTag, commentTag):
 Text: <textarea name="comment" rows="10" cols="15">
 </textarea>
 <br>
-<input type = "submit" name="done" value = "Make comment">
+<input type = "submit" name="done" value = "thing[hi]">
 </form>'''
 	
 	return postResult
@@ -79,6 +79,10 @@ def writeComment(commentText, cookie, targId):
 		if value.id == targId:
 			allPosts[index].addComment(cookie['username'].value,
 										commentText)
+	commentWStream = open(stdStuff.directory + stdStuff.postFile, "w")
+	for x in allPosts:
+		pickle.dump(x, commentWStream)
+	commentWStream.close()
 
 def authenticate(u,ID,IP):
     loggedIn = open(stdStuff.directory + stdStuff.logFile,'r').read().split('\n')
@@ -109,7 +113,6 @@ if 'HTTP_COOKIE' in os.environ:
 			allPosts = stdStuff.objFileToList(stdStuff.directory,
 										 stdStuff.postFile)
 			if "expandButton" in form:
-				print "hi"
 				c["postId"] = form.getvalue("expandButton")
 				#targId = int(form.getvalue("expandButton"))
 				
