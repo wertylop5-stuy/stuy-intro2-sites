@@ -11,11 +11,14 @@ import stdStuff
 
 head = '''<!DOCTYPE html>
 <html>
-<head><title>Login page</title>
+<head><title>Comments on this post</title>
 </head>
 <body>
    '''
-body = ""
+body = """<form method="GET" action="homePage.py">
+<input name="logOut" type="submit" value="Log out">
+</form>
+"""
 foot = '''
 </body>
 </html>
