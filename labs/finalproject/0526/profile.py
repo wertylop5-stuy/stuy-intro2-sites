@@ -13,10 +13,7 @@ head = '''<!DOCTYPE html>
 </head>
 <body>
    '''
-body = """<form method="GET" action="homepage.py">
-<input name="logOut" type="submit" value="Log out">
-</form>
-"""
+body = ""
 foot = '''
 </body>
 </html>
@@ -142,6 +139,10 @@ if 'HTTP_COOKIE' in os.environ:
         IP = os.environ['REMOTE_ADDR']
         
         if authenticate(username,ID,IP):
+        	body += """<form method="GET" action="homepage.py">
+<input name="logOut" type="submit" value="Log out">
+</form>
+"""
 			### PUT PAGE STUFF HERE
             if "postTitle" in form:
                 writePost(c, form)

@@ -15,10 +15,7 @@ head = '''<!DOCTYPE html>
 </head>
 <body>
    '''
-body = """<form method="GET" action="homepage.py">
-<input name="logOut" type="submit" value="Log out">
-</form>
-"""
+body = ""
 foot = '''
 </body>
 </html>
@@ -113,6 +110,10 @@ if 'HTTP_COOKIE' in os.environ:
 		IP = os.environ['REMOTE_ADDR']
 		
 		if authenticate(username,ID,IP):
+			body += """<form method="GET" action="homepage.py">
+<input name="logOut" type="submit" value="Log out">
+</form>
+"""
 			if "expandButton" in form:
 				temp = int(form.getvalue("expandButton"))
 				lol = open(stdStuff.directory + stdStuff.postIdFile, "w")
