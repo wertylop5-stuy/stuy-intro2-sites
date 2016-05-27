@@ -98,8 +98,7 @@ if 'HTTP_COOKIE' in os.environ:
 	#body+= "<h1>cookie data</h1>"
 	#for each in c:
 	#    body += each+":"+str(c[each].value)+"<br>"
-
-
+	
 	
 	if 'username' in c and 'ID' in c:
 		username = c['username'].value
@@ -107,9 +106,14 @@ if 'HTTP_COOKIE' in os.environ:
 		IP = os.environ['REMOTE_ADDR']
 		
 		if authenticate(username,ID,IP):
+			if "expandButton" in form:
+				c["postId"] = form.getvalue("expandButton")
+				targId = int(form.getvalue("expandButton"))
 			allPosts = stdStuff.objFileToList(stdStuff.directory,
 										 stdStuff.postFile)
-			targId = int(form.getvalue("expandButton"))
+			if "done" in form:
+				writeComment(form.getvalue("comment"), c, c["postId"].value())
+			
 			for x in allPosts:
 				if x.id == targId:
 					body += displayPost(x, "h1", "p", "h3", "h6")
