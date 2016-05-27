@@ -152,11 +152,13 @@ if 'HTTP_COOKIE' in os.environ:
 		if authenticate(username,ID,IP):
 			allPosts = stdStuff.objFileToList(stdStuff.directory,
 										 stdStuff.postFile)
-			targId = form.getvalue("expandButton")
+			targId = int(form.getvalue("expandButton"))
+			print targId
 			for x in allPosts:
 				if x.id == targId:
 					body += displayPost(x, "h1", "p", "h6")
 					break
+
 			
 			#body+=makePage()
 		else:
@@ -168,6 +170,7 @@ if 'HTTP_COOKIE' in os.environ:
 else:
 	body+= 'You seem new<br>\n'
 	body+='Go Login <a href="login.py">here</a><br>'
+
 
 print head
 print body
