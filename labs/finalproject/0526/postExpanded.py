@@ -132,7 +132,7 @@ def authenticate(u,ID,IP):
             return a[1]==str(ID) and a[2]==IP
     return False
 
-'''
+
 if 'HTTP_COOKIE' in os.environ:
 	cookie_string=os.environ.get('HTTP_COOKIE')
 	c = Cookie.SimpleCookie()
@@ -168,7 +168,7 @@ if 'HTTP_COOKIE' in os.environ:
 else:
 	body+= 'You seem new<br>\n'
 	body+='Go Login <a href="login.py">here</a><br>'
-'''
+
 
 allPosts = stdStuff.objFileToList(stdStuff.directory,
 										 stdStuff.postFile)
