@@ -4,7 +4,7 @@
 
 print 'content-type: text/html'
 print ''
-import cgitb, cgi,sys,os
+import cgitb,cgi,sys,os,Cookie
 cgitb.enable()
 sys.path.insert(0, "../modules")
 import stdStuff
