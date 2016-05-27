@@ -112,7 +112,7 @@ def displayPost(postObj, titleTag, bodyTag, userTag, commentTag=""):
 def makePage():
     res = str(poster())
     
-    postList = stdStuff.objFileToList(stdStuff.postFile)
+    postList = stdStuff.objFileToList(postFile)
     
     for post in postList:
     	res += displayPost(post, "h1", "p", "h6")
