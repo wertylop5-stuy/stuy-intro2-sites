@@ -131,8 +131,7 @@ def makePage():
 	
 	return res
 
-if "postTitle" in form:
-	writePost(c, form)
+
 
 if 'HTTP_COOKIE' in os.environ:
     cookie_string=os.environ.get('HTTP_COOKIE')
@@ -151,7 +150,10 @@ if 'HTTP_COOKIE' in os.environ:
         IP = os.environ['REMOTE_ADDR']
         
         if authenticate(username,ID,IP):
+			### PUT PAGE STUFF HERE
             body+=makePage()
+            if "postTitle" in form:
+				writePost(c, form)
         else:
             body+="Failed to Authenticate cookie<br>\n"
             body+= 'Go Login <a href="login.py">here</a><br>'
