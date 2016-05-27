@@ -112,11 +112,8 @@ if 'HTTP_COOKIE' in os.environ:
 			targId = int(form.getvalue("expandButton"))
 			for x in allPosts:
 				if x.id == targId:
-					body += displayPost(x, "h1", "p", "h6")
+					body += displayPost(x, "h1", "p", "h3", "h6")
 					break
-
-			
-			#body+=makePage()
 		else:
 			body+="Failed to Authenticate cookie<br>\n"
 			body+= 'Go Login <a href="login.py">here</a><br>'
