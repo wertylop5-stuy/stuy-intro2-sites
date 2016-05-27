@@ -97,10 +97,10 @@ def makeTag(tag, text):
 #later: handle comments
 def displayPost(postObj, titleTag, bodyTag, userTag, commentTag=""):
 	postResult = ""
-	postResult += 	makeTag(postObj.id, userTag) + \
-					makeTag(postObj.user, userTag) + \
-					makeTag(postObj.title, titleTag) + \
-					makeTag(postObj.text, bodyTag)
+	postResult += 	makeTag(userTag, postObj.id) + \
+					makeTag(userTag, postObj.user) + \
+					makeTag(titleTag, postObj.title) + \
+					makeTag(bodyTag, postObj.text)
 	
 	postResult += """<form method="GET" action="postExpanded.py">
 <input name="expandButton" type="submit" value='""" + \
