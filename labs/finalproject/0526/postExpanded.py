@@ -143,6 +143,8 @@ else:
 	body+='Go Login <a href="login.py">here</a><br>'
 
 
+body += """<a href="profile.py">Go back to profile</a>"""
+
 print head
 print body
 print foot
