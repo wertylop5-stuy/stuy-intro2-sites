@@ -123,6 +123,15 @@ def displayComments():
 	
 	
 
+def authenticate(u,ID,IP):
+    loggedIn = open(directory + logFile,'r').read().split('\n')
+    loggedIn = [each.split(',') for each in loggedIn]
+    loggedIn.remove([''])
+    for a in loggedIn:
+        if a[0] == username:
+            return a[1]==str(ID) and a[2]==IP
+    return False
+
 
 if 'HTTP_COOKIE' in os.environ:
 	cookie_string=os.environ.get('HTTP_COOKIE')
