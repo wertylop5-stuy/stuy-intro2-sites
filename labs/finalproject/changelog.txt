@@ -11,3 +11,10 @@ Improved post display by including usernames
 
 5/24
 Added a post ID system as well as beginning to implement commenting
+
+5/25
+Beginning to read in files
+
+5/26
+Rewrote entire project to use objects. Much cleaner and comment system working.
+Log out buttons implemented
