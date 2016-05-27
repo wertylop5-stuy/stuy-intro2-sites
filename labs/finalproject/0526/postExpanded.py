@@ -116,7 +116,7 @@ if 'HTTP_COOKIE' in os.environ:
 			if "expandButton" in form:
 				temp = int(form.getvalue("expandButton"))
 				lol = open(stdStuff.directory + stdStuff.postIdFile, "w")
-				lol.write(str(targId))
+				lol.write(str(temp))
 				lol.close()
 			
 			lol = open(stdStuff.directory + stdStuff.postIdFile, "r")
