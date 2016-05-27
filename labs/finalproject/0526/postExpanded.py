@@ -38,7 +38,6 @@ form = cgi.FieldStorage()
 
 
 
-postID = form.getvalue("expandButton")
 
 #gordons code
 def poster():
@@ -133,7 +132,7 @@ def authenticate(u,ID,IP):
             return a[1]==str(ID) and a[2]==IP
     return False
 
-
+'''
 if 'HTTP_COOKIE' in os.environ:
 	cookie_string=os.environ.get('HTTP_COOKIE')
 	c = Cookie.SimpleCookie()
@@ -169,6 +168,17 @@ if 'HTTP_COOKIE' in os.environ:
 else:
 	body+= 'You seem new<br>\n'
 	body+='Go Login <a href="login.py">here</a><br>'
+'''
+
+allPosts = stdStuff.objFileToList(stdStuff.directory,
+										 stdStuff.postFile)
+print form
+#targId = int(form.getvalue("expandButton"))
+#print targId
+for x in allPosts:
+	if x.id == targId:
+		body += displayPost(x, "h1", "p", "h6")
+		break
 
 print head
 print body
