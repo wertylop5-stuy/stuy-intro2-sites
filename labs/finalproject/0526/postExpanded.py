@@ -4,7 +4,7 @@
 
 print 'content-type: text/html'
 print ''
-import cgitb, cgi,sys
+import cgitb, cgi,sys,os
 cgitb.enable()
 sys.path.insert(0, "../modules")
 import stdStuff
@@ -144,11 +144,11 @@ if 'HTTP_COOKIE' in os.environ:
 			allPosts = stdStuff.objFileToList(stdStuff.postFile)
 			targId = form.getvalue("expandButton")
 			for x in allPosts:
-				if x.id = targID:
+				if x.id == targID:
 					body += displayPost(x, "h1", "p", "h6")
 					break
 			
-			body+=makePage()
+			#body+=makePage()
 		else:
 			body+="Failed to Authenticate cookie<br>\n"
 			body+= 'Go Login <a href="login.py">here</a><br>'
@@ -158,9 +158,6 @@ if 'HTTP_COOKIE' in os.environ:
 else:
 	body+= 'You seem new<br>\n'
 	body+='Go Login <a href="login.py">here</a><br>'
-
-
-body += poster()
 
 print head
 print body
