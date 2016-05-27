@@ -1,6 +1,6 @@
 #!/usr/bin/python
 #TODO maybe begin multiple users, include \n in posts
-import Cookie,os,cgi
+import Cookie,os,cgi,pickle
 
 import cgitb
 cgitb.enable()
@@ -19,8 +19,8 @@ foot = '''
 
 import cgitb,hashlib
 cgitb.enable()
-#sys.path.insert(0, "../modules")
-#import stdStuff
+sys.path.insert(0, "../modules")
+import stdStuff
 
 
 directory = "../data/"
@@ -62,11 +62,11 @@ Text: <textarea name="textBody" rows="10" cols="15">
 <input type = "submit" value = "Make Post">
 </form>'''
 
-def writePost(cookie):
+def writePost(cookie, formThing):
 	countStream = open(directory + counterFile, "r")
 	counter = int(countStream.read())
 	countStream.close()
-	
+	'''
 	appenedWall = open(directory + postFile, 'a')
 	appenedWall.write(str(counter) + \
 					splitChar + \
@@ -77,12 +77,14 @@ def writePost(cookie):
     				form.getvalue('textBody') + \
     				splitPost)
 	appenedWall.close()
-	
-	commentStream = open(directory + commentFile, "a")
-	commentStream.write(str(counter) + \
-					splitPost)
-
-
+	'''
+	postWStream = open(directory + postFile, "a")
+	pickle.dump(stdStuff.Post(counter, 
+							cookie["username"].value,
+							formThing.getvalue("postTitle"),
+							formThing.getvalue('textBody')),
+				postWStream)
+	postWStream.close
 	
 	counter += 1
 	countWStream = open(directory + counterFile, "w")
@@ -167,6 +169,6 @@ print ''
 
 print head
 if len(form) > 0:
-    writePost(c)
+    writePost(c, form)
 print body
 print foot
