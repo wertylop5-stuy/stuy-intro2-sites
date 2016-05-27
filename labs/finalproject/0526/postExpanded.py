@@ -109,6 +109,7 @@ if 'HTTP_COOKIE' in os.environ:
 			allPosts = stdStuff.objFileToList(stdStuff.directory,
 										 stdStuff.postFile)
 			if "expandButton" in form:
+				print "hi"
 				c["postId"] = form.getvalue("expandButton")
 				#targId = int(form.getvalue("expandButton"))
 				
