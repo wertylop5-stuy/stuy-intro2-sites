@@ -93,6 +93,7 @@ Text: <textarea name="comment" rows="10" cols="15">
 <input type = "submit" value = "Make comment">
 </form>'''
 	
+	print postResult
 	return postResult
 
 def getIndexOfID(L, idNum):
