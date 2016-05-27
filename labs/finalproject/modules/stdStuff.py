@@ -42,14 +42,26 @@ class Comment:
 def makeTag(tag, text):
 	return "<" + tag + ">" + str(text) + "</" + tag + ">"
 
-def objFileToList(targFile):
-	readStream = open(directory + targFile, "r")
+def isFileEmpty(directory, fileN):
+	readStream = open(directory + fileN, "r")
+	thing = readStream.read()
+	readStream.close()
+	if thing == "":
+		return True
+	return False
+
+def objFileToList(directory, targFile):
 	resList = []
+	if isFileEmpty(directory, targFile):
+		return resList
+	readStream = open(directory + targFile, "rb")
 	try:
 		while True:
 			resList.append(pickle.load(readStream))
 	except EOFError:
-		print "End of File"
+		pass
+	except IndexError:
+		pass
 	finally:
 		readStream.close()
 	

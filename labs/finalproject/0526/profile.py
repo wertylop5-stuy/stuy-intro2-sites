@@ -110,16 +110,28 @@ def displayPost(postObj, titleTag, bodyTag, userTag, commentTag=""):
 	return postResult
 
 def makePage():
-    res = str(poster())
-    
-    postList = stdStuff.objFileToList(postFile)
-    
-    for post in postList:
-    	res += displayPost(post, "h1", "p", "h6")
-    
-    return res
+	res = str(poster())
+	
+	#not sure why it doesnt work
+	postList = stdStuff.objFileToList(directory, postFile)
+	'''
+	postReadStream = open(directory + postFile, "rb")
+	postList = []
+	try:
+		while True:
+			postList.append(pickle.load(postReadStream))
+	except EOFError:
+		print "End of File"
+	finally:
+		postReadStream.close()
+	'''
+	
+	for post in postList:
+		res += displayPost(post, "h1", "p", "h6")
+	
+	return res
 
-
+'''
 if 'HTTP_COOKIE' in os.environ:
     cookie_string=os.environ.get('HTTP_COOKIE')
     c = Cookie.SimpleCookie()
@@ -147,10 +159,10 @@ if 'HTTP_COOKIE' in os.environ:
 else:
     body+= 'You seem new<br>\n'
     body+='Go Login <a href="login.py">here</a><br>'
-
+'''
 print 'content-type: text/html'
 print ''
-
+body+=makePage()
 print head
 if "postTitle" in form:
 	writePost(c, form)

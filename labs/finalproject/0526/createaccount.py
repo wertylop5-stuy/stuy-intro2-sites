@@ -43,7 +43,7 @@ else:
 	userHolder = None
 	
 	if 'username' in form and 'password' in form:
-		userReadStream = open(stdStuff.directory + stdStuff.userFile, "r")
+		userReadStream = open(stdStuff.directory + stdStuff.userFile, "rb")
 		userList = []
 		try:
 			while True:
