@@ -31,6 +31,7 @@ class Post:
 	
 	def addComment(self, user, text):
 		self.comments.append( Comment(user, text))
+	
 
 class Comment:
 	'''A comment in the system'''
