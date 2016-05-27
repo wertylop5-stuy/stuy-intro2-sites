@@ -134,7 +134,8 @@ if 'HTTP_COOKIE' in os.environ:
 				if x.id == targId:
 					body += displayPost(x, "h1", "p", "h3", "p")
 					break
-
+			
+			body += """<a href="profile.py">Go back to profile</a>"""
 		else:
 			body+="Failed to Authenticate cookie<br>\n"
 			body+= 'Go Login <a href="login.py">here</a><br>'
@@ -146,7 +147,7 @@ else:
 	body+='Go Login <a href="login.py">here</a><br>'
 
 
-body += """<a href="profile.py">Go back to profile</a>"""
+
 
 print head
 print body
