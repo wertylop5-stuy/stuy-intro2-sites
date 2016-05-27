@@ -65,18 +65,7 @@ def writePost(cookie, formThing):
 	countStream = open(directory + counterFile, "r")
 	counter = int(countStream.read())
 	countStream.close()
-	'''
-	appenedWall = open(directory + postFile, 'a')
-	appenedWall.write(str(counter) + \
-					splitChar + \
-					cookie["username"].value + \
-					splitChar + \
-					form.getvalue('postTitle') + \
-    				splitChar + \
-    				form.getvalue('textBody') + \
-    				splitPost)
-	appenedWall.close()
-	'''
+	
 	postWStream = open(directory + postFile, "a")
 	pickle.dump(stdStuff.Post(counter, 
 							cookie["username"].value,
@@ -151,8 +140,8 @@ if 'HTTP_COOKIE' in os.environ:
         
         if authenticate(username,ID,IP):
 			### PUT PAGE STUFF HERE
-			if "postTitle" in form:
-				writePost(c, form)
+            if "postTitle" in form:
+                writePost(c, form)
             body+=makePage()
         else:
             body+="Failed to Authenticate cookie<br>\n"
