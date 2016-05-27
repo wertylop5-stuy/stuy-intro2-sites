@@ -112,13 +112,14 @@ if 'HTTP_COOKIE' in os.environ:
 		if authenticate(username,ID,IP):
 			allPosts = stdStuff.objFileToList(stdStuff.directory,
 										 stdStuff.postFile)
+			'''
 			if "expandButton" in form:
 				c["postId"] = form.getvalue("expandButton")
 				#targId = int(form.getvalue("expandButton"))
-				
-			
+				'''
+			targId = int(form.getvalue("expandButton"))
 			if "done" in form:
-				writeComment(form.getvalue("comment"), c, c["postId"].value)
+				writeComment(form.getvalue("comment"), c, targId)
 			
 			for x in allPosts:
 				if x.id == int(c["postId"].value):
