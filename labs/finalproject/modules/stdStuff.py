@@ -6,6 +6,7 @@ logFile = "loggedin.txt"
 postFile = "posts.txt"
 counterFile = "counter.txt"
 commentFile = "comments.txt"
+postIdFile = "postId.txt"
 
 splitChar = chr(182)
 splitPost = chr(208)
