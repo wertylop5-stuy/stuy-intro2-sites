@@ -129,7 +129,7 @@ if 'HTTP_COOKIE' in os.environ:
 			
 			for x in allPosts:
 				if x.id == targId:
-					body += displayPost(x, "h1", "p", "h3", "h6")
+					body += displayPost(x, "h1", "p", "h3", "p")
 					break
 
 		else:
