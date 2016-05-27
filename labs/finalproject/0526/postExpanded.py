@@ -60,7 +60,7 @@ def displayPost(postObj, titleTag, bodyTag, userTag, commentTag):
 Text: <textarea name="comment" rows="10" cols="15">
 </textarea>
 <br>
-<input type = "submit" name="done" value = "thing[hi]">
+<input type = "submit" name="done" value = "done">
 </form>'''
 	
 	return postResult
