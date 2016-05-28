@@ -212,7 +212,7 @@ if "downVote" in form or "upVote" in form:
 	
 	tempy = open(stdStuff.directory + stdStuff.postFile, "wb")
 	for x in allPosts:
-		print x.score
+		print "score: " + str(x.score)
 		pickle.dump(x, tempy)
 	tempy.close()
 body+=makePage()
