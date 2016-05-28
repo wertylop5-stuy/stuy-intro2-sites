@@ -165,8 +165,10 @@ if 'HTTP_COOKIE' in os.environ:
 						if value.id == targId:
 							allPosts[index].increaseScore()
 							break
-				stdStuff.objListToFile(allPosts, stdStuff.directory, \
-										stdStuff.postFile)
+				tempy = open(stdStuff.directory + stdStuff.postFile, "w")
+				for x in allPosts:
+					pickle.dump(x, tempy)
+				tempy.close
 			allPosts = stdStuff.objFileToList(stdStuff.directory,
 										stdStuff.postFile)
 				
