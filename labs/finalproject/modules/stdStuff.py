@@ -55,6 +55,7 @@ def isFileEmpty(directory, fileN):
 def objFileToList(directory, targFile):
 	resList = []
 	if isFileEmpty(directory, targFile):
+		print "empty"
 		return resList
 	readStream = open(directory + targFile, "rb")
 	try:
