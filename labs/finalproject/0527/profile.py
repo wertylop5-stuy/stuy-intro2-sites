@@ -232,7 +232,7 @@ if "downVote" in form or "upVote" in form:
 									stdStuff.postFile)
 	allPosts = stdStuff.objFileToList(stdStuff.directory,
 							stdStuff.postFile)
-				
-			
+body+=makePage()
+
 print body
 print foot
