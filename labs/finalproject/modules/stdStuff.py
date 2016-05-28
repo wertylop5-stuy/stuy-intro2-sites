@@ -56,7 +56,7 @@ def objFileToList(directory, targFile):
 	resList = []
 	if isFileEmpty(directory, targFile):
 		return resList
-	readStream = open(directory + targFile, "rb")
+	readStream = open(directory + targFile, "r")
 	try:
 		while True:
 			resList.append(pickle.load(readStream))
