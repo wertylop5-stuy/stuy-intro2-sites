@@ -100,7 +100,6 @@ def displayPost(postObj, titleTag, bodyTag, userTag, commentTag=""):
 	return postResult
 
 def makePage():
-	global body
 	res = str(poster())
 	
 	#not sure why it doesnt work
@@ -163,9 +162,9 @@ if 'HTTP_COOKIE' in os.environ:
 						if value.id == targId:
 							allPosts[index].score += 1
 							break
-				stdStuff.objListToFile(allPosts, stdStuff.directory, 
+				stdStuff.objListToFile(allPosts, stdStuff.directory, \
 										stdStuff.postFile)
-			allPosts = stdStuff.objFileToList(stdStuff.directory,
+			allPosts = stdStuff.objFileToList(stdStuff.directory, \
 									stdStuff.postFile)
 				
 			
