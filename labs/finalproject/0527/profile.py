@@ -206,7 +206,6 @@ if "downVote" in form or "upVote" in form:
 	targId = form.getvalue("postId")
 	
 	if "downVote" in form:
-		print "down"
 		for index, value in enumerate(allPosts):
 			if value.id == targId:
 				print allPosts[index].score
