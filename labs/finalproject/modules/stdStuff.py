@@ -75,10 +75,15 @@ def objFileToList(directory, targFile):
 
 def objListToFile(objList, directory, targFile):
 	"""Writes a list of objects to a file"""
+	'''
 	with open(directory + targFile, "w") as objWStream:
 		for x in objList:
 			pickle.dump(x, objWStream)
-
+	'''
+	objWStream = open(directory + targFile, "w")
+	for x in objList:
+		pickle.dump(x, objWStream)
+	objWStream.close()
 
 
 
