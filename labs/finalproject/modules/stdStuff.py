@@ -60,7 +60,6 @@ def objFileToList(directory, targFile):
 	try:
 		while True:
 			resList.append(pickle.load(readStream))
-			counter += 1
 	except EOFError:
 		pass
 	except IndexError:
