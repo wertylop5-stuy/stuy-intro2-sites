@@ -138,7 +138,7 @@ def makePage():
 	return res
 
 
-
+'''
 if 'HTTP_COOKIE' in os.environ:
 	cookie_string=os.environ.get('HTTP_COOKIE')
 	c = Cookie.SimpleCookie()
@@ -195,10 +195,41 @@ if 'HTTP_COOKIE' in os.environ:
 else:
 	body+= 'You seem new<br>\n'
 	body+='Go Login <a href="login.py">here</a><br>'
+'''
 
 print 'content-type: text/html'
 print ''
 
+body += """<form method="GET" action="homepage.py">
+<input name="logOut" type="submit" value="Log out">
+</form>
+"""
+allPosts = stdStuff.objFileToList(stdStuff.directory,
+							stdStuff.postFile)
+if "downVote" in form or "upVote" in form:
+	if "downVote" in form:
+		targId = form.getvalue("postId")
+		for index, value in enumerate(allPosts):
+			if value.id == targId:
+				allPosts[index].score -= 1
+				break
+	elif "upVote" in form:
+		print "<p>up</p>"
+		targId = form.getvalue("postId")
+		for index, value in enumerate(allPosts):
+			if value.id == targId:
+				allPosts[index].score += 1
+				break
+	stdStuff.objListToFile(allPosts, stdStuff.directory, 
+									stdStuff.postFile)
+	allPosts = stdStuff.objFileToList(stdStuff.directory,
+							stdStuff.postFile)
+	
+
+### PUT PAGE STUFF HERE
+if "postTitle" in form:
+	writePost(c, form)
+body+=makePage()
 print head
 print body
 print foot
