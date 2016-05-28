@@ -104,7 +104,6 @@ def makePage():
 	#not sure why it doesnt work
 	postList = stdStuff.objFileToList(stdStuff.directory, stdStuff.postFile)
 	for post in postList:
-		print post.title
 		res += displayPost(post, "h1", "p", "h6")
 	
 	return res
@@ -208,6 +207,7 @@ if "downVote" in form or "upVote" in form:
 	
 	tempy = open(stdStuff.directory + stdStuff.postFile, "wb")
 	for x in allPosts:
+		print x.score
 		pickle.dump(x, tempy)
 	tempy.close()
 body+=makePage()
