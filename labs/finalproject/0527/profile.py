@@ -106,7 +106,7 @@ def makePage():
 	
 	#not sure why it doesnt work
 	postList = stdStuff.objFileToList(stdStuff.directory, stdStuff.postFile)
-	body += postList
+	body += str(postList)
 	for post in postList:
 		res += displayPost(post, "h1", "p", "h6")
 	
