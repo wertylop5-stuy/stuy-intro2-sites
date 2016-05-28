@@ -173,6 +173,7 @@ if 'HTTP_COOKIE' in os.environ:
 					targId = form.getvalue("posId")
 					for index, value in enumerate(allPosts):
 						if value.id == targId:
+							print "found"
 							allPosts[index].score += 1
 							break
 				stdStuff.objListToFile(allPosts, stdStuff.directory, 
