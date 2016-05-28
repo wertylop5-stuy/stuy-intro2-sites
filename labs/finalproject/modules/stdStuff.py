@@ -58,11 +58,13 @@ def objFileToList(directory, targFile):
 		return resList
 	readStream = open(directory + targFile, "rb")
 	try:
+		counter = 1
 		while True:
 			resList.append(pickle.load(readStream))
+			print counter
+			counter += 1
 			print resList
 	except EOFError:
-		print "eof"
 		pass
 	except IndexError:
 		pass
