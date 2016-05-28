@@ -140,7 +140,7 @@ if 'HTTP_COOKIE' in os.environ:
 				targId = form.getvalue("postId")
 				allPosts = stdStuff.objFileToList(stdStuff.directory,
 										stdStuff.postFile)
-				body+= str(allPosts)
+				#body+= str(allPosts)
 				'''
 				if "downVote" in form:
 					for index, value in enumerate(allPosts):
