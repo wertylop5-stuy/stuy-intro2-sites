@@ -113,7 +113,7 @@ def makePage():
 	res = str(poster())
 	
 	#not sure why it doesnt work
-	postList = stdStuff.objFileToList(directory, postFile)
+	postList = stdStuff.objFileToList(stdStuff.directory, stdStuff.postFile)
 	for post in postList:
 		res += displayPost(post, "h1", "p", "h6")
 	
