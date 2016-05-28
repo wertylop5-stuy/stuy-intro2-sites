@@ -201,7 +201,6 @@ body += """<form method="GET" action="homepage.py">
 allPosts = stdStuff.objFileToList(stdStuff.directory,
 							stdStuff.postFile)
 print allPosts
-print form
 if "downVote" in form or "upVote" in form:
 	targId = form.getvalue("postId")
 	
