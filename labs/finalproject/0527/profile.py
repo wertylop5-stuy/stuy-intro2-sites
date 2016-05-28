@@ -164,13 +164,13 @@ if 'HTTP_COOKIE' in os.environ:
 										stdStuff.postFile)
 			if "downVote" in form or "upVote" in form:
 				if "downVote" in form:
-					targId = form.getvalue("posId")
+					targId = form.getvalue("postId")
 					for index, value in enumerate(allPosts):
 						if value.id == targId:
 							allPosts[index].score -= 1
 							break
 				elif "upVote" in form:
-					targId = form.getvalue("posId")
+					targId = form.getvalue("postId")
 					for index, value in enumerate(allPosts):
 						if value.id == targId:
 							print "found"
