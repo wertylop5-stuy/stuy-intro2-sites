@@ -71,16 +71,15 @@ def makeTag(tag, text):
 def displayPost(postObj, titleTag, bodyTag, userTag, commentTag=""):
 	postResult = ""
 	
-	postResult += 	makeTag(userTag, postObj.id) + \
-					makeTag(userTag, postObj.user)
-	
 	postResult += """<table>
 <tr>
 	<td>""" + str(postObj.score) + """</td>
 	<td>
 """
 	
-	postResult +=	makeTag(titleTag, postObj.title) + \
+	postResult +=	makeTag(userTag, postObj.id) + \
+					makeTag(userTag, postObj.user) + \
+					makeTag(titleTag, postObj.title) + \
 					makeTag(bodyTag, postObj.text)
 	
 	postResult += "<a href='profile.py?downVote=lol&postId="+\
