@@ -99,11 +99,11 @@ def displayPost(postObj, titleTag, bodyTag, userTag, commentTag=""):
 	postResult +=	makeTag(titleTag, postObj.title) + \
 					makeTag(bodyTag, postObj.text)
 	
-	postResult += "<a href='postExpanded.py?downVote=lol&postId="+\
-	str(postObj.score) + "'>Down Vote</a>"
+	postResult += "<a href='profile.py?downVote=lol&postId="+\
+	str(postObj.score) + "'>Down Vote</a><br>"
 	
-	postResult += "<a href='postExpanded.py?upVote=lol&postId="+\
-	str(postObj.score) + "'>Up Vote</a>"
+	postResult += "<a href='profile.py?upVote=lol&postId="+\
+	str(postObj.score) + "'>Up Vote</a><br>"
 	
 	postResult += """<a href='postExpanded.py?expandButton=""" + \
 	str(postObj.id) + "'>Comment </a>"
