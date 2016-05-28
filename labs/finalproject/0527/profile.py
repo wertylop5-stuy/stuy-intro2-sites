@@ -191,6 +191,7 @@ if "downVote" in form or "upVote" in form:
 	targId = form.getvalue("postId")
 	allPosts = stdStuff.objFileToList(stdStuff.directory,
 								stdStuff.postFile)
+	print allPosts
 	if "downVote" in form:
 		for index, value in enumerate(allPosts):
 			if value.id == targId:
