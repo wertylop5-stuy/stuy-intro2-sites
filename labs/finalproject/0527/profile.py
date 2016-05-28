@@ -126,7 +126,7 @@ def makePage():
 	return res
 
 
-'''
+
 if 'HTTP_COOKIE' in os.environ:
 	cookie_string=os.environ.get('HTTP_COOKIE')
 	c = Cookie.SimpleCookie()
@@ -153,7 +153,7 @@ if 'HTTP_COOKIE' in os.environ:
 			print form
 			if "downVote" in form or "upVote" in form:
 				targId = form.getvalue("postId")
-				
+				'''
 				if "downVote" in form:
 					for index, value in enumerate(allPosts):
 						if value.id == targId:
@@ -166,9 +166,22 @@ if 'HTTP_COOKIE' in os.environ:
 						if value.id == targId:
 							allPosts[index].score += 1
 							break
-				stdStuff.objListToFile(allPosts, stdStuff.directory, 
-												stdStuff.postFile)
-				allPosts = stdStuff.objFileToList(stdStuff.directory,
+				'''
+				if "downVote" in form:
+					for index, value in enumerate(allPosts):
+						if value.id == targId:
+							print allPosts[index].score
+							allPosts[index].score -= 1
+							print allPosts[index].score
+							break
+				elif "upVote" in form:
+					for index, value in enumerate(allPosts):
+						if value.id == targId:
+							allPosts[index].score += 1
+							break
+							stdStuff.objListToFile(allPosts, stdStuff.directory, 
+															stdStuff.postFile)
+							allPosts = stdStuff.objFileToList(stdStuff.directory,
 										stdStuff.postFile)
 				
 			
@@ -185,7 +198,7 @@ if 'HTTP_COOKIE' in os.environ:
 else:
 	body+= 'You seem new<br>\n'
 	body+='Go Login <a href="login.py">here</a><br>'
-'''
+
 
 print 'content-type: text/html'
 print ''
@@ -193,7 +206,7 @@ print ''
 
 
 print head
-
+'''
 body += """<form method="GET" action="homepage.py">
 <input name="logOut" type="submit" value="Log out">
 </form>
@@ -221,6 +234,6 @@ if "downVote" in form or "upVote" in form:
 	allPosts = stdStuff.objFileToList(stdStuff.directory,
 							stdStuff.postFile)
 body+=makePage()
-
+'''
 print body
 print foot
