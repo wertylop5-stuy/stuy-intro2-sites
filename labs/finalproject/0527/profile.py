@@ -138,7 +138,7 @@ def makePage():
 	return res
 
 
-'''
+
 if 'HTTP_COOKIE' in os.environ:
 	cookie_string=os.environ.get('HTTP_COOKIE')
 	c = Cookie.SimpleCookie()
@@ -195,11 +195,11 @@ if 'HTTP_COOKIE' in os.environ:
 else:
 	body+= 'You seem new<br>\n'
 	body+='Go Login <a href="login.py">here</a><br>'
-'''
+
 
 print 'content-type: text/html'
 print ''
-
+'''
 body += """<form method="GET" action="homepage.py">
 <input name="logOut" type="submit" value="Log out">
 </form>
@@ -229,7 +229,7 @@ if "downVote" in form or "upVote" in form:
 ### PUT PAGE STUFF HERE
 if "postTitle" in form:
 	writePost(c, form)
-body+=makePage()
+body+=makePage()'''
 print head
 print body
 print foot
