@@ -57,7 +57,7 @@ def displayPost(postObj, titleTag, bodyTag, userTag, commentTag):
 <br>
 <br>
 <form action = "postExpanded.py" method = "GET">
-Text: <textarea name="comment" rows="10" cols="15">
+Comment: <textarea name="comment" rows="10" cols="15">
 </textarea>
 <br>
 <input type = "submit" name="done" value = "done">
