@@ -62,7 +62,7 @@ def objFileToList(directory, targFile):
 	resList = []
 	if isFileEmpty(directory, targFile):
 		return resList
-	readStream = open(directory + targFile, "r")
+	readStream = open(directory + targFile, "rb")
 	try:
 		while True:
 			resList.append(pickle.load(readStream))
@@ -82,7 +82,7 @@ def objListToFile(objList, directory, targFile):
 		for x in objList:
 			pickle.dump(x, objWStream)
 	'''
-	objWStream = open(directory + targFile, "w")
+	objWStream = open(directory + targFile, "wb")
 	objWStream.write("")
 	for x in objList:
 		pickle.dump(x, objWStream)

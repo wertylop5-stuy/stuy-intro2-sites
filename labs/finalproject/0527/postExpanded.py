@@ -79,7 +79,7 @@ def writeComment(commentText, cookie, targId):
 		if value.id == targId:
 			allPosts[index].addComment(cookie['username'].value,
 										commentText)
-	commentWStream = open(stdStuff.directory + stdStuff.postFile, "w")
+	commentWStream = open(stdStuff.directory + stdStuff.postFile, "wb")
 	for x in allPosts:
 		pickle.dump(x, commentWStream)
 	commentWStream.close()

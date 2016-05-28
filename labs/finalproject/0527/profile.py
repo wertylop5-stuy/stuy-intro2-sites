@@ -47,11 +47,11 @@ Text: <textarea name="textBody" rows="10" cols="15">
 </form>'''
 
 def writePost(cookie, formThing):
-	countStream = open(directory + counterFile, "r")
+	countStream = open(stdStuff.directory + stdStuff.counterFile, "r")
 	counter = int(countStream.read())
 	countStream.close()
 	
-	postWStream = open(directory + postFile, "a")
+	postWStream = open(stdStuff.directory + stdStuff.postFile, "ab")
 	pickle.dump(stdStuff.Post(counter, 
 							cookie["username"].value,
 							formThing.getvalue("postTitle"),
@@ -60,7 +60,7 @@ def writePost(cookie, formThing):
 	postWStream.close
 	
 	counter += 1
-	countWStream = open(directory + counterFile, "w")
+	countWStream = open(stdStuff.directory + stdStuff.counterFile, "w")
 	countWStream.write(str(counter))
 	countWStream.close()
 
@@ -165,10 +165,10 @@ if 'HTTP_COOKIE' in os.environ:
 						if value.id == targId:
 							allPosts[index].increaseScore()
 							break
-				tempy = open(stdStuff.directory + stdStuff.postFile, "w")
+				tempy = open(stdStuff.directory + stdStuff.postFile, "wb")
 				for x in allPosts:
 					pickle.dump(x, tempy)
-				tempy.close
+				tempy.close()
 			allPosts = stdStuff.objFileToList(stdStuff.directory,
 										stdStuff.postFile)
 				
