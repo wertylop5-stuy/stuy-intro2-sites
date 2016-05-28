@@ -198,25 +198,25 @@ if "downVote" in form or "upVote" in form:
 			print "current: " + str(value.id)
 			print "target: " +str(targId)
 			if value.id == targId:
-				print "found"
-				print "before: " + str(allPosts[index].score)
 				allPosts[index].decreaseScore()
-				print "after: " + str(allPosts[index].score)
-				break
 	elif "upVote" in form:
 		for index, value in enumerate(allPosts):
 			if value.id == targId:
 				allPosts[index].increaseScore()
 				break
+	stdStuff.objListToFile(allPosts, stdStuff.directory,
+							 stdStuff.postFile)
+	
 	allPosts = stdStuff.objFileToList(stdStuff.directory,
 							 stdStuff.postFile)
 	
-	
+	'''
 	tempy = open(stdStuff.directory + stdStuff.postFile, "wb")
 	for x in allPosts:
 		print "score: " + str(x.score)
 		pickle.dump(x, tempy)
 	tempy.close()
+	'''
 body+=makePage()
 print body
 print foot
