@@ -214,6 +214,7 @@ allPosts = stdStuff.objFileToList(stdStuff.directory,
 							stdStuff.postFile)
 print form
 if "downVote" in form or "upVote" in form:
+	print "in"
 	targId = form.getvalue("postId")
 	
 	if "downVote" in form:
