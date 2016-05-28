@@ -100,10 +100,10 @@ def displayPost(postObj, titleTag, bodyTag, userTag, commentTag=""):
 					makeTag(bodyTag, postObj.text)
 	
 	postResult += "<a href='postExpanded.py?downVote=lol&postId="+\
-	str(postObj.score) + ">Down Vote</a>"
+	str(postObj.score) + "'>Down Vote</a>"
 	
 	postResult += "<a href='postExpanded.py?upVote=lol&postId="+\
-	str(postObj.score) + ">Up Vote</a>"
+	str(postObj.score) + "'>Up Vote</a>"
 	
 	postResult += """<a href='postExpanded.py?expandButton=""" + \
 	str(postObj.id) + "'>Comment </a>"
