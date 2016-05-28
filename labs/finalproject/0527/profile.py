@@ -21,15 +21,6 @@ foot = '''
 
 
 
-'''
-directory = "../data/"
-userFile = "users.txt"
-logFile = "loggedin.txt"
-postFile = "posts.txt"
-counterFile = "counter.txt"
-commentFile = "comments.txt"
-'''
-
 form = cgi.FieldStorage()
 
 def authenticate(u,ID,IP):
@@ -172,8 +163,8 @@ if 'HTTP_COOKIE' in os.environ:
 							break
 				stdStuff.objListToFile(allPosts, stdStuff.directory, 
 										stdStuff.postFile)
-				'''allPosts = stdStuff.objFileToList(stdStuff.directory,
-										stdStuff.postFile)'''
+				allPosts = stdStuff.objFileToList(stdStuff.directory,
+										stdStuff.postFile)
 				
 			
 			### PUT PAGE STUFF HERE
