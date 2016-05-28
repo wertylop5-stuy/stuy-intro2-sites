@@ -116,10 +116,10 @@ if 'HTTP_COOKIE' in os.environ:
 	cookie_string=os.environ.get('HTTP_COOKIE')
 	c = Cookie.SimpleCookie()
 	c.load(cookie_string)
-	##print all the data in the cookie
-	#body+= "<h1>cookie data</h1>"
-	#for each in c:
-	#	body += each+":"+str(c[each].value)+"<br>"
+	#print all the data in the cookie
+	body+= "<h1>cookie data</h1>"
+	for each in c:
+		body += each+":"+str(c[each].value)+"<br>"
 
 
 	
