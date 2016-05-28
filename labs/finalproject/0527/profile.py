@@ -168,7 +168,9 @@ if 'HTTP_COOKIE' in os.environ:
 				if "downVote" in form:
 					for index, value in enumerate(allPosts):
 						if value.id == targId:
+							print allPosts[index].score
 							allPosts[index].score -= 1
+							print allPosts[index].score
 							break
 				elif "upVote" in form:
 					for index, value in enumerate(allPosts):
