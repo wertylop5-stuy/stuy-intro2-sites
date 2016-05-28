@@ -106,7 +106,6 @@ def makePage():
 	
 	#not sure why it doesnt work
 	postList = stdStuff.objFileToList(stdStuff.directory, stdStuff.postFile)
-	body += str(postList)
 	for post in postList:
 		res += displayPost(post, "h1", "p", "h6")
 	
@@ -174,7 +173,7 @@ if 'HTTP_COOKIE' in os.environ:
 			### PUT PAGE STUFF HERE
 			if "postTitle" in form:
 				writePost(c, form)
-			body+=makePage()
+			#body+=makePage()
 		else:
 			body+="Failed to Authenticate cookie<br>\n"
 			body+= 'Go Login <a href="login.py">here</a><br>'
