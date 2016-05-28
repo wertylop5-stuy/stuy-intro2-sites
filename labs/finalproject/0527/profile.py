@@ -160,7 +160,7 @@ if 'HTTP_COOKIE' in os.environ:
 							allPosts[index].score += 1
 							break
 				'''
-				'''if "downVote" in form:
+				if "downVote" in form:
 					for index, value in enumerate(allPosts):
 						if value.id == targId:
 							allPosts[index].score -= 1
@@ -174,7 +174,7 @@ if 'HTTP_COOKIE' in os.environ:
 															stdStuff.postFile)
 							allPosts = stdStuff.objFileToList(stdStuff.directory,
 										stdStuff.postFile)
-				'''
+				
 			
 			### PUT PAGE STUFF HERE
 			if "postTitle" in form:
