@@ -120,18 +120,6 @@ def makePage():
 	
 	#not sure why it doesnt work
 	postList = stdStuff.objFileToList(directory, postFile)
-	'''
-	postReadStream = open(directory + postFile, "rb")
-	postList = []
-	try:
-		while True:
-			postList.append(pickle.load(postReadStream))
-	except EOFError:
-		print "End of File"
-	finally:
-		postReadStream.close()
-	'''
-	
 	for post in postList:
 		res += displayPost(post, "h1", "p", "h6")
 	
@@ -215,10 +203,10 @@ allPosts = stdStuff.objFileToList(stdStuff.directory,
 print allPosts
 print form
 if "downVote" in form or "upVote" in form:
-	print "in"
 	targId = form.getvalue("postId")
 	
 	if "downVote" in form:
+		print "down"
 		for index, value in enumerate(allPosts):
 			if value.id == targId:
 				print allPosts[index].score
