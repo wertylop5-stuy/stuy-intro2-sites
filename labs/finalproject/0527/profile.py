@@ -21,14 +21,14 @@ foot = '''
 
 
 
-
+'''
 directory = "../data/"
 userFile = "users.txt"
 logFile = "loggedin.txt"
 postFile = "posts.txt"
 counterFile = "counter.txt"
 commentFile = "comments.txt"
-
+'''
 
 form = cgi.FieldStorage()
 
