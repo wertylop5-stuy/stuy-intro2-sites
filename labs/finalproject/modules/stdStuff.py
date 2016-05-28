@@ -33,6 +33,12 @@ class Post:
 	def addComment(self, user, text):
 		self.comments.append( Comment(user, text))
 	
+	def increaseScore(self):
+		self.score += 1
+	
+	def decreaseScore(self):
+		self.score -= 1
+	
 
 class Comment:
 	'''A comment in the system'''

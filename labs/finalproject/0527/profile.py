@@ -156,14 +156,14 @@ if 'HTTP_COOKIE' in os.environ:
 							break
 				'''
 				if "downVote" in form:
-					for value, index in enumerate(allPosts):
+					for index, value in enumerate(allPosts):
 						if value.id == targId:
-							allPosts[index].score -= 1
+							allPosts[index].decreaseScore()
 							break
 				elif "upVote" in form:
-					for value, index in enumerate(allPosts):
+					for index, value in enumerate(allPosts):
 						if value.id == targId:
-							allPosts[index].score += 1
+							allPosts[index].increaseScore()
 							break
 				stdStuff.objListToFile(allPosts, stdStuff.directory, \
 										stdStuff.postFile)
