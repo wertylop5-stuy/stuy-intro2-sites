@@ -128,16 +128,19 @@ if 'HTTP_COOKIE' in os.environ:
 		IP = os.environ['REMOTE_ADDR']
 		
 		if authenticate(username,ID,IP):
+			### PUT PAGE STUFF HERE
 			body += """<form method="GET" action="homepage.py">
 <input name="logOut" type="submit" value="Log out">
 </form>
 """
+			if "postTitle" in form:
+				writePost(c, form)
+			
 			allPosts = []
 			if "downVote" in form or "upVote" in form:
 				targId = form.getvalue("postId")
 				allPosts = stdStuff.objFileToList(stdStuff.directory,
-										stdStuff.postFile)
-				#body+= str(allPosts)
+											stdStuff.postFile)
 				'''
 				if "downVote" in form:
 					for index, value in enumerate(allPosts):
@@ -153,24 +156,22 @@ if 'HTTP_COOKIE' in os.environ:
 							break
 				'''
 				if "downVote" in form:
-					for index, value in enumerate(allPosts):
+					for value, index in enumerate(allPosts):
 						if value.id == targId:
 							allPosts[index].score -= 1
 							break
 				elif "upVote" in form:
-					for index, value in enumerate(allPosts):
+					for value, index in enumerate(allPosts):
 						if value.id == targId:
 							allPosts[index].score += 1
 							break
 				stdStuff.objListToFile(allPosts, stdStuff.directory, \
 										stdStuff.postFile)
-			allPosts = stdStuff.objFileToList(stdStuff.directory, \
-									stdStuff.postFile)
+			allPosts = stdStuff.objFileToList(stdStuff.directory,
+										stdStuff.postFile)
 				
 			
-			### PUT PAGE STUFF HERE
-			if "postTitle" in form:
-				writePost(c, form)
+			
 			body+=makePage()
 		else:
 			body+="Failed to Authenticate cookie<br>\n"
