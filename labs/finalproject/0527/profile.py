@@ -199,8 +199,9 @@ if "downVote" in form or "upVote" in form:
 			print "target: " +str(targId)
 			if value.id == targId:
 				print "found"
-				print "title: " + allPosts[index].title
+				print "before: " + allPosts[index].score
 				allPosts[index].decreaseScore()
+				print "after: " + allPosts[index].score
 				break
 	elif "upVote" in form:
 		for index, value in enumerate(allPosts):
