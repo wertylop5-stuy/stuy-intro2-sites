@@ -57,10 +57,10 @@ def objFileToList(directory, targFile):
 	if isFileEmpty(directory, targFile):
 		return resList
 	readStream = open(directory + targFile, "rb")
-	print "open"
 	try:
 		while True:
 			resList.append(pickle.load(readStream))
+			print resList
 	except EOFError:
 		pass
 	except IndexError:
