@@ -133,10 +133,11 @@ if 'HTTP_COOKIE' in os.environ:
 <input name="logOut" type="submit" value="Log out">
 </form>
 """
-			allPosts = stdStuff.objFileToList(stdStuff.directory,
-										stdStuff.postFile)
+			
 			if "downVote" in form or "upVote" in form:
 				targId = form.getvalue("postId")
+				allPosts = stdStuff.objFileToList(stdStuff.directory,
+										stdStuff.postFile)
 				'''
 				if "downVote" in form:
 					for index, value in enumerate(allPosts):
@@ -163,8 +164,8 @@ if 'HTTP_COOKIE' in os.environ:
 							break
 				stdStuff.objListToFile(allPosts, stdStuff.directory, 
 										stdStuff.postFile)
-				allPosts = stdStuff.objFileToList(stdStuff.directory,
-										stdStuff.postFile)
+			allPosts = stdStuff.objFileToList(stdStuff.directory,
+									stdStuff.postFile)
 				
 			
 			### PUT PAGE STUFF HERE
