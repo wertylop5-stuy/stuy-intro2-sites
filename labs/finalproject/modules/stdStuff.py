@@ -77,6 +77,7 @@ def objListToFile(objList, directory, targFile):
 			pickle.dump(x, objWStream)
 	'''
 	objWStream = open(directory + targFile, "w")
+	objWStream.write("")
 	for x in objList:
 		pickle.dump(x, objWStream)
 	objWStream.close()
