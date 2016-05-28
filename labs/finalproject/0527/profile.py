@@ -104,6 +104,7 @@ def makePage():
 	#not sure why it doesnt work
 	postList = stdStuff.objFileToList(stdStuff.directory, stdStuff.postFile)
 	for post in postList:
+		print post.score
 		res += displayPost(post, "h1", "p", "h6")
 	
 	return res
