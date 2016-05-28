@@ -170,8 +170,8 @@ if 'HTTP_COOKIE' in os.environ:
 						if value.id == targId:
 							allPosts[index].score += 1
 							break
-				stdStuff.objListToFile(allPosts, stdStuff.directory, 
-										stdStuff.postFile)
+				stdStuff.objListToFile(allPosts, directory, 
+										postFile)
 				'''allPosts = stdStuff.objFileToList(stdStuff.directory,
 										stdStuff.postFile)'''
 				
