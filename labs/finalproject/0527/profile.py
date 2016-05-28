@@ -170,7 +170,7 @@ if 'HTTP_COOKIE' in os.environ:
 							allPosts[index].score -= 1
 							break
 				elif "upVote" in form:
-					print "up"
+					print "<p>up</p>"
 					targId = form.getvalue("postId")
 					for index, value in enumerate(allPosts):
 						if value.id == targId:
