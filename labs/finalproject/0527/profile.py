@@ -190,7 +190,6 @@ if "postTitle" in form:
 allPosts = []
 if "downVote" in form or "upVote" in form:
 	targId = form.getvalue("postId")
-	print "id: " + targId
 	allPosts = stdStuff.objFileToList(stdStuff.directory,
 								stdStuff.postFile)
 	#print len(allPosts)
