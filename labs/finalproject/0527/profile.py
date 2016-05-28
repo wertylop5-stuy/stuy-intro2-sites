@@ -164,7 +164,6 @@ if 'HTTP_COOKIE' in os.environ:
 										stdStuff.postFile)
 			print form
 			if "downVote" in form or "upVote" in form:
-				
 				targId = form.getvalue("postId")
 				
 				if "downVote" in form:
