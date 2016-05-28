@@ -100,15 +100,13 @@ def displayPost(postObj, titleTag, bodyTag, userTag, commentTag=""):
 					makeTag(bodyTag, postObj.text)
 	
 	postResult += "<a href='postExpanded.py?downVote=lol&postId="+\
-	"fe"
-"""
-<form method="GET" action="profile.py">
-	<input name="downVote" type="submit" value="Down Vote">
-	<input name="upVote" type="submit" value="Up Vote">
-</form>
-
-<a href='postExpanded.py?expandButton=""" + str(postObj.id) + \
-"""'>Comment </a>"""
+	str(postObj.score) + ">Down Vote</a>"
+	
+	postResult += "<a href='postExpanded.py?upVote=lol&postId="+\
+	str(postObj.score) + ">Up Vote</a>"
+	
+	postResult += """<a href='postExpanded.py?expandButton=""" + \
+	str(postObj.id) + "'>Comment </a>"
 	
 	postResult += """</td>
 	</tr>
