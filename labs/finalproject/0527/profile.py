@@ -190,11 +190,13 @@ if "postTitle" in form:
 allPosts = []
 if "downVote" in form or "upVote" in form:
 	targId = form.getvalue("postId")
+	print "id: " + targId
 	allPosts = stdStuff.objFileToList(stdStuff.directory,
 								stdStuff.postFile)
 	#print len(allPosts)
 	if "downVote" in form:
 		for index, value in enumerate(allPosts):
+			print "current: " + str(value.id)
 			if value.id == targId:
 				print "found"
 				allPosts[index].decreaseScore()
