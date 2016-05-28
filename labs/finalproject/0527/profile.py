@@ -199,6 +199,7 @@ if "downVote" in form or "upVote" in form:
 			print "target: " +str(targId)
 			if value.id == targId:
 				print "found"
+				print "title: " + allPosts[index].title
 				allPosts[index].decreaseScore()
 				break
 	elif "upVote" in form:
