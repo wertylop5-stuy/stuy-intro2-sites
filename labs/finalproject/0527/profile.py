@@ -41,12 +41,6 @@ def authenticate(u,ID,IP):
 			return a[1]==str(ID) and a[2]==IP
 	return False
 
-#def makePage():
-#	return """<form method="GET" action="makePost.py">
-#	<input name="makePost" type="submit" value="Create a post">
-#	</form>
-#"""
-
 splitChar = chr(182)
 splitPost = chr(208)
 
@@ -150,7 +144,7 @@ if 'HTTP_COOKIE' in os.environ:
 """
 			allPosts = stdStuff.objFileToList(stdStuff.directory,
 										stdStuff.postFile)
-			if "downVote" in form or "upVote" in form:
+			"""if "downVote" in form or "upVote" in form:
 				targId = form.getvalue("postId")
 				'''
 				if "downVote" in form:
@@ -180,7 +174,7 @@ if 'HTTP_COOKIE' in os.environ:
 															stdStuff.postFile)
 							allPosts = stdStuff.objFileToList(stdStuff.directory,
 										stdStuff.postFile)
-				
+				"""
 			
 			### PUT PAGE STUFF HERE
 			if "postTitle" in form:
