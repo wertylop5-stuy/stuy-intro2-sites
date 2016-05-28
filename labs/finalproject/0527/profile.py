@@ -103,7 +103,7 @@ def makePage():
 	
 	#not sure why it doesnt work
 	postList = stdStuff.objFileToList(stdStuff.directory, stdStuff.postFile)
-	print postList
+	print len(postList)
 	for post in postList:
 		res += displayPost(post, "h1", "p", "h6")
 	
