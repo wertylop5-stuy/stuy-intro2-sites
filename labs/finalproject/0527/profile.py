@@ -101,6 +101,7 @@ def displayPost(postObj, titleTag, bodyTag, userTag, commentTag=""):
 	return postResult
 
 def makePage():
+	global body
 	res = str(poster())
 	
 	#not sure why it doesnt work
