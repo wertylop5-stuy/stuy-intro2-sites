@@ -54,12 +54,18 @@ else:
 			userReadStream.close()
 		
 		if nameIsAvailable(userList, form.getvalue("username")):
-			userWriteStream = open(stdStuff.directory + stdStuff.userFile, "a")
-			pickle.dump(stdStuff.User(form.getvalue("username"),\
-								hashlib.sha256(form.getvalue("password"))
-									.hexdigest()), userWriteStream)
-			userWriteStream.close()
-			body += 'Successfully added. <a href="login.py"> Click here to log in</a>.<br>'
+			with open(stdStuff.directory + stdStuff.userFile, "a") \
+			as userWriteStream:
+				userWriteStream = open(stdStuff.directory + stdStuff.userFile, "a")
+				pickle.dump(
+					stdStuff.User(
+						form.getvalue("username"),
+						hashlib.sha256(form.getvalue("password"))
+							.hexdigest()),
+					userWriteStream)
+			
+			body += \
+			'Successfully added. <a href="login.py"> Click here to log in</a>.<br>'
 		else:
 			body += 'Username already taken!'
 		
