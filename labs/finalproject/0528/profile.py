@@ -1,5 +1,5 @@
 #!/usr/bin/python
-#TODO include \n in posts, make upvote/downvote blah
+#TODO include \n in posts, friends
 import Cookie,os,cgi,pickle,sys,cgitb,hashlib
 
 cgitb.enable()

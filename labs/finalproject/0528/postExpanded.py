@@ -1,6 +1,5 @@
 #!/usr/bin/python
 #This file is to view an expanded file
-#TODO start reading from comment file
 
 print 'content-type: text/html'
 print ''

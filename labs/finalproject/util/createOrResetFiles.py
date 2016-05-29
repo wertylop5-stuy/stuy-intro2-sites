@@ -9,7 +9,7 @@ directory = "../data/"
 fileN = "counter.txt"
 
 f = open(directory + fileN,'w')
-f.write("0")
+#f.write("0")
 f.close()
 
 print "Completed attempt<br>"

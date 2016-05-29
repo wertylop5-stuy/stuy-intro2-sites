@@ -16,6 +16,11 @@ class User:
 	def __init__(self, name, password):
 		self.name = name
 		self.password = password
+		
+		#holds a list of friend NAMES
+		self.friends = []
+		
+		self.inbox = Inbox(name)
 
 class Post:
 	'''A post in the system'''
@@ -47,6 +52,36 @@ class Comment:
 		self.text = text
 		self.score = 0
 
+class Inbox:
+	'''Each user's inbox'''
+	def __init__(self, user):
+		self.user = user
+		self.size = 0
+		self.messages = []
+	
+	def listMessages(self):
+		for message in messages:
+			message.display()
+	
+	def sendMessage(self, message):
+		'''Send a message to a user'''
+		pass
+
+class Message:
+	'''A message'''
+	def __init__(self, user, title, text):
+		self.user = user
+		self.title = title
+		self.text = text
+	
+	def display(self):
+		'''Display message contents in html'''
+		res = ""
+		res += makeTag("h5", self.user)
+		res += makeTag("h3", self.title)
+		res += makeTag("p", self.text)
+		return res
+
 def makeTag(tag, text):
 	return "<" + tag + ">" + str(text) + "</" + tag + ">"
 
@@ -77,11 +112,6 @@ def objFileToList(directory, targFile):
 
 def objListToFile(objList, directory, targFile):
 	"""Writes a list of objects to a file"""
-	'''
-	with open(directory + targFile, "w") as objWStream:
-		for x in objList:
-			pickle.dump(x, objWStream)
-	'''
 	objWStream = open(directory + targFile, "wb")
 	objWStream.write("")
 	for x in objList:
