@@ -33,8 +33,8 @@ class User(object):
 	
 	def displayPosts(self, idTag="h6", userTag="h2", titleTag="h1", textTag="p"):
 		res = ""
-		print idTag
 		for x in self.posts:
+			print x.title
 			x.display(idTag, userTag, titleTag, textTag)
 		return res
 
