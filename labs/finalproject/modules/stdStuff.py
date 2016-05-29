@@ -157,7 +157,7 @@ def objListToFile(objList, directory, targFile):
 
 def getCounter():
 	counter = -1
-	with open(counterFile, "r") as countStream:
+	with open(directory + counterFile, "r") as countStream:
 		counter = int(countStream.read())
 	return counter
 
