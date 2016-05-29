@@ -27,8 +27,7 @@ foot = \
 thing = stdStuff.objFileToList(stdStuff.directory, stdStuff.userFile)
 
 for x in thing:
-	for y in x.posts:
-		body += y.display()
+	body += x.displayPosts()
 
 
 

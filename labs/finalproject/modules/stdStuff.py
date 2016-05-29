@@ -30,6 +30,12 @@ class User(object):
 	
 	def addFriend(self, friendName):
 		self.friends.append(friendName)
+	
+	def displayPosts(self, idTag="h6", userTag="h2", titleTag="h1", textTag="p"):
+		res = ""
+		for x in self.posts:
+			x.display(idTag, userTag, titleTag, textTag)
+		return res
 
 class TextContainer(object):
 	'''A standard class title, text etc. Inherit from this class'''
