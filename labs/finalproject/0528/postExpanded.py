@@ -74,6 +74,7 @@ def displayPost(id, cookie, titleTag, bodyTag, userTag, commentTag):
 			for post in x.posts:
 				if post.id == id:
 					res += post.display()
+					res += post.displayComments()
 			break
 	return res
 

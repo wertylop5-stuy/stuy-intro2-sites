@@ -75,6 +75,12 @@ class Post(TextContainer):
 		res += makeTag(textTag, self.text)
 		return res
 	
+	def displayComments(self):
+		res = ""
+		for x in self.comments:
+			res += x.display()
+		return res
+	
 	def addComment(self, user, text):
 		self.comments.append( Comment(user, text))
 	
@@ -90,6 +96,13 @@ class Comment(TextContainer):
 		super(Comment, self).__init__(id, user, "", text)
 		
 		self.score = 0
+	
+	def display(self, idTag="h6", userTag="h3", textTag="p"):
+		res = ""
+		res += makeTag(idTag, self.id)
+		res += makeTag(userTag, self.user)
+		res += makeTag(textTag, self.text)
+		return res
 
 class Inbox(object):
 	'''Each user's inbox'''
