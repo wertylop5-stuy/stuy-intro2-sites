@@ -17,14 +17,19 @@ class User(object):
 	def __init__(self, name, password):
 		self.name = name
 		self.password = password
+		self.inbox = Inbox(name)
 		
 		#holds a list of friend NAMES
 		self.friends = []
 		
-		self.inbox = Inbox(name)
-		
 		#holds post objects
 		self.posts = []
+	
+	def addPost(self, post):
+		self.posts.append(post)
+	
+	def addFriend(self, friendName):
+		self.friends.append(friendName)
 
 class TextContainer(object):
 	'''A standard class title, text etc. Inherit from this class'''
@@ -36,6 +41,14 @@ class TextContainer(object):
 		self.user = user
 		self.title = title
 		self.text = text
+	
+	def display(self):
+		res = ""
+		res += makeTag("h6", self.id)
+		res += makeTag("h2", self.user)
+		res += makeTag("h1", self.title)
+		res += makeTag("p", self.text)
+		return res
 
 class Post(TextContainer):
 	'''A post in the system'''
@@ -46,6 +59,15 @@ class Post(TextContainer):
 		
 		#Holds comment objects
 		self.comments = []
+	
+	def display(self, idTag, userTag, titleTag, textTag):
+		'''Prints html of the post'''
+		res = ""
+		res += makeTag(idTag, self.id)
+		res += makeTag(userTag, self.user)
+		res += makeTag(titleTag, self.title)
+		res += makeTag(textTag, self.text)
+		return res
 	
 	def addComment(self, user, text):
 		self.comments.append( Comment(user, text))
@@ -132,6 +154,19 @@ def objListToFile(objList, directory, targFile):
 	for x in objList:
 		pickle.dump(x, objWStream)
 	objWStream.close()
+
+def getCounter():
+	counter = -1
+	with open(counterFile, "r") as countStream:
+		counter = int(countStream.read())
+	return counter
+
+def setCounter(current)
+	with open(directory + counterFile, "w") as countWStream:
+		countWStream.write(str(current + 1))
+
+
+
 
 
 
