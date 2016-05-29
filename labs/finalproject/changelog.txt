@@ -18,3 +18,11 @@ Beginning to read in files
 5/26
 Rewrote entire project to use objects. Much cleaner and comment system working.
 Log out buttons implemented
+
+5/27
+Started implementing the up/downvote system. 
+Major bugs came about in regard to the writing of the post objects.
+After 3 hours, I resolved it. It was due to me confusing types of the
+variables (I wish there was explicit typing!).
+Buttons have been reworked into links so more than one variable can be 
+passed into the url (Gordon's idea).
