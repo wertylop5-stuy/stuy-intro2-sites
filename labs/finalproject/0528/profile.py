@@ -79,7 +79,7 @@ def writePost(cookie, formThing):
 							formThing.getvalue('textBody')))
 			break
 	
-	setCounter(counter)
+	stdStuff.setCounter(counter)
 	stdStuff.objListToFile(userList, stdStuff.directory, stdStuff.userFile)
 
 def makeTag(tag, text):
