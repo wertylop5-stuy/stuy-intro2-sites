@@ -35,11 +35,11 @@ def poster():
 <br>
 <br>
 <br>
-<form action = "profile.py" method = "GET">
+<form action = "postExpanded.py" method = "GET">
 Text: <textarea name="comment" rows="10" cols="15">
 </textarea>
 <br>
-<input type = "submit" value = "Make comment">
+<input name="done" type="submit" value="Make comment">
 </form>'''
 
 def displayPost(id, cookie, titleTag, bodyTag, userTag, commentTag):
@@ -121,7 +121,7 @@ if 'HTTP_COOKIE' in os.environ:
 			lol.close()
 			
 			if "done" in form:
-				writeComment(form.getvalue("comment"), c, targId)
+				writeComment(targId, c, form.getvalue("comment"))
 			
 			body += displayPost(targId, c, "", "", "", "")
 			body += poster()
