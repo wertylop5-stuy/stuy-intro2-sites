@@ -41,6 +41,8 @@ Text: <textarea name="comment" rows="10" cols="15">
 <br>
 <input type = "submit" value = "Make comment">
 </form>'''
+
+
 """
 def displayPost(postObj, titleTag, bodyTag, userTag, commentTag):
 	postResult = ""
@@ -74,7 +76,7 @@ def displayPost(id, cookie, titleTag, bodyTag, userTag, commentTag):
 			for post in x.posts:
 				if post.id == id:
 					res += post.display()
-					res += "<h3>Comments</h3>"
+					res += "<br><h3>Comments</h3><br>"
 					res += post.displayComments()
 			break
 	return res
@@ -142,7 +144,7 @@ if 'HTTP_COOKIE' in os.environ:
 				writeComment(form.getvalue("comment"), c, targId)
 			
 			body += displayPost(targId, c, "", "", "", "")
-			
+			body += poster()
 			
 			body += """<a href="profile.py">Go back to profile</a>"""
 		else:
