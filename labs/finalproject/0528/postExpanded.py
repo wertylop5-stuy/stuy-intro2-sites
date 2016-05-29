@@ -42,31 +42,6 @@ Text: <textarea name="comment" rows="10" cols="15">
 <input type = "submit" value = "Make comment">
 </form>'''
 
-
-"""
-def displayPost(postObj, titleTag, bodyTag, userTag, commentTag):
-	postResult = ""
-	postResult += 	stdStuff.makeTag(userTag, postObj.id) + \
-					stdStuff.makeTag(userTag, postObj.user) + \
-					stdStuff.makeTag(titleTag, postObj.title) + \
-					stdStuff.makeTag(bodyTag, postObj.text)
-	postResult += "<br><h6>Comments</h6><br>"
-	postResult += displayComments(postObj.comments, userTag, commentTag)
-	
-	postResult += '''<br>
-<br>
-<br>
-<br>
-<form action = "postExpanded.py" method = "GET">
-Comment: <textarea name="comment" rows="10" cols="15">
-</textarea>
-<br>
-<input type = "submit" name="done" value = "done">
-</form>'''
-	
-	return postResult
-"""
-
 def displayPost(id, cookie, titleTag, bodyTag, userTag, commentTag):
 	res = ""
 	userList = stdStuff.objFileToList(stdStuff.directory, stdStuff.userFile)
@@ -80,14 +55,7 @@ def displayPost(id, cookie, titleTag, bodyTag, userTag, commentTag):
 					res += post.displayComments()
 			break
 	return res
-
-def displayComments(commentList, userTag, bodyTag):
-	res = ""
-	for comment in commentList:
-		res += 	stdStuff.makeTag(userTag, comment.user) + \
-				stdStuff.makeTag(bodyTag, comment.text)
-	return res
-
+'''
 def writeComment(commentText, cookie, targId):
 	allPosts = stdStuff.objFileToList(stdStuff.directory,
 										 stdStuff.postFile)
@@ -99,6 +67,18 @@ def writeComment(commentText, cookie, targId):
 	for x in allPosts:
 		pickle.dump(x, commentWStream)
 	commentWStream.close()
+'''
+
+def writeComment(targId, cookie, commentText):
+	targName = cookie["username"].value
+	allUsers = stdStuff.objFileToList(stdStuff.directory,
+										 stdStuff.userFile)
+	for index, value in enumerate(allUsers):
+		if value.name == targName:
+			for index2, value2 in enumerate(value.posts):
+				if int(value2.id) == int(targId):
+					value.posts[index2].addComment(targName, targId)
+	stdStuff.objListToFile(stdStuff.directory, stdStuff.userFile)
 
 def authenticate(u,ID,IP):
     loggedIn = open(stdStuff.directory + stdStuff.logFile,'r').read().split('\n')
