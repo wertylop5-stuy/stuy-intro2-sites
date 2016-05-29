@@ -116,9 +116,28 @@ def makePage(cookie):
 	
 	for x in userList:
 		if x.name == cookie["username"].value:
-			res += x.displayPosts()
-			break
+			for post in x.posts:
+				res += """<table>
+<tr>
+	<td>""" + str(post.score) + """</td>
+	<td>
+"""
+				res += post.display()
+				
+				res += "<a href='profile.py?downVote=lol&postId="+\
+	str(post.id) + "'>Down Vote</a><br>"
 	
+				res += "<a href='profile.py?upVote=lol&postId="+\
+	str(post.id) + "'>Up Vote</a><br>"
+	
+				res += """<a href='postExpanded.py?expandButton=""" + \
+	str(post.id) + "'>Comment </a>"
+	
+				res += """</td>
+	</tr>
+</table>
+"""
+			break
 	return res
 
 
