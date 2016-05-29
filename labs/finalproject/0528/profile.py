@@ -1,4 +1,5 @@
 #!/usr/bin/python
+print 'content-type: text/html\n'
 #TODO include \n in posts, friends, fix up post displaying and upvotes
 import Cookie,os,cgi,pickle,sys,cgitb,hashlib
 
@@ -165,7 +166,7 @@ if 'HTTP_COOKIE' in os.environ:
 """
 			if "postTitle" in form:
 				writePost(c, form)
-
+			'''
 			allPosts = []
 			if "downVote" in form or "upVote" in form:
 				targId = int(form.getvalue("postId"))
@@ -185,7 +186,29 @@ if 'HTTP_COOKIE' in os.environ:
 	
 				allPosts = stdStuff.objFileToList(stdStuff.directory,
 							 stdStuff.postFile)
-			
+			'''
+			if "downVote" in form or "upVote" in form:
+				targId = int(form.getvalue("postId"))
+				targName = c["username"].value
+				
+				userList = stdStuff.objFileToList(stdStuff.directory,
+									stdStuff.userFile)
+				
+				for x in userList:
+					if x.name == targName:
+						if "downVote" in form:
+							for index, value in enumerate(x.posts):
+								if value.id == targId:
+									x.posts[index].decreaseScore()
+									break
+						elif "upVote" in form:
+							for index, value in enumerate(x.posts):
+								if value.id == targId:
+									x.posts[index].increaseScore()
+									break
+						stdStuff.objListToFile(allPosts, stdStuff.directory,
+												 stdStuff.postFile)
+					break
 			
 			body+=makePage(c)
 		else:
@@ -199,8 +222,7 @@ else:
 	body+='Go Login <a href="login.py">here</a><br>'
 
 
-print 'content-type: text/html'
-print ''
+
 
 
 

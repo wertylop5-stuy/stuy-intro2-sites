@@ -26,3 +26,13 @@ After 3 hours, I resolved it. It was due to me confusing types of the
 variables (I wish there was explicit typing!).
 Buttons have been reworked into links so more than one variable can be 
 passed into the url (Gordon's idea).
+
+5/28
+Another project rewrite. This happens to be the drawbacks of not
+planning from the beginning. I rewrote the stdStuff classes to
+use inheritance (potentially useful in the future). The code has been 
+refactored so most of the classes now have instance methods (such as
+display). The rest of the pages have been rewritten to make use of the new
+functions. The main reason for the second rewrite is to make the
+implementation of friends simpler. The User class now has an array to store 
+posts.
