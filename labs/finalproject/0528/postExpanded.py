@@ -41,7 +41,7 @@ Text: <textarea name="comment" rows="10" cols="15">
 <br>
 <input type = "submit" value = "Make comment">
 </form>'''
-
+"""
 def displayPost(postObj, titleTag, bodyTag, userTag, commentTag):
 	postResult = ""
 	postResult += 	stdStuff.makeTag(userTag, postObj.id) + \
@@ -63,6 +63,19 @@ Comment: <textarea name="comment" rows="10" cols="15">
 </form>'''
 	
 	return postResult
+"""
+
+def displayPost(id, titleTag, bodyTag, userTag, commentTag):
+	res = ""
+	userList = stdStuff.objFileToList(stdStuff.directory, stdStuff.userFile)
+	
+	for x in userList:
+		if x.name == cookie["username"].value:
+			for post in x.posts:
+				if post.id == id:
+					res += post.display()
+			break
+	return res
 
 def displayComments(commentList, userTag, bodyTag):
 	res = ""
@@ -126,13 +139,8 @@ if 'HTTP_COOKIE' in os.environ:
 			if "done" in form:
 				writeComment(form.getvalue("comment"), c, targId)
 			
+			body += displayPost(targId)
 			
-			allPosts = stdStuff.objFileToList(stdStuff.directory,
-										 stdStuff.postFile)
-			for x in allPosts:
-				if x.id == targId:
-					body += displayPost(x, "h1", "p", "h3", "p")
-					break
 			
 			body += """<a href="profile.py">Go back to profile</a>"""
 		else:
