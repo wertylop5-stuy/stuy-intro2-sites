@@ -35,7 +35,7 @@ class User(object):
 		res = ""
 		for x in self.posts:
 			print x.title
-			x.display(idTag, userTag, titleTag, textTag)
+			res += x.display(idTag, userTag, titleTag, textTag)
 		return res
 
 class TextContainer(object):
