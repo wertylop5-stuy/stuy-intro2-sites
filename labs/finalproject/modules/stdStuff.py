@@ -8,10 +8,11 @@ counterFile = "counter.txt"
 commentFile = "comments.txt"
 postIdFile = "postId.txt"
 
+#possibly deprecated
 splitChar = chr(182)
 splitPost = chr(208)
 
-class User:
+class User(object):
 	'''a user of the blog system'''
 	def __init__(self, name, password):
 		self.name = name
@@ -21,15 +22,26 @@ class User:
 		self.friends = []
 		
 		self.inbox = Inbox(name)
+		
+		#holds post objects
+		self.posts = []
 
-class Post:
-	'''A post in the system'''
+class TextContainer(object):
+	'''A standard class title, text etc. Inherit from this class'''
+	
 	def __init__(self, id, user, title, text):
 		#should be an int
 		self.id = id
+		
 		self.user = user
 		self.title = title
 		self.text = text
+
+class Post(TextContainer):
+	'''A post in the system'''
+	def __init__(self, id, user, title, text):
+		super(Post, self).__init__(id, user, title, text)
+		
 		self.score = 0
 		
 		#Holds comment objects
@@ -43,16 +55,15 @@ class Post:
 	
 	def decreaseScore(self):
 		self.score -= 1
-	
 
-class Comment:
+class Comment(TextContainer):
 	'''A comment in the system'''
-	def __init__(self, user, text):
-		self.user = user
-		self.text = text
+	def __init__(self, id, user, text):
+		super(Comment, self).__init__(id, user, "", text)
+		
 		self.score = 0
 
-class Inbox:
+class Inbox(object):
 	'''Each user's inbox'''
 	def __init__(self, user):
 		self.user = user
@@ -67,12 +78,10 @@ class Inbox:
 		'''Send a message to a user'''
 		pass
 
-class Message:
+class Message(TextContainer):
 	'''A message'''
-	def __init__(self, user, title, text):
-		self.user = user
-		self.title = title
-		self.text = text
+	def __init__(self, id, user, title, text):
+		super(Message, self).__init__(id, user, title, text)
 	
 	def display(self):
 		'''Display message contents in html'''
@@ -81,6 +90,12 @@ class Message:
 		res += makeTag("h3", self.title)
 		res += makeTag("p", self.text)
 		return res
+
+
+
+
+
+
 
 def makeTag(tag, text):
 	return "<" + tag + ">" + str(text) + "</" + tag + ">"
