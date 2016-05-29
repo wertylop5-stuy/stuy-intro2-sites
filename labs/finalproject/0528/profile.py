@@ -46,6 +46,7 @@ Text: <textarea name="textBody" rows="10" cols="15">
 <input type = "submit" value = "Make Post">
 </form>'''
 
+'''
 def writePost(cookie, formThing):
 	countStream = open(stdStuff.directory + stdStuff.counterFile, "r")
 	counter = int(countStream.read())
@@ -63,6 +64,23 @@ def writePost(cookie, formThing):
 	countWStream = open(stdStuff.directory + stdStuff.counterFile, "w")
 	countWStream.write(str(counter))
 	countWStream.close()
+'''
+def writePost(cookie, formThing):
+	counter = stdStuff.getCounter()
+	
+	userList = stdStuff.objFileToList(stdStuff.directory, stdStuff.userFile)
+	
+	for x in userList:
+		if x.name == cookie["username"].value:
+			x.addPost( stdStuff.Post(
+							counter, 
+							cookie["username"].value,
+							formThing.getvalue("postTitle"),
+							formThing.getvalue('textBody')))
+			break
+	
+	setCounter(counter)
+	stdStuff.objListToFile(userList, stdStuff.directory, stdStuff.userFile)
 
 def makeTag(tag, text):
 	return "<" + tag + ">" + str(text) + "</" + tag + ">"
@@ -104,9 +122,9 @@ def makePage():
 	#not sure why it doesnt work
 	postList = stdStuff.objFileToList(stdStuff.directory, stdStuff.postFile)
 	#print len(postList)
-	for post in postList:
+	'''for post in postList:
 		res += displayPost(post, "h1", "p", "h6")
-	
+	'''
 	return res
 
 

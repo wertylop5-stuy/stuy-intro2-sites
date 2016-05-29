@@ -1,5 +1,7 @@
 #! /usr/bin/python
-import sys,pickle
+import sys,pickle,cgitb
+
+cgitb.enable()
 
 sys.path.insert(0, "../modules")
 import stdStuff
@@ -22,7 +24,11 @@ foot = \
 '''
 
 
-testInbox = stdStuff.Inbox("hello")
+thing = stdStuff.objFileToList(stdStuff.directory, stdStuff.userFile)
+
+for x in thing:
+	for y in x.posts:
+		print y.display()
 
 
 
