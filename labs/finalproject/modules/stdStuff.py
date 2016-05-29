@@ -60,7 +60,7 @@ class Post(TextContainer):
 		#Holds comment objects
 		self.comments = []
 	
-	def display(self, idTag, userTag, titleTag, textTag):
+	def display(self, idTag="h6", userTag="h2", titleTag="h1", textTag="p"):
 		'''Prints html of the post'''
 		res = ""
 		res += makeTag(idTag, self.id)
