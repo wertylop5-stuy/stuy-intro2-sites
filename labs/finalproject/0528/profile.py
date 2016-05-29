@@ -46,25 +46,6 @@ Text: <textarea name="textBody" rows="10" cols="15">
 <input type = "submit" value = "Make Post">
 </form>'''
 
-'''
-def writePost(cookie, formThing):
-	countStream = open(stdStuff.directory + stdStuff.counterFile, "r")
-	counter = int(countStream.read())
-	countStream.close()
-	
-	postWStream = open(stdStuff.directory + stdStuff.postFile, "ab")
-	pickle.dump(stdStuff.Post(counter, 
-							cookie["username"].value,
-							formThing.getvalue("postTitle"),
-							formThing.getvalue('textBody')),
-				postWStream)
-	postWStream.close
-	
-	counter += 1
-	countWStream = open(stdStuff.directory + stdStuff.counterFile, "w")
-	countWStream.write(str(counter))
-	countWStream.close()
-'''
 def writePost(cookie, formThing):
 	counter = stdStuff.getCounter()
 	
@@ -84,7 +65,7 @@ def writePost(cookie, formThing):
 
 def makeTag(tag, text):
 	return "<" + tag + ">" + str(text) + "</" + tag + ">"
-
+'''
 #reads in posts
 def displayPost(postObj, titleTag, bodyTag, userTag, commentTag=""):
 	postResult = ""
@@ -115,6 +96,7 @@ def displayPost(postObj, titleTag, bodyTag, userTag, commentTag=""):
 """
 	
 	return postResult
+'''
 
 def makePage():
 	res = str(poster())
@@ -127,6 +109,17 @@ def makePage():
 	'''
 	return res
 
+def makePage():
+	res = str(poster())
+	
+	userList = stdStuff.objFileToList(stdStuff.directory, stdStuff.userFile)
+	
+	for x in userList:
+		if x.name == cookie["username"].value:
+			res += x.displayPosts()
+			break
+	
+	return res
 
 
 if 'HTTP_COOKIE' in os.environ:
