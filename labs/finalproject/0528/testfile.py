@@ -28,7 +28,7 @@ thing = stdStuff.objFileToList(stdStuff.directory, stdStuff.userFile)
 
 for x in thing:
 	for y in x.posts:
-		print y.display()
+		body += y.display()
 
 
 
