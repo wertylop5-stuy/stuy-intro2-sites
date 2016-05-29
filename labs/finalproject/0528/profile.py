@@ -206,8 +206,8 @@ if 'HTTP_COOKIE' in os.environ:
 								if value.id == targId:
 									x.posts[index].increaseScore()
 									break
-						stdStuff.objListToFile(allPosts, stdStuff.directory,
-												 stdStuff.postFile)
+						stdStuff.objListToFile(userList, stdStuff.directory,
+												 stdStuff.userFile)
 					break
 			
 			body+=makePage(c)
