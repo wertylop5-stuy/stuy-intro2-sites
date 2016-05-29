@@ -1,6 +1,6 @@
 #! /usr/bin/python
 import sys,pickle,cgitb
-
+print "content-type: text/html\n"
 cgitb.enable()
 
 sys.path.insert(0, "../modules")
@@ -28,13 +28,13 @@ thing = stdStuff.objFileToList(stdStuff.directory, stdStuff.userFile)
 
 for user in thing:
 	print "g"
+	print user.name
 	body += user.displayPosts()
 
 
 
 
 
-print "content-type: text/html\n"
 print head
 print body
 print foot
