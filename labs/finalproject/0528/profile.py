@@ -97,19 +97,19 @@ def displayPost(postObj, titleTag, bodyTag, userTag, commentTag=""):
 	
 	return postResult
 '''
-
+'''
 def makePage():
 	res = str(poster())
 	
 	#not sure why it doesnt work
 	postList = stdStuff.objFileToList(stdStuff.directory, stdStuff.postFile)
 	#print len(postList)
-	'''for post in postList:
+	for post in postList:
 		res += displayPost(post, "h1", "p", "h6")
-	'''
+	
 	return res
-
-def makePage():
+'''
+def makePage(cookie):
 	res = str(poster())
 	
 	userList = stdStuff.objFileToList(stdStuff.directory, stdStuff.userFile)
@@ -168,7 +168,7 @@ if 'HTTP_COOKIE' in os.environ:
 							 stdStuff.postFile)
 			
 			
-			body+=makePage()
+			body+=makePage(c)
 		else:
 			body+="Failed to Authenticate cookie<br>\n"
 			body+= 'Go Login <a href="login.py">here</a><br>'
