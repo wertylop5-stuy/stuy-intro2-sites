@@ -73,12 +73,15 @@ def writeComment(targId, cookie, commentText):
 	targName = cookie["username"].value
 	allUsers = stdStuff.objFileToList(stdStuff.directory,
 										 stdStuff.userFile)
+	counter = stdStuff.getCounter()
+	
 	for index, value in enumerate(allUsers):
 		if value.name == targName:
 			for index2, value2 in enumerate(value.posts):
 				if int(value2.id) == int(targId):
-					value.posts[index2].addComment(targName, targId)
+					value.posts[index2].addComment(counter, targName, targId)
 	stdStuff.objListToFile(stdStuff.directory, stdStuff.userFile)
+	stdStuff.setCounter(counter)
 
 def authenticate(u,ID,IP):
     loggedIn = open(stdStuff.directory + stdStuff.logFile,'r').read().split('\n')

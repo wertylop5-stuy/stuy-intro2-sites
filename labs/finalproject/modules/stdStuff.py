@@ -81,8 +81,8 @@ class Post(TextContainer):
 			res += x.display()
 		return res
 	
-	def addComment(self, user, text):
-		self.comments.append( Comment(user, text))
+	def addComment(self, id, user, text):
+		self.comments.append( Comment(id, user, text))
 	
 	def increaseScore(self):
 		self.score += 1
