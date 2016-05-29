@@ -80,7 +80,7 @@ def writeComment(targId, cookie, commentText):
 			for index2, value2 in enumerate(value.posts):
 				if int(value2.id) == int(targId):
 					value.posts[index2].addComment(counter, targName, targId)
-	stdStuff.objListToFile(stdStuff.directory, stdStuff.userFile)
+	stdStuff.objListToFile(allUsers, stdStuff.directory, stdStuff.userFile)
 	stdStuff.setCounter(counter)
 
 def authenticate(u,ID,IP):
