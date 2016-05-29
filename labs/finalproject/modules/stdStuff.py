@@ -161,7 +161,7 @@ def getCounter():
 		counter = int(countStream.read())
 	return counter
 
-def setCounter(current)
+def setCounter(current):
 	with open(directory + counterFile, "w") as countWStream:
 		countWStream.write(str(current + 1))
 
