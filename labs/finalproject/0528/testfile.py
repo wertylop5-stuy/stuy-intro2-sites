@@ -27,6 +27,7 @@ foot = \
 thing = stdStuff.objFileToList(stdStuff.directory, stdStuff.userFile)
 
 for user in thing:
+	print "g"
 	body += user.displayPosts()
 
 
