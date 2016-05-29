@@ -65,7 +65,7 @@ Comment: <textarea name="comment" rows="10" cols="15">
 	return postResult
 """
 
-def displayPost(id, titleTag, bodyTag, userTag, commentTag):
+def displayPost(id, cookie, titleTag, bodyTag, userTag, commentTag):
 	res = ""
 	userList = stdStuff.objFileToList(stdStuff.directory, stdStuff.userFile)
 	
@@ -139,7 +139,7 @@ if 'HTTP_COOKIE' in os.environ:
 			if "done" in form:
 				writeComment(form.getvalue("comment"), c, targId)
 			
-			body += displayPost(targId, "", "", "", "")
+			body += displayPost(targId, c, "", "", "", "")
 			
 			
 			body += """<a href="profile.py">Go back to profile</a>"""
