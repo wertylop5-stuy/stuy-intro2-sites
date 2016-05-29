@@ -139,7 +139,7 @@ if 'HTTP_COOKIE' in os.environ:
 			if "done" in form:
 				writeComment(form.getvalue("comment"), c, targId)
 			
-			body += displayPost(targId)
+			body += displayPost(targId, "", "", "", "")
 			
 			
 			body += """<a href="profile.py">Go back to profile</a>"""
