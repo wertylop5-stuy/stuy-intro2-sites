@@ -79,7 +79,7 @@ def writeComment(targId, cookie, commentText):
 		if value.name == targName:
 			for index2, value2 in enumerate(value.posts):
 				if int(value2.id) == int(targId):
-					value.posts[index2].addComment(counter, targName, targId)
+					value.posts[index2].addComment(counter, targName, commentText)
 	stdStuff.objListToFile(allUsers, stdStuff.directory, stdStuff.userFile)
 	stdStuff.setCounter(counter)
 
