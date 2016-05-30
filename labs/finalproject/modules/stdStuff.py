@@ -121,14 +121,20 @@ class Inbox(object):
 		for message in messages:
 			message.display()
 	
-	def sendMessage(self, message):
+	def sendMessage(self, recipient, title, message):
 		'''Send a message to a user'''
-		pass
+		counter = getCounter()
+		userDict = objFileToList(directory, userFile, byName=True)
+		userDict[recipient].inbox.append(
+						Message(counter, recipient, title, message))
+		objListToFile(directory, userFile, isDict=True)
+		setCounter(counter)
 
 class Message(TextContainer):
 	'''A message'''
-	def __init__(self, id, user, title, text):
+	def __init__(self, id, user, title, text, viewed=False):
 		super(Message, self).__init__(id, user, title, text)
+		self.viewed = viewed
 	
 	def display(self):
 		'''Display message contents in html'''
@@ -136,6 +142,9 @@ class Message(TextContainer):
 		res += makeTag("h5", self.user)
 		res += makeTag("h3", self.title)
 		res += makeTag("p", self.text)
+		
+		#for the first time a message is displayed
+		self.viewed = True
 		return res
 
 

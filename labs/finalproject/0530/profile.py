@@ -66,54 +66,10 @@ def writePost(cookie, formThing):
 
 def makeTag(tag, text):
 	return "<" + tag + ">" + str(text) + "</" + tag + ">"
-'''
-#reads in posts
-def displayPost(postObj, titleTag, bodyTag, userTag, commentTag=""):
-	postResult = ""
-	
-	postResult += """<table>
-<tr>
-	<td>""" + str(postObj.score) + """</td>
-	<td>
-"""
-	
-	postResult +=	makeTag(userTag, postObj.id) + \
-					makeTag(userTag, postObj.user) + \
-					makeTag(titleTag, postObj.title) + \
-					makeTag(bodyTag, postObj.text)
-	
-	postResult += "<a href='profile.py?downVote=lol&postId="+\
-	str(postObj.id) + "'>Down Vote</a><br>"
-	
-	postResult += "<a href='profile.py?upVote=lol&postId="+\
-	str(postObj.id) + "'>Up Vote</a><br>"
-	
-	postResult += """<a href='postExpanded.py?expandButton=""" + \
-	str(postObj.id) + "'>Comment </a>"
-	
-	postResult += """</td>
-	</tr>
-</table>
-"""
-	
-	return postResult
-'''
-'''
-def makePage():
-	res = str(poster())
-	
-	#not sure why it doesnt work
-	postList = stdStuff.objFileToList(stdStuff.directory, stdStuff.postFile)
-	#print len(postList)
-	for post in postList:
-		res += displayPost(post, "h1", "p", "h6")
-	
-	return res
-'''
 
-def makePage(cookie):
+def displayPosts(cookie):
 	currentUser = cookie["username"].value
-	res = str(poster())
+	res = ""
 	
 	#will sort
 	totalPosts = []
@@ -131,7 +87,6 @@ def makePage(cookie):
 	totalPosts.sort(key=lambda x: x.id, reverse=True)
 	
 	for post in totalPosts:
-	
 		res += """<table>
 		<tr>
 		<td>""" + str(post.score) + """</td>
@@ -154,6 +109,33 @@ str(post.id) + "'>Comment </a>"
 """
 	
 	return res
+
+def displayInboxWidget(cookie):
+	currentUser = cookie["username"].value
+	userDict = stdStuff.objFileToList(stdStuff.directory,
+								stdStuff.userFile, byName=True)
+	
+	res = \
+"""
+<div align='right'>
+	<table border='1'>
+		<tr>
+			<td>
+				<a href="inbox.py">View messages</a>
+			</td>
+		</tr>
+	</table>
+</div>
+"""
+	return res
+
+def makePage(cookie):
+	currentUser = cookie["username"].value
+	res = str(poster())
+	res += displayPosts(cookie)
+	res += displayInboxWidget(cookie)
+	return res
+	
 
 
 if 'HTTP_COOKIE' in os.environ:
@@ -178,7 +160,7 @@ if 'HTTP_COOKIE' in os.environ:
 <input name="logOut" type="submit" value="Log out">
 </form>
 <form method="GET" action="addFriend.py">
-<input name="logOut" type="submit" value="Log out">
+<input name="logOut" type="submit" value="Add a friend">
 </form>
 """
 			if "postTitle" in form:
