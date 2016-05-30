@@ -131,7 +131,6 @@ if 'HTTP_COOKIE' in os.environ:
 
 			if "downVote" in form or "upVote" in form:
 				commentId = int(form.getvalue("commentId"))
-				postId = int(form.getvalue("postId"))
 				targName = c["username"].value
 	
 				userList = stdStuff.objFileToList(stdStuff.directory,
