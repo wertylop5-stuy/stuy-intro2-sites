@@ -74,6 +74,7 @@ def displayReadMessages(cookie):
 def makePage(cookie, showRead):
 	res = ""
 	res += poster()
+	res += "<br><br>"
 	if showRead:
 		res += \
 """
