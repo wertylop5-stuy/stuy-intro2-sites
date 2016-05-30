@@ -46,11 +46,17 @@ Text: <textarea name="messageBody" rows="10" cols="15">
 
 def displayUnreadMessages(cookie):
 	res = "<br><br><br>"
+	orderedMessages = []
 	currentUser = cookie["username"].value
 	userDict = stdStuff.objFileToList(stdStuff.directory,
 								stdStuff.userFile, byName=True)
 	res += """<a href='inbox.py?markRead=all&unread=hey'>Mark all as read</a>"""
 	for message in userDict[currentUser].inbox.messages:
+		orderedMessages.append(message)
+	
+	orderedMessages.sort(key=lambda x: x.id, reverse=True)
+	
+	for message in orderedMessages:
 		if message.viewed == False:
 			res += message.display()
 			res += "<a href='inbox.py?markRead=" + str(message.id) + \
@@ -59,11 +65,17 @@ def displayUnreadMessages(cookie):
 
 def displayReadMessages(cookie):
 	res = "<br><br><br>"
+	orderedMessages = []
 	currentUser = cookie["username"].value
 	userDict = stdStuff.objFileToList(stdStuff.directory,
 								stdStuff.userFile, byName=True)
 	res += "<a href='inbox.py?markUnread=all&read=hey'>Mark all as unread</a>"
 	for message in userDict[currentUser].inbox.messages:
+		orderedMessages.append(message)
+	
+	orderedMessages.sort(key=lambda x: x.id, reverse=True)
+	
+	for message in orderedMessages:
 		if message.viewed == True:
 			res += message.display()
 			res += "<a href='inbox.py?markUnread=" + str(message.id) + \
