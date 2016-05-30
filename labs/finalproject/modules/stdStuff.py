@@ -118,7 +118,7 @@ class Inbox(object):
 		self.messages = []
 	
 	def listMessages(self):
-		for message in messages:
+		for message in self.messages:
 			message.display()
 	
 	def sendMessage(self, recipient, title, message):
