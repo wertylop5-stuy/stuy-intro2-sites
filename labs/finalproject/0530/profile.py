@@ -148,7 +148,7 @@ def makePage(cookie):
 	userDict = stdStuff.objFileToList(stdStuff.directory,
 								stdStuff.userFile, byName=True)
 	
-	for x in userDict
+	for x in userDict:
 		for post in userDict[x].posts:
 			res += """<table>
 	<tr>
@@ -173,7 +173,7 @@ def makePage(cookie):
 	
 	return res
 
-'''
+
 if 'HTTP_COOKIE' in os.environ:
 	cookie_string=os.environ.get('HTTP_COOKIE')
 	c = Cookie.SimpleCookie()
@@ -232,12 +232,8 @@ if 'HTTP_COOKIE' in os.environ:
 else:
 	body+= 'You seem new<br>\n'
 	body+='Go Login <a href="login.py">here</a><br>'
-'''
-if 'HTTP_COOKIE' in os.environ:
-	cookie_string=os.environ.get('HTTP_COOKIE')
-	c = Cookie.SimpleCookie()
-	c.load(cookie_string)
-body+=makePage(c)
+
+
 
 
 
