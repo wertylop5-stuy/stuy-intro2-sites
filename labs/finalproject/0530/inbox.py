@@ -129,7 +129,7 @@ if 'HTTP_COOKIE' in os.environ:
 											form.getvalue("messageTitle"),
 											form.getvalue("messageBody"))
 				except KeyError:
-					body += "<h1>" + recipient + "is not a registered user</h1>"
+					body += "<h1>" + recipient + " is not a registered user</h1>"
 			
 			if "markRead" in form:
 				targetMessage = form.getvalue("markRead")
