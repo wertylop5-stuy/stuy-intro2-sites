@@ -78,7 +78,7 @@ if 'HTTP_COOKIE' in os.environ:
 		IP = os.environ['REMOTE_ADDR']
 		
 		if authenticate(username,ID,IP):
-			currentUser = cookie["username"].value
+			currentUser = c["username"].value
 			userDict = stdStuff.objFileToList(stdStuff.directory,
 								stdStuff.userFile, byName=True)
 			body += """<form method="GET" action="homepage.py">
