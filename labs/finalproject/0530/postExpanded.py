@@ -134,6 +134,7 @@ if 'HTTP_COOKIE' in os.environ:
 		IP = os.environ['REMOTE_ADDR']
 		
 		if authenticate(username,ID,IP):
+			body += "Logged in as: " + username
 			body += """<form method="GET" action="homepage.py">
 <input name="logOut" type="submit" value="Log out">
 </form>

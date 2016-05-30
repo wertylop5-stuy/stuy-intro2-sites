@@ -51,11 +51,10 @@ def displayUnreadMessages(cookie):
 								stdStuff.userFile, byName=True)
 	res += """<a href='inbox.py?markRead=all&unread=hey'>Mark all as read</a>"""
 	for message in userDict[currentUser].inbox.messages:
-		res += message.title
-		'''if message.viewed == False:
+		if message.viewed == False:
 			res += message.display()
 			res += "<a href='inbox.py?markRead=" + str(message.id) + \
-	"&unread=hey'>Mark as read</a>"'''
+	"&unread=hey'>Mark as read</a>"
 	return res
 
 def displayReadMessages(cookie):
@@ -115,6 +114,7 @@ if 'HTTP_COOKIE' in os.environ:
 			currentUser = c["username"].value
 			userDict = stdStuff.objFileToList(stdStuff.directory,
 								stdStuff.userFile, byName=True)
+			body += "Logged in as: " + currentUser
 			body += """<form method="GET" action="homepage.py">
 <input name="logOut" type="submit" value="Log out">
 </form>

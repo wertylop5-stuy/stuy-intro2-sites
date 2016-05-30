@@ -157,6 +157,7 @@ if 'HTTP_COOKIE' in os.environ:
 		
 		if authenticate(username,ID,IP):
 			### PUT PAGE STUFF HERE
+			body += "Logged in as: " + username
 			body += """<form method="GET" action="homepage.py">
 <input name="logOut" type="submit" value="Log out">
 </form>
