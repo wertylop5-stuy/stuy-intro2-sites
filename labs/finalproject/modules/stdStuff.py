@@ -127,7 +127,7 @@ class Inbox(object):
 		'''Send a message to a user'''
 		counter = getCounter()
 		userDict = objFileToList(directory, userFile, byName=True)
-		userDict[recipient].inbox.append(
+		userDict[recipient].inbox.messages.append(
 						Message(counter, self.user, recipient, title, message))
 		objListToFile(directory, userFile, isDict=True)
 		setCounter(counter)
