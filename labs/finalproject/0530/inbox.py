@@ -176,7 +176,7 @@ if 'HTTP_COOKIE' in os.environ:
 			else:
 				body+=makePage(c, False)
 			
-			body += """<br><a href="profile.py">Go back to profile</a>"""
+			body += """<br><br><a href="profile.py">Go back to profile</a>"""
 		else:
 			body+="Failed to Authenticate cookie<br>\n"
 			body+= 'Go Login <a href="login.py">here</a><br>'
