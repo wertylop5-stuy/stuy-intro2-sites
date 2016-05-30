@@ -69,8 +69,8 @@ class Post(TextContainer):
 	def display(self, idTag="h6", userTag="h2", titleTag="h1", textTag="p"):
 		'''Prints html of the post'''
 		res = ""
-		res += "Id: " + makeTag(idTag, self.id)
-		res += "User: " + makeTag(userTag, self.user)
+		res += makeTag(idTag, "Id: " + self.id)
+		res += makeTag(userTag, "User: " + self.user)
 		res += makeTag(titleTag, self.title)
 		res += makeTag(textTag, self.text)
 		return res
@@ -99,8 +99,8 @@ class Comment(TextContainer):
 	
 	def display(self, idTag="h6", userTag="h3", textTag="p"):
 		res = ""
-		res += "Id:" + makeTag(idTag, self.id)
-		res += "User: " + makeTag(userTag, self.user)
+		res += makeTag(idTag, "Id: " + self.id)
+		res += makeTag(userTag, "User: " + self.user)
 		res += makeTag(textTag, self.text)
 		return res
 	
