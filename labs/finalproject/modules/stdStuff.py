@@ -177,13 +177,16 @@ def objFileToList(directory, targFile, byName=False):
 	res = None
 	with open(directory + targFile, "rb") as readStream:
 		try:
-			while True:
-				if byName:
-					#res is a dictionary
+			if byName:
+				#res is a dictionary
+				res = {}
+				while True:
 					temp = pickle.load(readStream)
 					res[temp.name] = temp
-				else:
-					#res is a list
+			else:
+				#res is a list
+				res = []
+				while True:
 					res.append(pickle.load(readStream))
 		except EOFError:
 			pass
