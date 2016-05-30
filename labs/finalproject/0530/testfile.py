@@ -24,11 +24,13 @@ foot = \
 '''
 
 
-thing = stdStuff.objFileToList(stdStuff.directory, stdStuff.userFile)
-print thing
+thing = stdStuff.objFileToList(stdStuff.directory, stdStuff.userFile, byName=True)
 
-for x in thing:
-	print x.password
+stdStuff.objListToFile(thing, stdStuff.directory, stdStuff.userFile, isDict=True)
+
+lol = stdStuff.objFileToList(stdStuff.directory, stdStuff.userFile, byName=True)
+for x in lol:
+	print lol[x].password
 
 
 

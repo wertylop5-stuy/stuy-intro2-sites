@@ -148,30 +148,14 @@ def makeTag(tag, text):
 	return "<" + tag + ">" + str(text) + "</" + tag + ">"
 
 def isFileEmpty(directory, fileN):
+	'''Deprecated, do not use'''
 	readStream = open(directory + fileN, "r")
 	thing = readStream.read()
 	readStream.close()
 	if thing == "":
 		return True
 	return False
-'''
-def objFileToList(directory, targFile):
-	resList = []
-	if isFileEmpty(directory, targFile):
-		return resList
-	readStream = open(directory + targFile, "rb")
-	try:
-		while True:
-			resList.append(pickle.load(readStream))
-	except EOFError:
-		pass
-	except IndexError:
-		pass
-	finally:
-		readStream.close()
-	
-	return resList
-'''
+
 def objFileToList(directory, targFile, byName=False):
 	'''Default makes a list, opt args can make dictionaries'''
 	res = None
@@ -194,7 +178,7 @@ def objFileToList(directory, targFile, byName=False):
 			pass
 	
 	return res
-
+'''
 def objListToFile(objList, directory, targFile):
 	"""Writes a list of objects to a file"""
 	objWStream = open(directory + targFile, "wb")
@@ -202,6 +186,17 @@ def objListToFile(objList, directory, targFile):
 	for x in objList:
 		pickle.dump(x, objWStream)
 	objWStream.close()
+'''
+def objListToFile(objList, directory, targFile, isDict=False):
+	"""Writes a list of objects to a file"""
+	with open(directory + targFile, "wb") as objWStream:
+		objWStream.write("")
+		if isDict:
+			for x in objList:
+				pickle.dump(objList[x], objWStream)
+		else:
+			for x in objList:
+				pickle.dump(x, objWStream)
 
 def getCounter():
 	counter = -1
