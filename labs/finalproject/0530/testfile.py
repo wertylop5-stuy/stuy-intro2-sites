@@ -24,12 +24,11 @@ foot = \
 '''
 
 
-thing = stdStuff.objFileToList(stdStuff.directory, stdStuff.userFile, byName=True)
+thing = stdStuff.objFileToList(stdStuff.directory, stdStuff.userFile)
 print thing
 
 for x in thing:
-	print x
-	print thing[x].password
+	print x.password
 
 
 
