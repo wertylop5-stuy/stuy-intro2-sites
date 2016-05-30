@@ -110,6 +110,7 @@ def makePage():
 	
 	return res
 '''
+'''
 def makePage(cookie):
 	res = str(poster())
 	
@@ -139,6 +140,38 @@ def makePage(cookie):
 </table>
 """
 			break
+	return res
+'''
+def makePage(cookie):
+	res = str(poster())
+	
+	userDict = stdStuff.objFileToList(stdStuff.directory,
+								stdStuff.userFile, byName=True)
+	
+	
+	for x in userDict
+		for post in userDict[x].posts:
+			res += """<table>
+	<tr>
+	<td>""" + str(post.score) + """</td>
+	<td>
+	"""
+			res += post.display()
+		
+			res += "<a href='profile.py?downVote=lol&postId="+\
+	str(post.id) + "'>Down Vote</a><br>"
+
+			res += "<a href='profile.py?upVote=lol&postId="+\
+	str(post.id) + "'>Up Vote</a><br>"
+
+			res += """<a href='postExpanded.py?expandButton=""" + \
+	str(post.id) + "'>Comment </a>"
+
+			res += """</td>
+	</tr>
+	</table>
+"""
+	
 	return res
 
 
@@ -176,23 +209,6 @@ if 'HTTP_COOKIE' in os.environ:
 				
 				userDict = stdStuff.objFileToList(stdStuff.directory,
 									stdStuff.userFile, byName=True)
-				'''
-				for x in userList:
-					if x.name == targName:
-						if "downVote" in form:
-							for index, value in enumerate(x.posts):
-								if value.id == targId:
-									x.posts[index].decreaseScore()
-									break
-						elif "upVote" in form:
-							for index, value in enumerate(x.posts):
-								if value.id == targId:
-									x.posts[index].increaseScore()
-									break
-						stdStuff.objListToFile(userList, stdStuff.directory,
-												 stdStuff.userFile)
-					break
-				'''
 				
 				if "downVote" in form:
 					for index, value in enumerate(userDict[targName].posts):
