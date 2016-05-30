@@ -52,7 +52,6 @@ def displayPost(id, cookie, titleTag, bodyTag, userTag, commentTag):
 				if post.id == id:
 					res += post.display()
 					res += "<br><h3>Comments</h3><br>"
-					res += post.displayComments()
 					
 					for comment in post.comments:
 						res += """<table>
