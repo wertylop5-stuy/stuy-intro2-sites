@@ -35,6 +35,7 @@ def authenticate(u,ID,IP):
 def poster():
 	return '''<form action = "inbox.py" method = "GET">
 Recipient: <input name="messageTarget" type="textfield">
+<br>
 Title: <input name="messageTitle" type="textfield">
 <br>
 Text: <textarea name="messageBody" rows="10" cols="15">
