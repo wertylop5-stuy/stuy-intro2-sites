@@ -44,14 +44,21 @@ Text: <textarea name="messageBody" rows="10" cols="15">
 <input type = "submit" value = "Send Message">
 </form>'''
 
-
-
+def displayMessages(cookie):
+	res = ""
+	currentUser = cookie["username"].value
+	userDict = stdStuff.objFileToList(stdStuff.directory,
+								stdStuff.userFile, byName=True)
+	res += userDict[currentUser].inbox.listMessages()
+	return res
 
 
 
 def makePage(cookie):
 	res = ""
 	res += poster()
+	res += displayMessages(cookie)
+	
 	return res
 
 if 'HTTP_COOKIE' in os.environ:
