@@ -92,7 +92,7 @@ if 'HTTP_COOKIE' in os.environ:
 				recipient = form.getvalue("messageTarget")
 				try:
 					userDict[currentUser].inbox
-										.addMessage(recipient,
+										.sendMessage(recipient,
 											form.getvalue("messageTitle"),
 											form.getValue("messageBody"))
 				except KeyError:
