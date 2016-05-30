@@ -144,7 +144,7 @@ if 'HTTP_COOKIE' in os.environ:
 									for index2, value2 in \
 									enumerate(value.comments):
 										if value2.id == commentId:
-											value.posts[index2].decreaseScore()
+											value.comments[index2].decreaseScore()
 											break
 						elif "upVote" in form:
 							for index, value in enumerate(x.posts):
@@ -152,7 +152,7 @@ if 'HTTP_COOKIE' in os.environ:
 									for index2, value2 in \
 									enumerate(value.comments):
 										if value2.id == commentId:
-											value.posts[index2].increaseScore()
+											value.comments[index2].increaseScore()
 											break
 
 
