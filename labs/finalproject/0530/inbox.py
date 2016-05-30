@@ -45,12 +45,13 @@ Text: <textarea name="messageBody" rows="10" cols="15">
 </form>'''
 
 def displayUnreadMessages(cookie):
-	res = "<br><br><br>"
+	res = "<br>"
 	orderedMessages = []
 	currentUser = cookie["username"].value
 	userDict = stdStuff.objFileToList(stdStuff.directory,
 								stdStuff.userFile, byName=True)
-	res += """<a href='inbox.py?markRead=all&unread=hey'>Mark all as read</a>"""
+	res += \
+	"""<a href='inbox.py?markRead=all&unread=hey'>Mark all as read</a><br><br>"""
 	for message in userDict[currentUser].inbox.messages:
 		orderedMessages.append(message)
 	
@@ -64,12 +65,13 @@ def displayUnreadMessages(cookie):
 	return res
 
 def displayReadMessages(cookie):
-	res = "<br><br><br>"
+	res = "<br>"
 	orderedMessages = []
 	currentUser = cookie["username"].value
 	userDict = stdStuff.objFileToList(stdStuff.directory,
 								stdStuff.userFile, byName=True)
-	res += "<a href='inbox.py?markUnread=all&read=hey'>Mark all as unread</a>"
+	res += \
+	"<a href='inbox.py?markUnread=all&read=hey'>Mark all as unread</a><br><br>"
 	for message in userDict[currentUser].inbox.messages:
 		orderedMessages.append(message)
 	
