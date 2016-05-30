@@ -132,7 +132,7 @@ if 'HTTP_COOKIE' in os.environ:
 			
 			if "read" in form:
 				body+=makePage(c, True)
-			elif "unread" in form:
+			else:
 				body+=makePage(c, False)
 			
 			body += """<a href="profile.py">Go back to profile</a>"""
