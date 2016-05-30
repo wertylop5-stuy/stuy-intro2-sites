@@ -131,9 +131,9 @@ def displayInboxWidget(cookie):
 
 def makePage(cookie):
 	currentUser = cookie["username"].value
+	res += displayInboxWidget(cookie)
 	res = str(poster())
 	res += displayPosts(cookie)
-	res += displayInboxWidget(cookie)
 	return res
 	
 
