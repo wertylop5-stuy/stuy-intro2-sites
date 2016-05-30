@@ -110,63 +110,45 @@ def makePage():
 	
 	return res
 '''
-'''
+
 def makePage(cookie):
+	currentUser = cookie["username"].value
 	res = str(poster())
 	
-	userList = stdStuff.objFileToList(stdStuff.directory, stdStuff.userFile)
+	#will sort
+	totalPosts = []
 	
-	for x in userList:
-		if x.name == cookie["username"].value:
-			for post in x.posts:
-				res += """<table>
-<tr>
-	<td>""" + str(post.score) + """</td>
-	<td>
-"""
-				res += post.display()
-				
-				res += "<a href='profile.py?downVote=lol&postId="+\
-	str(post.id) + "'>Down Vote</a><br>"
-	
-				res += "<a href='profile.py?upVote=lol&postId="+\
-	str(post.id) + "'>Up Vote</a><br>"
-	
-				res += """<a href='postExpanded.py?expandButton=""" + \
-	str(post.id) + "'>Comment </a>"
-	
-				res += """</td>
-	</tr>
-</table>
-"""
-			break
-	return res
-'''
-def makePage(cookie):
-	res = str(poster())
-	
+	#all users in system
 	userDict = stdStuff.objFileToList(stdStuff.directory,
 								stdStuff.userFile, byName=True)
 	
-	for x in userDict:
-		for post in userDict[x].posts:
-			res += """<table>
-	<tr>
-	<td>""" + str(post.score) + """</td>
-	<td>
+	totalPosts.extend(userDict[currentUser].posts[:])
+	
+	#remember, the friends array only holds names
+	for friend in userDict[currentUser].friends:
+		totalPosts.extend(userDict[friend].posts[:])
+	
+	totalPosts.sort(key=lambda x: x.id, reverse=True)
+	
+	for post in totalPosts:
+	
+		res += """<table>
+		<tr>
+		<td>""" + str(post.score) + """</td>
+		<td>
 	"""
-			res += post.display()
-		
-			res += "<a href='profile.py?downVote=lol&postId="+\
-	str(post.id) + "'>Down Vote</a><br>"
+		res += post.display()
+	
+		res += "<a href='profile.py?downVote=lol&postId="+\
+str(post.id) + "'>Down Vote</a><br>"
 
-			res += "<a href='profile.py?upVote=lol&postId="+\
-	str(post.id) + "'>Up Vote</a><br>"
+		res += "<a href='profile.py?upVote=lol&postId="+\
+str(post.id) + "'>Up Vote</a><br>"
 
-			res += """<a href='postExpanded.py?expandButton=""" + \
-	str(post.id) + "'>Comment </a>"
+		res += """<a href='postExpanded.py?expandButton=""" + \
+str(post.id) + "'>Comment </a>"
 
-			res += """</td>
+		res += """</td>
 	</tr>
 	</table>
 """
