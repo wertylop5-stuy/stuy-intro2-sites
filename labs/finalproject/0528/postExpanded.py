@@ -141,14 +141,16 @@ if 'HTTP_COOKIE' in os.environ:
 						if "downVote" in form:
 							for index, value in enumerate(x.posts):
 								if value.id == targId:
-									for index2, value2 in enumerate(value.posts):
+									for index2, value2 in \
+									enumerate(value.comments):
 										if value2.id == commentId:
 											value.posts[index2].decreaseScore()
 											break
 						elif "upVote" in form:
 							for index, value in enumerate(x.posts):
 								if value.id == targId:
-									for index2, value2 in enumerate(value.posts):
+									for index2, value2 in \
+									enumerate(value.comments):
 										if value2.id == commentId:
 											value.posts[index2].increaseScore()
 											break
