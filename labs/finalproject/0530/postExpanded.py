@@ -98,6 +98,25 @@ def authenticate(u,ID,IP):
             return a[1]==str(ID) and a[2]==IP
     return False
 
+def displayInboxWidget(cookie):
+	currentUser = cookie["username"].value
+	userDict = stdStuff.objFileToList(stdStuff.directory,
+								stdStuff.userFile, byName=True)
+	
+	res = \
+"""
+<div align='right'>
+	<table border='1'>
+		<tr>
+			<td>
+				<a href="inbox.py">View messages</a>
+			</td>
+		</tr>
+	</table>
+</div>
+"""
+	return res
+
 c = None
 if 'HTTP_COOKIE' in os.environ:
 	cookie_string=os.environ.get('HTTP_COOKIE')
@@ -119,6 +138,7 @@ if 'HTTP_COOKIE' in os.environ:
 <input name="logOut" type="submit" value="Log out">
 </form>
 """
+			body += displayInboxWidget(c)
 			if "expandButton" in form:
 				temp = int(form.getvalue("expandButton"))
 				lol = open(stdStuff.directory + stdStuff.postIdFile, "w")
