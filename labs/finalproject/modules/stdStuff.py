@@ -174,13 +174,12 @@ def objFileToList(directory, targFile):
 '''
 def objFileToList(directory, targFile, byName=False):
 	'''Default makes a list, opt args can make dictionaries'''
-	res = []
+	res = None
 	with open(directory + targFile, "rb") as readStream:
 		try:
 			while True:
 				if byName:
 					#res is a dictionary
-					res = {}
 					temp = pickle.load(readStream)
 					res[temp.name] = temp
 				else:
