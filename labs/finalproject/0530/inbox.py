@@ -44,21 +44,52 @@ Text: <textarea name="messageBody" rows="10" cols="15">
 <input name="sendMessage" type="submit" value="Send Message">
 </form>'''
 
-def displayMessages(cookie):
+def displayUnreadMessages(cookie):
 	res = ""
 	currentUser = cookie["username"].value
 	userDict = stdStuff.objFileToList(stdStuff.directory,
 								stdStuff.userFile, byName=True)
-	res += userDict[currentUser].inbox.listMessages()
+	res += "<a href='inbox.py?markRead='all'>Mark all as read</a>"
+	for message in userDict[currentUser].inbox.messages:
+		if message.viewed = False:
+			res += message.display()
+			res += "<a href='inbox.py?markRead='" + str(message.id) + \
+	"'>Mark as read</a>"
+	return res
+
+def displayReadMessages(cookie):
+	res = ""
+	currentUser = cookie["username"].value
+	userDict = stdStuff.objFileToList(stdStuff.directory,
+								stdStuff.userFile, byName=True)
+	res += "<a href='inbox.py?markUnread='all'>Mark all as unread</a>"
+	for message in userDict[currentUser].inbox.messages:
+		if message.viewed = True:
+			res += message.display()
+			res += "<a href='inbox.py?markUnread='" + str(message.id) + \
+	"'>Mark as unread</a>"
 	return res
 
 
-
-def makePage(cookie):
+def makePage(cookie, showRead):
 	res = ""
 	res += poster()
-	res += displayMessages(cookie)
-	
+	if showRead:
+		res += \
+"""
+<form method="GET" action="inbox.py"
+	<input name="unread" type="submit" value="View unread messages">
+</form>
+"""
+		res += displayReadMessages(cookie)
+	else:
+		res += \
+"""
+<form method="GET" action="inbox.py"
+	<input name="read" type="submit" value="View read messages">
+</form>
+"""
+		res += displayUnreadMessages(cookie)
 	return res
 
 if 'HTTP_COOKIE' in os.environ:
@@ -87,6 +118,7 @@ if 'HTTP_COOKIE' in os.environ:
 <form method="GET" action="addFriend.py">
 <input name="addFriend" type="submit" value="Add a friend">
 </form>
+<a href="profile.py">Go back to profile</a>
 """
 			if "sendMessage" in form:
 				recipient = form.getvalue("messageTarget")
@@ -98,7 +130,12 @@ if 'HTTP_COOKIE' in os.environ:
 				except KeyError:
 					body += "<h1>" + recipient + "is not a registered user</h1>"
 			
-			body+=makePage(c)
+			if "read" in form:
+				body+=makePage(c, True)
+			elif "unread" in form:
+				body+=makePage(c, False)
+			
+			body += """<a href="profile.py">Go back to profile</a>"""
 		else:
 			body+="Failed to Authenticate cookie<br>\n"
 			body+= 'Go Login <a href="login.py">here</a><br>'
