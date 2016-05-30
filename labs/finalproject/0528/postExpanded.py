@@ -142,7 +142,7 @@ if 'HTTP_COOKIE' in os.environ:
 							for index, value in enumerate(x.posts):
 								if value.id == targId:
 									for index2, value2 in \
-									enumerate(value[index].comments):
+									enumerate(value.comments):
 										if int(value2.id) == int(commentId):
 											value.comments[index2].decreaseScore()
 											break
@@ -150,7 +150,7 @@ if 'HTTP_COOKIE' in os.environ:
 							for index, value in enumerate(x.posts):
 								if value.id == targId:
 									for index2, value2 in \
-									enumerate(value[index].comments):
+									enumerate(value.comments):
 										if value2.id == commentId:
 											value.comments[index2].increaseScore()
 											break
