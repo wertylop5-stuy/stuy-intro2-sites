@@ -34,7 +34,7 @@ def authenticate(u,ID,IP):
 #gordons code
 def poster():
 	return '''<form action = "inbox.py" method = "GET">
-Recipient: <input name="messageTarget" type="textfield">
+Recipient: <input name="messageTarget" type="textfield" value="Watch your casing!>
 <br>
 Title: <input name="messageTitle" type="textfield">
 <br>
