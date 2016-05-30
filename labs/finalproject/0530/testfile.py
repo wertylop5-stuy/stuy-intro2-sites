@@ -29,7 +29,7 @@ print thing
 
 for x in thing:
 	print x
-	#print x.value().name
+	print thing[x]
 
 
 
