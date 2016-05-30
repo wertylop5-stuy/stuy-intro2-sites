@@ -45,7 +45,7 @@ Text: <textarea name="messageBody" rows="10" cols="15">
 </form>'''
 
 def displayUnreadMessages(cookie):
-	res = ""
+	res = "<br><br><br>"
 	currentUser = cookie["username"].value
 	userDict = stdStuff.objFileToList(stdStuff.directory,
 								stdStuff.userFile, byName=True)
@@ -58,7 +58,7 @@ def displayUnreadMessages(cookie):
 	return res
 
 def displayReadMessages(cookie):
-	res = ""
+	res = "<br><br><br>"
 	currentUser = cookie["username"].value
 	userDict = stdStuff.objFileToList(stdStuff.directory,
 								stdStuff.userFile, byName=True)
@@ -135,7 +135,7 @@ if 'HTTP_COOKIE' in os.environ:
 			else:
 				body+=makePage(c, False)
 			
-			body += """<a href="profile.py">Go back to profile</a>"""
+			body += """<br><a href="profile.py">Go back to profile</a>"""
 		else:
 			body+="Failed to Authenticate cookie<br>\n"
 			body+= 'Go Login <a href="login.py">here</a><br>'
