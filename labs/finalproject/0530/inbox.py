@@ -139,7 +139,7 @@ if 'HTTP_COOKIE' in os.environ:
 				else:
 					for message in userDict[currentUser].inbox.messages:
 						if message.id == int(targetMessage):
-							message.viewed == True
+							message.viewed = True
 							break
 				stdStuff.objListToFile(userDict, stdStuff.directory,
 										stdStuff.userFile, isDict=True)
@@ -151,7 +151,7 @@ if 'HTTP_COOKIE' in os.environ:
 				else:
 					for message in userDict[currentUser].inbox.messages:
 						if message.id == int(targetMessage):
-							message.viewed == False
+							message.viewed = False
 							break
 				stdStuff.objListToFile(userDict, stdStuff.directory,
 										stdStuff.userFile, isDict=True)
