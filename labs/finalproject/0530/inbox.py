@@ -49,12 +49,12 @@ def displayUnreadMessages(cookie):
 	currentUser = cookie["username"].value
 	userDict = stdStuff.objFileToList(stdStuff.directory,
 								stdStuff.userFile, byName=True)
-	res += """<a href='inbox.py?markRead='all'&unread="hey">Mark all as read</a>"""
+	res += """<a href='inbox.py?markRead=all&unread=hey'>Mark all as read</a>"""
 	for message in userDict[currentUser].inbox.messages:
 		if message.viewed == False:
 			res += message.display()
-			res += "<a href='inbox.py?markRead='" + str(message.id) + \
-	"'&unread='hey'>Mark as read</a>"
+			res += "<a href='inbox.py?markRead=" + str(message.id) + \
+	"&unread=hey'>Mark as read</a>"
 	return res
 
 def displayReadMessages(cookie):
@@ -62,12 +62,12 @@ def displayReadMessages(cookie):
 	currentUser = cookie["username"].value
 	userDict = stdStuff.objFileToList(stdStuff.directory,
 								stdStuff.userFile, byName=True)
-	res += "<a href='inbox.py?markUnread='all'&read='hey'>Mark all as unread</a>"
+	res += "<a href='inbox.py?markUnread=all&read=hey'>Mark all as unread</a>"
 	for message in userDict[currentUser].inbox.messages:
 		if message.viewed == True:
 			res += message.display()
-			res += "<a href='inbox.py?markUnread='" + str(message.id) + \
-	"'&read='hey'>Mark as unread</a>"
+			res += "<a href='inbox.py?markUnread=" + str(message.id) + \
+	"&read=hey'>Mark as unread</a>"
 	return res
 
 
