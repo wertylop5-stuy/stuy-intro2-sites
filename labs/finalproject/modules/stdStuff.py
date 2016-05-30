@@ -128,20 +128,22 @@ class Inbox(object):
 		counter = getCounter()
 		userDict = objFileToList(directory, userFile, byName=True)
 		userDict[recipient].inbox.append(
-						Message(counter, recipient, title, message))
+						Message(counter, self.user, recipient, title, message))
 		objListToFile(directory, userFile, isDict=True)
 		setCounter(counter)
 
 class Message(TextContainer):
 	'''A message'''
-	def __init__(self, id, user, title, text, viewed=False):
-		super(Message, self).__init__(id, user, title, text)
+	def __init__(self, id, srcUser, targUser, title, text, viewed=False):
+		super(Message, self).__init__(id, "", title, text)
+		self.srcUser = srcUser
+		self.targUser = targUser
 		self.viewed = viewed
 	
 	def display(self):
 		'''Display message contents in html'''
 		res = ""
-		res += makeTag("h5", self.user)
+		res += makeTag("h5", "From: " + self.srcUser)
 		res += makeTag("h3", self.title)
 		res += makeTag("p", self.text)
 		

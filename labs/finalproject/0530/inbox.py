@@ -41,7 +41,7 @@ Title: <input name="messageTitle" type="textfield">
 Text: <textarea name="messageBody" rows="10" cols="15">
 </textarea>
 <br>
-<input type = "submit" value = "Send Message">
+<input name="sendMessage" type="submit" value="Send Message">
 </form>'''
 
 def displayMessages(cookie):
@@ -78,7 +78,9 @@ if 'HTTP_COOKIE' in os.environ:
 		IP = os.environ['REMOTE_ADDR']
 		
 		if authenticate(username,ID,IP):
-			### PUT PAGE STUFF HERE
+			currentUser = cookie["username"].value
+			userDict = stdStuff.objFileToList(stdStuff.directory,
+								stdStuff.userFile, byName=True)
 			body += """<form method="GET" action="homepage.py">
 <input name="logOut" type="submit" value="Log out">
 </form>
@@ -86,7 +88,15 @@ if 'HTTP_COOKIE' in os.environ:
 <input name="addFriend" type="submit" value="Add a friend">
 </form>
 """
-			
+			if "sendMessage" in form:
+				recipient = form.getvalue("messageTarget")
+				try:
+					userDict[currentUser].inbox
+										.addMessage(recipient,
+											form.getvalue("messageTitle"),
+											form.getValue("messageBody"))
+				except KeyError:
+					body += "<h1>" + recipient + "is not a registered user</h1>"
 			
 			body+=makePage(c)
 		else:
