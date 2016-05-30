@@ -36,3 +36,16 @@ display). The rest of the pages have been rewritten to make use of the new
 functions. The main reason for the second rewrite is to make the
 implementation of friends simpler. The User class now has an array to store 
 posts.
+
+5/30
+Another minor code rewrite by me, this time making the objFileToList
+function (in stdStuff) to allow for creation of dictionaries with 
+usernames as keys. I mainly did this to lessen code size due to needing to
+constantly search all users for the current user.
+I finally started work on inboxes. Another page has been made for it. So far,
+users can send messages to other users with a title and message. Maybe we'll
+support replying later. The sending function handles users that don't exist.
+In addition, I implemented the ability to mark posts as read or as unread,
+allowing the user to see one or the other as they wish.
+I also made for all TextContainers to be sorted by id, so newer things show
+up first.
