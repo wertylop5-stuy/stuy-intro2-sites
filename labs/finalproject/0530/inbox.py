@@ -49,12 +49,12 @@ def displayUnreadMessages(cookie):
 	currentUser = cookie["username"].value
 	userDict = stdStuff.objFileToList(stdStuff.directory,
 								stdStuff.userFile, byName=True)
-	res += "<a href='inbox.py?markRead='all'>Mark all as read</a>"
+	res += """<a href='inbox.py?markRead='all'&unread="hey">Mark all as read</a>"""
 	for message in userDict[currentUser].inbox.messages:
 		if message.viewed == False:
 			res += message.display()
 			res += "<a href='inbox.py?markRead='" + str(message.id) + \
-	"'>Mark as read</a>"
+	"'&unread='hey'>Mark as read</a>"
 	return res
 
 def displayReadMessages(cookie):
@@ -62,12 +62,12 @@ def displayReadMessages(cookie):
 	currentUser = cookie["username"].value
 	userDict = stdStuff.objFileToList(stdStuff.directory,
 								stdStuff.userFile, byName=True)
-	res += "<a href='inbox.py?markUnread='all'>Mark all as unread</a>"
+	res += "<a href='inbox.py?markUnread='all'&read='hey'>Mark all as unread</a>"
 	for message in userDict[currentUser].inbox.messages:
 		if message.viewed == True:
 			res += message.display()
 			res += "<a href='inbox.py?markUnread='" + str(message.id) + \
-	"'>Mark as unread</a>"
+	"'&read='hey'>Mark as unread</a>"
 	return res
 
 
@@ -130,6 +130,32 @@ if 'HTTP_COOKIE' in os.environ:
 											form.getvalue("messageBody"))
 				except KeyError:
 					body += "<h1>" + recipient + "is not a registered user</h1>"
+			
+			if "markRead" in form:
+				targetMessage = form.getvalue("markRead")
+				if targetMessage == "all":
+					for message in userDict[currentUser].inbox.messages:
+						message.viewed = True
+				else:
+					for message in userDict[currentUser].inbox.messages:
+						if message.id == int(targetMessage):
+							message.viewed == True
+							break
+				stdStuff.objListToFile(userDict, stdStuff.directory,
+										stdStuff.userFile, isDict=True)
+			elif "markUnread" in form:
+				targetMessage = form.getvalue("markUnread")
+				if targetMessage == "all":
+					for message in userDict[currentUser].inbox.messages:
+						message.viewed = False
+				else:
+					for message in userDict[currentUser].inbox.messages:
+						if message.id == int(targetMessage):
+							message.viewed == False
+							break
+				stdStuff.objListToFile(userDict, stdStuff.directory,
+										stdStuff.userFile, isDict=True)
+			
 			
 			if "read" in form:
 				body+=makePage(c, True)
