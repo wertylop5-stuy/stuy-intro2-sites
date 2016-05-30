@@ -103,6 +103,12 @@ class Comment(TextContainer):
 		res += makeTag(userTag, self.user)
 		res += makeTag(textTag, self.text)
 		return res
+	
+	def increaseScore(self):
+		self.score += 1
+	
+	def decreaseScore(self):
+		self.score -= 1
 
 class Inbox(object):
 	'''Each user's inbox'''

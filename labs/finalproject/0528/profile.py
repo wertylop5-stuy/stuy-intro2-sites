@@ -166,27 +166,7 @@ if 'HTTP_COOKIE' in os.environ:
 """
 			if "postTitle" in form:
 				writePost(c, form)
-			'''
-			allPosts = []
-			if "downVote" in form or "upVote" in form:
-				targId = int(form.getvalue("postId"))
-				allPosts = stdStuff.objFileToList(stdStuff.directory,
-											stdStuff.postFile)
-				if "downVote" in form:
-					for index, value in enumerate(allPosts):
-						if value.id == targId:
-							allPosts[index].decreaseScore()
-				elif "upVote" in form:
-					for index, value in enumerate(allPosts):
-						if value.id == targId:
-							allPosts[index].increaseScore()
-							break
-				stdStuff.objListToFile(allPosts, stdStuff.directory,
-										 stdStuff.postFile)
-	
-				allPosts = stdStuff.objFileToList(stdStuff.directory,
-							 stdStuff.postFile)
-			'''
+			
 			if "downVote" in form or "upVote" in form:
 				targId = int(form.getvalue("postId"))
 				targName = c["username"].value

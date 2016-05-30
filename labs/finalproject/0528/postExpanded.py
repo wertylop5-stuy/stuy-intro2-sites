@@ -53,21 +53,28 @@ def displayPost(id, cookie, titleTag, bodyTag, userTag, commentTag):
 					res += post.display()
 					res += "<br><h3>Comments</h3><br>"
 					res += post.displayComments()
+					
+					for comment in post:
+						res += """<table>
+<tr>
+	<td>""" + str(comment.score) + """</td>
+	<td>
+"""
+						res += comment.display()
+						
+						res += "<a href='profile.py?downVote=lol&commentId="+\
+	str(comment.id) + "'&postId='" + str(post.id) + "'>Down Vote</a><br>"
+						
+						res += "<a href='profile.py?upVote=lol&commentId="+\
+	str(comment.id) + "'&postId='" + str(post.id) + "'>Up Vote</a><br>"
+						
+						res += """</td>
+	</tr>
+</table>
+"""
+						
 			break
 	return res
-'''
-def writeComment(commentText, cookie, targId):
-	allPosts = stdStuff.objFileToList(stdStuff.directory,
-										 stdStuff.postFile)
-	for index, value in enumerate(allPosts):
-		if value.id == targId:
-			allPosts[index].addComment(cookie['username'].value,
-										commentText)
-	commentWStream = open(stdStuff.directory + stdStuff.postFile, "wb")
-	for x in allPosts:
-		pickle.dump(x, commentWStream)
-	commentWStream.close()
-'''
 
 def writeComment(targId, cookie, commentText):
 	targName = cookie["username"].value
@@ -122,6 +129,33 @@ if 'HTTP_COOKIE' in os.environ:
 			lol = open(stdStuff.directory + stdStuff.postIdFile, "r")
 			targId = int(lol.read())
 			lol.close()
+			
+			if "downVote" in form or "upVote" in form:
+				commentId = int(form.getvalue("commentId"))
+				postId = int(form.getvalue("postId"))
+				targName = c["username"].value
+				
+				userList = stdStuff.objFileToList(stdStuff.directory,
+									stdStuff.userFile)
+				
+				for x in userList:
+					if x.name == targName:
+						if "downVote" in form:
+							for index, value in enumerate(x.posts):
+								if value.id == targId:
+									for index2, value2 in enumerate(value.posts):
+										if value2.id = commentId:
+											value.posts[index2].decreaseScore()
+											break
+						elif "upVote" in form:
+							for index, value in enumerate(x.posts):
+								if value.id == targId:
+									for index2, value2 in enumerate(value.posts):
+										if value2.id = commentId:
+											value.posts[index2].increaseScore()
+											break
+			
+			
 			
 			if "done" in form:
 				writeComment(targId, c, form.getvalue("comment"))
