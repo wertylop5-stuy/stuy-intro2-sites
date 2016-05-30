@@ -161,7 +161,7 @@ if 'HTTP_COOKIE' in os.environ:
 <input name="logOut" type="submit" value="Log out">
 </form>
 <form method="GET" action="addFriend.py">
-<input name="logOut" type="submit" value="Add a friend">
+<input name="addFriend" type="submit" value="Add a friend">
 </form>
 """
 			if "postTitle" in form:
