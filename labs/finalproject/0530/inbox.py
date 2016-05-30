@@ -51,10 +51,11 @@ def displayUnreadMessages(cookie):
 								stdStuff.userFile, byName=True)
 	res += """<a href='inbox.py?markRead=all&unread=hey'>Mark all as read</a>"""
 	for message in userDict[currentUser].inbox.messages:
-		if message.viewed == False:
+		res += message.title
+		'''if message.viewed == False:
 			res += message.display()
 			res += "<a href='inbox.py?markRead=" + str(message.id) + \
-	"&unread=hey'>Mark as read</a>"
+	"&unread=hey'>Mark as read</a>"'''
 	return res
 
 def displayReadMessages(cookie):
