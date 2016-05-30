@@ -54,7 +54,7 @@ def displayPost(id, cookie, titleTag, bodyTag, userTag, commentTag):
 					res += "<br><h3>Comments</h3><br>"
 					res += post.displayComments()
 					
-					for comment in post:
+					for comment in post.comments:
 						res += """<table>
 <tr>
 	<td>""" + str(comment.score) + """</td>
