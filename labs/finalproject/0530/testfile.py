@@ -29,7 +29,7 @@ print thing
 
 for x in thing:
 	print x
-	print thing[x].name
+	print thing[x].password
 
 
 
