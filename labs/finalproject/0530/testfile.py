@@ -25,11 +25,12 @@ foot = \
 
 
 thing = stdStuff.objFileToList(stdStuff.directory, stdStuff.userFile, byName=True)
-
+print thing
+'''
 for x in thing:
 	print x
 	print x.value().name
-
+'''
 
 
 print head
