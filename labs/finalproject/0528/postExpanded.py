@@ -99,7 +99,7 @@ def authenticate(u,ID,IP):
             return a[1]==str(ID) and a[2]==IP
     return False
 
-
+c = None
 if 'HTTP_COOKIE' in os.environ:
 	cookie_string=os.environ.get('HTTP_COOKIE')
 	c = Cookie.SimpleCookie()
@@ -125,44 +125,44 @@ if 'HTTP_COOKIE' in os.environ:
 				lol = open(stdStuff.directory + stdStuff.postIdFile, "w")
 				lol.write(str(temp))
 				lol.close()
-			
+
 			lol = open(stdStuff.directory + stdStuff.postIdFile, "r")
 			targId = int(lol.read())
 			lol.close()
-			
+
 			if "downVote" in form or "upVote" in form:
 				commentId = int(form.getvalue("commentId"))
 				postId = int(form.getvalue("postId"))
 				targName = c["username"].value
-				
+	
 				userList = stdStuff.objFileToList(stdStuff.directory,
 									stdStuff.userFile)
-				
+	
 				for x in userList:
 					if x.name == targName:
 						if "downVote" in form:
 							for index, value in enumerate(x.posts):
 								if value.id == targId:
 									for index2, value2 in enumerate(value.posts):
-										if value2.id = commentId:
+										if value2.id == commentId:
 											value.posts[index2].decreaseScore()
 											break
 						elif "upVote" in form:
 							for index, value in enumerate(x.posts):
 								if value.id == targId:
 									for index2, value2 in enumerate(value.posts):
-										if value2.id = commentId:
+										if value2.id == commentId:
 											value.posts[index2].increaseScore()
 											break
-			
-			
-			
+
+
+
 			if "done" in form:
 				writeComment(targId, c, form.getvalue("comment"))
-			
+
 			body += displayPost(targId, c, "", "", "", "")
 			body += poster()
-			
+
 			body += """<a href="profile.py">Go back to profile</a>"""
 		else:
 			body+="Failed to Authenticate cookie<br>\n"
@@ -173,9 +173,6 @@ if 'HTTP_COOKIE' in os.environ:
 else:
 	body+= 'You seem new<br>\n'
 	body+='Go Login <a href="login.py">here</a><br>'
-
-
-
 
 print head
 print body
