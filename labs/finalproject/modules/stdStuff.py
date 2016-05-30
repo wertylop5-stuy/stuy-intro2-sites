@@ -154,7 +154,7 @@ def isFileEmpty(directory, fileN):
 	if thing == "":
 		return True
 	return False
-
+'''
 def objFileToList(directory, targFile):
 	resList = []
 	if isFileEmpty(directory, targFile):
@@ -171,6 +171,27 @@ def objFileToList(directory, targFile):
 		readStream.close()
 	
 	return resList
+'''
+def objFileToList(directory, targFile, byName=False):
+	'''Default makes a list, opt args can make dictionaries'''
+	res = []
+	with open(directory + targFile, "rb") as readStream:
+		try:
+			while True:
+				if byName:
+					#res is a dictionary
+					res = {}
+					temp = pickle.load(readStream)
+					res[temp.name] = temp
+				else:
+					#res is a list
+					res.append(pickle.load(readStream))
+		except EOFError:
+			pass
+		except IndexError:
+			pass
+	
+	return res
 
 def objListToFile(objList, directory, targFile):
 	"""Writes a list of objects to a file"""

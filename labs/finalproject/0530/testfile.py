@@ -24,12 +24,11 @@ foot = \
 '''
 
 
-thing = stdStuff.objFileToList(stdStuff.directory, stdStuff.userFile)
+thing = stdStuff.objFileToList(stdStuff.directory, stdStuff.userFile, byName=True)
 
-for user in thing:
-	print user.displayPosts()
-
-
+for x in thing:
+	print x
+	print x.value().name
 
 
 
