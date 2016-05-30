@@ -202,7 +202,7 @@ if 'HTTP_COOKIE' in os.environ:
 				elif "upVote" in form:
 					for index, value in enumerate(userDict[targName].posts):
 						if value.id == targId:
-							userDict[targName].posts[index].decreaseScore()
+							userDict[targName].posts[index].increaseScore()
 							break
 				stdStuff.objListToFile(userDict, stdStuff.directory,
 										stdStuff.userFile, isDict=True)
