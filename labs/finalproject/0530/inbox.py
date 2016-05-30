@@ -77,7 +77,7 @@ def makePage(cookie, showRead):
 	if showRead:
 		res += \
 """
-<form method="GET" action="inbox.py"
+<form method="GET" action="inbox.py">
 	<input name="unread" type="submit" value="View unread messages">
 </form>
 """
@@ -85,7 +85,7 @@ def makePage(cookie, showRead):
 	else:
 		res += \
 """
-<form method="GET" action="inbox.py"
+<form method="GET" action="inbox.py">
 	<input name="read" type="submit" value="View read messages">
 </form>
 """
