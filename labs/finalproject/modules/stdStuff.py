@@ -118,8 +118,10 @@ class Inbox(object):
 		self.messages = []
 	
 	def listMessages(self):
+		res = ""
 		for message in self.messages:
-			message.display()
+			res += message.display()
+		return res
 	
 	def sendMessage(self, recipient, title, message):
 		'''Send a message to a user'''
