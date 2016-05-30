@@ -91,8 +91,8 @@ if 'HTTP_COOKIE' in os.environ:
 			if "sendMessage" in form:
 				recipient = form.getvalue("messageTarget")
 				try:
-					userDict[currentUser].inbox
-										.sendMessage(recipient,
+					userDict[currentUser].inbox.sendMessage(
+											recipient,
 											form.getvalue("messageTitle"),
 											form.getValue("messageBody"))
 				except KeyError:
@@ -108,11 +108,6 @@ if 'HTTP_COOKIE' in os.environ:
 else:
 	body+= 'You seem new<br>\n'
 	body+='Go Login <a href="login.py">here</a><br>'
-
-
-
-
-
 
 
 print head
