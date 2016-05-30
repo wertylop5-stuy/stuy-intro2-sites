@@ -48,7 +48,10 @@ Text: <textarea name="messageBody" rows="10" cols="15">
 
 
 
-
+def makePage(cookie):
+	res = ""
+	res += poster()
+	return res
 
 if 'HTTP_COOKIE' in os.environ:
 	cookie_string=os.environ.get('HTTP_COOKIE')
