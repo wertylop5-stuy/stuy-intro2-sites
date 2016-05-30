@@ -174,9 +174,9 @@ if 'HTTP_COOKIE' in os.environ:
 				targId = int(form.getvalue("postId"))
 				targName = c["username"].value
 				
-				userList = stdStuff.objFileToList(stdStuff.directory,
+				userDict = stdStuff.objFileToList(stdStuff.directory,
 									stdStuff.userFile)
-				
+				'''
 				for x in userList:
 					if x.name == targName:
 						if "downVote" in form:
@@ -192,6 +192,20 @@ if 'HTTP_COOKIE' in os.environ:
 						stdStuff.objListToFile(userList, stdStuff.directory,
 												 stdStuff.userFile)
 					break
+				'''
+				
+				if "downVote" in form:
+					for index, value in enumerate(userDict[targName].posts):
+						if value.id == targId:
+							x.posts[index].decreaseScore()
+							break
+				elif "upVote" in form:
+					for index, value in enumerate(userDict[targName].posts):
+						if value.id == targId:
+							x.posts[index].increaseScore()
+							break
+				stdStuff.objListToFile(userDict, stdStuff.directory,
+										stdStuff.userFile, isDict=True)
 			
 			body+=makePage(c)
 		else:
