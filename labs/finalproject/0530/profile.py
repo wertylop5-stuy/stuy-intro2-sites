@@ -175,7 +175,7 @@ if 'HTTP_COOKIE' in os.environ:
 				targName = c["username"].value
 				
 				userDict = stdStuff.objFileToList(stdStuff.directory,
-									stdStuff.userFile)
+									stdStuff.userFile, byName=True)
 				'''
 				for x in userList:
 					if x.name == targName:
