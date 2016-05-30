@@ -129,7 +129,7 @@ class Inbox(object):
 		userDict = objFileToList(directory, userFile, byName=True)
 		userDict[recipient].inbox.messages.append(
 						Message(counter, self.user, recipient, title, message))
-		objListToFile(directory, userFile, isDict=True)
+		objListToFile(userDict, directory, userFile, isDict=True)
 		setCounter(counter)
 
 class Message(TextContainer):
