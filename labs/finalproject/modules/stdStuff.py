@@ -125,12 +125,17 @@ class Inbox(object):
 			res += message.display()
 		return res
 	
-	def sendMessage(self, recipient, title, message):
+	def sendMessage(self, recipient, title, message, request=False):
 		'''Send a message to a user'''
 		counter = getCounter()
 		userDict = objFileToList(directory, userFile, byName=True)
-		userDict[recipient].inbox.messages.append(
-						Message(counter, self.user, recipient, title, message))
+		if request:
+			userDict[recipient].inbox.messages.append(
+							FriendRequest(counter, self.user, recipient,
+							self.name + " would like to be friends with you")
+		else:
+			userDict[recipient].inbox.messages.append(
+							Message(counter, self.user, recipient, title, message))
 		objListToFile(userDict, directory, userFile, isDict=True)
 		setCounter(counter)
 
@@ -154,9 +159,22 @@ class Message(TextContainer):
 		#self.viewed = True
 		return res
 
-
-
-
+class FriendRequest(Message):
+	'''A volatile type of message that treats viewed as an accept or decline'''
+	def __init__(self, id, srcUser, targUser, text, viewed=False):
+		super(FriendRequest, self).__init__(id,
+									srcUser, targUser,
+									"Friend request", text)
+	
+	
+	
+	def acceptRequest(self, srcUser, targUser, usrDict):
+		usrDict[srcUser].friends.append(targUser)
+		usrDict[targUser].friends.append(srcUser)
+		self.viewed = True
+	
+	def declineRequest(self):
+		self.viewed = True
 
 
 
