@@ -132,7 +132,7 @@ class Inbox(object):
 		if request:
 			userDict[recipient].inbox.messages.append(
 							FriendRequest(counter, self.user, recipient,
-							self.name + " would like to be friends with you")
+							self.name + " would like to be friends with you"))
 		else:
 			userDict[recipient].inbox.messages.append(
 							Message(counter, self.user, recipient, title, message))
