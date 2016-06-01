@@ -49,3 +49,8 @@ In addition, I implemented the ability to mark posts as read or as unread,
 allowing the user to see one or the other as they wish.
 I also made for all TextContainers to be sorted by id, so newer things show
 up first.
+
+5/31
+In class, I merged code with Gordon, using his post search engine. I started
+work on the friend system. I managed to make a function that, given a search
+string, can look through the dictionary of users to see if they are there.
