@@ -70,7 +70,7 @@ def sendFriendRequest(form, userDict):
 			atLeastOne = True
 			res += element + ", "
 	res = res[:len(r) - 1]
-	res += "</p>
+	res += "</p>"
 	if not(atLeastOne):
 		res = "<h2>You didn't select anyone!</h2>"
 	return res
