@@ -129,6 +129,7 @@ class Inbox(object):
 		'''Send a message to a user'''
 		counter = getCounter()
 		userDict = objFileToList(directory, userFile, byName=True)
+		#ignores title and message
 		if request:
 			userDict[recipient].inbox.messages.append(
 							FriendRequest(counter, self.user, recipient,

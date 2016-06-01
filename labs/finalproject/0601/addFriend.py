@@ -62,17 +62,21 @@ def displayUserList(usernameQuery, userDict):
 	res += """</form>"""
 	return res
 
-def sendFriendRequest(form, userDict):
+def sendFriendRequest(form, userDict, srcUser):
 	res = "<h4>Request sent to: "
 	atLeastOne = False
 	for element in form:
 		if element in userDict:
+			#send the friend request
+			userDict[srcUser].inbox.sendMessage(element, "", "", request=True)
 			atLeastOne = True
 			res += element + ", "
 	res = res[:len(res) - 2]
 	res += "</h4>"
 	if not(atLeastOne):
 		res = "<h2>You didn't select anyone!</h2>"
+	userDict = stdStuff.objFileToList(stdStuff.directory, 
+									stdStuff.userFile, byName=True)
 	return res
 	
 
@@ -111,7 +115,7 @@ if 'HTTP_COOKIE' in os.environ:
 <a href="profile.py">Go back to profile</a>
 """
 			if "requestFriend" in form:
-				body += sendFriendRequest(form, userDict)
+				body += sendFriendRequest(form, userDict, currentUser)
 			
 			body += makePage()
 			if "search" in form:
