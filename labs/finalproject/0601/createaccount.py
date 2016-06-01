@@ -43,30 +43,35 @@ else:
 	userHolder = None
 	
 	if 'username' in form and 'password' in form:
-		userReadStream = open(stdStuff.directory + stdStuff.userFile, "rb")
-		userList = []
-		try:
-			while True:
-				userList.append(pickle.load(userReadStream))
-		except EOFError:
-			print "End of File"
-		finally:
-			userReadStream.close()
+		if "<" in form.getvalue("username") or ">" in form.getvalue("username"):
+			body += "You can't use that character!"
+			else:
+			userReadStream = open(stdStuff.directory + stdStuff.userFile, "rb")
+			userList = []
+			try:
+				while True:
+					userList.append(pickle.load(userReadStream))
+			except EOFError:
+				print "End of File"
+			finally:
+				userReadStream.close()
 		
-		if nameIsAvailable(userList, form.getvalue("username")):
-			with open(stdStuff.directory + stdStuff.userFile, "a") \
-			as userWriteStream:
-				userWriteStream = open(stdStuff.directory + stdStuff.userFile, "a")
-				pickle.dump(
-					stdStuff.User(
-						form.getvalue("username"),
-						hashlib.sha256(form.getvalue("password"))
-							.hexdigest()),
-					userWriteStream)
+			if nameIsAvailable(userList, form.getvalue("username")):
+				with open(stdStuff.directory + stdStuff.userFile, "a") \
+				as userWriteStream:
+					userWriteStream = \
+					open(stdStuff.directory + stdStuff.userFile, "a")
+					
+					pickle.dump(
+						stdStuff.User(
+							form.getvalue("username"),
+							hashlib.sha256(form.getvalue("password"))
+								.hexdigest()),
+						userWriteStream)
 			
-			body += \
-			'Successfully added. <a href="login.py"> Click here to log in</a>.<br>'
-		else:
+				body += \
+				'Successfully added. <a href="login.py"> Click here to log in</a>.<br>'
+			else:
 			body += 'Username already taken!'
 		
 	else:

@@ -62,6 +62,13 @@ def displayUserList(usernameQuery, userDict):
 	res += """</form>"""
 	return res
 
+def sendFriendRequest(form):
+	res = ""
+	for element in form:
+		print element
+	return res
+	
+
 def makePage():
 	res = ""
 	res += poster()
@@ -96,7 +103,8 @@ if 'HTTP_COOKIE' in os.environ:
 </form>
 <a href="profile.py">Go back to profile</a>
 """
-			
+			if "requestFriend" in form:
+				body += sendFriendRequest(form)
 			
 			body += makePage()
 			if "search" in form:
