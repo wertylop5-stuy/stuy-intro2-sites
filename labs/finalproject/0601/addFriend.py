@@ -105,7 +105,7 @@ if 'HTTP_COOKIE' in os.environ:
 <a href="profile.py">Go back to profile</a>
 """
 			if "requestFriend" in form:
-				body += sendFriendRequest(form)
+				body += sendFriendRequest(form, userDict)
 			
 			body += makePage()
 			if "search" in form:
