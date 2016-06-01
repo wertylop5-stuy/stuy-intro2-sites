@@ -54,3 +54,11 @@ up first.
 In class, I merged code with Gordon, using his post search engine. I started
 work on the friend system. I managed to make a function that, given a search
 string, can look through the dictionary of users to see if they are there.
+
+6/01
+I worked a bit on the friend requesting system. I made a new FriendRequest
+class that inherits from message. I did this so I could implement methods
+such as acceptRequest and declineRequest. This distinction also allows for
+the inbox to display the two differently. As of now, the request gets
+directly sent to the same area of the inbox. I would like to change it so
+there is a seperate area in the inbox for requests.

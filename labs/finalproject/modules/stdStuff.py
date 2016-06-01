@@ -1,5 +1,5 @@
 import pickle
-
+#TODO have a seperate area for friend request in inbox
 directory = "../data/"
 userFile = "users.txt"
 logFile = "loggedin.txt"
