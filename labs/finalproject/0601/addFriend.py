@@ -62,10 +62,11 @@ def displayUserList(usernameQuery, userDict):
 	res += """</form>"""
 	return res
 
-def sendFriendRequest(form):
+def sendFriendRequest(form, userDict):
 	res = ""
 	for element in form:
-		print element
+		if element in userDict:
+			print "success"
 	return res
 	
 
