@@ -63,10 +63,16 @@ def displayUserList(usernameQuery, userDict):
 	return res
 
 def sendFriendRequest(form, userDict):
-	res = ""
+	res = "<p>Request sent to: "
+	atLeastOne = False
 	for element in form:
 		if element in userDict:
-			print "success"
+			atLeastOne = True
+			res += element + ", "
+	res = res[:len(r) - 1]
+	res += "</p>
+	if not(atLeastOne):
+		res = "<h2>You didn't select anyone!</h2>"
 	return res
 	
 
