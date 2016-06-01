@@ -176,6 +176,14 @@ class FriendRequest(Message):
 	
 	def declineRequest(self):
 		self.viewed = True
+	
+	def display(self):
+		res = ""
+		res += makeTag("h6", self.id)
+		res += makeTag("h5", "From: " + self.srcUser)
+		res += makeTag("h1", self.title)
+		res += makeTag("h3", self.text)
+		return res
 
 
 
