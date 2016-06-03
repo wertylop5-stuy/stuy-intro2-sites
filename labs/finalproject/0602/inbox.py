@@ -192,16 +192,11 @@ if 'HTTP_COOKIE' in os.environ:
 			if "aReq" in form or "dReq" in form:
 				if "aReq" in form:
 					target = int(form.getvalue("aReq"))
-					print target
 					for post in userDict[currentUser].inbox.messages:
-						print "Id: " + str(post.id)
 						if post.id == target:
-							print "googd"
-							print post.srcUser
-							print post.targUser
 							post.acceptRequest(userDict) 
 				elif "dReq" in form:
-					target = form.getvalue("dReq")
+					target = int(form.getvalue("dReq"))
 					for post in userDict[currentUser].inbox.messages:
 						if post.id == target:
 							post.declineRequest(userDict)
