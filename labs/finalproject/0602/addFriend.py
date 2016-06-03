@@ -68,6 +68,7 @@ def sendFriendRequest(form, userDict, srcUser):
 	for element in form:
 		if element in userDict:
 			#send the friend request
+			print element
 			userDict[srcUser].inbox.sendMessage(element, "", "", request=True)
 			atLeastOne = True
 			res += element + ", "
