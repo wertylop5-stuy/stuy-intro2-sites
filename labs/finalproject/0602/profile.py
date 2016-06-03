@@ -196,6 +196,7 @@ if 'HTTP_COOKIE' in os.environ:
 			'''
 			userDict = stdStuff.objFileToList(stdStuff.directory,
 									stdStuff.userFile, byName=True)
+			currentUser = c["username"].value
 			if "downVote" in form or "upVote" in form:
 				targId = int(form.getvalue("postId"))
 				targName = c["username"].value#form.getvalue('user')
@@ -209,7 +210,6 @@ if 'HTTP_COOKIE' in os.environ:
 							targName = str(x)
 				'''
                                 #====================================
-				currentUser = c["username"].value
 				userDict = stdStuff.objFileToList(stdStuff.directory,
 									stdStuff.userFile, byName=True)
 				
