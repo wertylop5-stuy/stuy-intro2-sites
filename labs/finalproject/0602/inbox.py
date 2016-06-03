@@ -194,6 +194,8 @@ if 'HTTP_COOKIE' in os.environ:
 					target = form.getvalue("aReq")
 					for post in userDict[currentUser].inbox.messages:
 						if post.id == target:
+							print post.srcUser
+							print post.targUser
 							post.acceptRequest(userDict) 
 				elif "dReq" in form:
 					target = form.getvalue("dReq")
