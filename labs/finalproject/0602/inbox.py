@@ -192,7 +192,9 @@ if 'HTTP_COOKIE' in os.environ:
 			if "aReq" in form or "dReq" in form:
 				if "aReq" in form:
 					target = form.getvalue("aReq")
+					print target
 					for post in userDict[currentUser].inbox.messages:
+						print "Id: " + str(post.id)
 						if post.id == target:
 							print post.srcUser
 							print post.targUser
