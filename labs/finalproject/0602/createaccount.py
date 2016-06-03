@@ -72,8 +72,7 @@ else:
 				body += \
 				'Successfully added. <a href="login.py"> Click here to log in</a>.<br>'
 			else:
-			body += 'Username already taken!'
-		
+				body += 'Username already taken!'
 	else:
 		body += "Please use the form!"
 
