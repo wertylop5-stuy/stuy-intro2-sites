@@ -171,21 +171,24 @@ if 'HTTP_COOKIE' in os.environ:
 							message.viewed = True
 				else:
 					for message in userDict[currentUser].inbox.messages:
-						if message.id == int(targetMessage):
-							message.viewed = True
-							break
+						if type(message) is stdStuff.Message:
+							if message.id == int(targetMessage):
+								message.viewed = True
+								break
 				stdStuff.objListToFile(userDict, stdStuff.directory,
 										stdStuff.userFile, isDict=True)
 			elif "markUnread" in form:
 				targetMessage = form.getvalue("markUnread")
 				if targetMessage == "all":
 					for message in userDict[currentUser].inbox.messages:
-						message.viewed = False
+						if type(message) is stdStuff.Message:
+							message.viewed = False
 				else:
 					for message in userDict[currentUser].inbox.messages:
-						if message.id == int(targetMessage):
-							message.viewed = False
-							break
+						if type(message) is stdStuff.Message:
+							if message.id == int(targetMessage):
+								message.viewed = False
+								break
 				stdStuff.objListToFile(userDict, stdStuff.directory,
 										stdStuff.userFile, isDict=True)
 			
