@@ -199,7 +199,7 @@ if 'HTTP_COOKIE' in os.environ:
 					target = int(form.getvalue("dReq"))
 					for post in userDict[currentUser].inbox.messages:
 						if post.id == target:
-							post.declineRequest(userDict)
+							post.declineRequest()
 				
 				stdStuff.objListToFile(userDict, stdStuff.directory,
 										stdStuff.userFile, isDict=True)
