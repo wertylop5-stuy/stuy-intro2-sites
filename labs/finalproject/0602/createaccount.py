@@ -45,7 +45,7 @@ else:
 	if 'username' in form and 'password' in form:
 		if "<" in form.getvalue("username") or ">" in form.getvalue("username"):
 			body += "You can't use that character!"
-			else:
+		else:
 			userReadStream = open(stdStuff.directory + stdStuff.userFile, "rb")
 			userList = []
 			try:
