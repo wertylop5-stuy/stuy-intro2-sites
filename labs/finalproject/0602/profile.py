@@ -230,7 +230,7 @@ if 'HTTP_COOKIE' in os.environ:
 							break
 				stdStuff.objListToFile(userDict, stdStuff.directory,
 										stdStuff.userFile, isDict=True)
-			print userDict[currentUser].friends
+			#print userDict[currentUser].friends
 			
 			body+=makePage(c)
 		else:

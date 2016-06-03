@@ -41,7 +41,7 @@ Text: <textarea name="comment" rows="10" cols="15">
 <br>
 <input name="done" type="submit" value="Make comment">
 </form>'''
-
+'''
 def displayPost(id, cookie, titleTag, bodyTag, userTag, commentTag):
 	res = ""
 	userList = stdStuff.objFileToList(stdStuff.directory, stdStuff.userFile)
@@ -73,6 +73,63 @@ def displayPost(id, cookie, titleTag, bodyTag, userTag, commentTag):
 """
 						
 			break
+	return res
+'''
+def displayPost(id, currentUser, titleTag, bodyTag, userTag, commentTag):
+	res = ""
+	userDict = stdStuff.objFileToList(stdStuff.directory,
+									stdStuff.userFile, byName=True)
+	
+	for post in userDict[currentUser].posts:
+		if post.id == id:
+			res += post.display()
+			res += "<br><h3>Comments</h3><br>"
+			
+			for comment in post.comments:
+				res += """<table>
+<tr>
+<td>""" + str(comment.score) + """</td>
+<td>
+"""
+				res += comment.display()
+				
+				res += "<a href='postExpanded.py?downVote=lol&commentId="+\
+str(comment.id) + "'&postId='" + str(post.id) + "'>Down Vote</a><br>"
+					
+				res += "<a href='postExpanded.py?upVote=lol&commentId="+\
+str(comment.id) + "'&postId='" + str(post.id) + "'>Up Vote</a><br>"
+				
+				res += """</td>
+	</tr>
+</table>
+"""
+			return res
+	
+	for friend in userDict[currentUser].friends:
+		for post in userDict[friend].posts:
+			if post.id == id:
+				res += post.display()
+				res += "<br><h3>Comments</h3><br>"
+			
+				for comment in post.comments:
+					res += """<table>
+	<tr>
+	<td>""" + str(comment.score) + """</td>
+	<td>
+	"""
+					res += comment.display()
+				
+					res += "<a href='postExpanded.py?downVote=lol&commentId="+\
+	str(comment.id) + "'&postId='" + str(post.id) + "'>Down Vote</a><br>"
+					
+					res += "<a href='postExpanded.py?upVote=lol&commentId="+\
+str(comment.id) + "'&postId='" + str(post.id) + "'>Up Vote</a><br>"
+				
+					res += """</td>
+	</tr>
+</table>
+"""
+					return res
 	return res
 
 def writeComment(targId, cookie, commentText):
