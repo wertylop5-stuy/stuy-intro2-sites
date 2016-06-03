@@ -196,6 +196,7 @@ if 'HTTP_COOKIE' in os.environ:
 					for post in userDict[currentUser].inbox.messages:
 						print "Id: " + str(post.id)
 						if post.id == target:
+							print "googd"
 							print post.srcUser
 							print post.targUser
 							post.acceptRequest(userDict) 
