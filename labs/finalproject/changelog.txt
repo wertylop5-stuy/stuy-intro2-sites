@@ -62,3 +62,14 @@ such as acceptRequest and declineRequest. This distinction also allows for
 the inbox to display the two differently. As of now, the request gets
 directly sent to the same area of the inbox. I would like to change it so
 there is a seperate area in the inbox for requests.
+
+6/02
+I merged code with Gordon, taking the code he wrote to limit the amount of
+up/downvotes a user can perform to one (only for posts so far). In turn, I 
+gave him the code I started for the friend requests. Speaking of which, 
+I continued work on the system, deciding ultimately to include the 
+requests in the same area of the inbox, but above all other messages. Taking
+advantage of inheritance, I was able to add different links below friend 
+requests (accept and decline) while being able to maintain the same overall
+message structure that is seen in Message objects. Finally, I fixed up post
+viewing so that now one can see posts from all there friends as well.
