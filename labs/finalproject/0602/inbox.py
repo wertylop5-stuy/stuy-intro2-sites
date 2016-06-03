@@ -87,7 +87,8 @@ def displayReadMessages(cookie):
 	res += \
 	"<a href='inbox.py?markUnread=all&read=hey'>Mark all as unread</a><br><br>"
 	for message in userDict[currentUser].inbox.messages:
-		orderedMessages.append(message)
+		if type(message) is stdStuff.Message:
+			orderedMessages.append(message)
 	
 	orderedMessages.sort(key=lambda x: x.id, reverse=True)
 	
