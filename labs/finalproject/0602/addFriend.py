@@ -48,14 +48,15 @@ def findUsers(usernameQuery, userDict):
 	hits.sort()
 	return hits
 
-def displayUserList(usernameQuery, userDict):
+def displayUserList(usernameQuery, userDict, currentUser):
 	res = ""
 	res += "<h2>Available users</h2>"
 	res += """<form method="GET" action="addFriend.py">"""
 	userList = findUsers(usernameQuery, userDict)
 	for user in userList:
-		res += user + "<input name='" + user + "' type='checkbox'>"
-		res += "<br>"
+		if user != currentUSer:
+			res += user + "<input name='" + user + "' type='checkbox'>"
+			res += "<br>"
 	
 	res += "<br><br><br>"
 	res += "<input name='requestFriend' type='submit' value='Add selected friends'>"
@@ -66,7 +67,9 @@ def sendFriendRequest(form, userDict, srcUser):
 	res = "<h4>Request sent to: "
 	atLeastOne = False
 	for element in form:
-		if element in userDict:
+		if element == srcUser:
+			res += "<h2>You can't add yourself!</h2>"
+		elif element in userDict:
 			#send the friend request
 			userDict[srcUser].inbox.sendMessage(element, "", "", request=True)
 			atLeastOne = True
@@ -120,7 +123,7 @@ if 'HTTP_COOKIE' in os.environ:
 			body += makePage()
 			if "search" in form:
 				body += displayUserList(form.getvalue("userTarget"),
-										userDict)
+										userDict, currentUser)
 			body += """<br><br><a href="profile.py">Go back to profile</a>"""
 		else:
 			body+="Failed to Authenticate cookie<br>\n"
