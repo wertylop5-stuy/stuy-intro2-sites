@@ -39,6 +39,25 @@ Find a user: <input name="userTarget" type="textfield" value="Watch your casing!
 <input name="search" type="submit" value="Find User">
 </form>'''
 
+def displayInboxWidget(cookie):
+	currentUser = cookie["username"].value
+	userDict = stdStuff.objFileToList(stdStuff.directory,
+								stdStuff.userFile, byName=True)
+	
+	res = \
+"""
+<div align='right'>
+	<table border='1'>
+		<tr>
+			<td>
+				<a href="inbox.py">View messages</a>
+			</td>
+		</tr>
+	</table>
+</div>
+"""
+	return res
+
 def findUsers(usernameQuery, userDict):
 	hits = []
 	for user in userDict:
@@ -83,8 +102,9 @@ def sendFriendRequest(form, userDict, srcUser):
 	return res
 	
 
-def makePage():
+def makePage(cookie):
 	res = ""
+	res += displayInboxWidget(cookie)
 	res += poster()
 	return res
 
@@ -120,7 +140,7 @@ if 'HTTP_COOKIE' in os.environ:
 			if "requestFriend" in form:
 				body += sendFriendRequest(form, userDict, currentUser)
 			
-			body += makePage()
+			body += makePage(c)
 			if "search" in form:
 				body += displayUserList(form.getvalue("userTarget"),
 										userDict, currentUser)

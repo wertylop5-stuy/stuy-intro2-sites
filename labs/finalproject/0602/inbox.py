@@ -44,25 +44,6 @@ Text: <textarea name="messageBody" rows="10" cols="15">
 <input name="sendMessage" type="submit" value="Send Message">
 </form>'''
 
-def displayInboxWidget(cookie):
-	currentUser = cookie["username"].value
-	userDict = stdStuff.objFileToList(stdStuff.directory,
-								stdStuff.userFile, byName=True)
-	
-	res = \
-"""
-<div align='right'>
-	<table border='1'>
-		<tr>
-			<td>
-				<a href="inbox.py">View messages</a>
-			</td>
-		</tr>
-	</table>
-</div>
-"""
-	return res
-
 def displayUnreadMessages(cookie):
 	res = "<br>"
 	orderedMessages = []
@@ -122,7 +103,6 @@ def displayReadMessages(cookie):
 
 def makePage(cookie, showRead):
 	res = ""
-	res += displayInboxWidget()
 	res += poster()
 	res += "<br><br>"
 	res += "<h2>Messages</h2>"
