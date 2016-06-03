@@ -36,6 +36,24 @@ class User(object):
 		for x in self.posts:
 			res += x.display(idTag, userTag, titleTag, textTag)
 		return res
+	
+	def displaySearchPostsWithVoter(self, searchUser, idTag="h6", userTag="h2", titleTag="h1", textTag="p"):
+		res = ""
+		for x in self.posts:
+			res += """<table>
+				<tr>
+				<td>""" + str(x.score) + """</td>
+				<td>
+				"""
+			res += x.display(idTag, userTag, titleTag, textTag)
+			
+			res += "<a href='search.py?downVote=lol&postId="+\
+str(x.id) + '&user=' + searchUser + "'>Down Vote</a><br>" + \
+"<a href='search.py?upVote=lol&postId="+ \
+str(x.id) + '&user=' + searchUser + "'>Up Vote</a><br>" + \
+"""<a href='postExpanded.py?expandButton=""" + \
+str(x.id) + "'>Comment </a>"
+		return res
 
 class TextContainer(object):
 	'''A standard class title, text etc. Inherit from this class'''
@@ -91,6 +109,12 @@ class Post(TextContainer):
 	
 	def decreaseScore(self):
 		self.score -= 1
+	
+	def addUpVote(self,user):
+		self.votedUsers[user] = 'upVote'
+	
+	def addDownVote(self,user):
+		self.votedUsers[user] = 'downVote'
 
 class Comment(TextContainer):
 	'''A comment in the system'''
@@ -168,10 +192,10 @@ class FriendRequest(Message):
 									"Friend request", text)
 	
 	
-	
-	def acceptRequest(self, srcUser, targUser, usrDict):
-		usrDict[srcUser].friends.append(targUser)
-		usrDict[targUser].friends.append(srcUser)
+	def acceptRequest(self, usrDict):
+		'''src and targ are pretty much interchangeable'''
+		usrDict[self.srcUser].friends.append(self.targUser)
+		usrDict[self.targUser].friends.append(self.srcUser)
 		self.viewed = True
 	
 	def declineRequest(self):
