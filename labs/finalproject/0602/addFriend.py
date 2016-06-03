@@ -54,7 +54,7 @@ def displayUserList(usernameQuery, userDict, currentUser):
 	res += """<form method="GET" action="addFriend.py">"""
 	userList = findUsers(usernameQuery, userDict)
 	for user in userList:
-		if user != currentUSer:
+		if user != currentUser:
 			res += user + "<input name='" + user + "' type='checkbox'>"
 			res += "<br>"
 	
