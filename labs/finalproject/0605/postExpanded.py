@@ -162,11 +162,11 @@ def writeComment(targId, currentUser, commentText):
 	for friend in userDict[currentUser].friends:
 		for post in userDict[friend].posts:
 			if post.id == targId:
-			post.addComment(counter, currentUser, commentText)
-			stdStuff.objListToFile(userDict, stdStuff.directory,
-							stdStuff.userFile, isDict=True)
-			stdStuff.setCounter(counter)
-			return
+				post.addComment(counter, currentUser, commentText)
+				stdStuff.objListToFile(userDict, stdStuff.directory,
+								stdStuff.userFile, isDict=True)
+				stdStuff.setCounter(counter)
+				return
 
 
 def authenticate(u,ID,IP):
