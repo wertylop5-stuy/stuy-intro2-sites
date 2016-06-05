@@ -212,10 +212,10 @@ class Message(TextContainer):
 								text))
 		
 		hasBeenFound = False
-		for message in userDict[self.targUser].inbox.messages:
+		for index, message in enumerate(userDict[self.targUser].inbox.messages):
 			if message.id == self.id:
 				print "located"
-				message = self
+				userDict[self.targUser].inbox.messages[index] = self
 				hasBeenFound = True
 				break
 		
