@@ -79,3 +79,8 @@ We have practically implemented all the features we originally wanted, so we
 were discussing what else to add. I wroked on the ability to reply to messages
 while Gordon worked on making groups. I did not get very far on the message
 reply system.
+
+6/05
+I worked again on the reply system. I planned out how the layout should look,
+but when actually working on it, I did not get very far. It is unable to
+update both users inboxes.
