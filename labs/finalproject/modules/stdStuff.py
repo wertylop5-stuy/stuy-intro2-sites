@@ -177,6 +177,7 @@ class Message(TextContainer):
 	def display(self):
 		'''Display message contents in html'''
 		res = ""
+		print str(len(self.replies))
 		if len(self.replies) == 0:
 			print "no reply"
 			res += makeTag("h6", self.id)
