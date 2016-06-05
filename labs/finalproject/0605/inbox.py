@@ -114,7 +114,7 @@ def displayUnreadMessages(cookie):
 Reply: <textarea name="replyBody" rows="10" cols="15">
 </textarea>
 <br>
-<input name="postId" type="hidden" value="''' + message.id + '''">
+<input name="postId" type="hidden" value="''' + str(message.id) + '''">
 <input name="reply" type="submit" value="Reply">
 </form>'''
 	return res
