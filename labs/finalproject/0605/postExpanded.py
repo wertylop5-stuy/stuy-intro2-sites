@@ -131,7 +131,7 @@ str(comment.id) + "'&postId='" + str(post.id) + "'>Up Vote</a><br>"
 """
 					return res
 	return res
-
+'''
 def writeComment(targId, cookie, commentText):
 	targName = cookie["username"].value
 	allUsers = stdStuff.objFileToList(stdStuff.directory,
@@ -145,6 +145,29 @@ def writeComment(targId, cookie, commentText):
 					value.posts[index2].addComment(counter, targName, commentText)
 	stdStuff.objListToFile(allUsers, stdStuff.directory, stdStuff.userFile)
 	stdStuff.setCounter(counter)
+'''
+def writeComment(targId, currentUser, commentText):
+	userDict = stdStuff.objFileToList(stdStuff.directory,
+										 stdStuff.userFile, byName=True)
+	counter = stdStuff.getCounter()
+	
+	for post in userDict[currentUser].posts:
+		if post.id == targId:
+			post.addComment(counter, currentUser, commentText)
+			stdStuff.objListToFile(userDict, stdStuff.directory,
+							stdStuff.userFile, isDict=True)
+			stdStuff.setCounter(counter)
+			return
+	
+	for friend in userDict[currentUser].friends:
+		for post in userDict[friend].posts:
+			if post.id == targId:
+			post.addComment(counter, currentUser, commentText)
+			stdStuff.objListToFile(userDict, stdStuff.directory,
+							stdStuff.userFile, isDict=True)
+			stdStuff.setCounter(counter)
+			return
+
 
 def authenticate(u,ID,IP):
     loggedIn = open(stdStuff.directory + stdStuff.logFile,'r').read().split('\n')
