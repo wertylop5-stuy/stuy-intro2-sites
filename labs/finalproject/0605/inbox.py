@@ -253,6 +253,7 @@ if 'HTTP_COOKIE' in os.environ:
 				
 				for message in userDict[currentUser].inbox.messages:
 					if message.id == replyId:
+						print "replying"
 						message.reply(form.getvalue("replyBody"), userDict)
 						break
 			
