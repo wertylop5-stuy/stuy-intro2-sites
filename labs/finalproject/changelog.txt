@@ -73,3 +73,9 @@ advantage of inheritance, I was able to add different links below friend
 requests (accept and decline) while being able to maintain the same overall
 message structure that is seen in Message objects. Finally, I fixed up post
 viewing so that now one can see posts from all there friends as well.
+
+6/03
+We have practically implemented all the features we originally wanted, so we
+were discussing what else to add. I wroked on the ability to reply to messages
+while Gordon worked on making groups. I did not get very far on the message
+reply system.
