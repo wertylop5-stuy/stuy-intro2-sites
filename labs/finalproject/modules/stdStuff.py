@@ -1,5 +1,5 @@
 import pickle
-#TODO have a seperate area for friend request in inbox
+#TODO modify Message class to be able to hold replied message chain
 directory = "../data/"
 userFile = "users.txt"
 logFile = "loggedin.txt"
@@ -183,6 +183,15 @@ class Message(TextContainer):
 		#for the first time a message is displayed
 		#self.viewed = True
 		return res
+	
+	def reply(self, text, userdict):
+		counter = getCounter()
+		userDict[self.srcUser].inbox.messages.append(
+									Message(counter, self.targUser,
+										self.srcUser, 
+										"Re: " + self.title,
+										text))
+		setCounter(counter)
 
 class FriendRequest(Message):
 	'''A volatile type of message that treats viewed as an accept or decline'''
