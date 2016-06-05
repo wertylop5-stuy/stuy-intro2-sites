@@ -186,7 +186,7 @@ class Message(TextContainer):
 		#self.viewed = True
 		return res
 	
-	def reply(self, text, userdict):
+	def reply(self, text, userDict):
 		counter = getCounter()
 		if not(self.hasReplies):
 			self.hasReplies = True
