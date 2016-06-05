@@ -177,10 +177,20 @@ class Message(TextContainer):
 	def display(self):
 		'''Display message contents in html'''
 		res = ""
-		res += makeTag("h6", self.id)
-		res += makeTag("h5", "From: " + self.srcUser)
-		res += makeTag("h3", self.title)
-		res += makeTag("p", self.text)
+		if len(replies) == 0:
+			res += makeTag("h6", self.id)
+			res += makeTag("h5", "From: " + self.srcUser)
+			res += makeTag("h3", self.title)
+			res += makeTag("p", self.text)
+		else:
+			print "long"
+			res += makeTag("h6", self.id)
+			res += makeTag("h5", "From: " + \
+			self.replies[len(self.replies)].srcUser)
+			
+			res += makeTag("h3", self.title)
+			
+			res += makeTag("p", self.replies[len(self.replies)].text)
 		
 		#for the first time a message is displayed
 		#self.viewed = True
