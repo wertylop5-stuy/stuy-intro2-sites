@@ -150,7 +150,7 @@ class Inbox(object):
 		return res
 	
 	def sendMessage(self, recipient, title, message, request=False):
-		'''Send a message to a user'''
+		'''Send a new message to a user'''
 		counter = getCounter()
 		userDict = objFileToList(directory, userFile, byName=True)
 		#ignores title and message
@@ -171,6 +171,8 @@ class Message(TextContainer):
 		self.srcUser = srcUser
 		self.targUser = targUser
 		self.viewed = viewed
+		self.hasReplies = False
+		self.replies = []
 	
 	def display(self):
 		'''Display message contents in html'''
@@ -186,11 +188,26 @@ class Message(TextContainer):
 	
 	def reply(self, text, userdict):
 		counter = getCounter()
-		userDict[self.srcUser].inbox.messages.append(
-									Message(counter, self.targUser,
-										self.srcUser, 
-										"Re: " + self.title,
-										text))
+		if not(self.hasReplies):
+			self.hasReplies = True
+			self.title = "Re: " + self.title
+		
+		self.replies.append(
+							Message(counter, self.targUser,
+								self.srcUser, 
+								"",
+								text))
+		
+		hasBeenFound = False
+		for message in userDict[targUser].inbox.messages:
+			if message.id == self.id:
+				message = self
+				hasBeenFound = True
+				break
+		
+		if not(hasBeenFound):
+			userDict[srcUser].inbox.messages.append(self)
+		
 		setCounter(counter)
 
 class FriendRequest(Message):

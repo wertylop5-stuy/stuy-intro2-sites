@@ -43,7 +43,7 @@ Text: <textarea name="messageBody" rows="10" cols="15">
 <br>
 <input name="sendMessage" type="submit" value="Send Message">
 </form>'''
-
+'''
 def displayUnreadMessages(cookie):
 	res = "<br>"
 	orderedMessages = []
@@ -76,6 +76,47 @@ def displayUnreadMessages(cookie):
 			res += message.display()
 			res += "<a href='inbox.py?markRead=" + str(message.id) + \
 	"&unread=hey'>Mark as read</a>"
+	return res
+'''
+def displayUnreadMessages(cookie):
+	res = "<br>"
+	orderedMessages = []
+	#friend requests
+	orderedRequests = []
+	currentUser = cookie["username"].value
+	userDict = stdStuff.objFileToList(stdStuff.directory,
+								stdStuff.userFile, byName=True)
+	res += \
+	"""<a href='inbox.py?markRead=all&unread=hey'>Mark all as read</a><br><br>"""
+	for message in userDict[currentUser].inbox.messages:
+		if type(message) is stdStuff.Message:
+			orderedMessages.append(message)
+		elif type(message) is stdStuff.FriendRequest:
+			orderedRequests.append(message)
+	
+	orderedMessages.sort(key=lambda x: x.id, reverse=True)
+	orderedRequests.sort(key=lambda x: x.id, reverse=True)
+	
+	for request in orderedRequests:
+		if request.viewed == False:
+			res += request.display()
+			res += "<a href='inbox.py?aReq=" + str(request.id) + \
+	"&unread=hey'>Accept</a><br>"
+			res += "<a href='inbox.py?dReq=" + str(request.id) + \
+	"&unread=hey'>Decline</a>"
+	
+	for message in orderedMessages:
+		if message.viewed == False:
+			res += message.display()
+			res += "<a href='inbox.py?markRead=" + str(message.id) + \
+	"&unread=hey'>Mark as read</a>"
+			res += '''<form action = "inbox.py" method = "GET">
+Reply: <textarea name="replyBody" rows="10" cols="15">
+</textarea>
+<br>
+<input name="postId" type="hidden" value="''' + message.id + '''">
+<input name="reply" type="submit" value="Reply">
+</form>'''
 	return res
 
 def displayReadMessages(cookie):
@@ -206,6 +247,14 @@ if 'HTTP_COOKIE' in os.environ:
 				
 				stdStuff.objListToFile(userDict, stdStuff.directory,
 										stdStuff.userFile, isDict=True)
+			
+			if "reply" in form:
+				replyId = int(form.getvalue("postId"))
+				
+				for message in userDict[currentUser].inbox.messages:
+					if message.id == replyId:
+						message.reply(form.getvalue("replyBody"), userDict)
+						break
 			
 			
 			if "read" in form:
