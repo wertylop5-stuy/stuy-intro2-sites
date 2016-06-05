@@ -212,10 +212,10 @@ class Message(TextContainer):
 								text))
 		
 		hasBeenFound = False
-		for index, message in enumerate(userDict[self.targUser].inbox.messages):
+		for index, message in enumerate(userDict[self.srcUser].inbox.messages):
 			if message.id == self.id:
 				print "located"
-				userDict[self.targUser].inbox.messages[index] = self
+				userDict[self.srcUser].inbox.messages[index] = self
 				hasBeenFound = True
 				break
 		
@@ -223,6 +223,10 @@ class Message(TextContainer):
 			print "new reply"
 			userDict[srcUser].inbox.messages.append(self)
 		
+		
+		temp = self.targUser
+		self.targUser = self.srcUser
+		self.srcUser = temp
 		setCounter(counter)
 
 class FriendRequest(Message):
