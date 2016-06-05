@@ -199,6 +199,7 @@ class Message(TextContainer):
 	def reply(self, text, userDict):
 		counter = getCounter()
 		if not(self.hasReplies):
+			print "fresh"
 			self.hasReplies = True
 			self.title = "Re: " + self.title
 		
@@ -211,11 +212,13 @@ class Message(TextContainer):
 		hasBeenFound = False
 		for message in userDict[self.targUser].inbox.messages:
 			if message.id == self.id:
+				print "located"
 				message = self
 				hasBeenFound = True
 				break
 		
 		if not(hasBeenFound):
+			print "new reply"
 			userDict[srcUser].inbox.messages.append(self)
 		
 		setCounter(counter)
