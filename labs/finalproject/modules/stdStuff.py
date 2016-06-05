@@ -199,7 +199,7 @@ class Message(TextContainer):
 								text))
 		
 		hasBeenFound = False
-		for message in userDict[targUser].inbox.messages:
+		for message in userDict[self.targUser].inbox.messages:
 			if message.id == self.id:
 				message = self
 				hasBeenFound = True
