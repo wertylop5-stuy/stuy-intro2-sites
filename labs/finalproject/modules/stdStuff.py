@@ -1,4 +1,4 @@
-import pickle
+import pickle, copy
 #TODO modify Message class to be able to hold replied message chain
 directory = "../data/"
 userFile = "users.txt"
@@ -210,23 +210,26 @@ class Message(TextContainer):
 								self.srcUser, 
 								"",
 								text))
+		self.viewed = False
+		
+		temp = self.targUser
+		self.targUser = self.srcUser
+		self.srcUser = temp
 		
 		hasBeenFound = False
-		for index, message in enumerate(userDict[self.srcUser].inbox.messages):
+		for index, message in enumerate(userDict[self.targUser].inbox.messages):
 			if message.id == self.id:
 				print "located"
-				userDict[self.srcUser].inbox.messages[index] = self
+				userDict[self.targUser].inbox.messages[index] = copy.deepcopy(self)
 				hasBeenFound = True
 				break
 		
 		if not(hasBeenFound):
 			print "new reply"
-			userDict[srcUser].inbox.messages.append(self)
+			userDict[targUser].inbox.messages.append(copy.deepcopy(self))
 		
 		
-		temp = self.targUser
-		self.targUser = self.srcUser
-		self.srcUser = temp
+		
 		setCounter(counter)
 
 class FriendRequest(Message):
