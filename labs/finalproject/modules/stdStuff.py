@@ -241,7 +241,7 @@ class Message(TextContainer):
 		self.targUser = self.replies[len(self.replies) - 1].targUser
 		
 		#if last messages src equals current src, no change
-		if not(self.replies[len(self.replies) - 1].srcUser == self.replySrc) and \
+		if self.replies[len(self.replies) - 1].srcUser == self.replySrc and \
 		len(self.replies) > 1:
 			self.replies.append(
 							Message(counter, self.replySrc,
