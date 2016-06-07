@@ -236,10 +236,10 @@ class Message(TextContainer):
 			self.title = "Re: " + self.title
 			#the original message is the first reply
 			self.replies.append(copy.deepcopy(self))
-		
+		'''
 		self.srcUser = self.replies[len(self.replies) - 1].srcUser
 		self.targUser = self.replies[len(self.replies) - 1].targUser
-		
+		'''
 		#if last messages src equals current src, no change
 		if self.replies[len(self.replies) - 1].srcUser == self.replySrc and \
 		len(self.replies) > 1:
