@@ -242,16 +242,17 @@ class Message(TextContainer):
 		
 		
 		hasBeenFound = False
-		for index, message in enumerate(userDict[self.targUser].inbox.messages):
+		for index, message in enumerate(userDict[self.replyTarg].inbox.messages):
 			if message.id == self.id:
 				print "located"
-				userDict[self.targUser].inbox.messages[index] = copy.deepcopy(self)
+				userDict[self.replyTarg].inbox\
+								.messages[index] = copy.deepcopy(self)
 				hasBeenFound = True
 				break
 		
 		if not(hasBeenFound):
 			print "new reply"
-			userDict[self.targUser].inbox\
+			userDict[self.replyTarg].inbox\
 					.messages.append(copy.deepcopy(self))
 		
 		if not(self.replies[len(self.replies) - 1].targUser == self.replySrc):
