@@ -281,7 +281,7 @@ class Message(TextContainer):
 		print "targ: " + self.replies[len(self.replies) - 1].targUser
 		print "src: " + self.replySrc
 		
-		if not(self.replies[len(self.replies) - 1].targUser == self.replySrc):
+		if not(self.replies[len(self.replies) - 1].targUser == self.replyTarg):
 			temp = self.replyTarg
 			self.replyTarg = self.replySrc
 			self.replySrc = temp
