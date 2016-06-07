@@ -209,6 +209,7 @@ class Message(TextContainer):
 			res += makeTag("p", self.text)
 		else:
 			print "long"
+			print self.replySrc
 			res += makeTag("h6", self.id)
 			res += makeTag("h5", "From: " + \
 			self.replies[len(self.replies) - 1].replySrc)
