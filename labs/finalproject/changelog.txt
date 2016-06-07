@@ -84,3 +84,9 @@ reply system.
 I worked again on the reply system. I planned out how the layout should look,
 but when actually working on it, I did not get very far. It is unable to
 update both users inboxes.
+
+6/06
+I attempted to fix the reply messaging system in class. I managed to get the
+userTag to switch during replies, but now I need to get it to only switch
+when a different user is replying. I was unable to work on the project at
+home.

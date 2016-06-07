@@ -1,5 +1,5 @@
 import pickle, copy
-#TODO modify Message class to be able to hold replied message chain
+#TODO line 219 fix user display tag
 directory = "../data/"
 userFile = "users.txt"
 logFile = "loggedin.txt"
@@ -173,6 +173,8 @@ class Message(TextContainer):
 		self.viewed = viewed
 		self.hasReplies = False
 		self.replies = []
+		self.replySrc = srcUser
+		self.replyTarg = targUser
 	
 	def display(self):
 		'''Display message contents in html'''
@@ -188,22 +190,24 @@ class Message(TextContainer):
 			print "long"
 			res += makeTag("h6", self.id)
 			res += makeTag("h5", "From: " + \
-			self.replies[len(self.replies)].srcUser)
+			self.replies[len(self.replies) - 1].srcUser)
 			
 			res += makeTag("h3", self.title)
 			
-			res += makeTag("p", self.replies[len(self.replies)].text)
+			res += makeTag("p",
+						self.replies[len(self.replies) - 1].text)
 		
 		#for the first time a message is displayed
 		#self.viewed = True
 		return res
 	
-	def reply(self, text, userDict):
+	def reply(self, text, userDict, currentUser):
 		counter = getCounter()
 		if not(self.hasReplies):
 			print "fresh"
 			self.hasReplies = True
 			self.title = "Re: " + self.title
+			self.replies.append(copy.deepcopy(self))
 		
 		self.replies.append(
 							Message(counter, self.targUser,
@@ -212,6 +216,7 @@ class Message(TextContainer):
 								text))
 		self.viewed = False
 		
+		if not(self.replyTarg == 
 		temp = self.targUser
 		self.targUser = self.srcUser
 		self.srcUser = temp
@@ -226,7 +231,8 @@ class Message(TextContainer):
 		
 		if not(hasBeenFound):
 			print "new reply"
-			userDict[targUser].inbox.messages.append(copy.deepcopy(self))
+			userDict[self.targUser].inbox\
+					.messages.append(copy.deepcopy(self))
 		
 		
 		
