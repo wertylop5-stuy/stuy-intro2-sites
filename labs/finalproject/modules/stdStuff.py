@@ -211,7 +211,12 @@ class Message(TextContainer):
 			print "long"
 			res += makeTag("h6", self.id)
 			res += makeTag("h5", "From: " + \
-			self.replies[len(self.replies) - 1].srcUser)
+			self.replies[len(self.replies) - 1].replySrc)
+			
+			res += makeTag("h5", "To: " + \
+			self.replies[len(self.replies) - 1].replyTarg)
+			
+			
 			
 			res += makeTag("h3", self.title)
 			
