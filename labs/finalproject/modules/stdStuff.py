@@ -7,6 +7,9 @@ postFile = "posts.txt"
 counterFile = "counter.txt"
 commentFile = "comments.txt"
 postIdFile = "postId.txt"
+groupFile = "groups.txt"
+groupsNameFile = "groupsName.txt"
+currentGroupFile = "currentGroup.txt"
 
 #possibly deprecated
 splitChar = chr(182)
@@ -24,6 +27,8 @@ class User(object):
 		
 		#holds post objects
 		self.posts = []
+		
+		self.searchUser = ''
 	
 	def addPost(self, post):
 		self.posts.append(post)
@@ -47,12 +52,14 @@ class User(object):
 				"""
 			res += x.display(idTag, userTag, titleTag, textTag)
 			
-			res += "<a href='search.py?downVote=lol&postId="+\
-str(x.id) + '&user=' + searchUser + "'>Down Vote</a><br>" + \
-"<a href='search.py?upVote=lol&postId="+ \
-str(x.id) + '&user=' + searchUser + "'>Up Vote</a><br>" + \
-"""<a href='postExpanded.py?expandButton=""" + \
-str(x.id) + "'>Comment </a>"
+			res += "<a href='search.py?downVote=lol&postId="+ str(x.id) + '&user=' + searchUser + "'>Down Vote</a><br>" + \
+"<a href='search.py?upVote=lol&postId="+ str(x.id) + '&user=' + searchUser + "'>Up Vote</a><br>" + \
+"<a href='search.py?removeVote=lol&postId="+ str(x.id) + '&user=' + searchUser + "'>Remove Vote</a><br>" + \
+"""<a href='postExpandedSearch.py?expandButton=""" + str(x.id) + '&searchUserPost=' + searchUser +"'>Comment </a>"
+			res += """</td>
+	</tr>
+	</table>
+"""
 		return res
 
 class TextContainer(object):
@@ -115,6 +122,9 @@ class Post(TextContainer):
 	
 	def addDownVote(self,user):
 		self.votedUsers[user] = 'downVote'
+	
+	def removeVote(self,user):
+		self.votedUsers[user] = 'noVote'
 
 class Comment(TextContainer):
 	'''A comment in the system'''
@@ -122,6 +132,8 @@ class Comment(TextContainer):
 		super(Comment, self).__init__(id, user, "", text)
 		
 		self.score = 0
+		
+		self.votedUsers = {}
 	
 	def display(self, idTag="h6", userTag="h3", textTag="p"):
 		res = ""
@@ -135,6 +147,15 @@ class Comment(TextContainer):
 	
 	def decreaseScore(self):
 		self.score -= 1
+	
+	def addUpVote(self,user):
+		self.votedUsers[user] = 'upVote'
+	
+	def addDownVote(self,user):
+		self.votedUsers[user] = 'downVote'
+	
+	def removeVote(self,user):
+		self.votedUsers[user] = 'noVote'
 
 class Inbox(object):
 	'''Each user's inbox'''
@@ -263,7 +284,42 @@ class FriendRequest(Message):
 		res += makeTag("h3", self.text)
 		return res
 
-
+class Group(object):
+	'''A group of people'''
+	def __init__(self, name, visibility, user):
+		self.name = name
+		self.members = []
+		self.visibility = visibility
+		self.posts = []
+		self.admins = []
+		self.admins.append(user)
+		self.members.append(user)
+	def changeVisibility(self,visibility2):
+		self.visibility = visibility2
+	def changeName(self, name):
+		if name == '':
+			pass
+		else:
+			self.name = name 
+	def addPost(self,post):
+		self.posts.append(post)
+	def addMember(self, member):
+		if member == '':
+			pass
+		else:
+			self.members.append(member)
+	def addAdmin(self, admin):
+		if member == '':
+			pass
+		else:
+			self.admins.append(admin)
+	def kickMember(self, member):
+		if member == '':
+			pass
+		else:
+			self.members.remove(member)
+	def kickAdmin(self, admin):
+		self.admins.remove(admin)
 
 def makeTag(tag, text):
 	return "<" + tag + ">" + str(text) + "</" + tag + ">"
