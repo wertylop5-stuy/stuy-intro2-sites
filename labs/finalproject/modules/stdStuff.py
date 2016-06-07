@@ -277,7 +277,10 @@ class Message(TextContainer):
 			print "new reply"
 			userDict[self.replySrc].inbox\
 					.messages.append(copy.deepcopy(self))
-		 
+		
+		print self.replies[len(self.replies) - 1].targUser
+		print self.replySrc
+		
 		if not(self.replies[len(self.replies) - 1].targUser == self.replySrc):
 			temp = self.replyTarg
 			self.replyTarg = self.replySrc
