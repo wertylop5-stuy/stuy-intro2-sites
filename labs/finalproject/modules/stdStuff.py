@@ -251,6 +251,7 @@ class Message(TextContainer):
 		for index, message in enumerate(userDict[self.replyTarg].inbox.messages):
 			if message.id == self.id:
 				print "located"
+				print self.replyTarg
 				userDict[self.replyTarg].inbox\
 								.messages[index] = copy.deepcopy(self)
 				hasBeenFound = True
