@@ -237,12 +237,23 @@ class Message(TextContainer):
 			#the original message is the first reply
 			self.replies.append(copy.deepcopy(self))
 		
-		#make a new reply
-		self.replies.append(
+		#if last messages src equals current src, no change
+		if self.replies[len(self.replies) - 1].srcUser == self.replySrc:
+			self.replies.append(
+							Message(counter, self.replySrc,
+								self.replyTarg, 
+								"",
+								text))
+		else:
+			#make a new reply
+			self.replies.append(
 							Message(counter, self.replyTarg,
 								self.replySrc, 
 								"",
-								text, True))
+								text))
+			temp = self.targUser
+			self.targUser = self.srcUser
+			self.srcUser = temp
 		#self.viewed = False
 		
 		
@@ -278,14 +289,14 @@ class Message(TextContainer):
 			userDict[self.replySrc].inbox\
 					.messages.append(copy.deepcopy(self))
 		
-		print "targ: " + self.replies[len(self.replies) - 1].replySrc
-		print "src: " + self.replySrc
-		
+		print "srcUser: " + self.replies[len(self.replies) - 1].srcUser
+		print "replySrc: " + self.replySrc
+		'''
 		if not(self.replies[len(self.replies) - 1].targUser == self.replyTarg):
 			temp = self.replyTarg
 			self.replyTarg = self.replySrc
 			self.replySrc = temp
-		
+		'''
 		setCounter(counter)
 
 class FriendRequest(Message):
