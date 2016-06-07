@@ -237,8 +237,12 @@ class Message(TextContainer):
 			#the original message is the first reply
 			self.replies.append(copy.deepcopy(self))
 		
+		self.srcUser = self.replies[len(self.replies) - 1].srcUser
+		self.targUser = self.replies[len(self.replies) - 1].targUser
+		
 		#if last messages src equals current src, no change
-		if self.replies[len(self.replies) - 1].srcUser == self.replySrc:
+		if not(self.replies[len(self.replies) - 1].srcUser == self.replySrc) and \
+		len(self.replies) > 1:
 			self.replies.append(
 							Message(counter, self.replySrc,
 								self.replyTarg, 
@@ -246,13 +250,13 @@ class Message(TextContainer):
 								text))
 		else:
 			#make a new reply
-			temp = self.targUser
-			self.targUser = self.srcUser
-			self.srcUser = temp
+			temp = self.replyTarg
+			self.replyTarg = self.replySrc
+			self.replySrc = temp
 			
 			self.replies.append(
-							Message(counter, self.srcUser,
-								self.targUser, 
+							Message(counter, self.replySrc,
+								self.replyTarg, 
 								"",
 								text))
 			
@@ -291,8 +295,10 @@ class Message(TextContainer):
 			userDict[self.replySrc].inbox\
 					.messages.append(copy.deepcopy(self))
 		
-		print "srcUser: " + self.replies[len(self.replies) - 1].replySrc
+		print "srcUser: " + self.srcUser
+		print "targUser: " + self.targUser
 		print "replySrc: " + self.replySrc
+		print "replyTarg: " + self.replyTarg
 		'''
 		if not(self.replies[len(self.replies) - 1].targUser == self.replyTarg):
 			temp = self.replyTarg
