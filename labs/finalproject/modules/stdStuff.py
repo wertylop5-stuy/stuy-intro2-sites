@@ -279,9 +279,9 @@ class Message(TextContainer):
 					.messages.append(copy.deepcopy(self))
 		 
 		if not(self.replies[len(self.replies) - 1].targUser == self.replySrc):
-			temp = self.targUser
-			self.targUser = self.srcUser
-			self.srcUser = temp
+			temp = self.replyTarg
+			self.replyTarg = self.replySrc
+			self.replySrc = temp
 		
 		setCounter(counter)
 
