@@ -295,6 +295,7 @@ class Message(TextContainer):
 			userDict[self.replySrc].inbox\
 					.messages.append(copy.deepcopy(self))
 		
+		print "last srcUser:" + self.replies[len(self.replies) - 1].srcUser
 		print "srcUser: " + self.srcUser
 		print "targUser: " + self.targUser
 		print "replySrc: " + self.replySrc
