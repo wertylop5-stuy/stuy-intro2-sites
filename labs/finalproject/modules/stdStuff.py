@@ -246,14 +246,16 @@ class Message(TextContainer):
 								text))
 		else:
 			#make a new reply
-			self.replies.append(
-							Message(counter, self.replyTarg,
-								self.replySrc, 
-								"",
-								text))
 			temp = self.targUser
 			self.targUser = self.srcUser
 			self.srcUser = temp
+			
+			self.replies.append(
+							Message(counter, self.srcUser,
+								self.targUser, 
+								"",
+								text))
+			
 		#self.viewed = False
 		
 		
