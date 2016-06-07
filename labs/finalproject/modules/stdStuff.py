@@ -237,7 +237,7 @@ class Message(TextContainer):
 								text))
 		self.viewed = False
 		
-		if not(self.replyTarg == 
+		#if not(self.replyTarg == 
 		temp = self.targUser
 		self.targUser = self.srcUser
 		self.srcUser = temp
