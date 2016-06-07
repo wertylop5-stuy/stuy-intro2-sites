@@ -228,19 +228,18 @@ class Message(TextContainer):
 			print "fresh"
 			self.hasReplies = True
 			self.title = "Re: " + self.title
+			#the original message is the first reply
 			self.replies.append(copy.deepcopy(self))
 		
+		#make a new reply
 		self.replies.append(
-							Message(counter, self.targUser,
-								self.srcUser, 
+							Message(counter, self.replyTarg,
+								self.replySrc, 
 								"",
-								text))
-		self.viewed = False
+								text, True))
+		#self.viewed = False
 		
-		#if not(self.replyTarg == 
-		temp = self.targUser
-		self.targUser = self.srcUser
-		self.srcUser = temp
+		
 		
 		hasBeenFound = False
 		for index, message in enumerate(userDict[self.targUser].inbox.messages):
@@ -255,7 +254,10 @@ class Message(TextContainer):
 			userDict[self.targUser].inbox\
 					.messages.append(copy.deepcopy(self))
 		
-		
+		if not(self.replies[len(replies) - 1].targUser == self.replySrc):
+			temp = self.targUser
+			self.targUser = self.srcUser
+			self.srcUser = temp
 		
 		setCounter(counter)
 
