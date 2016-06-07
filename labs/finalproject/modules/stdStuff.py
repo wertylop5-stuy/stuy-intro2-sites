@@ -243,12 +243,14 @@ class Message(TextContainer):
 		#if last messages src equals current src, no change
 		if self.replies[len(self.replies) - 1].srcUser == self.replySrc and \
 		len(self.replies) > 1:
+			print "matched"
 			self.replies.append(
 							Message(counter, self.replySrc,
 								self.replyTarg, 
 								"",
 								text))
 		else:
+			print "not matched"
 			#make a new reply
 			temp = self.replyTarg
 			self.replyTarg = self.replySrc
