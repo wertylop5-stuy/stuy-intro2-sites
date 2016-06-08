@@ -200,16 +200,12 @@ class Message(TextContainer):
 	def display(self):
 		'''Display message contents in html'''
 		res = ""
-		print str(len(self.replies))
 		if len(self.replies) == 0:
-			print "no reply"
 			res += makeTag("h6", self.id)
 			res += makeTag("h5", "From: " + self.srcUser)
 			res += makeTag("h3", self.title)
 			res += makeTag("p", self.text)
 		else:
-			print "long"
-			print self.replySrc
 			res += makeTag("h6", self.id)
 			res += makeTag("h5", "From: " + \
 			self.replies[len(self.replies) - 1].srcUser)
@@ -227,93 +223,10 @@ class Message(TextContainer):
 		#for the first time a message is displayed
 		#self.viewed = True
 		return res
-	"""
+	
 	def reply(self, text, userDict, currentUser):
 		counter = getCounter()
 		if not(self.hasReplies):
-			print "fresh"
-			self.hasReplies = True
-			self.title = "Re: " + self.title
-			#the original message is the first reply
-			self.replies.append(copy.deepcopy(self))
-		'''
-		self.srcUser = self.replies[len(self.replies) - 1].srcUser
-		self.targUser = self.replies[len(self.replies) - 1].targUser
-		'''
-		#if last messages src equals current src, no change
-		if self.replies[len(self.replies) - 1].srcUser == self.replySrc and \
-		len(self.replies) > 1:
-			print "matched"
-			self.replies.append(
-							Message(counter, self.replySrc,
-								self.replyTarg, 
-								"",
-								text))
-		else:
-			print "not matched"
-			#make a new reply
-			temp = self.replyTarg
-			self.replyTarg = self.replySrc
-			self.replySrc = temp
-			
-			self.replies.append(
-							Message(counter, self.replySrc,
-								self.replyTarg, 
-								"",
-								text))
-			
-		#self.viewed = False
-		
-		
-		#for recipient
-		hasBeenFound = False
-		for index, message in enumerate(userDict[self.replyTarg].inbox.messages):
-			if message.id == self.id:
-				print "located"
-				print self.replyTarg
-				userDict[self.replyTarg].inbox\
-								.messages[index] = copy.deepcopy(self)
-				hasBeenFound = True
-				break
-		
-		if not(hasBeenFound):
-			print "new reply"
-			userDict[self.replyTarg].inbox\
-					.messages.append(copy.deepcopy(self))
-		
-		#for source
-		hasBeenFound = False
-		for index, message in enumerate(userDict[self.replySrc].inbox.messages):
-			if message.id == self.id:
-				print "located"
-				print self.replySrc
-				userDict[self.replySrc].inbox\
-								.messages[index] = copy.deepcopy(self)
-				hasBeenFound = True
-				break
-		
-		if not(hasBeenFound):
-			print "new reply"
-			userDict[self.replySrc].inbox\
-					.messages.append(copy.deepcopy(self))
-		
-		print "last srcUser:" + self.replies[len(self.replies) - 1].srcUser
-		print "srcUser: " + self.srcUser
-		print "targUser: " + self.targUser
-		print "replySrc: " + self.replySrc
-		print "replyTarg: " + self.replyTarg
-		'''
-		if not(self.replies[len(self.replies) - 1].targUser == self.replyTarg):
-			temp = self.replyTarg
-			self.replyTarg = self.replySrc
-			self.replySrc = temp
-		'''
-		setCounter(counter)
-	"""
-	def reply(self, text, userDict, currentUser):
-		counter = getCounter()
-		if not(self.hasReplies):
-			print "fresh"
 			self.hasReplies = True
 			self.title = "Re: " + self.title
 			#the original message is the first reply
@@ -340,15 +253,12 @@ class Message(TextContainer):
 		hasBeenFound = False
 		for index, message in enumerate(userDict[self.replyTarg].inbox.messages):
 			if message.id == self.id:
-				print "located"
-				print self.replyTarg
 				userDict[self.replyTarg].inbox\
 								.messages[index] = copy.deepcopy(self)
 				hasBeenFound = True
 				break
 		
 		if not(hasBeenFound):
-			print "new reply"
 			userDict[self.replyTarg].inbox\
 					.messages.append(copy.deepcopy(self))
 		
@@ -356,23 +266,14 @@ class Message(TextContainer):
 		hasBeenFound = False
 		for index, message in enumerate(userDict[self.replySrc].inbox.messages):
 			if message.id == self.id:
-				print "located"
-				print self.replySrc
 				userDict[self.replySrc].inbox\
 								.messages[index] = copy.deepcopy(self)
 				hasBeenFound = True
 				break
 		
 		if not(hasBeenFound):
-			print "new reply"
 			userDict[self.replySrc].inbox\
 					.messages.append(copy.deepcopy(self))
-		
-		print "last srcUser:" + self.replies[len(self.replies) - 1].srcUser
-		print "srcUser: " + self.srcUser
-		print "targUser: " + self.targUser
-		print "replySrc: " + self.replySrc
-		print "replyTarg: " + self.replyTarg
 		
 		setCounter(counter)
 
