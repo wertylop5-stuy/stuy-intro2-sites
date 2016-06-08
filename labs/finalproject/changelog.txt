@@ -90,3 +90,13 @@ I attempted to fix the reply messaging system in class. I managed to get the
 userTag to switch during replies, but now I need to get it to only switch
 when a different user is replying. I was unable to work on the project at
 home.
+
+6/07
+Regrettably, I arrived home late last night, so I was unable to get to my
+project, leading to it not working in class. My section was still broken when
+Gordon merged it (I guess I'm the one to blame).
+I fixed the problem in stdStuff; it was just an unmatched paren. I spent
+the next 2 hours working on just the reply system. It worked, but the
+recipient and origin tags did not change accordingly. It eventually turned out
+to be a simple fix: just take the currentUser, then use an if statement from
+there.

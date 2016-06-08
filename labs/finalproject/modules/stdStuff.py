@@ -1,5 +1,5 @@
 import pickle, copy
-#TODO line 219 fix user display tag
+#TODO 
 directory = "../data/"
 userFile = "users.txt"
 logFile = "loggedin.txt"
