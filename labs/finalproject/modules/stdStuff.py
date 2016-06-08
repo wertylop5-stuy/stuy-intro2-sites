@@ -227,7 +227,7 @@ class Message(TextContainer):
 		#for the first time a message is displayed
 		#self.viewed = True
 		return res
-	
+	"""
 	def reply(self, text, userDict, currentUser):
 		counter = getCounter()
 		if not(self.hasReplies):
@@ -308,6 +308,72 @@ class Message(TextContainer):
 			self.replyTarg = self.replySrc
 			self.replySrc = temp
 		'''
+		setCounter(counter)
+	"""
+	def reply(self, text, userDict, currentUser):
+		counter = getCounter()
+		if not(self.hasReplies):
+			print "fresh"
+			self.hasReplies = True
+			self.title = "Re: " + self.title
+			#the original message is the first reply
+			self.replies.append(copy.deepcopy(self))
+		
+		if currentUser == self.replySrc:
+			self.replies.append(
+							Message(counter, self.replySrc,
+								self.replyTarg, 
+								"",
+								text))
+			
+		else:
+			temp = self.replyTarg
+			self.replyTarg = self.replySrc
+			self.replySrc = temp
+			
+			self.replies.append(
+							Message(counter, self.replySrc,
+								self.replyTarg, 
+								"",
+								text))
+		#for recipient
+		hasBeenFound = False
+		for index, message in enumerate(userDict[self.replyTarg].inbox.messages):
+			if message.id == self.id:
+				print "located"
+				print self.replyTarg
+				userDict[self.replyTarg].inbox\
+								.messages[index] = copy.deepcopy(self)
+				hasBeenFound = True
+				break
+		
+		if not(hasBeenFound):
+			print "new reply"
+			userDict[self.replyTarg].inbox\
+					.messages.append(copy.deepcopy(self))
+		
+		#for source
+		hasBeenFound = False
+		for index, message in enumerate(userDict[self.replySrc].inbox.messages):
+			if message.id == self.id:
+				print "located"
+				print self.replySrc
+				userDict[self.replySrc].inbox\
+								.messages[index] = copy.deepcopy(self)
+				hasBeenFound = True
+				break
+		
+		if not(hasBeenFound):
+			print "new reply"
+			userDict[self.replySrc].inbox\
+					.messages.append(copy.deepcopy(self))
+		
+		print "last srcUser:" + self.replies[len(self.replies) - 1].srcUser
+		print "srcUser: " + self.srcUser
+		print "targUser: " + self.targUser
+		print "replySrc: " + self.replySrc
+		print "replyTarg: " + self.replyTarg
+		
 		setCounter(counter)
 
 class FriendRequest(Message):
