@@ -54,7 +54,7 @@ def displayMessageAndReplies(userDict, currentUser, postId):
 			res += stdStuff.makeTag("h3", message.title)
 			
 			for reply in message.replies:
-				res += "From: " + stdStuff.makeTag("h6", reply.srcUser)
+				res += stdStuff.makeTag("h6", "From: " + reply.srcUser)
 				res += stdStuff.makeTag("h3", reply.text)
 			
 	
