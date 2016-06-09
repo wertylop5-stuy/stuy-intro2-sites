@@ -113,11 +113,6 @@ if 'HTTP_COOKIE' in os.environ:
 </form>
 <a href="profile.py">Go back to profile</a>
 """
-			if "postId" in form:
-				postId = int(form.getvalue("postId"))
-				body += displayMessageAndReplies(userDict,
-										currentUser,
-										postId)
 			
 			if "reply" in form:
 				replyId = int(form.getvalue("postId"))
@@ -130,6 +125,12 @@ if 'HTTP_COOKIE' in os.environ:
 										stdStuff.userFile,
 										isDict=True)
 						break
+			
+			if "postId" in form:
+				postId = int(form.getvalue("postId"))
+				body += displayMessageAndReplies(userDict,
+										currentUser,
+										postId)
 			
 			body += '<a href="profile.py">Go back to profile</a>'
 		else:
