@@ -58,7 +58,7 @@ def displayMessageAndReplies(userDict, currentUser, postId):
 				res += stdStuff.makeTag("p", reply.text)
 				res += "<br>"
 			
-			res += '''<form action = "inbox.py" method = "GET">
+			res += '''<form action = "messageChain.py" method = "GET">
 Reply: <textarea name="replyBody" rows="10" cols="15">
 </textarea>
 <br>
