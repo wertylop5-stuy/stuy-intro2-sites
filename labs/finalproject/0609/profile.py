@@ -105,7 +105,8 @@ str(post.id) + "'>Down Vote</a><br>"
 
 		res += "<a href='profile.py?upVote=lol&postId="+\
 str(post.id) + "'>Up Vote</a><br>"
-
+		res += "<a href='profile.py?removeVote=lol&postId="+\
+str(post.id) + "'>Remove Vote</a><br>"
 		res += """<a href='postExpanded.py?expandButton=""" + \
 str(post.id) + "'>Comment </a>"
 
@@ -135,10 +136,30 @@ def displayInboxWidget(cookie):
 """
 	return res
 
+def displayGroupWidget(cookie):
+	currentUser = cookie["username"].value
+	userDict = stdStuff.objFileToList(stdStuff.directory,
+								stdStuff.userFile, byName=True)
+	
+	res = \
+"""
+<div align='right'>
+	<table border='1'>
+		<tr>
+			<td>
+				<a href="groups.py">View groups</a>
+			</td>
+		</tr>
+	</table>
+</div>
+"""
+	return res
+
 def makePage(cookie):
 	res = ""
 	currentUser = cookie["username"].value
 	res += displayInboxWidget(cookie)
+	res += displayGroupWidget(cookie)
 	res += str(poster())
 	res += displayPosts(cookie)
 	return res
@@ -174,42 +195,24 @@ if 'HTTP_COOKIE' in os.environ:
 			if "postTitle" in form:
 				writePost(c, form)
 			'''
-			if "downVote" in form or "upVote" in form:
-				targId = int(form.getvalue("postId"))
-				targName = c["username"].value
-				
-				userDict = stdStuff.objFileToList(stdStuff.directory,
-									stdStuff.userFile, byName=True)
-				
-				if "downVote" in form:
-					for index, value in enumerate(userDict[targName].posts):
-						if value.id == targId:
-							userDict[targName].posts[index].decreaseScore()
-							break
-				elif "upVote" in form:
-					for index, value in enumerate(userDict[targName].posts):
-						if value.id == targId:
-							userDict[targName].posts[index].increaseScore()
-							break
-				stdStuff.objListToFile(userDict, stdStuff.directory,
-										stdStuff.userFile, isDict=True)
-			'''
-			userDict = stdStuff.objFileToList(stdStuff.directory,
-									stdStuff.userFile, byName=True)
 			currentUser = c["username"].value
 			if "downVote" in form or "upVote" in form:
 				targId = int(form.getvalue("postId"))
 				targName = c["username"].value#form.getvalue('user')
-
-                                #========= Check current user + who to like
-                                '''
+			'''
+			
+			if ("downVote" in form) or ("upVote" in form) or ("removeVote" in form):
+				targId = int(form.getvalue("postId"))
+				targName = c["username"].value#form.getvalue('user')
+                #========= Check current user + who to like
+                '''
 				userList = stdStuff.objFileToList(stdStuff.directory, stdStuff.userFile)
 				for x in userList:
 					for index, value in enumerate(x.posts):
 						if x.posts[index].id == targId:
 							targName = str(x)
 				'''
-                                #====================================
+                #====================================
 				userDict = stdStuff.objFileToList(stdStuff.directory,
 									stdStuff.userFile, byName=True)
 				
