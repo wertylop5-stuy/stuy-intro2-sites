@@ -51,13 +51,20 @@ def displayMessageAndReplies(userDict, currentUser, postId):
 	for message in userDict[currentUser].inbox.messages:
 		if message.id == postId:
 			res += stdStuff.makeTag("h6", message.id)
-			res += stdStuff.makeTag("h3", message.title)
+			res += stdStuff.makeTag("h2", message.title)
 			
 			for reply in message.replies:
 				res += stdStuff.makeTag("h6", "From: " + reply.srcUser)
 				res += stdStuff.makeTag("p", reply.text)
 				res += "<br>"
 			
+			res += '''<form action = "inbox.py" method = "GET">
+Reply: <textarea name="replyBody" rows="10" cols="15">
+</textarea>
+<br>
+<input name="postId" type="hidden" value="''' + str(message.id) + '''">
+<input name="reply" type="submit" value="Reply">
+</form>'''
 	
 	return res
 
@@ -111,7 +118,19 @@ if 'HTTP_COOKIE' in os.environ:
 				body += displayMessageAndReplies(userDict,
 										currentUser,
 										postId)
+			
+			if "reply" in form:
+				replyId = int(form.getvalue("postId"))
 				
+				for message in userDict[currentUser].inbox.messages:
+					if message.id == replyId:
+						message.reply(form.getvalue("replyBody"), userDict, currentUser)
+						stdStuff.objListToFile(userDict,
+										stdStuff.directory,
+										stdStuff.userFile,
+										isDict=True)
+						break
+			
 		else:
 			body+="Failed to Authenticate cookie<br>\n"
 			body+= 'Go Login <a href="login.py">here</a><br>'
