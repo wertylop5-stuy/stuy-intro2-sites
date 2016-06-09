@@ -100,3 +100,10 @@ the next 2 hours working on just the reply system. It worked, but the
 recipient and origin tags did not change accordingly. It eventually turned out
 to be a simple fix: just take the currentUser, then use an if statement from
 there.
+
+6/09
+I managed to get the displaying of replies in a message chain to display,
+as well as being able to reply when in the messageChain file. I began merging
+with gordon. However, I think that I will have to rewrite some of his code in
+order for it to be compatible with my project. I am short on time today, so
+I will attempt to do it tomorrow.
