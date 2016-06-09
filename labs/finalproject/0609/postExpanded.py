@@ -41,40 +41,7 @@ Text: <textarea name="comment" rows="10" cols="15">
 <br>
 <input name="done" type="submit" value="Make comment">
 </form>'''
-'''
-def displayPost(id, cookie, titleTag, bodyTag, userTag, commentTag):
-	res = ""
-	userList = stdStuff.objFileToList(stdStuff.directory, stdStuff.userFile)
-	
-	for x in userList:
-		if x.name == cookie["username"].value:
-			for post in x.posts:
-				if post.id == id:
-					res += post.display()
-					res += "<br><h3>Comments</h3><br>"
-					
-					for comment in post.comments:
-						res += """<table>
-<tr>
-	<td>""" + str(comment.score) + """</td>
-	<td>
-"""
-						res += comment.display()
-						
-						res += "<a href='postExpanded.py?downVote=lol&commentId="+\
-	str(comment.id) + "'&postId='" + str(post.id) + "'>Down Vote</a><br>"
-						
-						res += "<a href='postExpanded.py?upVote=lol&commentId="+\
-	str(comment.id) + "'&postId='" + str(post.id) + "'>Up Vote</a><br>"
-						
-						res += """</td>
-	</tr>
-</table>
-"""
-						
-			break
-	return res
-'''
+
 def displayPost(id, currentUser, titleTag, bodyTag, userTag, commentTag):
 	res = ""
 	userDict = stdStuff.objFileToList(stdStuff.directory,
@@ -131,21 +98,7 @@ str(comment.id) + "'&postId='" + str(post.id) + "'>Up Vote</a><br>"
 """
 					return res
 	return res
-'''
-def writeComment(targId, cookie, commentText):
-	targName = cookie["username"].value
-	allUsers = stdStuff.objFileToList(stdStuff.directory,
-										 stdStuff.userFile)
-	counter = stdStuff.getCounter()
-	
-	for index, value in enumerate(allUsers):
-		if value.name == targName:
-			for index2, value2 in enumerate(value.posts):
-				if int(value2.id) == int(targId):
-					value.posts[index2].addComment(counter, targName, commentText)
-	stdStuff.objListToFile(allUsers, stdStuff.directory, stdStuff.userFile)
-	stdStuff.setCounter(counter)
-'''
+
 def writeComment(targId, currentUser, commentText):
 	userDict = stdStuff.objFileToList(stdStuff.directory,
 										 stdStuff.userFile, byName=True)
@@ -197,6 +150,25 @@ def displayInboxWidget(cookie):
 """
 	return res
 
+def displayGroupWidget(cookie):
+	currentUser = cookie["username"].value
+	userDict = stdStuff.objFileToList(stdStuff.directory,
+								stdStuff.userFile, byName=True)
+	
+	res = \
+"""
+<div align='right'>
+	<table border='1'>
+		<tr>
+			<td>
+				<a href="groups.py">View groups</a>
+			</td>
+		</tr>
+	</table>
+</div>
+"""
+	return res
+
 c = None
 if 'HTTP_COOKIE' in os.environ:
 	cookie_string=os.environ.get('HTTP_COOKIE')
@@ -224,6 +196,7 @@ if 'HTTP_COOKIE' in os.environ:
 <a href="profile.py">Go back to profile</a>
 """
 			body += displayInboxWidget(c)
+			body += displayGroupWidget(c)
 			if "expandButton" in form:
 				temp = int(form.getvalue("expandButton"))
 				lol = open(stdStuff.directory + stdStuff.postIdFile, "w")
