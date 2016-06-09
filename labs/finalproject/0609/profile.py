@@ -203,16 +203,16 @@ if 'HTTP_COOKIE' in os.environ:
 			
 			if ("downVote" in form) or ("upVote" in form) or ("removeVote" in form):
 				targId = int(form.getvalue("postId"))
-				targName = c["username"].value#form.getvalue('user')
-                #========= Check current user + who to like
-                '''
+				targName = c["username"].value
+				#========= Check current user + who to like
+				'''
 				userList = stdStuff.objFileToList(stdStuff.directory, stdStuff.userFile)
 				for x in userList:
 					for index, value in enumerate(x.posts):
 						if x.posts[index].id == targId:
 							targName = str(x)
 				'''
-                #====================================
+				#====================================
 				userDict = stdStuff.objFileToList(stdStuff.directory,
 									stdStuff.userFile, byName=True)
 				
