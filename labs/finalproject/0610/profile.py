@@ -252,32 +252,30 @@ if 'HTTP_COOKIE' in os.environ:
 							
 							break
 				
-				'''
-				elif "upVote" in form:
-					for index, value in enumerate(name.posts):
-						if value.id == targId and (not (currentUser in name.posts[index].votedUsers.keys()) or (name.posts[index].votedUsers[currentUser] != 'upVote')):
-							name.posts[index].increaseScore()
-							#x.posts[index].votedUsers[x.name] = "upVote"
-							name.posts[index].addUpVote(currentUser)
-							name.posts[index] \
-							.votedUsers[currentUser] = "upVote"
-							
-							break
-				''''''
+				
 				elif "removeVote" in form:
 					for index, value in enumerate(name.posts):
-						if value.id == targId and \
-						(currentUser in \
-						name.posts[index].votedUsers.keys()):
-							#print "yes"
-							if name.posts[index] \
-							.votedUsers[currentUser] == "upVote":
-								name.posts[index].votedUsers[currentUser] = ""
+						if value.id == targId:
+							if currentUser in name.posts[index]\
+												.votedUsers.keys():
+								#print "yes"
+								if name.posts[index] \
+								.votedUsers[currentUser] == "upVote":
+									name.posts[index]\
+									.votedUsers[currentUser] = "noVote"
+									
+									name.posts[index].decreaseScore()
 								
+								elif name.posts[index] \
+								.votedUsers[currentUser] == "downVote":
+									name.posts[index]\
+									.votedUsers[currentUser] = "noVote"
+									
+									name.posts[index].increaseScore()
 								
 							break
 				
-				'''
+				
 				stdStuff.objListToFile(userDict, stdStuff.directory,
 										stdStuff.userFile, isDict=True)
 			
