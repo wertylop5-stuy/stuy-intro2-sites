@@ -236,11 +236,13 @@ if 'HTTP_COOKIE' in os.environ:
 				elif "upVote" in form:
 					for index, value in enumerate(name.posts):
 						if value.id == targId: 
+							print name.posts[index].votedUsers
 							if not(currentUser in \
 							name.posts[index].votedUsers.keys()) or \
 							(name.posts[index].votedUsers[currentUser] !=\
 							'upVote'):
 							
+								name.posts[index].increaseScore()
 								name.posts[index].increaseScore()
 								#x.posts[index].votedUsers[x.name] = "upVote"
 								name.posts[index].addUpVote(currentUser)
