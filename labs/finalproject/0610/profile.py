@@ -221,35 +221,34 @@ if 'HTTP_COOKIE' in os.environ:
 					for index, value in enumerate(name.posts):
 						if value.id == targId: 
 							if not(currentUser in \
-							name.posts[index].votedUsers.keys()) or \
-							(name.posts[index].votedUsers[currentUser] !=\
+							name.posts[index].votedUsers.keys()):
+								name.posts[index].decreaseScore()
+								
+								name.posts[index].addDownVote(currentUser)
+							elif (name.posts[index].votedUsers[currentUser] !=\
 							'downVote'):
 							
 								name.posts[index].decreaseScore()
-								#x.posts[index].votedUsers[x.name] = "upVote"
+								name.posts[index].decreaseScore()
+								
 								name.posts[index].addDownVote(currentUser)
-								'''name.posts[index] \
-								.votedUsers[currentUser] = "downVote"'''
 							
 							break
 				
 				elif "upVote" in form:
 					for index, value in enumerate(name.posts):
-						if value.id == targId: 
-							print name.posts[index].votedUsers
-							print name.posts[index].votedUsers[currentUser] !=\
-							'upVote'
+						if value.id == targId:
 							if not(currentUser in \
-							name.posts[index].votedUsers.keys()) or \
-							(name.posts[index].votedUsers[currentUser] !=\
-							'upVote'):
-							
+							name.posts[index].votedUsers.keys()):
 								name.posts[index].increaseScore()
-								name.posts[index].increaseScore()
-								#x.posts[index].votedUsers[x.name] = "upVote"
+								
 								name.posts[index].addUpVote(currentUser)
-								'''name.posts[index] \
-								.votedUsers[currentUser] = "downVote"'''
+							elif (name.posts[index].votedUsers[currentUser] !=\
+							'upVote'):
+								name.posts[index].increaseScore()
+								name.posts[index].increaseScore()
+								
+								name.posts[index].addUpVote(currentUser)
 							
 							break
 				
