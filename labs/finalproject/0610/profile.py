@@ -237,6 +237,8 @@ if 'HTTP_COOKIE' in os.environ:
 					for index, value in enumerate(name.posts):
 						if value.id == targId: 
 							print name.posts[index].votedUsers
+							print name.posts[index].votedUsers[currentUser] !=\
+							'upVote'
 							if not(currentUser in \
 							name.posts[index].votedUsers.keys()) or \
 							(name.posts[index].votedUsers[currentUser] !=\
