@@ -233,7 +233,7 @@ if 'HTTP_COOKIE' in os.environ:
 							
 							break
 				
-				if "upVote" in form:
+				elif "upVote" in form:
 					for index, value in enumerate(name.posts):
 						if value.id == targId: 
 							if not(currentUser in \
@@ -260,7 +260,7 @@ if 'HTTP_COOKIE' in os.environ:
 							.votedUsers[currentUser] = "upVote"
 							
 							break
-				'''
+				''''''
 				elif "removeVote" in form:
 					for index, value in enumerate(name.posts):
 						if value.id == targId and \
@@ -276,7 +276,7 @@ if 'HTTP_COOKIE' in os.environ:
 				stdStuff.objListToFile(userDict, stdStuff.directory,
 										stdStuff.userFile, isDict=True)
 			
-			
+			'''
 			body+=makePage(c)
 		else:
 			body+="Failed to Authenticate cookie<br>\n"
