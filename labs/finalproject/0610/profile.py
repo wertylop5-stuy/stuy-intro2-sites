@@ -240,7 +240,8 @@ if 'HTTP_COOKIE' in os.environ:
 					for index, value in enumerate(name.posts):
 						if value.id == targId:
 							if not(currentUser in \
-							name.posts[index].votedUsers.keys()):
+							name.posts[index].votedUsers.keys()) or\
+							name.posts[index].votedUsers[currentUser] == "noVote":
 								name.posts[index].increaseScore()
 								
 								name.posts[index].addUpVote(currentUser)
