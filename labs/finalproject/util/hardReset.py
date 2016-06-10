@@ -8,7 +8,8 @@ print "Attempt to write file<br>"
 directory = "../data/"
 
 filesToWipe = ["comments.txt", "loggedin.txt", "postId.txt", "posts.txt",
-				"users.txt"]
+		"users.txt", "groups.txt", "currentGroup.txt",
+		"groupsName.txt"]
 
 for f in filesToWipe:
 	with open(directory + f,'w') as wipeStream:
