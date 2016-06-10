@@ -243,8 +243,7 @@ if 'HTTP_COOKIE' in os.environ:
 						(currentUser in \
 						name.posts[index].votedUsers.keys()):
 							#print "yes"
-							if 
-							name.posts[index] \
+							if name.posts[index] \
 							.votedUsers[currentUser] == "upVote":
 								name.posts[index].votedUsers[currentUser] = ""
 								
