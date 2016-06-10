@@ -219,12 +219,17 @@ if 'HTTP_COOKIE' in os.environ:
 				name = userDict[targName]
 				if "downVote" in form:
 					for index, value in enumerate(name.posts):
-						if value.id == targId and (not (currentUser in name.posts[index].votedUsers.keys()) or (name.posts[index].votedUsers[currentUser] != 'downVote')):
-							name.posts[index].decreaseScore()
-							#x.posts[index].votedUsers[x.name] = "upVote"
-							name.posts[index].addDownVote(currentUser)
-							name.posts[index] \
-							.votedUsers[currentUser] = "downVote"
+						if value.id == targId: 
+							if not(currentUser in \
+							name.posts[index].votedUsers.keys()) or \
+							(name.posts[index].votedUsers[currentUser] !=\
+							'downVote'):
+							
+								name.posts[index].decreaseScore()
+								#x.posts[index].votedUsers[x.name] = "upVote"
+								name.posts[index].addDownVote(currentUser)
+								'''name.posts[index] \
+								.votedUsers[currentUser] = "downVote"'''
 							
 							break
 				elif "upVote" in form:
