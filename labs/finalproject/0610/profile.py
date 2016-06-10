@@ -277,10 +277,11 @@ if 'HTTP_COOKIE' in os.environ:
 								
 								
 							break
+				
+				'''
 				stdStuff.objListToFile(userDict, stdStuff.directory,
 										stdStuff.userFile, isDict=True)
 			
-			'''
 			body+=makePage(c)
 		else:
 			body+="Failed to Authenticate cookie<br>\n"
