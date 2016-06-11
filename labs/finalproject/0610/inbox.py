@@ -174,7 +174,8 @@ if 'HTTP_COOKIE' in os.environ:
 <a href="profile.py">Go back to profile</a>
 """
 			if "sendMessage" in form:
-				recipient = form.getvalue("messageTarget")
+				recipient = stdStuff.deleteBrackets(
+								form.getvalue("messageTarget"))
 				try:
 					userDict[currentUser].inbox.sendMessage(
 											recipient,
@@ -184,7 +185,7 @@ if 'HTTP_COOKIE' in os.environ:
 					body += "<h1>" + recipient + " is not a registered user</h1>"
 			
 			if "markRead" in form:
-				targetMessage = form.getvalue("markRead")
+				targetMessage = int(form.getvalue("markRead"))
 				if targetMessage == "all":
 					for message in userDict[currentUser].inbox.messages:
 						if type(message) is stdStuff.Message:
@@ -232,7 +233,9 @@ if 'HTTP_COOKIE' in os.environ:
 				
 				for message in userDict[currentUser].inbox.messages:
 					if message.id == replyId:
-						message.reply(form.getvalue("replyBody"), userDict, currentUser)
+						message.reply(stdStuff.deleteBrackets(
+								form.getvalue("replyBody")), userDict, 
+								currentUser)
 						stdStuff.objListToFile(userDict,
 										stdStuff.directory,
 										stdStuff.userFile,
