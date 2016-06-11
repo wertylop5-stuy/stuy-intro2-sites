@@ -53,6 +53,25 @@ def displayGroup():
                 availableGroups += '<option>' + str(name.name) + '</option>'
         return availableGroups
 
+def displayInboxWidget(cookie):
+	currentUser = cookie["username"].value
+	userDict = stdStuff.objFileToList(stdStuff.directory,
+								stdStuff.userFile, byName=True)
+	
+	res = \
+"""
+<div align='right'>
+	<table border='1'>
+		<tr>
+			<td>
+				<a href="inbox.py">View messages</a>
+			</td>
+		</tr>
+	</table>
+</div>
+"""
+	return res
+
 if 'HTTP_COOKIE' in os.environ:
 	cookie_string=os.environ.get('HTTP_COOKIE')
 	c = Cookie.SimpleCookie()
@@ -77,6 +96,7 @@ if 'HTTP_COOKIE' in os.environ:
 </form>
 <a href="profile.py">Go back to profile</a>
 """
+			body += displayInboxWidget(c)
 			currentUser = c['username'].value
 
 
@@ -108,32 +128,37 @@ if 'HTTP_COOKIE' in os.environ:
 			#print displayGroup()
 			groupStatus = ''
 			if 'createGroup' in form:
-					global groupStatus
-					if form.getvalue('groupName') in groupDict.keys():
-						    global groupStatus
-						    groupStatus = '<br>Group cannot be created. This group name has already been taken.'
+				groupName = form.getvalue('groupName')
+				visibility = form.getvalue('visibility')
+				if groupName in groupDict.keys():
+					    groupStatus += '<br><p>Group cannot be created. This group name has already been taken.</p>'
+				else:
+					if groupName == None:
+						pass
 					else:
-						    if form.getvalue('groupName') == None:
-						            pass
-						    else:
-						            with open(directory + 'groups.txt', "a") \
-						                 as groupStorage:
-						                    pickle.dump(
-						                        stdStuff.Group(form.getvalue('groupName'), form.getvalue('visibility'), currentUser), groupStorage)
-						                    groupStorage.close()
-						            with open(directory + 'groupsName.txt', "a") \
-						                 as groupNameList:
-						                    groupNameList.write(form.getvalue('groupName'))
-						                    groupNameList.close()
-						            global groupStatus
-						            groupStatus = '<br>Group has been made'
-						            if "visibility" in form:
-						                    groupList = stdStuff.objFileToList(stdStuff.directory, stdStuff.groupFile)
-						                    for x in groupList:
-						                            if x == form.getvalue('groupName'):
-						                                    x.changeVisibility(str(form.getvalue("visibility")))
-
-
+						with open(directory + 'groups.txt', "ab") \
+						as groupStorage:
+							pickle.dump(
+									stdStuff.Group(
+										groupName,
+										visibility,
+										currentUser),
+									groupStorage)
+						
+						with open(directory + 'groupsName.txt', "ab") \
+						as groupNameList:
+							groupNameList.write(groupName)
+							
+						groupStatus += '<br><p>Group has been made</p>'
+				            
+						#if "visibility" in form:
+						groupList = stdStuff.objFileToList(
+									stdStuff.directory,
+									stdStuff.groupFile)
+						for x in groupList:
+							if x == groupName:
+								x.changeVisibility(
+									str(form.getvalue("visibility")))
 
 			availableGroups = displayGroup()
 			displayGroups = '''<br> <h1>Want To View Groups?</h1>''' + \
