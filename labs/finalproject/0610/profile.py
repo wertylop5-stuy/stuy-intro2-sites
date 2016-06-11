@@ -60,11 +60,11 @@ def writePost(cookie, formThing):
 	
 	for x in userList:
 		if x.name == cookie["username"].value:
-			x.addPost( stdStuff.Post(
-							counter, 
-							cookie["username"].value,
-							formThing.getvalue("postTitle"),
-							formThing.getvalue('textBody')))
+			x.addPost(stdStuff.Post(
+					counter, 
+					cookie["username"].value,
+					stdStuff.deleteBrackets(formThing.getvalue("postTitle")),
+					stdStuff.deleteBrackets(formThing.getvalue('textBody'))))
 			break
 	
 	stdStuff.setCounter(counter)
