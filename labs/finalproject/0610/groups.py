@@ -46,12 +46,12 @@ def authenticate(u,ID,IP):
 	return False
 
 def displayGroup():
-        availableGroups = ''
-        groupList = stdStuff.objFileToList(stdStuff.directory, stdStuff.groupFile)
-        for name in groupList:
-            if (name.visibility == 'public') or (currentUser in name.members):
-                availableGroups += '<option>' + str(name.name) + '</option>'
-        return availableGroups
+    availableGroups = ''
+    groupList = stdStuff.objFileToList(stdStuff.directory, stdStuff.groupFile)
+    for name in groupList:
+        if (name.visibility == 'public') or (currentUser in name.members):
+            availableGroups += '<option>' + str(name.name) + '</option>'
+    return availableGroups
 
 def displayInboxWidget(cookie):
 	currentUser = cookie["username"].value
@@ -73,6 +73,7 @@ def displayInboxWidget(cookie):
 	return res
 
 groupStatus = ""
+availableGroups = ""
 
 if 'HTTP_COOKIE' in os.environ:
 	cookie_string=os.environ.get('HTTP_COOKIE')
