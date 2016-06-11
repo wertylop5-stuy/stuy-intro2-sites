@@ -531,7 +531,7 @@ if 'HTTP_COOKIE' in os.environ:
 			
 			name = groupDict[currentGroup]
 			currentUser = c["username"].value
-			name = userDict[targName]
+			name = userDict[currentUser]
 			if ("downVote" in form) or ("upVote" in form) or ("noVote" in form):
 				targId = int(form.getvalue("postId"))
 				if "downVote" in form:
