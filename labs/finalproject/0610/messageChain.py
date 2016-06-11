@@ -68,8 +68,28 @@ Reply: <textarea name="replyBody" rows="10" cols="15">
 	
 	return res
 
+def displayGroupWidget(cookie):
+	currentUser = cookie["username"].value
+	userDict = stdStuff.objFileToList(stdStuff.directory,
+								stdStuff.userFile, byName=True)
+	
+	res = \
+"""
+<div align='right'>
+	<table border='1'>
+		<tr>
+			<td>
+				<a href="groups.py">View groups</a>
+			</td>
+		</tr>
+	</table>
+</div>
+"""
+	return res
+
 def makePage():
 	res = ""
+	res += displayGroupWidget()
 	#res += poster()
 	#res += "<br><br>"
 	return res
