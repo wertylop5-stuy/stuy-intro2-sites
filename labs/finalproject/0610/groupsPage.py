@@ -139,8 +139,6 @@ def displayGroupWidget(cookie):
 def makePage(cookie):
 	res = ""
 	currentUser = cookie["username"].value
-	res += displayInboxWidget(cookie)
-	res += displayGroupWidget(cookie)
 	res += str(poster())
 	res += displayPosts(cookie)
 	return res
@@ -353,6 +351,9 @@ if 'HTTP_COOKIE' in os.environ:
 <br>
 <br>
 """
+			body += displayInboxWidget(cookie)
+			body += displayGroupWidget(cookie)
+			
 			body += """<form>
 		Search for people: <input type = "text" name = "user">
 		<input type = "submit" value = "Commence Search">
