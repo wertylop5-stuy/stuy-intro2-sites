@@ -61,10 +61,10 @@ def displayPost(id, currentUser, titleTag, bodyTag, userTag, commentTag):
 				res += comment.display()
 				
 				res += "<a href='postExpanded.py?downVote=lol&commentId="+\
-str(comment.id) + "'&postId='" + str(post.id) + "'>Down Vote</a><br>"
+str(comment.id) + "&postId=" + str(post.id) + "'>Down Vote</a><br>"
 					
 				res += "<a href='postExpanded.py?upVote=lol&commentId="+\
-str(comment.id) + "'&postId='" + str(post.id) + "'>Up Vote</a><br>"
+str(comment.id) + "&postId=" + str(post.id) + "'>Up Vote</a><br>"
 				
 				res += """</td>
 	</tr>
