@@ -260,7 +260,6 @@ if 'HTTP_COOKIE' in os.environ:
 						if value.id == targId:
 							if currentUser in name.posts[index]\
 												.votedUsers.keys():
-								#print "yes"
 								if name.posts[index] \
 								.votedUsers[currentUser] == "upVote":
 									name.posts[index]\
