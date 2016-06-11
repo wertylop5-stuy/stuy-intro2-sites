@@ -163,15 +163,28 @@ if 'HTTP_COOKIE' in os.environ:
 								x.changeVisibility(
 									str(form.getvalue("visibility")))
 			
-			print len(availableGroups)
-			if len(availableGroups) > 0:
+			
+			f = open(directory + stdStuff.groupFile, 'r')
+			groupList = f.read()
+			f.close()
+
+			f = open(directory +  stdStuff.currentGroupFile, 'r')
+			currentGroup = f.read()
+			f.close()
+
+			f = open(directory +  stdStuff.groupsNameFile, 'r')
+			groupsName = f.read()
+			f.close()
+			
+			print len(groupList)
+			if len(groupList) > 0:
 					body += displayGroups
 			#availableGroups = displayGroup()
 			displayGroups = '''<br> <h1>Want To View Groups?</h1>''' + \
 								'''Groups:''' + \
 						    '<form method = "GET" action = "groupsPage.py">' + \
 						    '<select name = "displayGroups">' + \
-						    availableGroups + \
+						    groupList + \
 						    '''</select>\n\t''' + \
 						    '''<input type = "submit" name = "groupPicked" value = "View Group">''' + \
 						    '''</form>'''
