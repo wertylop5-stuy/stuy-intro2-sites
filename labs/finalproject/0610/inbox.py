@@ -183,6 +183,8 @@ if 'HTTP_COOKIE' in os.environ:
 						stdStuff.deleteBrackets(form.getvalue("messageBody")))
 				except KeyError:
 					body += "<h1>" + recipient + " is not a registered user</h1>"
+				except AttributeError:
+					body += "<h1>Message failed to send, please try again</h1>"
 			
 			if "markRead" in form:
 				targetMessage = int(form.getvalue("markRead"))
