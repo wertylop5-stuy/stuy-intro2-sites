@@ -107,3 +107,23 @@ as well as being able to reply when in the messageChain file. I began merging
 with gordon. However, I think that I will have to rewrite some of his code in
 order for it to be compatible with my project. I am short on time today, so
 I will attempt to do it tomorrow.
+
+6/10
+One of the major problems with the group code that Gordon made was the loss
+of the ability to vote. This was my primary focus today. After merging some
+minor stuff, I started work on getting the voting system on all the pages
+working again.
+This turned out to be simpler than I thought. Gordon made variables that
+allowed for me to rewrite the vote handling system only once. This was due
+to the huge similarity in the group object compared to the user object.
+In hindsight, we probably should've factored out those common features (such
+as the posts field) into a higher level container class to inherit from. I
+managed to drastically cut the code size on all the group related files.
+Another thing we overlooked was handling angle brackets in forms. This was
+easily handled with a function that I called on every instance data could
+be entered into a textfield.
+None of this probably makes sense right now. I was really into it today,
+starting coding at 4 and going up until now (about 1am). Even though its
+not technically the last day, I still feel bad about waiting this long
+to deal with this problem.
+On the bright side...CSS!!!1!1!1!11!1
