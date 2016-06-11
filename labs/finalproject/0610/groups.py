@@ -72,6 +72,8 @@ def displayInboxWidget(cookie):
 """
 	return res
 
+groupStatus = ""
+
 if 'HTTP_COOKIE' in os.environ:
 	cookie_string=os.environ.get('HTTP_COOKIE')
 	c = Cookie.SimpleCookie()
@@ -160,9 +162,9 @@ if 'HTTP_COOKIE' in os.environ:
 								x.changeVisibility(
 									str(form.getvalue("visibility")))
 
-			availableGroups = displayGroup()
-			displayGroups = '''<br> <h1>Want To View Groups?</h1>''' + \
-						    '''Groups:''' + \
+				availableGroups = displayGroup()
+				displayGroups = '''<br> <h1>Want To View Groups?</h1>''' + \
+								'''Groups:''' + \
 						    '<form method = "GET" action = "groupsPage.py">' + \
 						    '<select name = "displayGroups">' + \
 						    availableGroups + \
@@ -174,7 +176,15 @@ if 'HTTP_COOKIE' in os.environ:
 			#body += displayGroups
 			if len(availableGroups) > 0:
 					body += displayGroups
-			groupStatus =''
+		else:
+			body+="Failed to Authenticate cookie<br>\n"
+			body+= 'Go Login <a href="login.py">here</a><br>'
+	else:
+		body+= "Your information expired<br>\n"
+		body+= 'Go Login <a href="login.py">here</a><br>'
+else:
+	body+= 'You seem new<br>\n'
+	body+='Go Login <a href="login.py">here</a><br>'
 
 print head
 print body
