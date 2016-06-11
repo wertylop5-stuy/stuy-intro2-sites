@@ -75,7 +75,7 @@ def displayInboxWidget(cookie):
 
 groupStatus = ""
 availableGroups = ""
-displayGroup = ""
+displayGroups = ""
 
 if 'HTTP_COOKIE' in os.environ:
 	cookie_string=os.environ.get('HTTP_COOKIE')
