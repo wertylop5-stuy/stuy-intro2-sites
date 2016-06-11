@@ -119,7 +119,10 @@ if 'HTTP_COOKIE' in os.environ:
 				
 				for message in userDict[currentUser].inbox.messages:
 					if message.id == replyId:
-						message.reply(form.getvalue("replyBody"), userDict, currentUser)
+						message.reply(
+						stdStuff.deleteBrackets(form.getvalue("replyBody")),
+						userDict, currentUser)
+						
 						stdStuff.objListToFile(userDict,
 										stdStuff.directory,
 										stdStuff.userFile,
