@@ -316,7 +316,8 @@ if 'HTTP_COOKIE' in os.environ:
 
 
 			if "done" in form:
-				writeComment(targId, username, form.getvalue("comment"))
+				writeComment(targId, username, 
+				stdStuff.deleteBrackets(form.getvalue("comment")))
 
 			body += displayPost(targId, c["username"].value, "", "", "", "")
 			body += poster()
