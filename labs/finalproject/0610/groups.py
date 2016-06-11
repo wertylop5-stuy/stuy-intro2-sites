@@ -198,7 +198,7 @@ Groups:
 </form>'''
 			
 			if len(groupList) > 0:
-					body += displayGroup()
+					body += displayGroups
 			#availableGroups = displayGroup()
 			
 			#body += displayGroups
