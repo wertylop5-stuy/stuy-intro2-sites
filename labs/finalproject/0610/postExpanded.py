@@ -291,7 +291,7 @@ if 'HTTP_COOKIE' in os.environ:
 				elif "removeVote" in form:
 					for index, value in enumerate(name.posts):
 						if value.id == targId:
-							for comment in value:
+							for comment in value.comments:
 								if currentUser in comment\
 													.votedUsers.keys():
 									if comment.votedUsers[currentUser] == \
