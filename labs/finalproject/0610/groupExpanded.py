@@ -313,9 +313,11 @@ if 'HTTP_COOKIE' in os.environ:
 				elif "removeVote" in form:
 					for index, value in enumerate(name.posts):
 						if value.id == targId:
+							print "found user"
 							for comment in value.comments:
 								if targName in comment\
 													.votedUsers.keys():
+									print "found comment"
 									if comment.votedUsers[targName] == \
 									"upVote":
 										comment\
