@@ -199,76 +199,7 @@ if 'HTTP_COOKIE' in os.environ:
 									stdStuff.groupFile)
 				targGroup = currentGroup
 				name = groupDict[targGroup]
-				'''
-				for x in groupList:
-					if x.name == targGroup:
-						if "downVote" in form:
-							for index, value in enumerate(name.posts):
-								#print name.posts[index].votedUsers
-								#print name.posts[index].score
-								for index2, value2 in \
-									enumerate(value.comments):
-										if int(value2.id) == int(commentId) and (not (currentUser in name.posts[index].comments[index2].votedUsers.keys())):
-											name.posts[index].comments[index2].decreaseScore()
-											#x.posts[index].votedUsers[x.name] = "upVote"
-											name.posts[index].comments[index2].addDownVote(currentUser)
-											break
-										if int(value2.id) == int(commentId) and (name.posts[index].comments[index2].votedUsers[currentUser] == 'noVote'):
-											name.posts[index].comments[index2].decreaseScore()
-											name.posts[index].comments[index2].addDownVote(currentUser)
-											#x.posts[index].votedUsers[x.name] = "upVote"
-											name.posts[index].comments[index2].comments[index2].addDownVote(currentUser)
-										if int(value2.id) == int(commentId) and (name.posts[index].comments[index2].votedUsers[currentUser] == 'upVote'):
-											name.posts[index].comments[index2].decreaseScore()
-											name.posts[index].comments[index2].decreaseScore()
-											#x.posts[index].votedUsers[x.name] = "upVote"
-											name.posts[index].comments[index2].addDownVote(currentUser)
-											break
-						if "upVote" in form:
-							for index, value in enumerate(name.posts):
-								#print name.posts[index].votedUsers
-								#print name.posts[index].score
-								for index2, value2 in \
-									enumerate(value.comments):
-										if int(value2.id) == int(commentId) and (not (currentUser in name.posts[index].comments[index2].votedUsers.keys())):
-											name.posts[index].comments[index2].increaseScore()
-											#x.posts[index].votedUsers[x.name] = "upVote"
-											name.posts[index].comments[index2].addUpVote(currentUser)
-											break
-										if int(value2.id) == int(commentId) and (name.posts[index].comments[index2].votedUsers[currentUser] == 'noVote'):
-											name.posts[index].comments[index2].increaseScore()
-											name.posts[index].comments[index2].addUpVote(currentUser)
-											#x.posts[index].votedUsers[x.name] = "upVote"
-											name.posts[index].comments[index2].comments[index2].addDownVote(currentUser)
-										if int(value2.id) == int(commentId) and (name.posts[index].comments[index2].votedUsers[currentUser] == 'downVote'):
-											name.posts[index].comments[index2].increaseScore()
-											name.posts[index].comments[index2].increaseScore()
-											#x.posts[index].votedUsers[x.name] = "upVote"
-											name.posts[index].comments[index2].addUpVote(currentUser)
-											break
-						if "removeVote" in form:
-							for index, value in enumerate(name.posts):
-								#print name.posts[index].votedUsers
-								#print name.posts[index].score
-								for index2, value2 in \
-									enumerate(value.comments):
-										if int(value2.id) == int(commentId) and ((not (currentUser in name.posts[index].comments[index2].votedUsers.keys()))):
-											pass
-											#x.posts[index].votedUsers[x.name] = "upVote"
-										if int(value2.id) == int(commentId) and ((name.posts[index].comments[index2].votedUsers[currentUser] == 'downVote')):
-											name.posts[index].comments[index2].increaseScore()
-											name.posts[index].comments[index2].removeVote(currentUser)
-											#x.posts[index].votedUsers[x.name] = "upVote"
-										if int(value2.id) == int(commentId) and (name.posts[index].comments[index2].votedUsers[currentUser] == 'upVote'):     
-											name.posts[index].comments[index2].decreaseScore()
-											name.posts[index].comments[index2].removeVote(currentUser)
-											
-									#x.posts[index].votedUsers[x.name] = "upVote"
-						
-						break
-				'''
-				#for x in groupList:
-				#	if x.name == targGroup:
+				
 				if "downVote" in form:
 					for index, value in enumerate(name.posts):
 						if value.id == targId:
