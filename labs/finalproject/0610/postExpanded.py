@@ -206,7 +206,7 @@ if 'HTTP_COOKIE' in os.environ:
 			lol = open(stdStuff.directory + stdStuff.postIdFile, "r")
 			targId = int(lol.read())
 			lol.close()
-
+			'''
 			if "downVote" in form or "upVote" in form:
 				commentId = int(form.getvalue("commentId"))
 				targName = c["username"].value
@@ -232,6 +232,78 @@ if 'HTTP_COOKIE' in os.environ:
 										if value2.id == commentId:
 											value.comments[index2].increaseScore()
 											break
+				'''
+			if ("downVote" in form) or ("upVote" in form) or ("removeVote" in form):
+				targId = int(form.getvalue("postId"))
+				commentId = int(form.getvalue("commentId"))
+				targName = c["username"].value
+				
+				userDict = stdStuff.objFileToList(stdStuff.directory,
+									stdStuff.userFile, byName=True)
+				
+				name = userDict[targName]
+				
+				if "downVote" in form:
+					for index, value in enumerate(name.posts):
+						if value.id == targId:
+							for comment in value.comments:
+								if comment.id == commentId:
+									if not(targName in \
+									comment.votedUsers.keys()) or\
+									comment.votedUsers[targName] == "noVote":
+										comment.decreaseScore()
+								
+										comment.addDownVote(targName)
+									elif (comment.votedUsers[targName] !=\
+									'downVote'):
+										comment.decreaseScore()
+										comment.decreaseScore()
+								
+										comment.addDownVote(targName)
+									break
+				
+				elif "upVote" in form:
+					for index, value in enumerate(name.posts):
+						if value.id == targId:
+							if not(targName in \
+							name.posts[index].votedUsers.keys()) or\
+							name.posts[index].votedUsers[targName] == "noVote":
+								name.posts[index].increaseScore()
+								
+								name.posts[index].addUpVote(targName)
+							elif (name.posts[index].votedUsers[targName] !=\
+							'upVote'):
+								name.posts[index].increaseScore()
+								name.posts[index].increaseScore()
+								
+								name.posts[index].addUpVote(targName)
+							
+							break
+				
+				
+				elif "removeVote" in form:
+					for index, value in enumerate(name.posts):
+						if value.id == targId:
+							if targName in name.posts[index]\
+												.votedUsers.keys():
+								#print "yes"
+								if name.posts[index] \
+								.votedUsers[targName] == "upVote":
+									name.posts[index]\
+									.votedUsers[targName] = "noVote"
+									
+									name.posts[index].decreaseScore()
+								
+								elif name.posts[index] \
+								.votedUsers[targName] == "downVote":
+									name.posts[index]\
+									.votedUsers[targName] = "noVote"
+									
+									name.posts[index].increaseScore()
+								
+							break
+				
+				
 				stdStuff.objListToFile(userList,
 									stdStuff.directory, stdStuff.userFile)
 
