@@ -133,6 +133,7 @@ if 'HTTP_COOKIE' in os.environ:
 </form>
 <a href="profile.py">Go back to profile</a>
 """
+			body += makePage(c)
 			
 			if "reply" in form:
 				replyId = int(form.getvalue("postId"))

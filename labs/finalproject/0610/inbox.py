@@ -141,7 +141,7 @@ def displayGroupWidget(cookie):
 
 def makePage(cookie, showRead):
 	res = ""
-	res += displayGroupWidget()
+	res += displayGroupWidget(cookie)
 	res += poster()
 	res += "<br><br>"
 	res += "<h2>Messages</h2>"
