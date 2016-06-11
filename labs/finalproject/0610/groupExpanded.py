@@ -168,6 +168,10 @@ if 'HTTP_COOKIE' in os.environ:
 			body += """<form method="GET" action="homepage.py">
 <input name="logOut" type="submit" value="Log out">
 </form>
+<form method="GET" action="addFriend.py">
+<input name="addFriend" type="submit" value="Add a friend">
+</form>
+<a href="profile.py">Go back to profile</a>
 """
 			if "expandButton" in form:
 				temp = int(form.getvalue("expandButton"))

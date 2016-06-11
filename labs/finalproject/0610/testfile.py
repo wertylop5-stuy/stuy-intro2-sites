@@ -1,39 +1,15 @@
-#! /usr/bin/python
-import sys,pickle,cgitb
-print "content-type: text/html\n"
-cgitb.enable()
-
-sys.path.insert(0, "../modules")
-import stdStuff
-
-
-head = \
-'''
-<!DOCTYPE html>
-<html>
-	<head><title>Profile</title>
-	</head>
-	<body>
-'''
-
-body = ""
-foot = \
-'''
-	</body>
-</html>
-'''
+def deleteBrackets(s):
+	res = ""
+	res = s.strip("<>")
+	
+	hit = -1
+	while "<" in res:
+		hit = res.index("<")
+		res = res[:hit] + res[hit + 1:]
+	while ">" in res:
+		hit = res.index(">")
+		res = res[:hit] + res[hit + 1:]
+	return res
 
 
-thing = stdStuff.objFileToList(stdStuff.directory, stdStuff.userFile, byName=True)
-
-stdStuff.objListToFile(thing, stdStuff.directory, stdStuff.userFile, isDict=True)
-
-lol = stdStuff.objFileToList(stdStuff.directory, stdStuff.userFile, byName=True)
-for x in lol:
-	print lol[x].password
-
-
-
-print head
-print body
-print foot
+print deleteBrackets("<><><><herh<34<>rerh>>trejh><><")

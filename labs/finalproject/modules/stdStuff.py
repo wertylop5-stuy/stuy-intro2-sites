@@ -395,7 +395,18 @@ def setCounter(current):
 	with open(directory + counterFile, "w") as countWStream:
 		countWStream.write(str(current + 1))
 
-
+def deleteBrackets(s):
+	res = ""
+	res = s.strip("<>")
+	
+	hit = -1
+	while "<" in res:
+		hit = res.index("<")
+		res = res[:hit] + res[hit + 1:]
+	while ">" in res:
+		hit = res.index(">")
+		res = res[:hit] + res[hit + 1:]
+	return res
 
 
 

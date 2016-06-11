@@ -143,7 +143,8 @@ if 'HTTP_COOKIE' in os.environ:
 			
 			body += makePage(c)
 			if "search" in form:
-				body += displayUserList(form.getvalue("userTarget"),
+				body += displayUserList(stdStuff.deleteBrackets(
+												form.getvalue("userTarget")),
 										userDict, currentUser)
 			body += """<br><br><a href="profile.py">Go back to profile</a>"""
 		else:

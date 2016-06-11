@@ -68,6 +68,7 @@ if 'HTTP_COOKIE' in os.environ:
 <form method="GET" action="addFriend.py">
 <input name="addFriend" type="submit" value="Add a friend">
 </form>
+<a href="profile.py">Go back to profile</a>
 """
 currentUser = c['username'].value
 #print currentUser
