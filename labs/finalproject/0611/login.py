@@ -21,7 +21,9 @@ c['loaded']='True'
 #append to the body if you want to see text.
 head = '''
 <html>
-<head><title>Login page</title>
+<head>
+	<title>Login page</title>
+	<link rel="stylesheet" type="text/css" href="stylish.css">
 </head>
 <body>
    '''
@@ -116,12 +118,14 @@ if 'username' in form and 'password' in form:
         body += "Failed to authenticate"
 else:
     body = '''
-    <h1>Log in:</h1>
-    <form action="login.py">
-    Username: <input type="text" name="username"><br>
-    Password: <input type="password" name="password"><br>
-    <input type="submit" value="log in">
-    '''
+<div>
+	<h1>Log in:</h1>
+	<form action="login.py">
+	Username: <input type="text" name="username"><br>
+	Password: <input type="password" name="password"><br>
+	<input type="submit" value="log in">
+</div>
+'''
                     
 
 

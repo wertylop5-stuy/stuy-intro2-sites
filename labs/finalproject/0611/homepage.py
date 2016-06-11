@@ -11,11 +11,16 @@ form = cgi.FieldStorage()
 
 head = '''<!DOCTYPE html>
 <html>
-<head><title>Homepage</title>
+<head>
+	<title>Homepage</title>
+	<link rel="stylesheet" type="text/css" href="../style/homepage.css">
 </head>
 <body>
    '''
 body = """
+<div id="homePageTitle">
+	<h1>Grape Shooter</h1>
+</div>
 <div id="homePageButtons">
 	<form method="GET" action="createaccount.py">
 		<input name="new" type="submit" value="Create Account">
