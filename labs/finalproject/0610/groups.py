@@ -130,7 +130,8 @@ if 'HTTP_COOKIE' in os.environ:
 			#print displayGroup()
 			groupStatus = ''
 			if 'createGroup' in form:
-				groupName = form.getvalue('groupName')
+				groupName = stdStuff.deleteBrackets(
+							form.getvalue('groupName'))
 				visibility = form.getvalue('visibility')
 				if groupName in groupDict.keys():
 					    groupStatus += '<br><p>Group cannot be created. This group name has already been taken.</p>'
