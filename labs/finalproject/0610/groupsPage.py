@@ -348,6 +348,12 @@ if 'HTTP_COOKIE' in os.environ:
 </form>
 <a href="profile.py">Go back to profile</a>
 """
+			body += """<a href = "groups.py">Back to Groups </a>
+	<br>
+	<form>
+		Search for people: <input type = "text" name = "user">
+		<input type = "submit" value = "Commence Search">
+	</form>"""
 			currentUser = c['username'].value
 			#print currentUser
 
@@ -570,12 +576,6 @@ head = \
 	<head><title>''' + currentGroup + '''</title>
 	</head>
 	<body>
-	<a href = "groups.py">Back to Groups </a>
-	<br>
-	<form>
-		Search for people: <input type = "text" name = "user">
-		<input type = "submit" value = "Commence Search">
-	</form>
 '''
 
 					
