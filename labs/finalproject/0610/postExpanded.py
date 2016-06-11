@@ -66,6 +66,9 @@ str(comment.id) + "&postId=" + str(post.id) + "'>Down Vote</a><br>"
 				res += "<a href='postExpanded.py?upVote=lol&commentId="+\
 str(comment.id) + "&postId=" + str(post.id) + "'>Up Vote</a><br>"
 				
+				res += "<a href='postExpanded.py?removeVote=lol&commentId="+\
+str(comment.id) + "&postId=" + str(post.id) + "'>Remove Vote</a><br>"
+				
 				res += """</td>
 	</tr>
 </table>
@@ -91,6 +94,9 @@ str(comment.id) + "&postId=" + str(post.id) + "'>Up Vote</a><br>"
 					
 					res += "<a href='postExpanded.py?upVote=lol&commentId="+\
 str(comment.id) + "&postId=" + str(post.id) + "'>Up Vote</a><br>"
+					
+					res += "<a href='postExpanded.py?removeVote=lol&commentId="+\
+str(comment.id) + "&postId=" + str(post.id) + "'>Remove Vote</a><br>"
 				
 					res += """</td>
 	</tr>
@@ -304,8 +310,8 @@ if 'HTTP_COOKIE' in os.environ:
 							break
 				
 				
-				stdStuff.objListToFile(userList,
-									stdStuff.directory, stdStuff.userFile)
+				stdStuff.objListToFile(userDict, stdStuff.directory,
+									stdStuff.userFile, isDict=True)
 
 
 
