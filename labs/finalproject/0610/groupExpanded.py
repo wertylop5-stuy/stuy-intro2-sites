@@ -313,26 +313,24 @@ if 'HTTP_COOKIE' in os.environ:
 				elif "removeVote" in form:
 					for index, value in enumerate(name.posts):
 						if value.id == targId:
-							print "found post"
-							print value.id
 							for comment in value.comments:
-								if targName in comment\
-													.votedUsers.keys():
-									print "found comment"
-									if comment.votedUsers[targName] == \
-									"upVote":
-										comment\
-										.votedUsers[targName] = "noVote"
-							
-										comment.decreaseScore()
-						
-									elif comment.votedUsers[targName] == \
-									"downVote":
-										comment\
-										.votedUsers[targName] = "noVote"
-							
-										comment.increaseScore()
-									break
+								if comment.id == commentId:
+									if targName in comment\
+														.votedUsers.keys():
+										if comment.votedUsers[targName] == \
+										"upVote":
+											comment\
+											.votedUsers[targName] = "noVote"
+									
+											comment.decreaseScore()
+								
+										elif comment.votedUsers[targName] == \
+										"downVote":
+											comment\
+											.votedUsers[targName] = "noVote"
+									
+											comment.increaseScore()
+										break
 				
 				stdStuff.objListToFile(groupDict, stdStuff.directory,
 										stdStuff.groupFile, isDict=True)
