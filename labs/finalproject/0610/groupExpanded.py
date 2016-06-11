@@ -186,6 +186,7 @@ if 'HTTP_COOKIE' in os.environ:
 
 			if 'searchUserPost' in form:
 				searchUserPost = str(form.getvalue('searchUserPost'))
+			
 			if "downVote" in form or "upVote" in form or "noVote" in form:
 				commentId = int(form.getvalue("commentId"))
 	
@@ -201,7 +202,7 @@ if 'HTTP_COOKIE' in os.environ:
 									stdStuff.groupFile)
 				targGroup = currentGroup
 				name = groupDict[targGroup]
-	
+				'''
 				for x in groupList:
 					if x.name == targGroup:
 						if "downVote" in form:
@@ -268,6 +269,71 @@ if 'HTTP_COOKIE' in os.environ:
 									#x.posts[index].votedUsers[x.name] = "upVote"
 						
 						break
+				'''
+				for x in groupList:
+					if x.name == targGroup:
+						if "downVote" in form:
+							for index, value in enumerate(name.posts):
+								if value.id == targId:
+									for comment in value.comments:
+										if comment.id == commentId:
+											if not(targName in \
+											comment.votedUsers.keys()) or\
+											comment.votedUsers[targName] ==\
+											"noVote":
+												comment.decreaseScore()
+								
+												comment.addDownVote(targName)
+											elif (comment.votedUsers[targName] !=\
+											'downVote'):
+												comment.decreaseScore()
+												comment.decreaseScore()
+								
+												comment.addDownVote(targName)
+											break
+				
+						elif "upVote" in form:
+							for index, value in enumerate(name.posts):
+								if value.id == targId:
+									for comment in value.comments:
+										if comment.id == commentId:
+											if not(targName in \
+											comment.votedUsers.keys()) or\
+											comment.votedUsers[targName] ==\
+											"noVote":
+												comment.increaseScore()
+								
+												comment.addUpVote(targName)
+											elif (comment.votedUsers[targName] !=\
+											'upVote'):
+												comment.increaseScore()
+												comment.increaseScore()
+								
+												comment.addUpVote(targName)
+											break
+				
+				
+						elif "removeVote" in form:
+							for index, value in enumerate(name.posts):
+								if value.id == targId:
+									for comment in value.comments:
+										if targName in comment\
+															.votedUsers.keys():
+											if comment.votedUsers[targName] == \
+											"upVote":
+												comment\
+												.votedUsers[targName] = "noVote"
+									
+												comment.decreaseScore()
+								
+											elif comment.votedUsers[targName] == \
+											"downVote":
+												comment\
+												.votedUsers[targName] = "noVote"
+									
+												comment.increaseScore()
+											break
+				
 				stdStuff.objListToFile(groupDict, stdStuff.directory,
 										stdStuff.groupFile, isDict=True)
 
