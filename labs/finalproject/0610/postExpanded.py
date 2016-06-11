@@ -266,22 +266,23 @@ if 'HTTP_COOKIE' in os.environ:
 					for index, value in enumerate(name.posts):
 						if value.id == targId:
 							for comment in value.comments:
-								if targName in comment\
-													.votedUsers.keys():
-									if comment.votedUsers[targName] == \
-									"upVote":
-										comment\
-										.votedUsers[targName] = "noVote"
+								if comment.id == commentId:
+									if targName in comment\
+														.votedUsers.keys():
+										if comment.votedUsers[targName] == \
+										"upVote":
+											comment\
+											.votedUsers[targName] = "noVote"
 									
-										comment.decreaseScore()
+											comment.decreaseScore()
 								
-									elif comment.votedUsers[targName] == \
-									"downVote":
-										comment\
-										.votedUsers[targName] = "noVote"
+										elif comment.votedUsers[targName] == \
+										"downVote":
+											comment\
+											.votedUsers[targName] = "noVote"
 									
-										comment.increaseScore()
-									break
+											comment.increaseScore()
+										break
 				
 				
 				stdStuff.objListToFile(userDict, stdStuff.directory,
