@@ -460,7 +460,7 @@ if 'HTTP_COOKIE' in os.environ:
 			
 			if "postTitle" in form:
 				writePost(c, form)
-			
+			'''
 			if ("downVote" in form) or ("upVote" in form) or ("noVote" in form):
 				targId = int(form.getvalue("postId"))
 				targName = c["username"].value
@@ -523,6 +523,67 @@ if 'HTTP_COOKIE' in os.environ:
 							#x.posts[index].votedUsers[x.name] = "upVote"
 						
 						break
+				'''
+				
+			if "downVote" in form:
+				for index, value in enumerate(name.posts):
+					if value.id == targId: 
+						if not(currentUser in \
+						name.posts[index].votedUsers.keys()) or\
+						name.posts[index].votedUsers[currentUser] == "noVote":
+							name.posts[index].decreaseScore()
+							
+							name.posts[index].addDownVote(currentUser)
+						elif (name.posts[index].votedUsers[currentUser] !=\
+						'downVote'):
+						
+							name.posts[index].decreaseScore()
+							name.posts[index].decreaseScore()
+							
+							name.posts[index].addDownVote(currentUser)
+						
+						break
+			
+			elif "upVote" in form:
+				for index, value in enumerate(name.posts):
+					if value.id == targId:
+						if not(currentUser in \
+						name.posts[index].votedUsers.keys()) or\
+						name.posts[index].votedUsers[currentUser] == "noVote":
+							name.posts[index].increaseScore()
+							
+							name.posts[index].addUpVote(currentUser)
+						elif (name.posts[index].votedUsers[currentUser] !=\
+						'upVote'):
+							name.posts[index].increaseScore()
+							name.posts[index].increaseScore()
+							
+							name.posts[index].addUpVote(currentUser)
+						
+						break
+			
+			
+			elif "removeVote" in form:
+				for index, value in enumerate(name.posts):
+					if value.id == targId:
+						if currentUser in name.posts[index]\
+											.votedUsers.keys():
+							if name.posts[index] \
+							.votedUsers[currentUser] == "upVote":
+								name.posts[index]\
+								.votedUsers[currentUser] = "noVote"
+								
+								name.posts[index].decreaseScore()
+							
+							elif name.posts[index] \
+							.votedUsers[currentUser] == "downVote":
+								name.posts[index]\
+								.votedUsers[currentUser] = "noVote"
+								
+								name.posts[index].increaseScore()
+							
+						break
+				
 				stdStuff.objListToFile(userDict, stdStuff.directory,
 										stdStuff.userFile, isDict=True)
 				stdStuff.objListToFile(groupDict, stdStuff.directory,
