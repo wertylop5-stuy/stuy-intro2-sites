@@ -10,19 +10,6 @@ sys.path.insert(0, "../modules")
 import stdStuff
 
 directory = '../data/'
-'''
-f = open(directory + stdStuff.groupFile, 'r')
-groupList = f.read()
-f.close()
-
-f = open(directory +  stdStuff.currentGroupFile, 'r')
-currentGroup = f.read()
-f.close()
-
-f = open(directory +  stdStuff.groupsNameFile, 'r')
-groupsName = f.read()
-f.close()
-'''
 
 head = '''<!DOCTYPE html>
 <html>
@@ -178,16 +165,7 @@ if 'HTTP_COOKIE' in os.environ:
 			
 			groupList = stdStuff.objFileToList(stdStuff.directory,
 												stdStuff.groupFile)
-			'''
-			f = open(directory +  stdStuff.currentGroupFile, 'r')
-			currentGroup = f.read()
-			f.close()
-
-			f = open(directory +  stdStuff.groupsNameFile, 'r')
-			groupsName = f.read()
-			f.close()
-			'''
-			print len(groupList)
+			
 			
 			displayGroups += '''<br><h1>Want To View Groups?</h1>
 Groups:
