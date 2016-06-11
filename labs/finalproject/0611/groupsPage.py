@@ -16,6 +16,12 @@ f.close()
 form = cgi.FieldStorage()
 
 
+head = \
+'''
+<!DOCTYPE html>
+<html>
+<head>'''
+
 body = ''
 
 foot = '''</body>
@@ -404,6 +410,13 @@ if 'HTTP_COOKIE' in os.environ:
 										stdStuff.groupFile, isDict=True)
 				
 			
+			head += \
+'''
+<title>''' + currentGroup + '''</title>
+	</head>
+	<body>
+'''
+			
 			body+=makePage(c)
 		else:
 			body+="Failed to Authenticate cookie<br>\n"
@@ -421,14 +434,7 @@ else:
 
 
 
-head = \
-'''
-<!DOCTYPE html>
-<html>
-	<head><title>''' + currentGroup + '''</title>
-	</head>
-	<body>
-'''
+
 
 					
 print head
