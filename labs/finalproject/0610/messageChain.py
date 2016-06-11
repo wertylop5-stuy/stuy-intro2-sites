@@ -87,9 +87,9 @@ def displayGroupWidget(cookie):
 """
 	return res
 
-def makePage():
+def makePage(c):
 	res = ""
-	res += displayGroupWidget()
+	res += displayGroupWidget(c)
 	#res += poster()
 	#res += "<br><br>"
 	return res
