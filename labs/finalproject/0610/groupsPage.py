@@ -86,10 +86,10 @@ def writePost(cookie, formThing):
 	for x in groupList:
 		if x.name == currentGroup:
 			x.addPost( stdStuff.Post(
-							counter, 
-							cookie["username"].value,
-							formThing.getvalue("postTitle"),
-							formThing.getvalue('textBody')))
+					counter, 
+					cookie["username"].value,
+					stdStuff.deleteBrackets(formThing.getvalue("postTitle")),
+					stdStuff.deleteBrackets(formThing.getvalue('textBody'))))
 			break
 	
 	stdStuff.setCounter(counter)
