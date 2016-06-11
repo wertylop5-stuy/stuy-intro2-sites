@@ -175,10 +175,9 @@ if 'HTTP_COOKIE' in os.environ:
 									str(form.getvalue("visibility")))
 			
 			
-			f = open(directory + stdStuff.groupFile, 'r')
-			groupList = f.read()
-			f.close()
-
+			groupList = stdStuff.objFileToList(stdStuff.directory,
+												stdStuff.groupFile)
+			'''
 			f = open(directory +  stdStuff.currentGroupFile, 'r')
 			currentGroup = f.read()
 			f.close()
@@ -186,7 +185,7 @@ if 'HTTP_COOKIE' in os.environ:
 			f = open(directory +  stdStuff.groupsNameFile, 'r')
 			groupsName = f.read()
 			f.close()
-			
+			'''
 			print len(groupList)
 			
 			displayGroups = '''<br> <h1>Want To View Groups?</h1>''' + \
