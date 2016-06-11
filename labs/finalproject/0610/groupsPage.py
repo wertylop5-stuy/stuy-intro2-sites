@@ -351,8 +351,8 @@ if 'HTTP_COOKIE' in os.environ:
 <br>
 <br>
 """
-			body += displayInboxWidget(cookie)
-			body += displayGroupWidget(cookie)
+			body += displayInboxWidget(c)
+			body += displayGroupWidget(c)
 			
 			body += """<form>
 		Search for people: <input type = "text" name = "user">
