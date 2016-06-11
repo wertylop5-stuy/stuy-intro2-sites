@@ -444,13 +444,10 @@ if 'HTTP_COOKIE' in os.environ:
 				elif "removeVote" in form:
 					for index, value in enumerate(name.posts):
 						if value.id == targId:
-							print "found"
 							if currentUser in name.posts[index]\
 												.votedUsers.keys():
-								print "user in"
 								if name.posts[index] \
 								.votedUsers[currentUser] == "upVote":
-									print "upped"
 									name.posts[index]\
 									.votedUsers[currentUser] = "noVote"
 								
