@@ -288,7 +288,7 @@ if 'HTTP_COOKIE' in os.environ:
 									break
 				
 				
-				eelif "removeVote" in form:
+				elif "removeVote" in form:
 					for index, value in enumerate(name.posts):
 						if value.id == targId:
 							for comment in value:
@@ -296,7 +296,7 @@ if 'HTTP_COOKIE' in os.environ:
 													.votedUsers.keys():
 									if comment.votedUsers[currentUser] == \
 									"upVote":
-										comment
+										comment\
 										.votedUsers[currentUser] = "noVote"
 									
 										comment.decreaseScore()
