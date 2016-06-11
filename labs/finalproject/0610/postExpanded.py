@@ -292,19 +292,19 @@ if 'HTTP_COOKIE' in os.environ:
 					for index, value in enumerate(name.posts):
 						if value.id == targId:
 							for comment in value.comments:
-								if currentUser in comment\
+								if targName in comment\
 													.votedUsers.keys():
-									if comment.votedUsers[currentUser] == \
+									if comment.votedUsers[targName] == \
 									"upVote":
 										comment\
-										.votedUsers[currentUser] = "noVote"
+										.votedUsers[targName] = "noVote"
 									
 										comment.decreaseScore()
 								
-									elif comment.votedUsers[currentUser] == \
+									elif comment.votedUsers[targName] == \
 									"downVote":
 										comment\
-										.votedUsers[currentUser] = "noVote"
+										.votedUsers[targName] = "noVote"
 									
 										comment.increaseScore()
 									break
