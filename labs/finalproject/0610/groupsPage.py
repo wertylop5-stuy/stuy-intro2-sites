@@ -53,7 +53,7 @@ def createNotMember():
 							stdStuff.userFile)
 			for member in userList:     
 				if not(member.name in group.members):
-					notMember += '<option>' + (member.name) + '</option?> \n\t'
+					notMember += '<option>' + (member.name) + '</option> \n\t'
 	return notMember
 
 def createIsMember():
@@ -65,7 +65,7 @@ def createIsMember():
 							stdStuff.userFile)
 			for member in userList:     
 				if (member.name in group.members) and (member.name != currentUser):
-					isMember += '<option>' + (member.name) + '</option?> \n\t'
+					isMember += '<option>' + (member.name) + '</option> \n\t'
 	return isMember
 
 def poster():
@@ -301,7 +301,7 @@ if 'HTTP_COOKIE' in os.environ:
 					 '<form method = "GET" action = "groupsPage.py">' + \
 					 '<select name = "visibility">' + \
 					 '<option>public</option>' + \
-					 '<option>private</option' + \
+					 '<option>private</option>' + \
 					 '''</select>\n\t''' + \
 					 '''<input type = "submit" name = "done" value = "Change Visibility">''' + \
 					 '''</form><br>\n'''
