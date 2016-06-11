@@ -75,6 +75,7 @@ def displayInboxWidget(cookie):
 
 groupStatus = ""
 availableGroups = ""
+displayGroup = ""
 
 if 'HTTP_COOKIE' in os.environ:
 	cookie_string=os.environ.get('HTTP_COOKIE')
@@ -188,14 +189,13 @@ if 'HTTP_COOKIE' in os.environ:
 			'''
 			print len(groupList)
 			
-			displayGroups = '''<br> <h1>Want To View Groups?</h1>''' + \
-								'''Groups:''' + \
-						    '<form method = "GET" action = "groupsPage.py">' + \
-						    '<select name = "displayGroups">' + \
-						    groupList + \
-						    '''</select>\n\t''' + \
-						    '''<input type = "submit" name = "groupPicked" value = "View Group">''' + \
-						    '''</form>'''
+			displayGroups += '''<br><h1>Want To View Groups?</h1>
+Groups:
+<form method = "GET" action = "groupsPage.py">
+<select name = "displayGroups">''' + displayGroup() + \
+'''</select>\n\t''' + \
+'''<input type = "submit" name = "groupPicked" value = "View Group">''' + \
+'''</form>'''
 			
 			if len(groupList) > 0:
 					body += displayGroup()
