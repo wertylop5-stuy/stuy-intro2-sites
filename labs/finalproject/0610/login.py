@@ -88,7 +88,7 @@ def createCookie(c,username,ID):
 
     
 if 'username' in form and 'password' in form:
-    username = form.getvalue('username')
+    username = stdStuff.deleteBrackets(form.getvalue('username'))
     password = form.getvalue('password')
     if authenticate(username,password):
         import os,random
