@@ -525,17 +525,6 @@ if 'HTTP_COOKIE' in os.environ:
 						break
 				'''
 			
-			groupList = stdStuff.objFileToList(stdStuff.directory, stdStuff.groupFile)
-	
-	for x in groupList:
-		if x.name == currentGroup:
-			x.addPost( stdStuff.Post(
-					counter, 
-					cookie["username"].value,
-					stdStuff.deleteBrackets(formThing.getvalue("postTitle")),
-					stdStuff.deleteBrackets(formThing.getvalue('textBody'))))
-			break
-			
 			
 			groupDict = stdStuff.objFileToList(stdStuff.directory,
 									stdStuff.groupFile, byName=True)
