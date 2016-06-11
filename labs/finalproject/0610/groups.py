@@ -163,6 +163,7 @@ if 'HTTP_COOKIE' in os.environ:
 								x.changeVisibility(
 									str(form.getvalue("visibility")))
 			
+			print len(availableGroups)
 			if len(availableGroups) > 0:
 					body += displayGroups
 			#availableGroups = displayGroup()
