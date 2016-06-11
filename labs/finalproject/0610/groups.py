@@ -162,8 +162,10 @@ if 'HTTP_COOKIE' in os.environ:
 							if x == groupName:
 								x.changeVisibility(
 									str(form.getvalue("visibility")))
-
-			availableGroups = displayGroup()
+			
+			if len(availableGroups) > 0:
+					body += displayGroups
+			#availableGroups = displayGroup()
 			displayGroups = '''<br> <h1>Want To View Groups?</h1>''' + \
 								'''Groups:''' + \
 						    '<form method = "GET" action = "groupsPage.py">' + \
@@ -175,8 +177,7 @@ if 'HTTP_COOKIE' in os.environ:
 
 
 			#body += displayGroups
-			if len(availableGroups) > 0:
-					body += displayGroups
+			
 		else:
 			body+="Failed to Authenticate cookie<br>\n"
 			body+= 'Go Login <a href="login.py">here</a><br>'
