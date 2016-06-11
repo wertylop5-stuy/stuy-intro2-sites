@@ -187,7 +187,7 @@ if 'HTTP_COOKIE' in os.environ:
 			if 'searchUserPost' in form:
 				searchUserPost = str(form.getvalue('searchUserPost'))
 			
-			if "downVote" in form or "upVote" in form or "noVote" in form:
+			if "downVote" in form or "upVote" in form or "removeVote" in form:
 				commentId = int(form.getvalue("commentId"))
 	
 				currentUser = c["username"].value
