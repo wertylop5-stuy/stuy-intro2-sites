@@ -163,8 +163,8 @@ if 'HTTP_COOKIE' in os.environ:
 								x.changeVisibility(
 									str(form.getvalue("visibility")))
 
-				availableGroups = displayGroup()
-				displayGroups = '''<br> <h1>Want To View Groups?</h1>''' + \
+			availableGroups = displayGroup()
+			displayGroups = '''<br> <h1>Want To View Groups?</h1>''' + \
 								'''Groups:''' + \
 						    '<form method = "GET" action = "groupsPage.py">' + \
 						    '<select name = "displayGroups">' + \
