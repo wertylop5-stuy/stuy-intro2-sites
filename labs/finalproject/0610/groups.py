@@ -177,9 +177,7 @@ if 'HTTP_COOKIE' in os.environ:
 			f.close()
 			
 			print len(groupList)
-			if len(groupList) > 0:
-					body += displayGroups
-			#availableGroups = displayGroup()
+			
 			displayGroups = '''<br> <h1>Want To View Groups?</h1>''' + \
 								'''Groups:''' + \
 						    '<form method = "GET" action = "groupsPage.py">' + \
@@ -188,8 +186,11 @@ if 'HTTP_COOKIE' in os.environ:
 						    '''</select>\n\t''' + \
 						    '''<input type = "submit" name = "groupPicked" value = "View Group">''' + \
 						    '''</form>'''
-
-
+			
+			if len(groupList) > 0:
+					body += displayGroup()
+			#availableGroups = displayGroup()
+			
 			#body += displayGroups
 			
 		else:
