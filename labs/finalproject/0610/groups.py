@@ -10,6 +10,7 @@ sys.path.insert(0, "../modules")
 import stdStuff
 
 directory = '../data/'
+'''
 f = open(directory + stdStuff.groupFile, 'r')
 groupList = f.read()
 f.close()
@@ -21,7 +22,7 @@ f.close()
 f = open(directory +  stdStuff.groupsNameFile, 'r')
 groupsName = f.read()
 f.close()
-
+'''
 
 head = '''<!DOCTYPE html>
 <html>
@@ -101,19 +102,29 @@ if 'HTTP_COOKIE' in os.environ:
 """
 			body += displayInboxWidget(c)
 			currentUser = c['username'].value
-
-
-
-			#Replace with drop down menu. Kick Meber = 
-			#Drop down with memebrs in group only.
 			
-			#Add member = maybe drop down with public/anyone not in group
-
 			userDict = stdStuff.objFileToList(stdStuff.directory,
 											stdStuff.userFile, byName=True)
 			groupDict = stdStuff.objFileToList(stdStuff.directory,
 											stdStuff.groupFile, byName=True)
-			groupList = stdStuff.objFileToList(stdStuff.directory, stdStuff.groupFile)
+			
+			groupList = stdStuff.objFileToList(stdStuff.directory,
+												stdStuff.groupFile)
+			
+			f = open(directory +  stdStuff.currentGroupFile, 'r')
+			currentGroup = f.read()
+			f.close()
+
+			f = open(directory +  stdStuff.groupsNameFile, 'r')
+			groupsName = f.read()
+			f.close()
+			
+			
+			#Replace with drop down menu. Kick Meber = 
+			#Drop down with memebrs in group only.
+			
+			#Add member = maybe drop down with public/anyone not in group
+			
 
 			createGroup = '''<h1>Want To Create A Group?</h1><form method = "GET" action = "groups.py">
 			Group Name:<input type = "text" name = "groupName">
