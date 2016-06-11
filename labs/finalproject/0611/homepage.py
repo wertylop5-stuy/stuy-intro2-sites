@@ -15,13 +15,16 @@ head = '''<!DOCTYPE html>
 </head>
 <body>
    '''
-body = """<form method="GET" action="createaccount.py">
-			<input name="new" type="submit" value="Create Account">
-		</form>
+body = """
+<div id="homePageButtons">
+	<form method="GET" action="createaccount.py">
+		<input name="new" type="submit" value="Create Account">
+	</form>
 		
-		<form method="GET" action="login.py">
-			<input name="login" type="submit" value="Login">
-		</form>
+	<form method="GET" action="login.py">
+		<input name="login" type="submit" value="Login">
+	</form>
+</div>
 """
 foot = '''
 </body>
