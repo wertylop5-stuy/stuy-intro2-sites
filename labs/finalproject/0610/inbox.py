@@ -178,9 +178,9 @@ if 'HTTP_COOKIE' in os.environ:
 								form.getvalue("messageTarget"))
 				try:
 					userDict[currentUser].inbox.sendMessage(
-											recipient,
-											form.getvalue("messageTitle"),
-											form.getvalue("messageBody"))
+						recipient,
+						stdStuff.deleteBrackets(form.getvalue("messageTitle")),
+						stdStuff.deleteBrackets(form.getvalue("messageBody")))
 				except KeyError:
 					body += "<h1>" + recipient + " is not a registered user</h1>"
 			
