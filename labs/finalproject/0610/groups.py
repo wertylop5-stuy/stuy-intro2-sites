@@ -194,8 +194,8 @@ Groups:
 <form method = "GET" action = "groupsPage.py">
 <select name = "displayGroups">''' + displayGroup() + \
 '''</select>\n\t''' + \
-'''<input type = "submit" name = "groupPicked" value = "View Group">''' + \
-'''</form>'''
+'''<input type = "submit" name = "groupPicked" value = "View Group">
+</form>'''
 			
 			if len(groupList) > 0:
 					body += displayGroup()
