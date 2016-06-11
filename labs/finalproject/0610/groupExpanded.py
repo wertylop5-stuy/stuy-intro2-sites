@@ -1,6 +1,5 @@
 #!/usr/bin/python
 #This file is to view an expanded file
-
 print 'content-type: text/html'
 print ''
 import cgitb,cgi,sys,os,Cookie,pickle
@@ -8,6 +7,8 @@ cgitb.enable()
 sys.path.insert(0, "../modules")
 import stdStuff
 directory = '../data/'
+
+
 head = '''<!DOCTYPE html>
 <html>
 <head><title>Comments on this post</title>

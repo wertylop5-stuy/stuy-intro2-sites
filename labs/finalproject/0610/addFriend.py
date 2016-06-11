@@ -58,6 +58,25 @@ def displayInboxWidget(cookie):
 """
 	return res
 
+def displayGroupWidget(cookie):
+	currentUser = cookie["username"].value
+	userDict = stdStuff.objFileToList(stdStuff.directory,
+								stdStuff.userFile, byName=True)
+	
+	res = \
+"""
+<div align='right'>
+	<table border='1'>
+		<tr>
+			<td>
+				<a href="groups.py">View groups</a>
+			</td>
+		</tr>
+	</table>
+</div>
+"""
+	return res
+
 def findUsers(usernameQuery, userDict, currentUser):
 	hits = []
 	for user in userDict:
@@ -106,6 +125,7 @@ def sendFriendRequest(form, userDict, srcUser):
 def makePage(cookie):
 	res = ""
 	res += displayInboxWidget(cookie)
+	res += displayGroupWidget(cookie)
 	res += poster()
 	return res
 

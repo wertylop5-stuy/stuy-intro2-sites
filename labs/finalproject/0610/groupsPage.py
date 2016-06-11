@@ -329,70 +329,6 @@ if 'HTTP_COOKIE' in os.environ:
 			
 			if "postTitle" in form:
 				writePost(c, form)
-			'''
-			if ("downVote" in form) or ("upVote" in form) or ("noVote" in form):
-				targId = int(form.getvalue("postId"))
-				targName = c["username"].value
-				currentUser = c["username"].value
-				groupDict = stdStuff.objFileToList(stdStuff.directory,
-									stdStuff.groupFile, byName=True)
-				
-				name = groupDict[currentGroup]
-				if "downVote" in form:
-					for index, value in enumerate(name.posts):
-						print name.posts[index].votedUsers
-						print name.posts[index].score
-						if value.id == targId and (not (currentUser in name.posts[index].votedUsers.keys())):
-							name.posts[index].decreaseScore()
-							#x.posts[index].votedUsers[x.name] = "upVote"
-							name.posts[index].addDownVote(currentUser)
-						if value.id == targId and (name.posts[index].votedUsers[currentUser] == 'noVote'):
-							name.posts[index].increaseScore()
-							#x.posts[index].votedUsers[x.name] = "upVote"
-							name.posts[index].addDownVote(currentUser)
-						if value.id == targId and (name.posts[index].votedUsers[currentUser] == 'upVote'):
-							name.posts[index].decreaseScore()
-							name.posts[index].decreaseScore()
-							#x.posts[index].votedUsers[x.name] = "upVote"
-							name.posts[index].addDownVote(currentUser)
-							break
-				if "upVote" in form:
-					for index, value in enumerate(name.posts):
-						print name.posts[index].votedUsers
-						print name.posts[index].score
-						if value.id == targId and (not (currentUser in name.posts[index].votedUsers.keys())):
-							name.posts[index].increaseScore()
-							#x.posts[index].votedUsers[x.name] = "upVote"
-							name.posts[index].addUpVote(currentUser)
-						if value.id == targId and (name.posts[index].votedUsers[currentUser] == 'noVote'):
-							name.posts[index].increaseScore()
-							#x.posts[index].votedUsers[x.name] = "upVote"
-							name.posts[index].addUpVote(currentUser)
-						if value.id == targId and (name.posts[index].votedUsers[currentUser] == 'downVote'):
-							name.posts[index].increaseScore()
-							name.posts[index].increaseScore()
-							#x.posts[index].votedUsers[x.name] = "upVote"
-							name.posts[index].addUpVote(currentUser)
-							break
-				if "removeVote" in form:
-					for index, value in enumerate(name.posts):
-						print name.posts[index].votedUsers
-						print name.posts[index].score
-						if value.id == targId and ((not (currentUser in name.posts[index].votedUsers.keys()))):
-							pass
-							#x.posts[index].votedUsers[x.name] = "upVote"
-						if value.id == targId and ((name.posts[index].votedUsers[currentUser] == 'downVote')):
-							name.posts[index].increaseScore()
-							name.posts[index].removeVote(currentUser)
-							#x.posts[index].votedUsers[x.name] = "upVote"
-						if value.id == targId and (name.posts[index].votedUsers[currentUser] == 'upVote'):     
-							name.posts[index].decreaseScore()
-							name.posts[index].removeVote(currentUser)
-									
-							#x.posts[index].votedUsers[x.name] = "upVote"
-						
-						break
-				'''
 			
 			
 			groupDict = stdStuff.objFileToList(stdStuff.directory,
@@ -466,31 +402,7 @@ if 'HTTP_COOKIE' in os.environ:
 										stdStuff.userFile, isDict=True)
 				stdStuff.objListToFile(groupDict, stdStuff.directory,
 										stdStuff.groupFile, isDict=True)
-				'''
-				targId = int(form.getvalue("postId"))
-				targName = c["username"].value
 				
-				userDict = stdStuff.objFileToList(stdStuff.directory,
-									stdStuff.userFile, byName=True)
-				
-				name = userDict[targName]
-				if "downVote" in form:
-					for index, value in enumerate(name.posts):
-						if value.id == targId and (not (name in name.posts[index].votedUsers.keys()) or (name.posts[index].votedUsers[name] != 'downVote')):
-							name.posts[index].decreaseScore()
-							#x.posts[index].votedUsers[x.name] = "upVote"
-							name.posts[index].addDownVote(name)
-							break
-				elif "upVote" in form:
-					for index, value in enumerate(name.posts):
-						if value.id == targId and (not (name in name.posts[index].votedUsers.keys()) or (name.posts[index].votedUsers[name] != 'upVote')):
-							name.posts[index].increaseScore()
-							#x.posts[index].votedUsers[x.name] = "upVote"
-							name.posts[index].addUpVote(name)
-							break
-				stdStuff.objListToFile(userDict, stdStuff.directory,
-										stdStuff.userFile, isDict=True)
-				'''
 			
 			body+=makePage(c)
 		else:

@@ -212,33 +212,7 @@ if 'HTTP_COOKIE' in os.environ:
 			lol = open(stdStuff.directory + stdStuff.postIdFile, "r")
 			targId = int(lol.read())
 			lol.close()
-			'''
-			if "downVote" in form or "upVote" in form:
-				commentId = int(form.getvalue("commentId"))
-				targName = c["username"].value
-	
-				userList = stdStuff.objFileToList(stdStuff.directory,
-									stdStuff.userFile)
-	
-				for x in userList:
-					if x.name == targName:
-						if "downVote" in form:
-							for index, value in enumerate(x.posts):
-								if value.id == targId:
-									for index2, value2 in \
-									enumerate(value.comments):
-										if int(value2.id) == int(commentId):
-											value.comments[index2].decreaseScore()
-											break
-						elif "upVote" in form:
-							for index, value in enumerate(x.posts):
-								if value.id == targId:
-									for index2, value2 in \
-									enumerate(value.comments):
-										if value2.id == commentId:
-											value.comments[index2].increaseScore()
-											break
-				'''
+			
 			if ("downVote" in form) or ("upVote" in form) or ("removeVote" in form):
 				targId = int(form.getvalue("postId"))
 				commentId = int(form.getvalue("commentId"))
