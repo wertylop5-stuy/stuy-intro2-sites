@@ -528,11 +528,11 @@ if 'HTTP_COOKIE' in os.environ:
 			userDict = stdStuff.objFileToList(stdStuff.directory,
 									stdStuff.userFile, byName=True)
 			
-			targId = int(form.getvalue("postId"))
 			targName = c["username"].value
 			
 			name = userDict[targName]
 			if ("downVote" in form) or ("upVote" in form) or ("noVote" in form):
+				targId = int(form.getvalue("postId"))
 				if "downVote" in form:
 					for index, value in enumerate(name.posts):
 						if value.id == targId: 
