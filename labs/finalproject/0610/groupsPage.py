@@ -347,9 +347,6 @@ if 'HTTP_COOKIE' in os.environ:
 <a href="profile.py">Go back to profile</a>
 <br>
 <a href = "groups.py">Back to Groups </a>
-<br>
-<br>
-<br>
 """
 			body += displayInboxWidget(c)
 			body += displayGroupWidget(c)
