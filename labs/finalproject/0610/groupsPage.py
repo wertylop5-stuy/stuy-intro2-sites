@@ -524,7 +524,12 @@ if 'HTTP_COOKIE' in os.environ:
 						
 						break
 				'''
+			
+			userDict = stdStuff.objFileToList(stdStuff.directory,
+									stdStuff.userFile, byName=True)
 				
+			name = userDict[targName]
+			
 			if "downVote" in form:
 				for index, value in enumerate(name.posts):
 					if value.id == targId: 
