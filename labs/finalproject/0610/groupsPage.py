@@ -525,11 +525,23 @@ if 'HTTP_COOKIE' in os.environ:
 						break
 				'''
 			
-			userDict = stdStuff.objFileToList(stdStuff.directory,
-									stdStuff.userFile, byName=True)
+			groupList = stdStuff.objFileToList(stdStuff.directory, stdStuff.groupFile)
+	
+	for x in groupList:
+		if x.name == currentGroup:
+			x.addPost( stdStuff.Post(
+					counter, 
+					cookie["username"].value,
+					stdStuff.deleteBrackets(formThing.getvalue("postTitle")),
+					stdStuff.deleteBrackets(formThing.getvalue('textBody'))))
+			break
 			
-			targName = c["username"].value
 			
+			groupDict = stdStuff.objFileToList(stdStuff.directory,
+									stdStuff.groupFile, byName=True)
+			
+			name = groupDict[currentGroup]
+			currentUser = c["username"].value
 			name = userDict[targName]
 			if ("downVote" in form) or ("upVote" in form) or ("noVote" in form):
 				targId = int(form.getvalue("postId"))
