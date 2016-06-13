@@ -40,12 +40,16 @@ html {
 	border-radius: 10px;
 	/*clear: left;*/
 	position: fixed;
+	float: left;
 }
 
 #userHeader2 {
-	padding: 70px;
+	padding: 10px;
+	/*margin: 50px;*/
 	display: inline-block;
-	border-radius: 10px;
+	/*position: absolute;*/
+	/*float: left;*/
+	/*position: fixed;*/
 }
 
 #username p{
@@ -61,9 +65,9 @@ html {
 	padding: 30px;
 	border-radius: 50px;
 	margin: 5px;
-	display: block;
+	/*display: block;*/
 	/*float: left;*/
-	clear: both;
+	/*clear: both;*/
 	/*position: relative;*/
 }
 
@@ -81,6 +85,8 @@ html {
 	border-radius: 10px;
 	padding: 10px;
 	margin: 5px;
+	margin-top: 120px;
+	clear: both;
 }
 
 #poster {
@@ -88,5 +94,6 @@ html {
 	display: inline-block;
 	padding: 10px;
 	border-radius: 10px;
+	margin-top: 150px;
 	/*clear: right;*/
 }
