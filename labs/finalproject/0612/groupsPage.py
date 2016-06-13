@@ -51,6 +51,18 @@ def authenticate(u,ID,IP):
 			return a[1]==str(ID) and a[2]==IP
 	return False
 
+def createNotAdmin():
+	notAdmin = ''
+	groupList = stdStuff.objFileToList(stdStuff.directory, stdStuff.groupFile)
+	for group in groupList:
+		if group.name == currentGroup:
+			userList = stdStuff.objFileToList(stdStuff.directory,
+							stdStuff.userFile)
+			for member in userList:     
+				if not(member.name in group.admins):
+					notAdmin += '<option>' + (member.name) + '</option> \n\t'
+	return notAdmin
+
 def createNotMember():
 	notMember = ''
 	groupList = stdStuff.objFileToList(stdStuff.directory, stdStuff.groupFile)
@@ -296,7 +308,16 @@ username + \
 													stdStuff.groupFile,)
 
 			body += groupStatus
-
+			
+			notAdmin = createNotAdmin()
+			addAdmin = '''Add Admin:''' + \
+					 '<form method = "GET" action = "groupsPage.py">' + \
+					 '<select name = "addAdmin">' + \
+					 notAdmin + \
+					 '''</select>\n\t''' + \
+					 '''<input type = "submit" name = "done" value = "Add Admin">''' + \
+					 '''</form><br>\n'''
+			
 			notMember = createNotMember()
 			#print notMember
 			addMember = '''Add Member:''' + \
@@ -340,6 +361,8 @@ username + \
 								body += "<div id='adminPanel'>"
 								if len(notMember) > 0:
 									body += addMember
+								if len(notAdmin) > 0:
+									body += addAdmin
 								if len(isMember) > 0:  
 									body += kickMember
 								body += changeVisibility
