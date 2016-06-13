@@ -2,7 +2,7 @@ html {
 	background-color: #88958D;
 }
 
-#homePageButtons {
+#accCreateForm {
 	text-align: center;
 	background-color: #109648;
 	
@@ -17,7 +17,7 @@ html {
 	border-radius: 10px;
 }
 
-#homePageTitle {
+#accCreateTitle {
 	font-family: Comic Sans MS, Serif;
 	text-align: center;
 }

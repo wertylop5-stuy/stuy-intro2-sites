@@ -1,0 +1,99 @@
+html {
+	background-color: #88958D;
+}
+
+#searchBar {
+	/*margin-top: 50px;*/
+	display: block;
+	clear: both;
+	/*float: left;*/
+}
+
+#postCreateForm {
+	
+}
+
+.widget {
+	float: right;
+	/*display: table;*/
+	background-color: #52796F;
+	/*list-style: none;*/
+	/*margin: auto;*/
+	clear: both;
+	/*position: fixed;*/
+}
+
+#inboxWidget table{
+	/*background-color: red;*/
+	clear: left;
+}
+
+#groupWidget table{
+	clear: left;
+	/*margin-bottom: 10px;*/
+}
+
+#userHeader {
+	background-color: #109648;
+	padding: 10px;
+	display: inline-block;
+	border-radius: 10px;
+	/*clear: left;*/
+	position: fixed;
+}
+
+#userHeader2 {
+	padding: 70px;
+	/*padding-bottom: 100px;*/
+	display: inline-block;
+	border-radius: 10px;
+}
+
+#username p{
+	padding: 0px;
+	margin: 0px;
+}
+
+#userButtons {
+}
+
+#messageContainer {
+	background-color: #F0DEB2;
+	padding: 30px;
+	border-radius: 50px;
+	margin: 5px;
+	margin-top: 10px;
+	display: block;
+	/*float: left;*/
+	clear: both;
+	/*position: relative;*/
+}
+
+.message {
+	background-color: #D9FFF5;
+	border-radius: 10px;
+	padding: 10px;
+	margin: 5px;
+	/*display: inline-block;*/
+	clear: both;
+	/*float: left;*/
+}
+
+.friendRequest {
+	background-color: #668586;
+	border-radius: 10px;
+	padding: 10px;
+	margin: 5px;
+	clear: both;
+}
+
+#poster {
+	background-color: #52796F;
+	display: inline-block;
+	padding: 10px;
+	border-radius: 10px;
+	float: left;
+	clear: both;
+	margin-top: 100px;
+	margin-bottom: 10px;
+}

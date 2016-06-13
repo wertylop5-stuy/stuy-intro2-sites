@@ -1,0 +1,73 @@
+html {
+	background-color: #88958D;
+}
+
+#searchBar {
+	/*margin-top: 50px;*/
+	display: block;
+	clear: both;
+	/*float: left;*/
+}
+
+#postCreateForm {
+	
+}
+
+.widget {
+	float: right;
+	/*display: table;*/
+	background-color: #52796F;
+	/*list-style: none;*/
+	/*margin: auto;*/
+	clear: both;
+}
+
+#inboxWidget table{
+	/*background-color: red;*/
+	clear: left;
+}
+
+#groupWidget table{
+	clear: left;
+}
+
+#userHeader {
+	background-color: #109648;
+	padding: 10px;
+	display: inline-block;
+	border-radius: 10px;
+	/*clear: left;*/
+	position: fixed;
+}
+
+#userHeader2 {
+	padding: 70px;
+	display: inline-block;
+}
+
+#username p{
+	padding: 0px;
+	margin: 0px;
+}
+
+#userButtons {
+}
+
+.post {
+	background-color: #B2C9AB;
+	padding: 10px;
+	border-radius: 50px;
+	margin: 5px;
+}
+
+.post h6 {
+	padding: 0px;
+	margin: 0px;
+}
+
+#postCreateForm {
+	background-color: #52796F;
+	display: inline-block;
+	padding: 10px;
+	border-radius: 10px;
+}

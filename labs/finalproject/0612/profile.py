@@ -55,7 +55,7 @@ def poster():
 	Title: <input name="postTitle" type="textfield">
 	<br>
 	Text: <textarea name="textBody" rows="10" cols="15">
-	</textarea>
+</textarea>
 	<br>
 	<input type = "submit" value = "Make Post">
 	</form>
@@ -102,7 +102,7 @@ def displayPosts(cookie):
 	totalPosts.sort(key=lambda x: x.id, reverse=True)
 	
 	for post in totalPosts:
-		res += """<table>
+		res += """<table class="post">
 		<tr>
 		<td>""" + str(post.score) + """</td>
 		<td>
@@ -133,7 +133,7 @@ def displayInboxWidget(cookie):
 	
 	res = \
 """
-<div class="widget" align="right">
+<div class="widget" id="inboxWidget">
 	<table border='1'>
 		<tr>
 			<td>
@@ -152,7 +152,7 @@ def displayGroupWidget(cookie):
 	
 	res = \
 """
-<div class="widget" align="right">
+<div class="widget" id="groupWidget">
 	<table border='1'>
 		<tr>
 			<td>
@@ -193,14 +193,28 @@ if 'HTTP_COOKIE' in os.environ:
 		
 		if authenticate(username,ID,IP):
 			### PUT PAGE STUFF HERE
-			body += "Logged in as: " + username
-			body += """<form method="GET" action="homepage.py">
-<input name="logOut" type="submit" value="Log out">
-</form>
-<form method="GET" action="addFriend.py">
-<input name="addFriend" type="submit" value="Add a friend">
-</form>
+			body += "<div id='userHeader'>"
+			body += """
+<div id="username">
+	<p>Logged in as: """ + \
+username + \
+"""</p>
+</div>"""
+			body += """
+<div id="userButtons">
+	<form method="GET" action="homepage.py">
+		<input name="logOut" type="submit" value="Log out">
+	</form>
+	<form method="GET" action="addFriend.py">
+		<input name="addFriend" type="submit" value="Add a friend">
+	</form>
+</div>
+</div>
 """
+
+			body += "<div id='userHeader2'></div>"
+
+
 			if "postTitle" in form:
 				writePost(c, form)
 			currentUser = c["username"].value
@@ -231,6 +245,24 @@ if 'HTTP_COOKIE' in os.environ:
 								name.posts[index].addDownVote(currentUser)
 							
 							break
+					for friend in name.friends:
+						for index, value in enumerate(userDict[friend].posts):
+							if value.id == targId:
+								if not(currentUser in \
+								value.votedUsers.keys()) or\
+								value.votedUsers[currentUser] == "noVote":
+									value.decreaseScore()
+								
+									value.addDownVote(currentUser)
+								elif (value.votedUsers[currentUser] !=\
+								'downVote'):
+							
+									value.decreaseScore()
+									value.decreaseScore()
+								
+									value.addDownVote(currentUser)
+							
+								break
 				
 				elif "upVote" in form:
 					for index, value in enumerate(name.posts):
@@ -249,6 +281,24 @@ if 'HTTP_COOKIE' in os.environ:
 								name.posts[index].addUpVote(currentUser)
 							
 							break
+					for friend in name.friends:
+						for index, value in enumerate(userDict[friend].posts):
+							if value.id == targId:
+								if not(currentUser in \
+								value.votedUsers.keys()) or\
+								value.votedUsers[currentUser] == "noVote":
+									value.increaseScore()
+								
+									value.addUpVote(currentUser)
+								elif (value.votedUsers[currentUser] !=\
+								'upVote'):
+							
+									value.increaseScore()
+									value.increaseScore()
+								
+									value.addUpVote(currentUser)
+							
+								break
 				
 				
 				elif "removeVote" in form:
@@ -270,6 +320,27 @@ if 'HTTP_COOKIE' in os.environ:
 									
 									name.posts[index].increaseScore()
 								
+							break
+					for friend in name.friends:
+						for index, value in enumerate(userDict[friend].posts):
+							if value.id == targId:
+								if currentUser in \
+								value.votedUsers.keys():
+									print "lol"
+									if value \
+									.votedUsers[currentUser] == "upVote":
+										print "yes"
+										value\
+										.votedUsers[currentUser] = "noVote"
+									
+										value.decreaseScore()
+								
+									elif value \
+									.votedUsers[currentUser] == "downVote":
+										value\
+										.votedUsers[currentUser] = "noVote"
+									
+										value.increaseScore()
 							break
 				
 				
