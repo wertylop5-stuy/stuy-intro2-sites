@@ -127,3 +127,31 @@ starting coding at 4 and going up until now (about 1am). Even though its
 not technically the last day, I still feel bad about waiting this long
 to deal with this problem.
 On the bright side...CSS!!!1!1!1!11!1
+
+6/10
+I started doing the css of the mainpage. Because it isn't my strong point,
+I spent half an hour just trying to get the div to the center of the page.
+
+6/11
+I didn't do all that much today. I started on the CSS for homepage,
+createaccount, and login.py. I pretty much used the same css file, but I plan
+on making seperate ones for each file regardless.
+
+6/12
+Oh boy. This project really has been something.
+Today, I set my focus to finishing up the CSS. I started working on profile.py
+with profile.css file. I will admit, I am terrible at CSS. I was trying to 
+get the right side nav menus to stay next to the logout etc. buttons for
+almost an hour. After toying around a lot with display, float, margin,
+padding, and clear, I finally managed to do it. The rest was relatively
+simple: just make a class to uniformly display the posts.
+The rest of the CSS was really just copies of the proifile.py one, with
+modifications made to each file. However, my lack of CSS knowledge lead me
+to work on this for the majority of the day. One such thing was figuring
+out how to keep the dimensions of the top left user menu when I set the
+display to fixed (the answer is to make another div with the same dimensions).
+
+Looking back now, I realized that out of all the languages I've learned, I
+have never undertaken a project of this size. Of course, this is really sad,
+but I really think that this project will help me undertake even larger
+ones.
